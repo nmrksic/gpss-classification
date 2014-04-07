@@ -1,0 +1,32 @@
+function [] = plotPosterior(x, y, xs, ys, cov2, hyp2, hyp, inf, mean, cov, lik  )
+
+    hyp = struct(1,1;
+
+    hyp.mean = 0.2328;
+    hyp.cov = [2.3212 -1.6894 3.1400 1.4735 2.6134 1.2660 2.3303 -1.0087];
+     
+    inf = @infLaplace;
+    mean = @meanConst;
+    encoder = [ 6 5 3 5];
+    
+    cov = encodeKernel(encoder, size(x, 2)); 
+    
+    lik = @likErf;
+    
+    encoder2 = [6];
+    
+    cov2 = encodeKernel(encoder2, size(x, 2));
+    
+  %  Kernel to be expanded is: SE2  - really bad one.
+%  startingHyperparameters = 
+ %   mean: 0.1821
+  %   cov: [0.5945 -0.9267]
+
+    
+    hyp2.mean = 0.1604;
+    hyp2.cov =  [-0.4320 -0.9037];
+
+  [~, ~, ~, ~, ~, post] = gp(hyp, inf, mean, cov, lik, x , y , xs, ys);
+
+plot_additive_decomp(X, y, post, cov2, hyp2);
+
