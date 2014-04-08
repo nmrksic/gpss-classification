@@ -99,7 +99,7 @@ for i = 1:num_components
 
     % Plot posterior mean and variance.
     figure(i); clf;
-    filename = sprintf( '%s-component-%d', fileprefix, d );
+    filename = sprintf( '%sComponent: SE%d', fileprefix, d );
     nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
 end
 
@@ -188,8 +188,8 @@ function nice_oned_plot( X, y, y_adjusted, xstar, mean, full_variance, show_samp
         %savepng(gcf, filename);
         %save2pdf([filename '.pdf'], gcf, dpi, true );
         saveas(gcf, filename, 'png')
-        %print
-        
+        saveas(gcf, filename, 'fig')
+
         % Plot separate legend
    %     if d == D
         if false

@@ -11,9 +11,11 @@ function [covMatrix] = encodeKernel(KernelMatrix, dataDim)
 
  n = size(KernelMatrix, 1);
  m = size(KernelMatrix, 2);
-  
+ 
  lengths = zeros(n, 1);
-   
+ 
+ KernelMatrix = squeeze(KernelMatrix); % squeeze just to ensure correct usage
+ 
  for i = 1:n
      
      lengths(i) = nnz(KernelMatrix(i, :));
@@ -33,6 +35,9 @@ function [covMatrix] = encodeKernel(KernelMatrix, dataDim)
  % we first create all the necessary base SE kernels in the baseCovs matrix
  
  masks = eye(dataDim); % to be used with covMasks
+ 
+ %kernelmatrixis = KernelMatrix 
+ 
  
  for i = 1:n
      for j = 1:lengths(i)

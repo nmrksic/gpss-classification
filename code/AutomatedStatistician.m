@@ -1,4 +1,4 @@
-function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccuracies, bestName, bestBic, bestAcc] = AutomatedStatistician(X, y, X_tst, y_tst, searchSteps, numExp, runParallel, inferenceMethod, backtrack, optimisation)
+function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccuracies, bestName, bestBic, bestAcc, bestHyperParam, finalEncoder] = AutomatedStatistician(X, y, X_tst, y_tst, searchSteps, numExp, runParallel, inferenceMethod, backtrack, optimisation)
  % GPSS for GP classification, with a covSE grammar and search defined as in
  % the original paper (operations: +B, *B, substitute any term with B). 
 
@@ -7,6 +7,8 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
     bestName = 'fail';
     bestBic = inf;
     bestAcc = inf;
+    bestHyperParam = [100 100];
+    finalEncoder = [1 2; 3 4];
 
  if(nargin < 10)
      disp('Not doing feature selection.')
@@ -59,9 +61,11 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
  
   
  if (runParallel == 1)
-     system('rm scripts/*.m');
+     system('rm -f scripts/*.m');
      parallel_bases
  else
+     
+     disp( ['Evaluating the base SE kernels, number of experiments to run is ', num2str(numExp * dim),'.'] );
 
      for i = 1:dim % initialise the base kernels and determine their BICs and test accuracies
 
@@ -94,7 +98,11 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
  
  msg = [' Test accurracies:           ',  num2str(predictiveAccuraccies(1:dim)) ];
  disp(msg);
+ disp(' ');
+ disp('---------------------------------------------------------------------------------------------------------------------');
+ disp(' ');
  
+
  
  currentIter = dim; % the index of the kernel we are currently choosing.
  
@@ -132,7 +140,7 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
  end
  
  if (optimisation ==1 && dim <= reducedCount)
-     disp('Not doing feature selection - there are <= ', reducedCount, ' dimensions of the data');
+     disp('Not doing feature selection - there are <= ', reducedCount, ' dimensions of the data.');
  end
 
  while currentIter < searchSteps
@@ -154,31 +162,41 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
     if (bestBic == inf)  % corrected bug when single base is the best solution
         bestName = kernelNames{idx};
         bestBic = bestBicVals(idx);
-        bestAcc = predictiveAccuraccies(idx);
+        bestAcc = predictiveAccuraccies();
+        
+        bestHyperParam = bestHyper{idx};
+        finalEncoder = squeeze(encoderMatrices(idx, :, :));    
+
     end
     
-    disp(['Kernel to be expanded is: ', kernelNames{idx}]);
+    disp(['Kernel being expanded at this stage of the search is: ', kernelNames{idx},'.']);
     startingHyperparameters = bestHyper{idx}
     
-    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernelParallel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp, runParallel,  inferenceMethod, selectFeatures);
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp, runParallel,  inferenceMethod, selectFeatures);
 
     kernelNames{currentIter} = decodeKernelName(squeeze(encoderMatrices(currentIter, :, :)));
 
     covFunctions{currentIter} = encodeKernel( squeeze( encoderMatrices(currentIter, :, :) ), dim); % obtain the actual kernel
+    
 
-    [~,~,~,~,lp] = gp(bestHyper{currentIter}, inferenceMethod, meanfunc, covFunctions{currentIter}, likfunc, X, y, X_tst, ones(size(y_tst)));
 
     % train accuracies: 
     [~,~,~,~,lp2] = gp(bestHyper{currentIter}, inferenceMethod, meanfunc, covFunctions{currentIter}, likfunc, X, y, X, ones(size(y)));
     trainAccuracies(currentIter) = calculateAcc(lp2, X, y);
-    % ....
     
+    % test accuracies:
+    [~,~,~,~,lp] = gp(bestHyper{currentIter}, inferenceMethod, meanfunc, covFunctions{currentIter}, likfunc, X, y, X_tst, ones(size(y_tst)));
     predictiveAccuraccies(currentIter) = calculateAcc(lp, X_tst, y_tst);
 
-    msg = [kernelNames{currentIter}, ': BIC value for the training set: ', num2str(bestBicVals(currentIter)),  ' Train accuracy: ', num2str(trainAccuracies(currentIter)), ' Test accurracy: ',  num2str(predictiveAccuraccies(currentIter))];
+    msg = ['Best kernel constructed at this stage of the search is: ', kernelNames{currentIter},'.'];
     disp(msg);
+    msg = ['BIC value: ', num2str(bestBicVals(currentIter)),  '; Training accuracy: ', num2str(trainAccuracies(currentIter)), '; Test accurracy: ',  num2str(predictiveAccuraccies(currentIter)),'.'];
+    disp(msg);
+    disp(' ');
+    disp('---------------------------------------------------------------------------------------------------------------------');
+    disp(' ');
     
-
+    
     if bestBicVals(currentIter) > currMin(1) % in this case, we are not creating a better kernel (at least in terms of the BIC)
             disp('Search unable to construct a better kernel. ')
     
@@ -191,7 +209,9 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
     bestName = kernelNames{currentIter};
     bestBic = bestBicVals(currentIter);
     bestAcc = predictiveAccuraccies(currentIter);
-     
+    bestHyperParam = bestHyper{currentIter};
+    finalEncoder = squeeze(encoderMatrices(currentIter, :, :));    
+    
  end
 
  

@@ -1,0 +1,1691 @@
+Experiment 7: 300, 100, 0, 10 restarts, seed 0
+ 
+Kernel Optimal rate: 0.93667
+Bayes (function) Optimal rate: 0.95333
+ 
+Evaluating the base kernels, # experiments = 30
+Traceback (most recent call last):
+  File "runscriptsinparallel.py", line 1, in <module>
+    from cblparallel import pyfear
+  File "/homes/mlghomes/nm480/Desktop/gpss-classification/code/cblparallel/__init__.py", line 11, in <module>
+    import pyfear # Is this line necessary?
+  File "/homes/mlghomes/nm480/Desktop/gpss-classification/code/cblparallel/pyfear.py", line 9, in <module>
+    import pysftp # Wraps up various paramiko calls
+ImportError: No module named pysftp
+{Error using <a href="matlab:helpUtils.errorDocCallback('load')" style="font-weight:bold">load</a>
+Unable to read file 'outputs/script000000001.mat': no such file or directory.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('parallel_call', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/parallel_call.m', 32)" style="font-weight:bold">parallel_call</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/parallel_call.m',32,0)">line 32</a>)
+        load(file_name);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('parallel_bases', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/parallel_bases.m', 49)" style="font-weight:bold">parallel_bases</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/parallel_bases.m',49,0)">line 49</a>)
+   parallel_call
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 65)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',65,0)">line 65</a>)
+     parallel_bases
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+
+Error in <a href="matlab:helpUtils.errorDocCallback('n300script', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/n300script.m', 4)" style="font-weight:bold">n300script</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/n300script.m',4,0)">line 4</a>)
+syntheticDataOutliers(300, 100, 0, 10, 0, 1);
+} 
+n300script
+Experiment 7: 300, 100, 0, 10 restarts, seed 0
+ 
+Kernel Optimal rate: 0.93667
+Bayes (function) Optimal rate: 0.95333
+ 
+BIC values of base kernels: 282.8351       407.676      397.0587
+ Train accuracies:           0.79667     0.59667     0.64667
+ Test accurracies:           0.73     0.66667     0.61333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.2994
+     cov: [-1.0031 0.8628]
+
+SE1 + SE3: BIC value for the training set: 196.196 Train accuracy: 0.90333 Test accurracy: 0.83667
+ 
+Kernel to be expanded is: SE1 + SE3
+
+startingHyperparameters = 
+
+    mean: 1.8949
+     cov: [-0.8714 1.6913 0.4920 0.9775]
+
+SE1 + SE3 + SE2: BIC value for the training set: 140.8544 Train accuracy: 0.95333 Test accurracy: 0.92
+ 
+Kernel to be expanded is: SE1 + SE3 + SE2
+
+startingHyperparameters = 
+
+    mean: 7.9231
+     cov: [-0.8034 2.4182 0.8039 2.1373 0.6653 1.0839]
+
+SE1 + SE3 + SE2 + SE2: BIC value for the training set: 134.6174 Train accuracy: 0.97333 Test accurracy: 0.93333
+ 
+Kernel to be expanded is: SE1 + SE3 + SE2 + SE2
+
+startingHyperparameters = 
+
+    mean: 13.7268
+     cov: [-0.7621 2.6914 0.8871 2.5694 -0.7311 0.3670 1.1358 1.8421]
+
+SE1 + SE3 + SE2 + SE2xSE1: BIC value for the training set: 134.4291 Train accuracy: 0.97667 Test accurracy: 0.93333
+ 
+Kernel to be expanded is: SE1 + SE3 + SE2 + SE2xSE1
+
+startingHyperparameters = 
+
+    mean: 15.7025
+     cov: [-0.7611 2.7664 0.9010 2.6588 -0.7422 0.4222 1.2174 1.0076 2.4900 0.9538]
+
+SE1 + SE3xSE2 + SE2 + SE2xSE1: BIC value for the training set: 134.4095 Train accuracy: 0.97667 Test accurracy: 0.93
+ 
+Kernel to be expanded is: SE1 + SE3xSE2 + SE2 + SE2xSE1
+
+startingHyperparameters = 
+
+    mean: 14.2370
+     cov: [-0.7630 2.7623 0.8791 2.2950 3.6855 0.3278 -0.7404 0.4208 1.2297 0.9985 2.4440 0.9447]
+
+SE1 + SE3xSE2 + SE2 + SE2xSE1 + SE3: BIC value for the training set: 134.2729 Train accuracy: 0.98 Test accurracy: 0.93333
+ 
+Experiment 8: 300, 100, 0.05, 10 restarts, seed 0
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1074
+     cov: [-1.3250 0.2110]
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 165)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',165,0)">line 165</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+
+Error in <a href="matlab:helpUtils.errorDocCallback('n300script', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/n300script.m', 7)" style="font-weight:bold">n300script</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/n300script.m',7,0)">line 7</a>)
+syntheticDataOutliers(300, 100, 0.05, 10, 0, 0);
+} 
+    covFunction = encodeKernel(encoderMatrix, D);
+{Undefined function or variable 'encoderMatrix'.
+} 
+syntheticDataOutliers(300, 100, 0.05, 10, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+
+n =
+
+     1
+
+
+m =
+
+    10
+
+
+KernelMatrix =
+
+     1     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+n =
+
+    10
+
+
+m =
+
+    10
+
+
+KernelMatrix =
+
+     1     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+n =
+
+     1
+
+
+m =
+
+    10
+
+
+KernelMatrix =
+
+     2     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+n =
+
+    10
+
+
+m =
+
+    10
+
+
+KernelMatrix =
+
+     2     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+n =
+
+     1
+
+
+m =
+
+    10
+
+
+KernelMatrix =
+
+     3     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+n =
+
+    10
+
+
+m =
+
+    10
+
+
+KernelMatrix =
+
+     3     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1074
+     cov: [-1.3250 0.2110]
+
+
+bestkernelisssss =
+
+     []
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 165)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',165,0)">line 165</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 10, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+{Undefined function or variable "encoderMcurrentIteratrices".
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 162)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',162,0)">line 162</a>)
+        finalEncoder = (encoderMcurrentIteratrices(idx, :, :));
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 10, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1074
+     cov: [-1.3250 0.2110]
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 169)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',169,0)">line 169</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1073
+     cov: [-1.3250 0.2110]
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 169)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',169,0)">line 169</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1073
+     cov: [-1.3250 0.2110]
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 169)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',169,0)">line 169</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1073
+     cov: [-1.3250 0.2110]
+
+
+bestkernelis =
+
+     []
+
+
+besthyperis = 
+
+    mean: 0.7724
+     cov: [-1.0427 -0.3726 0.3248 1.1365]
+
+
+bestbicvalueis =
+
+  256.0758
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 169)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',169,0)">line 169</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1073
+     cov: [-1.3250 0.2110]
+
+
+bestBicVal =
+
+  256.0758
+
+
+bestId =
+
+    12
+
+
+trueIdx =
+
+           7
+
+
+bestkernelis =
+
+     []
+
+
+besthyperis = 
+
+    mean: 0.7724
+     cov: [-1.0427 -0.3726 0.3248 1.1365]
+
+
+bestbicvalueis =
+
+  256.0758
+
+{Subscripted assignment dimension mismatch.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 169)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',169,0)">line 169</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 85)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',85,0)">line 85</a>)
+        [~, ~, ~, ~, trainAccs, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(300, 100, 0.05, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1073
+     cov: [-1.3250 0.2110]
+
+
+bestBicVal =
+
+  256.0758
+
+
+bestId =
+
+    12
+
+
+bicvalsare =
+
+  315.9295
+  315.9295
+  297.2647
+  295.2647
+  268.4500
+  268.4500
+  307.9293
+  307.9293
+  290.7678
+  290.7678
+  256.0758
+  256.0758
+
+
+trueIdx =
+
+           6
+
+
+bestkernelis =
+
+     1     3     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+besthyperis = 
+
+    mean: 0.7724
+     cov: [-1.0427 -0.3726 0.3248 1.1365]
+
+
+bestbicvalueis =
+
+  256.0758
+
+SE1xSE3: BIC value for the training set: 256.0758 Train accuracy: 0.89 Test accurracy: 0.78667
+ 
+Kernel to be expanded is: SE1xSE3
+
+startingHyperparameters = 
+
+    mean: 0.7724
+     cov: [-1.0427 -0.3726 0.3248 1.1365]
+
+
+bestBicVal =
+
+  226.1309
+
+
+bestId =
+
+    10
+
+
+bicvalsare =
+
+  264.2679
+  266.0759
+  249.0685
+  247.0685
+  262.9190
+  264.0761
+  256.0758
+  256.0758
+  226.1309
+  226.1309
+  256.0758
+  256.0758
+
+
+trueIdx =
+
+           5
+
+
+bestkernelis =
+
+     1     3     2     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+besthyperis = 
+
+    mean: 1.8107
+     cov: [-0.9821 -0.8465 0.3935 0.6626 1.0576 1.4165]
+
+
+bestbicvalueis =
+
+  226.1309
+
+SE1xSE3xSE2: BIC value for the training set: 226.1309 Train accuracy: 0.94667 Test accurracy: 0.86
+ 
+Kernel to be expanded is: SE1xSE3xSE2
+
+startingHyperparameters = 
+
+    mean: 1.8107
+     cov: [-0.9821 -0.8465 0.3935 0.6626 1.0576 1.4165]
+
+
+bestBicVal =
+
+  226.1309
+
+
+bestId =
+
+    11
+
+
+bicvalsare =
+
+  238.1322
+  238.1318
+  234.3908
+  232.3908
+  235.1163
+  236.1314
+  226.1309
+  226.1309
+  226.1309
+  226.1309
+  226.1309
+  226.1309
+
+
+trueIdx =
+
+           6
+
+
+bestkernelis =
+
+     1     3     2     3     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+besthyperis = 
+
+    mean: 1.8103
+     cov: [-0.9821 -1.1717 0.5200 0.3374 1.0575 1.0913 1.1421 0.9757]
+
+
+bestbicvalueis =
+
+  226.1309
+
+SE1xSE3xSE2xSE3: BIC value for the training set: 226.1309 Train accuracy: 0.94667 Test accurracy: 0.86
+ 
+Kernel to be expanded is: SE1xSE3xSE2xSE3
+
+startingHyperparameters = 
+
+    mean: 1.8103
+     cov: [-0.9821 -1.1717 0.5200 0.3374 1.0575 1.0913 1.1421 0.9757]
+
+
+bestBicVal =
+
+  226.1309
+
+
+bestId =
+
+     8
+
+
+bicvalsare =
+
+  240.1326
+  240.1325
+  236.3908
+  234.3908
+  238.1325
+  238.1360
+  226.1309
+  226.1309
+  226.1309
+  226.1309
+  226.1309
+  226.1309
+
+
+trueIdx =
+
+           4
+
+
+bestkernelis =
+
+     1     3     2     3     1     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+     0     0     0     0     0     0     0     0     0     0
+
+
+besthyperis = 
+
+    mean: 1.8099
+     cov: [-0.9321 -1.6268 0.5312 -0.1176 1.0575 0.6362 1.1052 0.5206 0.1928 1.8201]
+
+
+bestbicvalueis =
+
+  226.1309
+
+SE1xSE3xSE2xSE3xSE1: BIC value for the training set: 226.1309 Train accuracy: 0.94667 Test accurracy: 0.86
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ No 1D components to plot.
+syntheticDataOutliers(300, 100, 0.05, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+Kernel to be expanded is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.1073
+     cov: [-1.3250 0.2110]
+
+SE1xSE3: BIC value for the training set: 256.0758 Train accuracy: 0.89 Test accurracy: 0.78667
+ 
+Kernel to be expanded is: SE1xSE3
+
+startingHyperparameters = 
+
+    mean: 0.7724
+     cov: [-1.0427 -0.3726 0.3248 1.1365]
+
+SE1xSE3xSE2: BIC value for the training set: 226.1309 Train accuracy: 0.94667 Test accurracy: 0.86
+ 
+Kernel to be expanded is: SE1xSE3xSE2
+
+startingHyperparameters = 
+
+    mean: 1.8107
+     cov: [-0.9821 -0.8465 0.3935 0.6626 1.0576 1.4165]
+
+SE1xSE3xSE2xSE3: BIC value for the training set: 226.1309 Train accuracy: 0.94667 Test accurracy: 0.86
+ 
+Kernel to be expanded is: SE1xSE3xSE2xSE3
+
+startingHyperparameters = 
+
+    mean: 1.8103
+     cov: [-0.9821 -1.1717 0.5200 0.3374 1.0575 1.0913 1.1421 0.9757]
+
+SE1xSE3xSE2xSE3xSE1: BIC value for the training set: 226.1309 Train accuracy: 0.94667 Test accurracy: 0.86
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ No 1D components to plot.
+syntheticDataOutliers(300, 100, 0.2, 3, 0, 0)
+ 
+Kernel Optimal rate: 0.80333
+Bayes (function) Optimal rate: 0.84667
+ 
+Evaluating the base SE kernels, number of experiments is: 9
+BIC values of base kernels: 351.7346      417.2145       401.454
+ Train accuracies:           0.74        0.59     0.64333
+ Test accurracies:           0.67     0.60333     0.63333
+Kernel being expanded at this stage of the search is: SE1
+
+startingHyperparameters = 
+
+    mean: 0.0093
+     cov: [-1.7414 -0.0401]
+
+Best kernel constructed at this stage of the search is: SE1 + SE3
+BIC value: 304.5254; Training accuracy: 0.83; Test accurracy: 0.76667
+---------------------------------------------------------------------------------------------------
+Kernel being expanded at this stage of the search is: SE1 + SE3
+
+startingHyperparameters = 
+
+    mean: 0.8184
+     cov: [-1.6883 0.2397 0.4668 0.2469]
+
+Best kernel constructed at this stage of the search is: SE1xSE2 + SE3
+BIC value: 297.0259; Training accuracy: 0.88; Test accurracy: 0.81
+---------------------------------------------------------------------------------------------------
+Kernel being expanded at this stage of the search is: SE1xSE2 + SE3
+
+startingHyperparameters = 
+
+    mean: 1.4062
+     cov: [-1.4694 -0.7772 0.6286 1.0838 0.5979 0.5221]
+
+Best kernel constructed at this stage of the search is: SE1xSE2xSE3 + SE3
+BIC value: 296.0083; Training accuracy: 0.88667; Test accurracy: 0.8
+---------------------------------------------------------------------------------------------------
+Kernel being expanded at this stage of the search is: SE1xSE2xSE3 + SE3
+
+startingHyperparameters = 
+
+    mean: 1.4569
+     cov: [-1.5292 -1.3431 0.6856 0.5179 1.7103 1.1747 0.5936 0.5321]
+
+Best kernel constructed at this stage of the search is: SE1xSE2xSE3xSE3 + SE3
+BIC value: 296.0083; Training accuracy: 0.88667; Test accurracy: 0.8
+---------------------------------------------------------------------------------------------------
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+syntheticDataOutliers(100, 100, 0, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments is: 6.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0404]
+
+Best kernel constructed at this stage of the search is: SE2xSE3.
+BIC value: 106.8909; Training accuracy: 0.81; Test accurracy: 0.77.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3.
+
+startingHyperparameters = 
+
+    mean: -0.3128
+     cov: [-0.6198 -0.8097 0.5405 1.1979]
+
+Best kernel constructed at this stage of the search is: SE2xSE3 + SE1.
+BIC value: 74.1218; Training accuracy: 1; Test accurracy: 0.94.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3 + SE1.
+
+startingHyperparameters = 
+
+    mean: -1.2783
+     cov: [-0.3805 0.0743 1.4124 2.0819 -0.9569 1.9837]
+
+Best kernel constructed at this stage of the search is: SE2xSE3xSE3 + SE1.
+BIC value: 64.1218; Training accuracy: 1; Test accurracy: 0.94.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3xSE3 + SE1.
+
+startingHyperparameters = 
+
+    mean: -1.3201
+     cov: [-0.3806 -0.4613 1.7815 1.5463 1.7358 1.0701 -0.9572 1.9819]
+
+Best kernel constructed at this stage of the search is: SE2xSE3xSE3 + SE1xSE1.
+BIC value: 64.1218; Training accuracy: 1; Test accurracy: 0.94.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE1 kernel posterior
+syntheticDataOutliers(100, 100, 0, 2, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments is: 6.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0404]
+
+Best kernel constructed at this stage of the search is: SE2xSE3.
+BIC value: 106.8909; Training accuracy: 0.81; Test accurracy: 0.77.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3.
+
+startingHyperparameters = 
+
+    mean: -0.3128
+     cov: [-0.6198 -0.8097 0.5405 1.1979]
+
+Best kernel constructed at this stage of the search is: SE2xSE3 + SE1.
+BIC value: 74.1218; Training accuracy: 1; Test accurracy: 0.94.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3 + SE1.
+
+startingHyperparameters = 
+
+    mean: -1.2783
+     cov: [-0.3805 0.0743 1.4124 2.0819 -0.9569 1.9837]
+
+Best kernel constructed at this stage of the search is: SE2xSE3xSE3 + SE1.
+BIC value: 64.1218; Training accuracy: 1; Test accurracy: 0.94.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3xSE3 + SE1.
+
+startingHyperparameters = 
+
+    mean: -1.3201
+     cov: [-0.3806 -0.4613 1.7815 1.5463 1.7358 1.0701 -0.9572 1.9819]
+
+Best kernel constructed at this stage of the search is: SE2xSE3xSE3 + SE1xSE1.
+BIC value: 64.1218; Training accuracy: 1; Test accurracy: 0.94.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE1 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: images//SE1_plus_SE2_plus_SE3.mat N = 100 SNR: 100Salt-pepper: 0/-component-1
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, ['images/', fileprefix]);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 90)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',90,0)">line 90</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+syntheticDataOutliers(100, 100, 0.2, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.84
+Bayes (function) Optimal rate: 0.95
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.5894      123.5518      142.5894
+ Train accuracies:           0.51        0.74        0.51
+ Test accurracies:           0.49        0.66        0.49
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0274
+     cov: [-0.6549 -0.2726]
+
+Best kernel constructed at this stage of the search is: SE2xSE3.
+BIC value: 123.3478; Training accuracy: 0.82; Test accurracy: 0.7.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2xSE3.
+
+startingHyperparameters = 
+
+    mean: -0.1907
+     cov: [-0.5843 -0.2569 0.2941 0.3545]
+
+Best kernel constructed at this stage of the search is: SE2xSE3xSE3.
+BIC value: 125.3478; Training accuracy: 0.82; Test accurracy: 0.7.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+ No 1D components to plot.
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: images/SE1_plus_SE2_plus_SE3 N = 100; SNR: 100; Salt-pepper: 0/Component-2
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, ['images/', fileprefix]);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 90)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',90,0)">line 90</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+/bin/bash: SNR:: command not found
+/bin/bash: Salt-pepper:: command not found
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: images/SE1_plus_SE2_plus_SE3 N = 100; SNR: 100; Salt-pepper: 0/Component-2
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, ['images/', fileprefix]);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 91)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',91,0)">line 91</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+/bin/bash: N:100: command not found
+/bin/bash: SNR:: command not found
+/bin/bash: spnoise:: command not found
+Evaluating the base SE kernels, number of experiments to run is 3.
+{Operation terminated by user during <a href="matlab:helpUtils.errorDocCallback('brentmin', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/brentmin.m', 96)" style="font-weight:bold">brentmin</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/brentmin.m',96,0)">line 96</a>)
+
+
+In <a href="matlab:helpUtils.errorDocCallback('infLaplace>@(alpha,dalpha)brentmin(pars_line{:},Psi_line,5,alpha,dalpha)', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m', 112)" style="font-weight:bold">infLaplace>@(alpha,dalpha)brentmin(pars_line{:},Psi_line,5,alpha,dalpha)</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m',112,0)">line 112</a>)
+  search_line = @(alpha,dalpha) brentmin(pars_line{:},Psi_line,5,alpha,dalpha);
+
+In <a href="matlab:helpUtils.errorDocCallback('infLaplace>irls', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m', 125)" style="font-weight:bold">infLaplace>irls</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m',125,0)">line 125</a>)
+    [s_line,Psi_new,n_line,dPsi_new,f,alpha,dlp,W] = search_line(alpha,dalpha);
+
+In <a href="matlab:helpUtils.errorDocCallback('infLaplace', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m', 37)" style="font-weight:bold">infLaplace</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m',37,0)">line 37</a>)
+alpha = irls(alpha, m,K,likfun, opt);                         % run optimisation
+
+In <a href="matlab:helpUtils.errorDocCallback('gp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/gp.m', 113)" style="font-weight:bold">gp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/gp.m',113,0)">line 113</a>)
+      [post nlZ dnlZ] = inf(hyp, mean, cov, lik, x, y);
+
+In <a href="matlab:helpUtils.errorDocCallback('minimize', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/minimize.m', 141)" style="font-weight:bold">minimize</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/minimize.m',141,0)">line 141</a>)
+    [f3 df3] = feval(f, rewrap(Z,X+x3*s), varargin{:});
+
+In <a href="matlab:helpUtils.errorDocCallback('random_restarts', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/random_restarts.m', 22)" style="font-weight:bold">random_restarts</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/random_restarts.m',22,0)">line 22</a>)
+    hypN = minimize(Hyp, @gp, -1000, inferenceMethod, meanfunc, covFunction, likfunc, X, Y); % 300 a good value. 50 * numHyper!
+
+In <a href="matlab:helpUtils.errorDocCallback('evaluateKernel', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/evaluateKernel.m', 11)" style="font-weight:bold">evaluateKernel</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/evaluateKernel.m',11,0)">line 11</a>)
+ [BestNLML, bestHyp, ~, nlmlvals] = random_restarts(covFunction, X, Y, inferenceMethod, numExp); % just use EP.
+
+In <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 76)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',76,0)">line 76</a>)
+         [bestBicVals(i), bestHyper{i}] = evaluateKernel( squeeze( encoderMatrices(i, :, :)) , X, y, numExp, inferenceMethod);
+
+In <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 89)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',89,0)">line 89</a>)
+        [kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+{Operation terminated by user during <a href="matlab:helpUtils.errorDocCallback('infLaplace', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m', 67)" style="font-weight:bold">infLaplace</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/inf/infLaplace.m',67,0)">line 67</a>)
+
+
+In <a href="matlab:helpUtils.errorDocCallback('gp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/gp.m', 113)" style="font-weight:bold">gp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/gp.m',113,0)">line 113</a>)
+      [post nlZ dnlZ] = inf(hyp, mean, cov, lik, x, y);
+
+In <a href="matlab:helpUtils.errorDocCallback('minimize', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/minimize.m', 141)" style="font-weight:bold">minimize</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/minimize.m',141,0)">line 141</a>)
+    [f3 df3] = feval(f, rewrap(Z,X+x3*s), varargin{:});
+
+In <a href="matlab:helpUtils.errorDocCallback('random_restarts', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/random_restarts.m', 22)" style="font-weight:bold">random_restarts</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/random_restarts.m',22,0)">line 22</a>)
+    hypN = minimize(Hyp, @gp, -1000, inferenceMethod, meanfunc, covFunction, likfunc, X, Y); % 300 a good value. 50 * numHyper!
+
+In <a href="matlab:helpUtils.errorDocCallback('evaluateKernel', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/evaluateKernel.m', 11)" style="font-weight:bold">evaluateKernel</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/evaluateKernel.m',11,0)">line 11</a>)
+ [BestNLML, bestHyp, ~, nlmlvals] = random_restarts(covFunction, X, Y, inferenceMethod, numExp); % just use EP.
+
+In <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 76)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',76,0)">line 76</a>)
+         [bestBicVals(i), bestHyper{i}] = evaluateKernel( squeeze( encoderMatrices(i, :, :)) , X, y, numExp, inferenceMethod);
+
+In <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 89)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',89,0)">line 89</a>)
+        [kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: "SE1+SE2+SE3; N:100; SNR: 100; spnoise: 0"/Component-2
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, fileprefix);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 93)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',93,0)">line 93</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: /"SE1+SE2+SE3; N:100; SNR: 100; spnoise: 0"/Component-2
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, fileprefix);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 94)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',94,0)">line 94</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+/bin/bash: N:100: command not found
+/bin/bash: SNR:: command not found
+/bin/bash: spnoise:: command not found
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: /SE1+SE2+SE3; N:100; SNR: 100; spnoise: 0/Component-2
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, fileprefix);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 96)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',96,0)">line 96</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+/bin/bash: N:100: command not found
+/bin/bash: SNR:: command not found
+/bin/bash: spnoise:: command not found
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 130)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',130,0)">line 130</a>)
+Invalid or missing path: SE1+SE2+SE3; N:100; SNR: 100; spnoise: 0/Component-2
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 190)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',190,0)">line 190</a>)
+        saveas(gcf, filename, 'png')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, fileprefix);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 96)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',96,0)">line 96</a>)
+        kernelSearchLog = evalc('[kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] =
+        AutomatedStat} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+{Operation terminated by user during <a href="matlab:helpUtils.errorDocCallback('gp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/gp.m', 84)" style="font-weight:bold">gp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/gp.m',84,0)">line 84</a>)
+
+
+In <a href="matlab:helpUtils.errorDocCallback('minimize', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/minimize.m', 97)" style="font-weight:bold">minimize</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/gpml/util/minimize.m',97,0)">line 97</a>)
+        [f3 df3] = feval(f, rewrap(Z,X+x3*s), varargin{:});
+
+In <a href="matlab:helpUtils.errorDocCallback('nextKernel', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/nextKernel.m', 214)" style="font-weight:bold">nextKernel</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/nextKernel.m',214,0)">line 214</a>)
+            hypN = minimize(finalHyperParams{(i-1)*numExp + j}, @gp, -1000, inferenceMethod, meanfunc, covFunctions{(i-1)*numExp + j}, likfunc, X, y);
+
+In <a href="matlab:helpUtils.errorDocCallback('AutomatedStatistician', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m', 175)" style="font-weight:bold">AutomatedStatistician</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/AutomatedStatistician.m',175,0)">line 175</a>)
+    [encoderMatrices(currentIter, :, :), bestBicVals(currentIter), bestHyper{currentIter}] = nextKernel(squeeze( encoderMatrices(idx, :, :) ), bestHyper{idx}, dim, X, y, numExp,
+    runParallel,  inferen
+In <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 93)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',93,0)">line 93</a>)
+        % [kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = ...
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('validate', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/graphics/private/validate.m', 58)" style="font-weight:bold">validate</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/graphics/private/validate.m',58,0)">line 58</a>)
+The BITMAP device option is only supported for Simulink systems.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('print', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/graphics/print.m', 204)" style="font-weight:bold">print</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/graphics/print.m',204,0)">line 204</a>)
+    pj = validate( pj );
+
+Error in <a href="matlab:helpUtils.errorDocCallback('saveas', '/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m', 169)" style="font-weight:bold">saveas</a> (<a href="matlab: opentoline('/misc/apps/matlab/matlabR2013b/toolbox/matlab/general/saveas.m',169,0)">line 169</a>)
+        print( h, name, ['-d' dev{i}] )
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 192)" style="font-weight:bold">plot_additive_decomp>nice_oned_plot</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',192,0)">line 192</a>)
+        saveas(gcf, filename, 'bmp')
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plot_additive_decomp', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 103)" style="font-weight:bold">plot_additive_decomp</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m',103,0)">line 103</a>)
+    nice_oned_plot( X(:,d), y, data_mean, xrange, component_mean, component_var, show_samples, savefigs, filename)
+
+Error in <a href="matlab:helpUtils.errorDocCallback('plotPosteriors', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m', 68)" style="font-weight:bold">plotPosteriors</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/plotPosteriors.m',68,0)">line 68</a>)
+        plot_additive_decomp(x, y, post, covStruct, hypStruct, false, true, fileprefix);
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 98)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',98,0)">line 98</a>)
+        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+} 
+helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 192)
+helpUtils.errorDocCallback('plot_additive_decomp>nice_oned_plot', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/plot_additive_decomp.m', 192)
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+{Error using <a href="matlab:helpUtils.errorDocCallback('save')" style="font-weight:bold">save</a>
+'names{1}' is not a valid variable name.
+
+Error in <a href="matlab:helpUtils.errorDocCallback('syntheticDataOutliers', '/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m', 100)" style="font-weight:bold">syntheticDataOutliers</a> (<a href="matlab: opentoline('/homes/mlghomes/nm480/Desktop/gpss-classification/code/syntheticDataOutliers.m',100,0)">line 100</a>)
+        save ( [ fileprefix, 'searchStats.mat'], 'kernelNamesList', 'BicValsList', 'trainAccuraciesList', ...
+} 
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+ 
+Running the structure search
+ 
+
+kernelSearchLog =
+
+Evaluating the base SE kernels, number of experiments to run is 3.
+BIC values of base kernels: 142.4694      119.5349      138.4291
+ Train accuracies:           0.52        0.78        0.65
+ Test accurracies:           0.51        0.72         0.6
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.0862
+     cov: [-0.8474 -0.0405]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1.
+BIC value: 84.1198; Training accuracy: 0.96; Test accurracy: 0.85.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: -0.4003
+     cov: [-0.7170 1.1827 -0.9962 1.2104]
+
+Best kernel constructed at this stage of the search is: SE2 + SE1 + SE3.
+BIC value: 71.7311; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE2 + SE1 + SE3.
+
+startingHyperparameters = 
+
+    mean: -0.3859
+     cov: [-0.5342 2.0855 -0.9513 2.1029 0.6048 1.5560]
+
+Best kernel constructed at this stage of the search is: SE2xSE2 + SE1 + SE3.
+BIC value: 73.731; Training accuracy: 1; Test accurracy: 0.92.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+
+
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+syntheticDataOutliers(100, 100, 0, 1, 0, 0)
+ 
+Kernel Optimal rate: 0.96
+Bayes (function) Optimal rate: 0.99
+ 
+ 
+Running the structure search.
+ 
+ 
+Plotting the SE2 kernel posterior
+Plotting the SE1 kernel posterior
+Plotting the SE3 kernel posterior
+n300script

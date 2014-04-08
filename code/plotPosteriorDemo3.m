@@ -26,8 +26,8 @@ y(y==0) = -1;
 % Set up GP model.
 inf = @infLaplace;
 mean = @meanConst;
-%lik = @likErf;
-lik = @likMix;
+lik = @likErf;
+%lik = @likMix;
 
 
 

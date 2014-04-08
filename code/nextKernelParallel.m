@@ -11,6 +11,9 @@ function [bestKernel, bestBicVal, bestHypers] = nextKernelParallel (kernelMatrix
  scriptCode = fscanf(fileID, '%s');
  fclose(fileID); 
 
+    likfunc = @likErf;
+    meanfunc = @meanConst; 
+ 
 if (nargin < 7)
     selectFeatures = zeros(dataDim, 1); % expand all dimensions if no feature selection is done. 
     for i = 1:dataDim
@@ -193,7 +196,7 @@ end
  
  
  % ---------- Parallel call for random restarts ----------------------------
-  
+ 
   if ( runParallel == 1)
       parallel_call
   end
@@ -201,9 +204,6 @@ end
    
   if ( runParallel == 0) 
  
-    likfunc = @likErf;
-    meanfunc = @meanConst; 
-      
       for i = 1:(kernelCount)
           for j = 1 : numExp
               
@@ -214,7 +214,7 @@ end
             hypN = minimize(finalHyperParams{(i-1)*numExp + j}, @gp, -1000, inferenceMethod, meanfunc, covFunctions{(i-1)*numExp + j}, likfunc, X, y);
             nlml = gp(hypN, inferenceMethod, meanfunc, covFunctions{(i-1)*numExp + j}, likfunc, X, y);
 
-            bicValues( (i-1)*numExp + j) = BIC(nlml, encoderMatrices{i}, size(X, 1)); % we only calculate BICs here, as the minimizer returns NLMLs (saved as bicValue)
+            bicValues( (i-1)*numExp + j) = BIC(nlml, encoderMatrices{(i-1)*numExp + j}, size(X, 1)); % we only calculate BICs here, as the minimizer returns NLMLs (saved as bicValue)
 
             hyperParameters{(i-1)*numExp + j} = hypN;
 
@@ -224,7 +224,9 @@ end
 
           end
   
-    end
+      end
+    
+  end
       
       
  % -------------------------------------------------------------------------
@@ -236,7 +238,7 @@ end
  % disp(['Kernel count: ', num2str(kernelCount), ' Best exp: ' , num2str(bestId), 'Kernel name ID: ', num2str(trueIdx), ' Best kernel: ', kernelNames{bestId}]); 
  
  bestKernel = encoderMatrices{ trueIdx };
- 
+  
  bestHypers = hyperParameters{bestId};
 
 end

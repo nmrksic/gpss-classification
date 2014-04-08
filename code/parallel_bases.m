@@ -36,13 +36,14 @@ kernelCount = dim;
        end
    end
   
-   disp( ['Evaluating the base kernels, # experiments = ', num2str(numExp * kernelCount)] ); 
+   disp( ['Evaluating the base SE kernels, number of experiments is: ', num2str(numExp * kernelCount),'.'] ); 
+   disp(' ');
    
    encodersBackup = encoderMatrices;
    
    encoderMatrices = cell(1, 1000); 
    
-   for i = 1 : kernelCount*numExp
+   for i = 1 : kernelCount
        encoderMatrices{i} = squeeze(encodersBackup(i, :, :));
    end
    
