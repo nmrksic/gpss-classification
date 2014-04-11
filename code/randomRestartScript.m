@@ -1,19 +1,10 @@
- load('data.mat');
- 
- covFunction = covFunctions{i};
- hyperParameters = finalHyperParams{i}; 
- 
- inferenceMethod = @infLaplace;
- likfunc = @likErf;
- meanfunc = @meanConst; 
-
- hypN = minimize(hyperParameters, @gp, -300, inferenceMethod, meanfunc, covFunction, likfunc, X, y);
- nlml = gp(hypN, inferenceMethod, meanfunc, covFunction, likfunc, X, y);
-
- sampleSize = size(X, 1); 
- 
- bicValue = nlml; 
- 
- save ('%(output_file)s', 'bicValue', 'hypN');
- 
- 
+load('%(data_file)s');
+if(size(X, 1) > 250)
+	subset = randsample(size(X, 1), 250);
+	hyperParameters = minimize(hyperParameters, @gp, -300, @infLaplace, @meanConst, covFunction, @likErf, X(subset, :), y(subset));
+	hypN = minimize(hyperParameters, @gp, -30, @infLaplace, @meanConst, covFunction, @likErf, X, y);
+else;
+	hypN = minimize(hyperParameters, @gp, -300, @infLaplace, @meanConst, covFunction, @likErf, X, y);
+end;
+bicValue = gp(hypN, @infLaplace, @meanConst, covFunction, @likErf, X, y);
+save ('%(output_file)s', 'bicValue', 'hypN'); 

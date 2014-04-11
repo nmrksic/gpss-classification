@@ -23,11 +23,16 @@ function syntheticDataOutliers (n, SNR, salt_pepper_noise, numExp, seed, runPara
     meanfunc = @meanConst;
     likfunc = @likErf;
     
-    covFunction{1} = {@covSum, { {@covMask, {[1  0  0], {@covSEiso}}}, {@covMask, {[0  1  0], {@covSEiso}}}, {@covMask, {[0  0  1], {@covSEiso}}} }};
-
-    covParams{1} = [-1 2 0 2 1 2];
-    dims{1} = 3;
-    names = 'SE1+SE2+SE3';
+    % only block to be modifid in order to change generating kernel:
+    covFunction{1} = {@covSum, { {@covMask, {[1  0  0  0], {@covSEiso}}},{@covProd, { {@covMask, {[0  1  0  0], {@covSEiso}}}, {@covMask, {[0  0  1  0], {@covSEiso}}} }}, {@covMask, {[0  0  0  1], {@covSEiso}}} }};
+    covParams{1} = [0 1 0 1 0 1 0 1];
+    
+    covFunction{2} = {@covSum, { {@covMask, {[1  0  0], {@covSEiso}}}, {@covMask, {[0  1  0], {@covSEiso}}}, {@covMask, {[0  0  1], {@covSEiso}}} }};
+    covParams{2} = [-1 2 0 2 1 2];
+    
+    dims{1} = 4;
+    names = 'SE1+SE2XSE3+SE4';
+    % ....
     
     % Bayes optimal rate on each test data set in order to assess relative performance of the kernel constructed:
     %kernelOptimalRates = zeros ( length(covFunction) , 1);
@@ -75,7 +80,16 @@ function syntheticDataOutliers (n, SNR, salt_pepper_noise, numExp, seed, runPara
         
         msg1 = ['Kernel Optimal rate: ', num2str(kernelOptimalRates)];
         msg2 = ['Bayes (function) Optimal rate: ', num2str(bayesOptimalRates)];
-
+        
+        
+         % ------------to remove---------------
+         disp(msg1);
+         disp(msg2);
+        
+         disp(' ');
+         %return;
+         % ---------------------------------
+        
         % save([data_folder names{i}], 'X_trn', 'y_trn', 'X_tst', 'y_tst');
     
         % Then start structure discovery:
@@ -97,8 +111,8 @@ function syntheticDataOutliers (n, SNR, salt_pepper_noise, numExp, seed, runPara
         disp(' ');
         
         kernelSearchLog = evalc('[kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = AutomatedStatistician(X_trn, y_trn, X_tst, y_tst, 3 * dims{i} , numExp, runParallel, inferenceMethod, 0, 0);');
-        
-        plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
+        %[kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames, bicValues, testAccuracies, bestHypers, finalEncoder ] = AutomatedStatistician(X_trn, y_trn, X_tst, y_tst, 3 * dims{i} , numExp, runParallel, inferenceMethod, 0, 0);
+        % plotPosteriors(X_trn, y_trn, finalEncoder, bestHypers, fileprefix);
         
         kernelNamesList = kernelNamesList';
         BicValsList = BicValsList';
@@ -107,7 +121,7 @@ function syntheticDataOutliers (n, SNR, salt_pepper_noise, numExp, seed, runPara
         trainAccuraciesList = trainAccuraciesList'; % for the sake of saving them nicely - could be moved to AutomatedStatistician.m
         
         save ( [ fileprefix, 'searchStats.mat'], 'kernelNamesList', 'BicValsList', 'trainAccuraciesList', ...
-            'testAccuracciesList', 'hyperList', 'kernelOptimalRates', 'bayesOptimalRates', 'n', 'SNR', 'salt_pepper_noise', 'numExp', 'seed', 'names' );
+            'testAccuracciesList', 'hyperList', 'kernelOptimalRates', 'bayesOptimalRates', 'n', 'SNR', 'salt_pepper_noise', 'numExp', 'seed', 'names', 'covFunction', 'covParams' );
         
         fileID = fopen([fileprefix, 'kernelSearchLog.txt'], 'w');
         fprintf(fileID, '%s\n', msg1);

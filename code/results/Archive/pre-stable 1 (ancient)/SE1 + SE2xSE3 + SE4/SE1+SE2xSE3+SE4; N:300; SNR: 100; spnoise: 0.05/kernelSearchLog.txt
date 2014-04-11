@@ -1,0 +1,62 @@
+Kernel Optimal rate: 0.92333
+Bayes (function) Optimal rate: 0.97
+ 
+Evaluating the base SE kernels, number of experiments is: 40.
+ 
+BIC values of base kernels: 416.0267      416.0267      298.1669      412.9148
+ Train accuracies:           0.55667     0.55667     0.76667     0.57333
+ Test accurracies:           0.5         0.5     0.82667     0.48333
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE3.
+
+startingHyperparameters = 
+
+    mean: 0.7596
+     cov: [1.1230 0.6567]
+
+Best kernel constructed at this stage of the search is: SE3xSE2.
+BIC value: 257.8446; Training accuracy: 0.85; Test accurracy: 0.88667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE3xSE2.
+
+startingHyperparameters = 
+
+    mean: -0.0292
+     cov: [-0.4540 1.1477 0.3060 -0.6708]
+
+Best kernel constructed at this stage of the search is: SE3xSE2xSE4.
+BIC value: 228.1158; Training accuracy: 0.93; Test accurracy: 0.90333.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE3xSE2xSE4.
+
+startingHyperparameters = 
+
+    mean: -0.2227
+     cov: [-0.3638 0.7023 0.0715 -1.1162 0.8901 1.2485]
+
+Best kernel constructed at this stage of the search is: SE3xSE2xSE4xSE1.
+BIC value: 227.8796; Training accuracy: 0.94; Test accurracy: 0.91.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE3xSE2xSE4xSE1.
+
+startingHyperparameters = 
+
+    mean: -0.1074
+     cov: [-0.3421 0.3019 0.1838 -1.5166 0.8737 0.8481 1.7997 1.3333]
+
+Best kernel constructed at this stage of the search is: SE3xSE2xSE4xSE1 + SE3.
+BIC value: 228.2536; Training accuracy: 0.94333; Test accurracy: 0.90333.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+

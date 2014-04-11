@@ -1,0 +1,50 @@
+Kernel Optimal rate: 0.88333
+Bayes (function) Optimal rate: 0.93
+ 
+Evaluating the base SE kernels, number of experiments is: 30.
+ 
+BIC values of base kernels: 311.9293      409.1757       403.802
+ Train accuracies:           0.78333     0.60667        0.62
+ Test accurracies:           0.74        0.62     0.63333
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE1.
+
+startingHyperparameters = 
+
+    mean: 0.1074
+     cov: [-1.3250 0.2110]
+
+Best kernel constructed at this stage of the search is: SE1xSE3.
+BIC value: 262.0758; Training accuracy: 0.89; Test accurracy: 0.78667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE1xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.7723
+     cov: [-1.0427 -0.4351 0.3248 1.1989]
+
+Best kernel constructed at this stage of the search is: SE1xSE3xSE2.
+BIC value: 234.1309; Training accuracy: 0.94667; Test accurracy: 0.86.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE1xSE3xSE2.
+
+startingHyperparameters = 
+
+    mean: 1.8106
+     cov: [-0.9822 -0.8694 0.3935 0.7646 1.0576 1.3376]
+
+Best kernel constructed at this stage of the search is: SE1xSE3xSE2 + SE2.
+BIC value: 234.3908; Training accuracy: 0.96333; Test accurracy: 0.87.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+

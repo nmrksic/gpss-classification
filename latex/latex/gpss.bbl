@@ -1,0 +1,173 @@
+\begin{thebibliography}{26}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bach(2009)]{Bach_HKL}
+Bach, F.
+\newblock Exploring large feature spaces with hierarchical multiple kernel
+  learning.
+\newblock In \emph{Advances in Neural Information Processing Systems}, pp.\
+  105--112. 2009.
+
+\bibitem[Bing et~al.(2010)Bing, Wen-qiong, Ling, and Jia-hong]{bing2010gp}
+Bing, W., Wen-qiong, Z., Ling, C., and Jia-hong, L.
+\newblock {A GP-based kernel construction and optimization method for RVM}.
+\newblock In \emph{International Conference on Computer and Automation
+  Engineering (ICCAE)}, volume~4, pp.\  419--423, 2010.
+
+\bibitem[Box et~al.(1976)Box, Jenkins, and Reinsel]{box2011time}
+Box, G.E.P., Jenkins, G.M., and Reinsel, G.C.
+\newblock \emph{Time series analysis: forecasting and control}.
+\newblock 1976.
+
+\bibitem[Christoudias et~al.(2009)Christoudias, Urtasun, and
+  Darrell]{christoudias2009bayesian}
+Christoudias, M., Urtasun, R., and Darrell, T.
+\newblock {Bayesian localized multiple kernel learning}.
+\newblock \emph{Technical report, EECS Department, University of California,
+  Berkeley}, 2009.
+
+\bibitem[Diosan et~al.(2007)Diosan, Rogozan, and Pecuchet]{diosan2007evolving}
+Diosan, L., Rogozan, A., and Pecuchet, J.P.
+\newblock Evolving kernel functions for {SVMs} by genetic programming.
+\newblock In \emph{Machine Learning and Applications, 2007}, pp.\  19--24.
+  IEEE, 2007.
+
+\bibitem[Duvenaud et~al.(2011)Duvenaud, Nickisch, and
+  Rasmussen]{duvenaud2011additive11}
+Duvenaud, D., Nickisch, H., and Rasmussen, C.E.
+\newblock Additive {G}aussian processes.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2011.
+
+\bibitem[Grosse et~al.(2012)Grosse, Salakhutdinov, Freeman, and
+  Tenenbaum]{grosse2012exploiting}
+Grosse, R.B., Salakhutdinov, R., Freeman, W.T., and Tenenbaum, J.B.
+\newblock Exploiting compositionality to explore a large space of model
+  structures.
+\newblock In \emph{Uncertainty in Artificial Intelligence}, 2012.
+
+\bibitem[Gu(2002)]{gu2002smoothing}
+Gu, C.
+\newblock \emph{{Smoothing spline ANOVA models}}.
+\newblock Springer Verlag, 2002.
+\newblock ISBN 0387953531.
+
+\bibitem[Hastie \& Tibshirani(1990)Hastie and
+  Tibshirani]{hastie1990generalized}
+Hastie, T.J. and Tibshirani, R.J.
+\newblock \emph{Generalized additive models}.
+\newblock Chapman \& Hall/CRC, 1990.
+
+\bibitem[Jaynes(1985)]{Jaynes85highlyinformative}
+Jaynes, E.~T.
+\newblock Highly informative priors.
+\newblock In \emph{Proceedings of the Second International Meeting on Bayesian
+  Statistics}, 1985.
+
+\bibitem[Kemp \& Tenenbaum(2008)Kemp and Tenenbaum]{kemp2008discovery}
+Kemp, C. and Tenenbaum, J.B.
+\newblock The discovery of structural form.
+\newblock \emph{Proceedings of the National Academy of Sciences}, 105\penalty0
+  (31):\penalty0 10687--10692, 2008.
+
+\bibitem[Lawrence(2005)]{lawrence2005probabilistic}
+Lawrence, N.
+\newblock Probabilistic non-linear principal component analysis with gaussian
+  process latent variable models.
+\newblock \emph{The Journal of Machine Learning Research}, 6:\penalty0
+  1783--1816, 2005.
+
+\bibitem[Lean et~al.(1995)Lean, Beer, and Bradley]{lean1995reconstruction}
+Lean, J., Beer, J., and Bradley, R.
+\newblock Reconstruction of solar irradiance since 1610: Implications for
+  climate change.
+\newblock \emph{Geophysical Research Letters}, 22\penalty0 (23):\penalty0
+  3195--3198, 1995.
+
+\bibitem[LeCun et~al.(1989)LeCun, Boser, Denker, Henderson, Howard, Hubbard,
+  and Jackel]{lecun1989backpropagation}
+LeCun, Y., Boser, B., Denker, J.~S., Henderson, D., Howard, R.~E., Hubbard, W.,
+  and Jackel, L.~D.
+\newblock Backpropagation applied to handwritten zip code recognition.
+\newblock \emph{Neural Computation}, 1:\penalty0 541--551, 1989.
+
+\bibitem[Plate(1999)]{plate1999accuracy}
+Plate, T.A.
+\newblock {Accuracy versus interpretability in flexible modeling: Implementing
+  a tradeoff using Gaussian process models}.
+\newblock \emph{Behaviormetrika}, 26:\penalty0 29--50, 1999.
+\newblock ISSN 0385-7417.
+
+\bibitem[Poon \& Domingos(2011)Poon and Domingos]{poon2011sum}
+Poon, H. and Domingos, P.
+\newblock Sum-product networks: a new deep architecture.
+\newblock In \emph{Conference on Uncertainty in AI}, 2011.
+
+\bibitem[Rasmussen \& Ghahramani(2001)Rasmussen and
+  Ghahramani]{rasmussen2001occam}
+Rasmussen, C.E. and Ghahramani, Z.
+\newblock Occam's razor.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2001.
+
+\bibitem[Rasmussen \& Williams(2006)Rasmussen and
+  Williams]{rasmussen38gaussian}
+Rasmussen, C.E. and Williams, C.K.I.
+\newblock \emph{{Gaussian Processes for Machine Learning}}.
+\newblock The MIT Press, Cambridge, MA, USA, 2006.
+
+\bibitem[Ruppert et~al.(2003)Ruppert, Wand, and
+  Carroll]{ruppert2003semiparametric}
+Ruppert, D., Wand, M.P., and Carroll, R.J.
+\newblock \emph{Semiparametric regression}, volume~12.
+\newblock Cambridge University Press, 2003.
+
+\bibitem[Salakhutdinov \& Hinton(2008)Salakhutdinov and
+  Hinton]{salakhutdinov2008using}
+Salakhutdinov, R. and Hinton, G.
+\newblock Using deep belief nets to learn covariance kernels for {G}aussian
+  processes.
+\newblock \emph{Advances in Neural information processing systems},
+  20:\penalty0 1249--1256, 2008.
+
+\bibitem[Schmidt \& Lipson(2009)Schmidt and Lipson]{schmidt2009distilling}
+Schmidt, M. and Lipson, H.
+\newblock Distilling free-form natural laws from experimental data.
+\newblock \emph{Science}, 324\penalty0 (5923):\penalty0 81--85, 2009.
+
+\bibitem[Schwarz(1978)]{schwarz1978estimating}
+Schwarz, G.
+\newblock Estimating the dimension of a model.
+\newblock \emph{The Annals of Statistics}, 6\penalty0 (2):\penalty0 461--464,
+  1978.
+
+\bibitem[Todorovski \& Dzeroski(1997)Todorovski and
+  Dzeroski]{todorovski1997declarative}
+Todorovski, L. and Dzeroski, S.
+\newblock Declarative bias in equation discovery.
+\newblock In \emph{International Conference on Machine Learning}, pp.\
+  376--384, 1997.
+
+\bibitem[Wahba(1990)]{wahba1990spline}
+Wahba, G.
+\newblock \emph{{Spline models for observational data}}.
+\newblock Society for Industrial Mathematics, 1990.
+\newblock ISBN 0898712440.
+
+\bibitem[Washio et~al.(1999)Washio, Motoda, Niwa,
+  et~al.]{washio1999discovering}
+Washio, T., Motoda, H., Niwa, Y., et~al.
+\newblock Discovering admissible model equations from observed data based on
+  scale-types and identity constraints.
+\newblock In \emph{International Joint Conference On Artifical Intelligence},
+  volume~16, pp.\  772--779, 1999.
+
+\bibitem[Wilson \& Adams(2013)Wilson and Adams]{WilAda13}
+Wilson, Andrew~Gordon and Adams, Ryan~Prescott.
+\newblock Gaussian process covariance kernels for pattern discovery and
+  extrapolation.
+\newblock Technical Report arXiv:1302.4245 [stat.ML], February 2013.
+
+\end{thebibliography}

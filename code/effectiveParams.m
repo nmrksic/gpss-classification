@@ -4,6 +4,8 @@ function [numParams] = effectiveParams(covFuncEncoderMatrix)
 % is number of non-zero elements (lengthscales) + number of nonzero rows
 % (signal variances)
 
+covFuncEncoderMatrix = squeeze(covFuncEncoderMatrix); % make sure this is in adequate format
+
 lengthscales = nnz(covFuncEncoderMatrix);
 
 signalvars = 0;

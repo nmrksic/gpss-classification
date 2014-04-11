@@ -1,0 +1,34 @@
+\begin{thebibliography}{4}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Duvenaud et~al.(2011)Duvenaud, Nickisch, and
+  Rasmussen]{duvenaud2011additive11}
+Duvenaud, D., Nickisch, H., and Rasmussen, C.E.
+\newblock Additive {G}aussian processes.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2011.
+
+\bibitem[Duvenaud et~al.(2013)Duvenaud, Lloyd, Grosse, Tenenbaum, and
+  Ghahramani]{Duvenaud13}
+Duvenaud, David, Lloyd, James~Robert, Grosse, Roger, Tenenbaum, Joshua~B., and
+  Ghahramani, Zoubin.
+\newblock Structure discovery in nonparametric regression through compositional
+  kernel search.
+\newblock pp.\  1166--1174, June 2013.
+
+\bibitem[Rasmussen \& Ghahramani(2001)Rasmussen and
+  Ghahramani]{rasmussen2001occam}
+Rasmussen, C.E. and Ghahramani, Z.
+\newblock Occam's razor.
+\newblock In \emph{Advances in Neural Information Processing Systems}, 2001.
+
+\bibitem[Schwarz(1978)]{schwarz1978estimating}
+Schwarz, G.
+\newblock Estimating the dimension of a model.
+\newblock \emph{The Annals of Statistics}, 6\penalty0 (2):\penalty0 461--464,
+  1978.
+
+\end{thebibliography}

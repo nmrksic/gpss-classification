@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99c (TeX Live 2009/Debian)
+The top-level auxiliary file: gpss.aux
+The style file: format/icml2013.bst
+Database file #1: gpss.bib
+Warning--empty publisher in Bach_HKL
+Warning--empty publisher in box2011time
+Warning--empty institution in WilAda13
+You've used 26 entries,
+            2773 wiz_defined-function locations,
+            752 strings with 9000 characters,
+and the built_in function-call counts, 11835 in all, are:
+= -- 1040
+> -- 621
+< -- 25
++ -- 212
+- -- 186
+* -- 894
+:= -- 1781
+add.period$ -- 83
+call.type$ -- 26
+change.case$ -- 133
+chr.to.int$ -- 26
+cite$ -- 55
+duplicate$ -- 599
+empty$ -- 1040
+format.name$ -- 230
+if$ -- 2523
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 31
+newline$ -- 141
+num.names$ -- 104
+pop$ -- 307
+preamble$ -- 1
+purify$ -- 113
+quote$ -- 0
+skip$ -- 445
+stack$ -- 0
+substring$ -- 418
+swap$ -- 82
+text.length$ -- 9
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 256
+warning$ -- 3
+while$ -- 108
+width$ -- 0
+write$ -- 341
+(There were 3 warnings)

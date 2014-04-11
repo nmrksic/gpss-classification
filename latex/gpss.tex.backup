@@ -1,0 +1,274 @@
+\documentclass[twoside]{article}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amssymb,amsmath,amsthm}
+\usepackage{graphicx}
+\usepackage{preamble}
+\usepackage{natbib}
+%%%% REMEMBER ME!
+%\usepackage[draft]{hyperref}
+\usepackage{hyperref}
+\usepackage{color}
+\usepackage{wasysym}
+\usepackage{subfigure}
+\usepackage{tabularx}
+\usepackage{booktabs}
+\usepackage{bm}
+\newcommand{\theHalgorithm}{\arabic{algorithm}}
+\definecolor{mydarkblue}{rgb}{0,0.08,0.45}
+\hypersetup{ %
+    pdftitle={},
+    pdfauthor={},
+    pdfsubject={},
+    pdfkeywords={},
+    pdfborder=0 0 0,
+    pdfpagemode=UseNone,
+    colorlinks=true,
+    linkcolor=mydarkblue,
+    citecolor=mydarkblue,
+    filecolor=mydarkblue,
+    urlcolor=mydarkblue,
+    pdfview=FitH}
+
+\newcolumntype{x}[1]{>{\centering\arraybackslash\hspace{0pt}}m{#1}}
+\newcommand{\tabbox}[1]{#1}
+
+\setlength{\marginparwidth}{0.6in}
+\input{include/commenting.tex}
+
+\newif\ifarXiv
+%\arXivtrue
+
+\ifarXiv
+	\usepackage[arxiv]{format/icml2013v2}
+\else
+	\usepackage[accepted]{format/icml2013v2}
+\fi
+%\usepackage[left=1.00in,right=1.00in,bottom=0.25in,top=0.25in]{geometry} %In case we want larger margins for commenting purposes
+
+%% For submission, make all render blank.
+%\renewcommand{\LATER}[1]{}
+%\renewcommand{\fLATER}[1]{}
+%\renewcommand{\TBD}[1]{}
+%\renewcommand{\fTBD}[1]{}
+%\renewcommand{\PROBLEM}[1]{}
+%\renewcommand{\fPROBLEM}[1]{}
+%\renewcommand{\NA}[1]{#1}  %% Note, NA's pass through!
+
+    
+\begin{document}
+
+%\renewcommand{\baselinestretch}{0.99}
+
+\twocolumn[
+\icmltitle{Structure Discovery in Nonparametric Classification through Compositional Kernel Search}
+]
+
+\begin{abstract} 
+
+Our work builds on previous work on structure discovery for \gp{} regression by extending the approach to facilitate automatic kernel structure discovery for \gp{} classification. 
+
+\end{abstract}
+
+
+\section{Introduction}
+
+.....
+
+\section{Expressing structure through kernels} 
+
+.....
+
+\paragraph{Composing Kernels} Plots of summation and multiplication of \kSE{} kernels. 
+
+\section{Searching over structures}
+\label{sec:Search}
+
+The base kernel family consists of one dimensional \kSE{} kernels. Our search procedure begins by evaluating base \kSE{} kernels applied to all input dimensions. Two search operators are defined over our set of expressions:
+\begin{itemize}
+\item Add \kSE{}: We can add an arbitrary base kernel $\baseker$ to the entire expression to obtain $\subexpr + \baseker$, where $\baseker$ is an arbitrary base \kSE{} kernel.
+\item Multiply with \kSE{}: Any subexpression $\subexpr$ representing a product of base kernels can be multiplied with another base \kSE{} kernel to obtain $\subexpr \times \baseker$, 
+\end{itemize}
+
+This context-free grammar allows us to reach any arithmetic expression where multiplication is fully distributed across addition. The algorithm searches over this space using a greedy search: at each stage, we choose the highest scoring kernel (in terms of BIC) 
+and expand it using all applicable operators.
+
+
+\paragraph{Scoring kernel families}
+
+Marginal likelihood balances the fit and complexity of a model \citep{rasmussen2001occam}. For regression, the marginal likelihood of a \gp{} can be computed analytically. This is not true for classification, as the likelihood function is no longer Gaussian. 
+In our work, we use the Laplace approximation to compute the marginal likelihood. To evaluate a kernel family we must integrate out the hyperparameters. We first optimize to find the maximum-likelihood hyperparameters and then approximate the intractable integral 
+using the Bayesian information criterion \citep{schwarz1978estimating}, in order to minimise the effect of the prior on our estimate.  
+
+Finding the optimal hyperparameters is not a convex optimization problem, as the space can have many local optima. This issue was especially pronounced in \cite{Duvenaud13}, as periodic kernels were part of the search grammar. 
+This issue is not as serious with the kernel family restricted to smooth \kSE{} functions, but the search procedure still relies on random initializations for the newly introduced hyperparameters in advance of the maximum-likelihood optimisation. 
+
+\begin{table}[h!]
+\caption{{\small
+Classification Percent Error
+}}
+\label{tbl:Classification Percent Error}
+\begin{center}
+\begin{tabular}{l | r r r r r r}
+Method & \rotatebox{0}{ breast }  & \rotatebox{0}{ pima }  & \rotatebox{0}{ liver }  & \rotatebox{0}{ heart }  \\ \hline
+Logistic Regression & $7.611$ & $24.392$  & $45.060$ & $\mathbf{16.082}$ \\
+GP GAM & $\mathbf{5.189}$ & $\mathbf{22.419}$  & $\mathbf{29.842}$ & $\mathbf{16.839}$ \\
+HKL & $\mathbf{5.377}$ & $24.261$  & $\mathbf{27.270}$ & $\mathbf{18.975}$ \\
+GP Squared-exp & $\mathbf{4.734}$ & $\mathbf{23.722}$  & $\mathbf{31.237}$ & $\mathbf{20.642}$ \\
+GP Additive & $\mathbf{5.566}$ & $\mathbf{23.076}$  & $\mathbf{30.060}$ & $\mathbf{18.496}$ \\
+GPSS-classification & $\mathbf{5.5 (old) }$ & $\mathbf{22.529}$  & $\mathbf{28.924}$ & $\mathbf{16.95 (inc)}$ \\
+\end{tabular}
+\end{center}
+\end{table}
+
+
+
+\section{Related Work}
+
+\paragraph{Nonparametric classification}
+
+.....
+
+\paragraph{Kernel learning}
+
+.....
+
+\paragraph{Structure discovery}
+
+.....
+
+\section{Structure discovery for classification}
+
+In this section, we compare the performance of models found in our search with related methods and show that the performance of our structurally simpler models is on par with more complicated models such as additive GPs \cite{duvenaud2011additive11} and Hierarchical Kernel Learning. 
+
+
+
+\paragraph{Heart}
+
+\paragraph{Liver}
+
+\paragraph{Pima} 
+
+\paragraph{Breast} 
+
+
+
+\section{Validation on synthetic data}
+
+\label{sec:synthetic}
+
+We validated our method's ability to recover known structure on a set of synthetic datasets.
+For several composite kernel expressions, we constructed synthetic data by first sampling 100, 300 and 500 points uniformly at random, then sampling function values at those points from a \gp{} prior.
+We then added \iid Gaussian noise to the functions, at various signal-to-noise ratios (SNR). 
+
+Table ~\ref{tbl:synthetic1}  lists the true kernels we used to generate the data.  Subscripts indicate which dimension each kernel was applied to.  Subsequent columns show the dimensionality $D$ of the input space, and the kernels chosen by our search for different SNRs and different amounts of added salt and pepper noise. 
+We also show the kernel optimal rates (the accuracy the kernel used to generate the data achieves on the noisy test set) and the function optimal rates (the rate a classifier which knew the \emph{exact} funtion used to generate the data achieves on the noisy test data set). 
+
+\begin{table*}[ht!]
+\caption{{\small
+%Kernels used to generate synthetic data, dimensionality, $D$, of the input space, and the estimated kernels.% at different signal to noise ratios (SNR).
+True kernel: $ \SE_1 + \SE_2 + \SE_3$, with log-lengthscales -1, 0, 1. The synthetic data is three dimensional. 
+Kernels chosen by our method on synthetic data generated using known kernel structures. SNR indicates the signal-to-noise ratio, sp\_noise the proportion of random outliers inserted.  
+%The two kernels marked with an asterisk * indicate when the search procedure inferred extraneous structure.
+}} 
+
+\label{tbl:synthetic1}
+\begin{center}
+{\small
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel accuracy & Bayes optimal rate \\
+\hline 
+100    &   100  &  0 \%   &    $\SE_1 + \SE_2 + \SE_3$   &    0.92  &  0.96 & 0.99 \\
+100    &   100  &  5 \%   &    $\SE_1 + \SE_2 \times \SE_3$   &    0.88  &  0.86 & 0.94 \\
+100    &   100  &  20 \%   &    $\SE_2 + \SE_1 \times \SE_3$   &    0.79  &  0.84 & 0.95 \\ 
+100    &   1  &  0 \%    &    $\SE_2 + \SE_3 $   &    0.64  &  0.75 & 0.75    \\
+100    &   1  &  5 \%    &    $\SE_2 \times \SE_3 $   &    0.64  &  0.71 & 0.71    \\
+100    &   1  &  20 \%   &    $\SE_2 \times \SE_3 $ &    0.70  &  0.69 & 0.74 \\
+
+\hline  300    &   100  &  0 \%   &    $\SE_1 + \SE_2 + \SE_3$   &    0.94  &  0.94 & 0.95 \\
+300    &   100  &  5 \%   &    $\SE_1 \times \SE_2 \times \SE_3$   &    0.86  &  0.88 & 0.93 \\
+300    &   100  &  20 \%   &    $\SE_1 \times \SE_2 + \SE_3 $   &    0.81  &  0.80 & 0.85 \\ 
+300    &   1  &  0 \%   &    $\SE_1 + \SE_2 \times \SE_3 $   &    0.67  &  0.71 & 0.72    \\
+300    &   1  &  5 \%   &   $\SE_1 + \SE_2 + \SE_3$   &    0.68  &  0.68 & 0.71    \\
+300    &   1  &  20 \%   &    $\SE_1 + \SE_2 \times \SE_3 $ &    0.65  &  0.67 & 0.67 \\
+
+\hline  500    &   100  &  0 \%   &    $\SE_1 + \SE_2 $   &    0.96  &  0.97 & 0.97 \\
+	500    &   100  &  5 \%   &    $\SE_1 \times \SE_2 + \SE_2 $   &    0.94  &  0.94 & 0.94 \\
+	500    &   100  &  20 \%   &    $\SE_1 \times \SE_2 + \SE_2 $   &    0.88  &  0.87 & 0.88 \\ 
+	500    &   1  &  0 \%   &    $\SE_2 $   &    0.79  &  0.78 & 0.79    \\
+	500    &   1  &  5 \%   &   $ \SE_2 $   &    0.78  &  0.76 & 0.77    \\
+	500    &   1  &  20 \%   &    $ \SE_2 $  &    0.73  &  0.71 & 0.72 \\
+
+\hline
+\end{tabular}
+}
+\end{center}
+\end{table*}
+
+\begin{table*}[ht!]
+\caption{{\small
+%Kernels used to generate synthetic data, dimensionality, $D$, of the input space, and the estimated kernels.% at different signal to noise ratios (SNR).
+True kernel: $ \SE_1 + \SE_2 \times \SE_3 + \SE_4$, with log-lengthscales all equal to 0 (all three terms have equal lengthscales). The synthetic data is three dimensional. 
+Kernels chosen by our method on synthetic data generated using known kernel structures. SNR indicates the signal-to-noise ratio, sp\_noise the proportion of random outliers inserted.  
+%The two kernels marked with an asterisk * indicate when the search procedure inferred extraneous structure.
+}} 
+
+\label{tbl:synthetic2}
+\begin{center}
+{\small
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel accuracy & Bayes optimal rate \\
+\hline 
+100    &   100  &  0 \%   &    $\SE_2 \times \SE_3$   &    0.93  &  0.94 & 0.95 \\
+100    &   100  &  5 \%   &    $\SE_2 \times \SE_3$  &    0.91  &  0.92 & 0.94 \\
+100    &   100  &  20 \%   &    $\SE_2 \times \SE_3$  &    0.82  &  0.82 & 0.88 \\ 
+100    &   1  &  0 \%    &     $\SE_2 \times \SE_3$  &    0.77  &  0.75 & 0.73    \\
+100    &   1  &  5 \%    &    $\SE_2 \times \SE_3$  &    0.75  &  0.75 & 0.72    \\
+100    &   1  &  20 \%   &    $ \SE_3 $ &    0.70  &  0.73 & 0.7 \\
+
+\hline  300    &   100  &  0 \%   &    $ \SE_3 \times \SE_2 + \SE_4 \times \SE_3 + \SE_1$   &    0.90  &  0.92 & 0.98 \\
+300    &   100  &  5 \%   &    $ \SE_3 \times \SE_2 \times \SE_4 \times \SE_1 $   &    0.91  &  0.92 & 0.97 \\
+300    &   100  &  20 \%   &    $\SE_3 \times \SE_2 \times \SE_4 + \SE_3 $   &   0.80  &  0.79 & 0.87 \\ 
+300    &   1  &  0 \%   &    $ \SE_3 \times \SE_2 + \SE_4 \times \SE_1 $   &    0.75  &  0.74 & 0.75    \\
+300    &   1  &  5 \%   &   $ \SE_3 \times \SE_4 \times \SE_2 \times \SE_1 $   &    0.73  &  0.73 & 0.74    \\
+300    &   1  &  20 \%   &    $\SE_3 + \SE_4$ &    0.66  &  0.63 & 0.67 \\
+
+\hline  500    &   100  &  0 \%   &    $ \SE_2 \times \SE_3 + \SE_4 \times \SE_2 + \SE_1 \times \SE_4 $   &    0.94  &  0.95 & 0.97 \\
+	500    &   100  &  5 \%   &    $\SE_2 \times \SE_3 \times \SE_1 + \SE_4 \times \SE_2 + \SE_1 $   &    0.91  &  0.92 & 0.95 \\
+	500    &   100  &  20 \%   &    $\SE_2 \times \SE_3 \times \SE_4$   &    0.80  &  0.83 & 0.87 \\ 
+	500    &   1  &  0 \%   &    $\SE_2 \times \SE_3 + \SE_1 $   &    0.70  &  0.71 & 0.73    \\
+	500    &   1  &  5 \%   &   $ \SE_2 \times \SE_3 + \SE_1$   &    0.71  &  0.72 & 0.74    \\
+	500    &   1  &  20 \%   &    $ \SE_2 \times \SE_3 $  &    0.67  &  0.67 & 0.69 \\
+\hline
+\end{tabular}
+}
+\end{center}
+\end{table*}
+
+
+
+
+
+
+\section{Quantitative evaluation}
+\label{sec:quantitative}
+
+%\subsection{Extrapolation}
+
+%\subsection{High-dimensional prediction}
+
+
+\section{Discussion}
+
+\subsubsection*{Acknowledgements}
+
+\newpage
+\bibliographystyle{format/icml2013}
+\bibliography{gpss}
+\end{document}
+
+
+%\subsubsection{Data sets}
+
+
+%\subsection{Multidimensional decomposition}

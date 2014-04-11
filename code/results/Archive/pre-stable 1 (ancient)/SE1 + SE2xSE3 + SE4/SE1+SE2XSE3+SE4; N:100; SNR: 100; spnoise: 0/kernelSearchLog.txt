@@ -1,0 +1,3 @@
+Kernel Optimal rate: 0.94
+Bayes (function) Optimal rate: 0.95
+ 

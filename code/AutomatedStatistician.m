@@ -1,4 +1,4 @@
-function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccuracies, bestName, bestBic, bestAcc, bestHyperParam, finalEncoder] = AutomatedStatistician(X, y, X_tst, y_tst, searchSteps, numExp, runParallel, inferenceMethod, backtrack, optimisation)
+function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccuracies, bestName, bestBic, bestAcc, bestHyperParam, finalEncoder, encoderMatrices] = AutomatedStatistician(X, y, X_tst, y_tst, searchSteps, numExp, runParallel, inferenceMethod, backtrack, optimisation)
  % GPSS for GP classification, with a covSE grammar and search defined as in
  % the original paper (operations: +B, *B, substitute any term with B). 
 
@@ -61,8 +61,31 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
  
   
  if (runParallel == 1)
-     system('rm -f scripts/*.m');
-     parallel_bases
+    
+    system('rm -f scripts/*.m');
+    [bestBicVals, bestHyper, encoderMatrices] = parallel_bases(X, y, numExp, inferenceMethod, searchSteps);
+     
+    covFunctions =  cell(1, searchSteps);
+   
+      
+    for i = 1:dim % initialise the base kernels and determine their BICs and test accuracies
+
+         covFunctions{i} = encodeKernel(squeeze(encoderMatrices(i, :, :)), dim);
+
+
+         kernelNames{i} = ['SE', num2str(i)];
+
+         [~,~,~,~,lp] = gp(bestHyper{i}, inferenceMethod, meanfunc, covFunctions{i}, likfunc, X, y, X_tst, ones(size(y_tst)));
+         predictiveAccuraccies(i) = calculateAcc(lp, X_tst, y_tst);
+
+         % train accs, alternative search criterion:
+         [~,~,~,~,lp2] = gp(bestHyper{i}, inferenceMethod, meanfunc, covFunctions{i}, likfunc, X, y, X, ones(size(y)));
+         trainAccuracies(i) = calculateAcc(lp2, X, y);
+         % ....
+            
+    end
+    
+    
  else
      
      disp( ['Evaluating the base SE kernels, number of experiments to run is ', num2str(numExp * dim),'.'] );
@@ -145,7 +168,7 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
 
  while currentIter < searchSteps
     
-    currentIter = currentIter + 1; 
+    currentIter = currentIter + 1;
          
     [currMin, indexes] = sort(bestBicVals(1:(currentIter-1))); % Determine the best kernel not yet expanded. % CHANGE2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     
@@ -162,7 +185,7 @@ function [kernelNames, bestBicVals, predictiveAccuraccies, bestHyper, trainAccur
     if (bestBic == inf)  % corrected bug when single base is the best solution
         bestName = kernelNames{idx};
         bestBic = bestBicVals(idx);
-        bestAcc = predictiveAccuraccies();
+        bestAcc = predictiveAccuraccies(idx);
         
         bestHyperParam = bestHyper{idx};
         finalEncoder = squeeze(encoderMatrices(idx, :, :));    

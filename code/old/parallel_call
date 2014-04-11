@@ -1,0 +1,32 @@
+ for i = 1:(numExp*kernelCount)
+
+     script_code = ['i=', num2str(i), '; ', scriptCode]; 
+     save(['script', sprintf('%09d', i), '.m'], 'script_code');
+     
+     fileID = fopen(['scripts/script', sprintf('%09d', i), '.m'], 'w');
+     fprintf(fileID, '%s\n', script_code);
+     fclose(fileID);
+    
+     % disp([num2str(i), ' out of ', num2str(numExp*kernelCount), ' experiments for the current expansion stage. ']);
+     % [bicValues(i), hyperParameters{i}] = randomRestarts2( covFunctions{i} , finalHyperParams{i}, X, y, inferenceMethod); % how do we pass data to server? 
+ end
+ 
+ save('data/data.mat', 'X', 'y', 'covFunctions', 'finalHyperParams');
+
+ system('python run-scripts-in-parallel.py'); 
+ 
+ % Load data
+ 
+  for i = 1:(numExp*kernelCount)
+      
+    file_name = ['outputs/script' sprintf('%09d', i) '.mat'];
+
+    load(file_name);
+    bicValues(i) = bicValue;
+    hyperParameters{i} = hypN;
+    
+    system(['rm ' file_name]);
+    
+     % disp([num2str(i), ' out of ', num2str(numExp*kernelCount), ' experiments for the current expansion stage. ']);
+     % [bicValues(i), hyperParameters{i}] = randomRestarts2( covFunctions{i} , finalHyperParams{i}, X, y, inferenceMethod); % how do we pass data to server? 
+ end
