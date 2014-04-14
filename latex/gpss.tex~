@@ -115,7 +115,11 @@ GP GAM & $\mathbf{5.189}$ & $\mathbf{22.419}$  & $\mathbf{29.842}$ & $\mathbf{16
 HKL & $\mathbf{5.377}$ & $24.261$  & $\mathbf{27.270}$ & $\mathbf{18.975}$ \\
 GP Squared-exp & $\mathbf{4.734}$ & $\mathbf{23.722}$  & $\mathbf{31.237}$ & $\mathbf{20.642}$ \\
 GP Additive & $\mathbf{5.566}$ & $\mathbf{23.076}$  & $\mathbf{30.060}$ & $\mathbf{18.496}$ \\
-GPSS-classification & $\mathbf{ 6.430 }$ & $\mathbf{22.529}$  & $\mathbf{28.924}$ & $\mathbf{18.15}$ \\
+GPSS (AIC) & ${ 6.430 }$ & ${22.529}$  & ${28.924}$ & $ - $ \\
+GPSS (BIC) & $ { 5.980 }$ & ${23.440}$  & $ {37.010}$ & $ 18.150 $ \\
+GPSS (BIC light) & $ { 6.430 }$ & ${ 22.270 }$  & $ 27.5 $ & $ 17.820 $ \\
+
+
 \end{tabular}
 \end{center}
 \end{table}
@@ -146,9 +150,26 @@ In this section, we compare the performance of models found in our search with r
 
 \paragraph{Heart}
 
+
+
 \paragraph{Liver}
 
 \paragraph{Pima} 
+
+%\begin{figure}[h!]
+%\begin{minipage}[t]{0.48\textwidth}
+%\includegraphics[width=\linewidth,keepaspectratio=true]{fase4.pdf}
+%\caption{Figura experimental}
+%\label{fase1}
+%\end{minipage}
+%\hspace*{\fill} % it's important not to leave blank lines before and after this command
+%\begin{minipage}[t]{0.48\textwidth}
+%\includegraphics[width=\linewidth,keepaspectratio=true]{fase5.pdf}
+%\caption{Altra figura experimental}
+%\label{fase2}
+%\end{minipage}
+%\end{figure}
+%\end{document}
 
 \paragraph{Breast} 
 
@@ -166,7 +187,7 @@ We also show the kernel optimal rates (the accuracy the kernel used to generate 
 \begin{table*}[ht!]
 \caption{{\small
 %Kernels used to generate synthetic data, dimensionality, $D$, of the input space, and the estimated kernels.% at different signal to noise ratios (SNR).
-True kernel: $ \SE_1 + \SE_2 + \SE_3$, with log-lengthscales -1, 0, 1. The synthetic data is three dimensional. 
+True kernel: $ \SE_1 + \SE_2 + \SE_3$, with log-lengthscales -1, -1, -1. The synthetic data is three dimensional. 
 Kernels chosen by our method on synthetic data generated using known kernel structures. SNR indicates the signal-to-noise ratio, sp\_noise the proportion of random outliers inserted.  
 %The two kernels marked with an asterisk * indicate when the search procedure inferred extraneous structure.
 }} 
@@ -176,27 +197,36 @@ Kernels chosen by our method on synthetic data generated using known kernel stru
 {\small
 \begin{tabular}{|c c  c | c |  c | c c| }
 \hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes optimal rate \\
+
 \hline 
-100    &   100  &  0 \%   &    $\SE_1 + \SE_2 + \SE_3$   &    0.92  &  0.96 & 0.99 \\
-100    &   100  &  5 \%   &    $\SE_1 + \SE_2 \times \SE_3$   &    0.88  &  0.86 & 0.94 \\
-100    &   100  &  20 \%   &    $\SE_2 + \SE_1 \times \SE_3$   &    0.79  &  0.84 & 0.95 \\ 
-100    &   1  &  0 \%    &    $\SE_2 + \SE_3 $   &    0.64  &  0.75 & 0.75    \\
-100    &   1  &  5 \%    &    $\SE_2 \times \SE_3 $   &    0.64  &  0.71 & 0.71    \\
-100    &   1  &  20 \%   &    $\SE_2 \times \SE_3 $ &    0.70  &  0.69 & 0.74 \\
+100& 	1& 	0\% & 	$\SE_{3}$ &	72.0\% & 	62.0\% & 	77.8\%  \\  
+300& 	1& 	0\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	73.7\% & 	70.7\% & 	77.8\%  \\  
+500& 	1& 	0\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	74.4\% & 	73.8\% & 	77.8\%  \\  
+\hline 
+100& 	1& 	5\% & 	$\SE_{1} + \SE_{3}$ &	66.0\% & 	68.0\% & 	75.8\%  \\  
+300& 	1& 	5\% & 	$\SE_{1} + \SE_{3}$ &	71.7\% & 	75.0\% & 	75.8\%  \\  
+500& 	1& 	5\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	73.4\% & 	73.0\% & 	75.8\%  \\  
+\hline 
+100& 	1& 	20\% & 	$\SE_{1} + \SE_{2}$ &	64.0\% & 	62.0\% & 	69.4\%  \\  
+300& 	1& 	20\% & 	$\SE_{1} + \SE_{2}$ &	61.3\% & 	61.7\% & 	69.4\%  \\  
+500& 	1& 	20\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	66.2\% & 	64.4\% & 	69.4\%  \\  
 
-\hline  300    &   100  &  0 \%   &    $\SE_1 + \SE_2 + \SE_3$   &    0.94  &  0.94 & 0.95 \\
-300    &   100  &  5 \%   &    $\SE_1 \times \SE_2 \times \SE_3$   &    0.86  &  0.88 & 0.93 \\
-300    &   100  &  20 \%   &    $\SE_1 \times \SE_2 + \SE_3 $   &    0.81  &  0.80 & 0.85 \\ 
-300    &   1  &  0 \%   &    $\SE_1 + \SE_2 \times \SE_3 $   &    0.67  &  0.71 & 0.72    \\
-300    &   1  &  5 \%   &   $\SE_1 + \SE_2 + \SE_3$   &    0.68  &  0.68 & 0.71    \\
-300    &   1  &  20 \%   &    $\SE_1 + \SE_2 \times \SE_3 $ &    0.65  &  0.67 & 0.67 \\
+\hline 
+100& 	100& 	0\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	92.0\% & 	90.0\% & 	96.2\%  \\  
+300& 	100& 	0\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	91.0\% & 	92.0\% & 	96.2\%  \\  
+500& 	100& 	0\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	94.2\% & 	94.4\% & 	96.2\%  \\  
 
-\hline  500    &   100  &  0 \%   &    $\SE_1 + \SE_2 $   &    0.96  &  0.97 & 0.97 \\
-	500    &   100  &  5 \%   &    $\SE_1 \times \SE_2 + \SE_2 $   &    0.94  &  0.94 & 0.94 \\
-	500    &   100  &  20 \%   &    $\SE_1 \times \SE_2 + \SE_2 $   &    0.88  &  0.87 & 0.88 \\ 
-	500    &   1  &  0 \%   &    $\SE_2 $   &    0.79  &  0.78 & 0.79    \\
-	500    &   1  &  5 \%   &   $ \SE_2 $   &    0.78  &  0.76 & 0.77    \\
-	500    &   1  &  20 \%   &    $ \SE_2 $  &    0.73  &  0.71 & 0.72 \\
+\hline 
+100& 	100& 	5\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	86.0\% & 	83.0\% & 	94.8\%  \\  
+300& 	100& 	5\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	90.3\% & 	89.7\% & 	94.8\%  \\  
+500& 	100& 	5\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	90.2\% & 	90.0\% & 	94.8\%  \\  
+
+\hline 
+100& 	100& 	20\% & 	$\SE_{1}$ &	71.0\% & 	69.0\% & 	85.2\%  \\ 
+300& 	100& 	20\% & 	$\SE_{1} \times \SE_{2} + \SE_{2}$ &	75.0\% & 	73.3\% & 	85.2\%  \\  
+500& 	100& 	20\% & 	$\SE_{1} + \SE_{2} + \SE_{3}$ &	82.0\% & 	80.0\% & 	85.2\%  \\  
+
+
 
 \hline
 \end{tabular}
@@ -217,32 +247,47 @@ Kernels chosen by our method on synthetic data generated using known kernel stru
 {\small
 \begin{tabular}{|c c  c | c |  c | c c| }
 \hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes optimal rate \\
+
+\hline
+100& 	1& 	0\% & 	$\SE_{1}$ &	58.0\% & 	74.0\% & 	76.2\%  \\  
+300& 	1& 	0\% & 	$\SE_{1} + \SE_{2} \times \SE_{3}$ &	70.0\% & 	70.3\% & 	76.2\%  \\  
+500& 	1& 	0\% & 	$\SE_{1} + \SE_{2} \times \SE_{3} $ &	72.4\% & 	74.4\% & 	76.2\%  \\  
+\hline
+100& 	1& 	5\% & 	$\SE_{2} \times \SE_{3}$ &	62.0\% & 	66.0\% & 	75.6\%  \\  
+300& 	1& 	5\% & 	$\SE_{2} \times \SE_{3}$ &	71.0\% & 	71.3\% & 	75.6\%  \\  
+500& 	1& 	5\% & 	$ \SE_{1} \times \SE_{4} + \SE_{2} \times \SE_{3} $ &	71.8\% & 	72.8\% & 	75.6\%  \\  
+\hline
+100& 	1& 	20\% & 	$\SE_{2}$ &	58.0\% & 	64.0\% & 	72.4\%  \\  
+300& 	1& 	20\% & 	$\SE_{2} \times \SE_{3} \times \SE_{4}$ &	67.7\% & 	69.3\% & 	72.4\%  \\  
+500& 	1& 	20\% & 	$\SE_{2} \times \SE_{3} \times \SE_{4}$ &	70.8\% & 	69.0\% & 	72.4\%  \\  
+
+
 \hline 
-100    &   100  &  0 \%   &    $\SE_2 \times \SE_3$   &    0.93  &  0.94 & 0.95 \\
-100    &   100  &  5 \%   &    $\SE_2 \times \SE_3$  &    0.91  &  0.92 & 0.94 \\
-100    &   100  &  20 \%   &    $\SE_2 \times \SE_3$  &    0.82  &  0.82 & 0.88 \\ 
-100    &   1  &  0 \%    &     $\SE_2 \times \SE_3$  &    0.77  &  0.75 & 0.73    \\
-100    &   1  &  5 \%    &    $\SE_2 \times \SE_3$  &    0.75  &  0.75 & 0.72    \\
-100    &   1  &  20 \%   &    $ \SE_3 $ &    0.70  &  0.73 & 0.70 \\
+100& 	100& 	0\% & 	$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}  $ &	85.0\% & 	84.0\% & 	96.6\%  \\  
+300& 	100& 	0\% & 	$ \SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ &	92.7\% & 	93.3\% & 	96.6\%  \\  
+500& 	100& 	0\% & 	$ \SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ &	94.2\% & 	94.8\% & 	96.6\%  \\  
 
-\hline  300    &   100  &  0 \%   &    $ \SE_1 + \SE_2 \times \SE_3 + \SE_3 \times \SE_4  $   &    0.90  &  0.92 & 0.98 \\
-300    &   100  &  5 \%   &    $ \SE_1 \times \SE_2 \times \SE_3 \times \SE_4 $   &    0.91  &  0.92 & 0.97 \\
-300    &   100  &  20 \%   &   $ \SE_1 \times \SE_2 \times \SE_3 \times \SE_4 $   &   0.80  &  0.79 & 0.87 \\ 
-300    &   1  &  0 \%   &    $ \SE_2 \times \SE_3 + \SE_4 \times \SE_1 $   &    0.75  &  0.74 & 0.75    \\
-300    &   1  &  5 \%   &   $ \SE_1 \times \SE_2 \times \SE_3 \times \SE_4 $   &    0.73  &  0.73 & 0.74    \\
-300    &   1  &  20 \%   &    $\SE_3 + \SE_4$ &    0.66  &  0.63 & 0.67 \\
+\hline
+100& 	100& 	5\% & 	$ \SE_{1} +  \SE_{2} \times \SE_{3} + \SE_{4} $ &	84.0\% & 	82.0\% & 	95.4\%  \\  
+300& 	100& 	5\% & 	$\SE_{1} + \SE_{2} \times \SE_{3} \times \SE_{4} $ &	91.0\% & 	88.3\% & 	95.4\%  \\  
+500& 	100& 	5\% & 	$ \SE_{1} + \SE_{2} \times \SE_{3} \times \SE_{4} + \SE_{4}  $ &	90.2\% & 	90.6\% & 	95.4\%  \\  
 
-\hline  500    &   100  &  0 \%   &    $\SE_1 \times \SE_4 + \SE_2 \times \SE_3 + \SE_2 \times \SE_4   $   &    0.94  &  0.95 & 0.97 \\
-	500    &   100  &  5 \%   &    $\SE_1 \times \SE_2 \times \SE_3 + \SE_1 \times \SE_2 + \SE_4 $   &    0.91  &  0.92 & 0.95 \\
-	500    &   100  &  20 \%   &    $\SE_2 \times \SE_3 \times \SE_4$   &    0.80  &  0.83 & 0.87 \\ 
-	500    &   1  &  0 \%   &    $\SE_1 + \SE_2 \times \SE_3  $   &    0.70  &  0.71 & 0.73    \\
-	500    &   1  &  5 \%   &   $\SE_1 + \SE_2 \times \SE_3  $   &    0.71  &  0.72 & 0.74    \\
-	500    &   1  &  20 \%   &    $ \SE_2 \times \SE_3 $  &    0.67  &  0.67 & 0.69 \\
+\hline
+100& 	100& 	20\% & 	$\SE_{1}$ &	61.0\% & 	66.0\% & 	88.4\%  \\  
+300& 	100& 	20\% & 	$\SE_{1} \times \SE_{3}$ &	71.3\% & 	78.0\% & 	88.4\%  \\  
+500& 	100& 	20\% & 	$\SE_{1} \times \SE_{2} \times \SE_{3}$ &	81.4\% & 	80.8\% & 	88.4\%  \\  
+
 \hline
 \end{tabular}
 }
 \end{center}
 \end{table*}
+
+
+
+
+
+
 
 
 \clearpage

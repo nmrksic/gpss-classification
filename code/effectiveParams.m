@@ -17,5 +17,5 @@ for i = 1: size(covFuncEncoderMatrix, 1)
     signalvars = i;
 end
 
-numParams = lengthscales + signalvars; % for pure covSEiso kernels, this is the figure
+numParams = lengthscales; % Attempting BIC version which punishes + as much as *, as signal variance doesn't really matter in a classification settings. 
 

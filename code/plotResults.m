@@ -25,6 +25,7 @@ function [] = plotResults(expName, numFoldsToPlot, X, y)
     
     msg = [];
     
+    
     for i = 1:numFoldsToPlot
            
         currentFold = i; % declared just for the sake of saving the data
@@ -46,9 +47,8 @@ function [] = plotResults(expName, numFoldsToPlot, X, y)
             filePrefixPlot = [filePrefixNew, 'Stage', num2str(plott), '/'];
             % close all
             plotPosteriors(trnX{i}, trnY{i}, squeeze( allEncoderMatrices(plott, :, :) ) , hyperList{plott}, filePrefixPlot, dimensionLabels);
-            tightfig;
 
-            pause
+             %pause
             
         end
         

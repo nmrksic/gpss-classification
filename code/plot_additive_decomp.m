@@ -40,7 +40,7 @@ right_extend = 0.1;
 num_components = length(kernel_components);
 assert(num_components == length(kernel_params));
 
-
+close all
 
 % Next, show the posterior of each component, one at a time.
 for i = 1:num_components
@@ -118,10 +118,10 @@ for i = 1:num_components
 
 
     % Plot posterior mean and variance.
-    %figure(i); clf;
+    figure(i); clf;
     filename = sprintf( '%sComponent: SE%d', fileprefix, num2str(cur_ds) );
-    
-    subplot(1, num_components, i);
+      %  subaxis(1,num_components,i, 'Spacing', 0.04,  'Padding', 0, 'Margin', 0.05);
+  %  subplot(1, num_components, i);
     
     if num_dims == 1
         nice_oned_plot( X(:,cur_ds), y, data_mean, xrange, component_mean, component_var, savefigs, filename, dimensionLabels, componentDims{i})
@@ -160,14 +160,18 @@ function nice_oned_plot( X, y, y_adjusted, xstar, mean, variance, savefigs, file
         h_gp_post = fill([xstar; flipdim(xstar,1)], edges, color_spectrum(2*s), ...
                    'EdgeColor', 'none'); hold on;
     end    
+         
+    [minR, maxR] = lengthscales(X);
+    jitterRange =  minR + maxR / 50;
     
-    h_data_orig = plot( X(y<0), y(y<0), 'bo', 'Linewidth', 1.5, 'Markersize', 10); hold on;
-    h_data_orig = plot( X(y>0), y(y>0), 'b+', 'Linewidth', 1.5, 'Markersize', 10); hold on;
+    
+    h_data_orig = plot( (rand(size(X(y < 0)))-0.5) * jitterRange  + X(y<0), y(y<0), 'b.', 'Linewidth', 1.5, 'Markersize', 10); hold on;
+    h_data_orig = plot( (rand(size(X(y > 0)))-0.5) * jitterRange + X(y>0), y(y>0), 'b.', 'Linewidth', 1.5, 'Markersize', 10); hold on;
 
 %    h_data_adjust = plot( X, y_adjusted, 'b', 'Linewidth', 1.5, 'Markersize', 10); hold on;
     
     
-    %ylim( ylimits);
+    ylim( [ -1.5, 1.5 ] );
     xlim( [xstar(1), xstar(end)]);
     %zlim( [xstar(1), xstar(end)]);
 
@@ -206,9 +210,17 @@ function nice_twod_plot( a,b,X, y, y_adjusted, xstar, mean, variance, savefigs, 
     %end    
     
     nstar = sqrt(length(xstar));
+    
     contour( a,b,reshape(mean, nstar, nstar) ); hold on;
-    h_data_orig = plot3( X(y<0,1), X(y<0, 2), y(y<0), 'bo', 'Linewidth', 1.5, 'Markersize', 10); hold on;
-    h_data_orig = plot3( X(y>0,1), X(y>0, 2), y(y>0), 'r+', 'Linewidth', 1.5, 'Markersize', 10); hold on;
+    
+    [minR, maxR] = lengthscales(X(:, 1));
+    jitterRange1 =  minR + maxR / 50;
+    [minR, maxR] = lengthscales(X(:, 2));
+    jitterRange2 =  minR + maxR / 50;
+    
+    
+    h_data_orig = plot3( (rand(size(X(y < 0, 1)))-0.5) * jitterRange1 + X(y<0,1), (rand(size(X(y < 0, 2)))-0.5) * jitterRange2 + X(y<0, 2), y(y<0), 'b.', 'Linewidth', 1.5, 'Markersize', 10); hold on;
+    h_data_orig = plot3( (rand(size(X(y > 0, 1)))-0.5) * jitterRange1 + X(y>0,1), (rand(size(X(y > 0, 2)))-0.5) * jitterRange2 + X(y>0, 2), y(y>0), 'r.', 'Linewidth', 1.5, 'Markersize', 10); hold on;
     %h_data_adjust = plot3(  X(:,1), X(:, 2), y_adjusted, 'b+', 'Linewidth', 1.5, 'Markersize', 10); hold on;
     
     %ylim( ylimits);
@@ -228,8 +240,7 @@ function nice_twod_plot( a,b,X, y, y_adjusted, xstar, mean, variance, savefigs, 
     set(get(gca,'ZLabel'),'Interpreter','latex', 'Fontsize', 16);
 
     set(gcf, 'color', 'white');
-
-
+    
     if savefigs
         saveas(gcf, filename, 'png')
         saveas(gcf, filename, 'fig')
