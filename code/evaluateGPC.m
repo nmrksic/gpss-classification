@@ -1,7 +1,7 @@
-function [averageAcc, testAccuracies, bicValues, kernelNames] = evaluateGPC(X, y, numExp, inferenceMethod, numFolds, runParallel, expName)
+function [averageAcc, testAccuracies, bicValues, kernelNames] = evaluateGPC(X, y, numRestarts, inferenceMethod, likelihoodFunction, numFolds, runParallel, expName, searchCriterion)
 
 if (nargin < 3)
-    numExp = 2;
+    numRestarts = 2;
 end
 
 if nargin < 4
@@ -9,15 +9,20 @@ if nargin < 4
 end
 
 if nargin < 5
+    likelihoodFunction = @likErf;
+end
+
+
+if nargin < 6
     numFolds = 2;
 end
 
-if nargin < 6
+if nargin < 7
     runParallel = 0; % do not run in parallel automatically
 end
 
 
-if nargin < 7
+if nargin < 8
     expName = 'crossValidatedExperiment'; % this should be called with, for example, 'r_liver'
      dimensionLabels = cell(size(x, 2), 1); 
      for i = 1 : size(x, 2)
@@ -26,6 +31,9 @@ if nargin < 7
      fprintf('No dimension labels supplied! ');
 end
 
+if nargin < 9
+    searchCriterion = 0; % use BIC by default. 
+end
 
 
     seed = 0;
@@ -43,12 +51,12 @@ end
     finalHypers = cell (numFolds, 1); 
     trainAccs = cell(numFolds, 1);
     finalEncoders = cell(numFolds, 1);
-
+    
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, numFolds); % numFolds-fold cross validation data sets
     
     dim = size(X, 2); % dimensionality of the data - used to determine number of runs. For now, set to a low multiple (say 2, max 3)
     
-    number_of_runs = 2*dim;
+    searchDepth = 4*dim;
     
     fileprefix = ['results/', expName, '/', ];     
         
@@ -59,13 +67,9 @@ end
         currentFold = i; % declared just for the sake of saving the data
         
         disp(['Currently evaluating ', num2str(i), '/', num2str(numFolds), ' cross validation data sets.']);
-        
-         
-        kernelSearchLog = evalc(' [kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}, allEncoderMatrices ] = AutomatedStatistician(trnX{i}, trnY{i} , tstX{i}, tstY{i}, number_of_runs , numExp, runParallel, inferenceMethod, 0, 0);  ') ;  
-     
-       %[kernelNamesList, BicValsList, testAccuracciesList, hyperList, trainAccuraciesList, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}, allEncoderMatrices ] = ...
-        % AutomatedStatistician(trnX{i}, trnY{i} , tstX{i}, tstY{i}, number_of_runs , numExp, runParallel, inferenceMethod, 0, 0); 
-     
+                 
+         kernelSearchLog = evalc('[BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); ');
+       
          averageAcc = averageAcc + testAccuracies(i);
          
          currentAverage = averageAcc / i
@@ -74,7 +78,6 @@ end
          
          system([' mkdir -p ', filePrefixNew]);
          
-         kernelNamesList = kernelNamesList';
          BicValsList = BicValsList';
          testAccuracciesList =testAccuracciesList';
          hyperList = hyperList';
@@ -84,13 +87,14 @@ end
          effHyperCount = zeros( size (  train_test_distance ) ); 
 
          numIterations = sum(nnz(BicValsList)); % the number of search stages 
-
+         kernelNames = cell(numIterations, 1);
          for j = 1:numIterations
-            effHyperCount(j) = effectiveParams(squeeze( allEncoderMatrices(j, :, :) ) );
+            effHyperCount(j) = effectiveParams( allEncoderMatrices{j});
+            kernelNames{j} = decodeKernelName(allEncoderMatrices{i});
          end     
 
-         save ( [ filePrefixNew, 'searchStats.mat'], 'kernelNamesList', 'BicValsList', 'trainAccuraciesList', ...
-            'testAccuracciesList', 'hyperList', 'numExp', 'seed', 'expName', 'currentFold', 'train_test_distance', 'effHyperCount', 'allEncoderMatrices' );
+         save ( [ filePrefixNew, 'searchStats.mat'], 'kernelNames', 'BicValsList', 'trainAccuraciesList', ...
+            'testAccuracciesList', 'hyperList', 'numRestarts', 'seed', 'expName', 'currentFold', 'train_test_distance', 'effHyperCount', 'allEncoderMatrices' );
 
          fileID = fopen([filePrefixNew, 'kernelSearchLog.txt'], 'w');
          fprintf(fileID, '%s\n', kernelSearchLog);

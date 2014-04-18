@@ -1,33 +1,74 @@
-function [minimalNLML, minHyp, hyp, nlml] = random_restarts(covFunction, X, Y, inferenceMethod, numExp)
-% non-fear random restarts for a single covariance function - no longer compatible with Automated Statistician
+function [minimalScore, minHyp, hyperList, nlmlList, accuracyList] = random_restarts(X, y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction, searchCriterion)
+% this function finds the best kernel hyperparameters (by the designated score, and returns
+% the score and the parameters used to achieve that score.
+%
+%
+%   Nikola Mrksic
+%   April 2014
+%
 
-hyp = cell(numExp);
-nlml = zeros(1, numExp);
+    hyperList = cell(numRestarts);
+    nlmlList = zeros(1, numRestarts);
+    accuracyList = zeros(1, numRestarts); 
 
- likfunc = @likErf;
- meanfunc = @meanConst; 
- 
- numHyper = eval(feval(covFunction{:})); % number of (effective) hyperparams
+    meanfunc = @meanConst; 
+    covFunction = encodeKernel(encoderMatrix, size(X, 2)); 
 
- [minDist, maxDist] = lengthscales(X); %Find the minimum, maximum characteristic length scale in the data
+    numHyper = nnz(encoderMatrix);
     
-for i = 1:numExp
- 
-    Hyp.mean = 0;
-    Hyp.cov = rand(1, numHyper) * 10+1;% increase potential starting values for the sf - length scales changed anyway 
-    Hyp.cov(1:2:(numHyper-1)) = minDist + (maxDist - minDist) * rand(1, numHyper / 2); % length-scales
+    [minDist, maxDist] = lengthscales(X); %Find the minimum, maximum characteristic length scale in the data
     
-    Hyp.cov = log (Hyp.cov);
-    
-    hypN = minimize(Hyp, @gp, -1000, inferenceMethod, meanfunc, covFunction, likfunc, X, Y); % 300 a good value. 50 * numHyper!
-    hyp{i} = hypN;
-    nlml(i) = gp(hypN, inferenceMethod, meanfunc, covFunction, likfunc, X, Y);
+    for i = 1:numRestarts
 
-end
+        hyperParameters.mean = 0;
+        hyperParameters.cov = rand(1, 2 * numHyper) * 5 + 1;% initialize starting values for the sf: length scales changed anyway 
+        
+        encoderTranspose = encoderMatrix';
+        dimensionEncoded = encoderTranspose((encoderTranspose>0));
+        
+        % Initialize hyperparameters: 
+        for d = 1:numHyper
+        
+            hyperParameters.cov( 2 * d - 1 ) = minDist( dimensionEncoded(d) ) + ( maxDist( dimensionEncoded(d) ) - minDist( dimensionEncoded(d) ) ) * rand(); 
+        
+        end
+            
+        hyperParameters.cov = log (hyperParameters.cov);
+        
+        % if it's a likelihood mixture (currently the only non-likErf
+        % likelihood supported, initialise its hyperparameters:
+        if  ( iscell(likelihoodFunction) == 1 )
+            hyperParameters.lik = [ -1 + randn(), 1 + randn() ];
+        end
 
-[minimalNLML, minIndex] = min(nlml); % it doesn't hurt to leave nlml until later as it doesn't change what the minimum is: 
-% all of them are multiplied by two and added the same factor (numHyper * nData)
+        if(size(X, 1) > 250)
+            subset = randsample(size(X, 1), 250);
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction, likelihoodFunction, X(subset, :), y(subset));
+            hypN = minimize(hyperParameters, @gp, -30, inferenceMethod, @meanConst, covFunction, likelihoodFunction, X, y);
+        
+        else
+            
+            hypN = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction, likelihoodFunction, X, y);
+        
+        end
 
-minHyp = hyp{minIndex};
+        hyperList{i} = hypN;
+        nlmlList(i) = gp(hypN, inferenceMethod, meanfunc, covFunction, likelihoodFunction, X, y);
+        accuracyList(i) = crossValidatedAccuracy(X, y, covFunction, hypN, inferenceMethod, likelihoodFunction);
+        
+    end
 
-% 10 seemed to be enough for the paper
+    % if we are using BIC, return the best NLML value:
+    if searchCriterion == 0
+        
+        [minimalScore, minIndex] = min(nlmlList); % it doesn't hurt to use nlml here: it doesn't change what the minimum is (we are evaluating the same kernel numRestarts times) 
+        minHyp = hyperList{minIndex};
+        
+    elseif searchCriterion == 1
+        
+        [minimalScore, minIndex] = min(accuracyList); % it doesn't hurt to use nlml here: it doesn't change what the minimum is (we are evaluating the same kernel numRestarts times) 
+        minHyp = hyperList{minIndex};
+        
+    end
+
+

@@ -30,7 +30,7 @@ used_script_names = []
 
 for file_name in script_names:
     if file_name[-2:] == '.m':
-        print 'Reading %s' % file_name
+#       print 'Reading %s' % file_name
         used_script_names.append(file_name)
         with open(os.path.join('scripts', file_name)) as script_file:
             scripts.append(script_file.read() % {'data_file' : os.path.split(temp_data_file_name)[-1], 'output_file' : '%(output_file)s'})
@@ -39,19 +39,19 @@ script_names = used_script_names
 
 # Send to cluster
 
-print 'Found %d scripts' % len(scripts)
+# print 'Found %d scripts' % len(scripts)
 
 output_files = cblparallel.run_batch_on_fear(scripts, language='matlab', max_jobs=1000, verbose=False, zip_files=False, bundle_size=1)
 
-print '%d output files returned' % len(output_files)
+# print '%d output files returned' % len(output_files)
 
 # Move output
 
 for (src, name) in zip(output_files, script_names):
-    print 'Moving %s output' % name.split('.')[0]
+  #  print 'Moving %s output' % name.split('.')[0]
     dest = os.path.join('outputs', name.split('.')[0] + '.mat')
     shutil.move(src, dest)
-    print 'Success'
+   # print 'Success'
 
 # Delete local data
 

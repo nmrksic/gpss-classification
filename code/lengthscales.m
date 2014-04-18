@@ -1,24 +1,20 @@
 function [minDist, maxDist] = lengthscales( X )
-% calculates the minimal and maximal distance between points in X; non-log.
+% calculates the minimal and maximal distance between points in X, for each dimension; non-log.
 
-n = size(X, 1);
+    n = size(X, 1);
+    m = size(X, 2); 
 
-minDist = norm( X(1, :) - X(2, :) );
-maxDist = 0;
+    minDist = zeros(m, 1); 
+    maxDist = zeros(m, 1); 
 
-for i = 1:n
-    for j = 1:n
-        if i~=j
-      
-            distance = norm(  X(i, :) - X(j, :) );
-            
-            if distance > maxDist
-                maxDist = distance;
-            end
-            
-            if distance < minDist
-                minDist = distance;
-            end
-        end
+
+    for dim = 1 : m
+
+        values = sort( X(:, dim) );
+        maxDist(dim) = values(n) - values(1);
+        values2 = circshift(values, 1);
+        differences = values - values2;	
+        minDist(dim) = min ( differences(2:n) ); 
+
     end
-end
+

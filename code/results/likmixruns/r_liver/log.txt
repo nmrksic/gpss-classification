@@ -1,0 +1,1480 @@
+>> likf
+
+likf = 
+
+    @likMix    {1x2 cell}
+
+>> func2str(likf)
+Undefined function 'func2str' for input arguments of type 'cell'.
+ 
+>> lik2 = @likErf
+
+lik2 = 
+
+    @likErf
+
+>> likf{1}
+
+ans = 
+
+    @likMix
+
+>> lik2{1}
+Cell contents reference from a non-cell array object.
+ 
+>> likelihoodFunction=@likErf
+
+likelihoodFunction = 
+
+    @likErf
+
+>> likelihoodFunction={@likMix,{@likUni,@likErf}};
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+Undefined function 'func2str' for input arguments of type 'cell'.
+
+Error in random_restarts (line 40)
+        if  ~( strcmp(func2str(likelihoodFunction), 'likErf') == 1 )
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> likelihoodFunction
+
+likelihoodFunction = 
+
+    @likMix    {1x2 cell}
+
+>> iscell(likelihoodFunction)
+
+ans =
+
+     1
+
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 47)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 47)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 47)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> help likMix
+  likMix - Mixture of likelihoods for regression/classification. 
+  The expression for the likelihood is 
+    likMix(t) = sum_i=1..m  w_i * lik_i(t),
+  where lik_i are the m individual likelihood functions combined by a weighted
+  sum with weights wi.
+ 
+  The hyperparameters are:
+ 
+  hyp = [  log(w_1)
+           log(w_2)
+            ...
+           log(w_m)
+            hyp_1
+            hyp_2
+            ...
+            hyp_m ]
+ 
+  Note that the mixture weights are normalised using the softmax function, so
+  that 1 = sum w_i. Here, hyp_i are the hyperparameters for the individual
+  likelihoods.
+ 
+  Several modes are provided, for computing likelihoods, derivatives and moments
+  respectively, see likFunctions.m for the details. In general, care is taken
+  to avoid numerical issues when the arguments are extreme.
+ 
+  Copyright (c) by Hannes Nickisch and Rowan McAllister, 2013-10-23.
+ 
+  See also likFunctions.m.
+
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 47)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 47)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> likelihoodFunction
+
+likelihoodFunction = 
+
+    @likMix    {1x2 cell}
+
+>> feval(likelihoodFunction{:})
+
+ans =
+
+(2+0+0)
+
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 47)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+
+likelihoodFunction = 
+
+    @likMix    {1x2 cell}
+
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [-1.4326 -0.6656]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 48)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [2x1 double]
+
+
+likelihoodFunction = 
+
+    @likMix    {1x2 cell}
+
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+     hyp: [2x1 double]
+
+Error using gp (line 89)
+Number of lik function hyperparameters disagree with lik function
+
+Error in minimize (line 75)
+[f0 df0] = feval(f, X, varargin{:});          % get function value and gradient
+
+Error in random_restarts (line 48)
+            hyperParameters = minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction,
+            likelihoodFunction, X(subset, :), y(subset));
+
+Error in evaluateKernel (line 12)
+    [bestScore, bestHyp, ~, ~] = random_restarts(X, Y, encoderMatrix, numRestarts, inferenceMethod, likelihoodFunction,
+    searchCriterion);
+
+Error in structureSearch (line 112)
+            [kernelScores(i), hyperParameters{i}] = evaluateKernel( X, y, encoderMatrices{i}, numRestarts, inferenceMethod,
+            likelihoodFunction, searchCriterion);
+
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> minimize(hyperParameters, @gp, -300, inferenceMethod, @meanConst, covFunction, likelihoodFunction, X(subset, :), y(subset));
+Undefined function or variable 'hyperParameters'.
+ 
+>> hyperParameters.mean = 0
+
+hyperParameters = 
+
+    mean: 0
+
+>> hyperParameters.cov = [2.6922 1.5306]
+
+hyperParameters = 
+
+    mean: 0
+     cov: [2.6922 1.5306]
+
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+   -0.5983
+
+BIC values of base kernels: 424.7553      429.1248      429.1248      429.1248      420.1795      429.1248
+ Train accuracies:           0.59164     0.57878     0.57878     0.57878     0.62058     0.57878
+ Test accurracies:           0.55882     0.58824     0.58824     0.58824     0.58824     0.58824
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 2.3547
+     cov: [2.6116 0.9326]
+     lik: [-0.5844 -1.5138]
+
+Undefined function 'func2str' for input arguments of type 'cell'.
+
+Error in nextKernel (line 172)
+        if  ~( strcmp(func2str(likelihoodFunction), 'likErf') == 1 )
+
+Error in structureSearch (line 207)
+    [encoderMatrices{currentIter}, kernelScores(currentIter), hyperParameters{currentIter}] = nextKernel(X, y,
+    encoderMatrices{idx} , hyperParameters{idx}, numRestarts, runParallel,  inferenceMethod,
+Error in evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 1)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+   -0.5983
+
+BIC values of base kernels: 424.7553      429.1248      429.1248      429.1248      420.1795      429.1248
+ Train accuracies:           0.59164     0.57878     0.57878     0.57878     0.62058     0.57878
+ Test accurracies:           0.55882     0.58824     0.58824     0.58824     0.58824     0.58824
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 2.3547
+     cov: [2.6116 0.9326]
+     lik: [-0.5844 -1.5138]
+
+Best kernel constructed at this stage of the search is: SE5 + SE3.
+BIC value: 406.3589; Training accuracy: 0.72347; Test accurracy: 0.76471.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+   -0.7138
+
+Kernel being expanded at this stage of the search is: SE5 + SE3.
+
+startingHyperparameters = 
+
+    mean: 1.8132
+     cov: [3.6250 0.8538 2.9946 0.8377]
+     lik: [-0.2128 0.2573]
+
+Operation terminated by user during covMask (line 17)
+
+
+In covSum (line 31)
+    K = K + feval(f{:}, hyp(v==ii), x, z);              % accumulate covariances
+
+In infLaplace (line 22)
+else K = feval(cov{:},  hyp.cov,  x); end       % evaluate the covariance matrix
+
+In gp (line 113)
+      [post nlZ dnlZ] = inf(hyp, mean, cov, lik, x, y);
+
+In minimize (line 141)
+    [f3 df3] = feval(f, rewrap(Z,X+x3*s), varargin{:});
+
+In nextKernel (line 245)
+                      hyperParams = minimize(finalHyperParams{idx}, @gp, -300, inferenceMethod, meanfunc, covFunction,
+                      likelihoodFunction, X(subset, :), y(subset));
+
+In structureSearch (line 207)
+    [encoderMatrices{currentIter}, kernelScores(currentIter), hyperParameters{currentIter}] = nextKernel(X, y,
+    encoderMatrices{idx} , hyperParameters{idx}, numRestarts, runParallel,  inferenceMethod,
+In evaluateGPC (line 75)
+       [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i),
+       testAccuracies(i), finalHypers{i}, finalEncoders{i}] = ...
+ 
+>> evaluateGPC(X, y, 1, @infLaplace, likelihoodFunction, 10, 0, 'r_liver', 0)
+Currently evaluating 1/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  419.7128
+
+BIC values of base kernels: 424.7553      429.1248      429.1248      429.1248      420.1795      429.1248
+ Train accuracies:           0.59164     0.57878     0.57878     0.57878     0.62058     0.57878
+ Test accurracies:           0.55882     0.58824     0.58824     0.58824     0.58824     0.58824
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 2.3547
+     cov: [2.6116 0.9326]
+     lik: [-0.5844 -1.5138]
+
+Best kernel constructed at this stage of the search is: SE5xSE3.
+BIC value: 404.1786; Training accuracy: 0.71061; Test accurracy: 0.76471.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  404.1786
+
+Kernel being expanded at this stage of the search is: SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3246
+     cov: [2.7953 -0.4414 2.4558 -0.0162]
+     lik: [-3.7535 4.8795]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4.
+BIC value: 396.1262; Training accuracy: 0.76849; Test accurracy: 0.79412.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  396.1262
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3889
+     cov: [2.9379 -0.8137 2.5106 -0.3885 2.2394 1.0694]
+     lik: [-5.5239 4.5959]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE1.
+BIC value: 388.3804; Training accuracy: 0.79743; Test accurracy: 0.67647.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  388.3804
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.5900
+     cov: [3.0185 -0.7678 2.5224 -0.3426 2.2935 1.1153 0.7616 -0.7628]
+     lik: [-6.3616 4.2634]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE1 + SE6.
+BIC value: 383.5986; Training accuracy: 0.83601; Test accurracy: 0.76471.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  383.5986
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE1 + SE6.
+
+startingHyperparameters = 
+
+    mean: 0.6229
+     cov: [2.9544 -0.7518 2.5313 -0.3265 2.3420 1.1314 0.7237 -0.7966 -2.2390 -0.7781]
+     lik: [-5.3139 5.8530]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE1 + SE6xSE2.
+BIC value: 386.2327; Training accuracy: 0.84566; Test accurracy: 0.79412.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7647
+
+Currently evaluating 2/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  415.3421
+
+BIC values of base kernels: 427.388       427.388      424.1617      425.3415      421.5069      415.3421
+ Train accuracies:           0.58065     0.58065     0.58065     0.58065     0.59032     0.62258
+ Test accurracies:           0.57143     0.57143     0.57143     0.57143     0.65714     0.48571
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6.
+
+startingHyperparameters = 
+
+    mean: 0.1832
+     cov: [-0.5247 -0.9195]
+     lik: [-5.8257 3.7275]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5.
+BIC value: 410.7691; Training accuracy: 0.69677; Test accurracy: 0.62857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  410.7691
+
+Kernel being expanded at this stage of the search is: SE6 + SE5.
+
+startingHyperparameters = 
+
+    mean: 0.2396
+     cov: [-0.1957 -0.5750 3.4011 -0.8110]
+     lik: [-4.2936 4.7955]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3.
+BIC value: 392.0473; Training accuracy: 0.77742; Test accurracy: 0.65714.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  392.0473
+
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3034
+     cov: [-0.2743 -0.6280 2.8008 -1.2469 2.5231 0.8311]
+     lik: [-3.7158 6.0537]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4.
+BIC value: 386.8755; Training accuracy: 0.8129; Test accurracy: 0.74286.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  386.8755
+
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3403
+     cov: [-0.3101 -0.5010 3.0017 -1.3011 2.6725 0.7769 2.3921 0.4431]
+     lik: [-5.1092 4.7694]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
+BIC value: 383.0204; Training accuracy: 0.83226; Test accurracy: 0.8.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  383.0204
+
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.5002
+     cov: [-0.2578 -0.5201 2.9994 -1.2631 2.6352 0.8149 2.4211 0.4811 0.8415 -0.7215]
+     lik: [-5.9929 3.8947]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1 + SE2.
+BIC value: 383.7902; Training accuracy: 0.85484; Test accurracy: 0.82857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7824
+
+Currently evaluating 3/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  414.6437
+
+BIC values of base kernels: 427.388      424.3687      423.9328       427.388      418.3629      414.6437
+ Train accuracies:           0.58065     0.58065     0.58387     0.58065     0.61935     0.60323
+ Test accurracies:           0.57143     0.57143     0.51429     0.57143         0.6     0.54286
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6.
+
+startingHyperparameters = 
+
+    mean: 0.1727
+     cov: [-0.2881 -0.8526]
+     lik: [-5.6976 3.5994]
+
+Best kernel constructed at this stage of the search is: SE6 + SE2.
+BIC value: 409.6217; Training accuracy: 0.79355; Test accurracy: 0.42857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  409.6217
+
+Kernel being expanded at this stage of the search is: SE6 + SE2.
+
+startingHyperparameters = 
+
+    mean: 0.2174
+     cov: [-0.3054 -0.7938 -0.8245 -0.6655]
+     lik: [-5.0161 5.4292]
+
+Best kernel constructed at this stage of the search is: SE6 + SE2 + SE5.
+BIC value: 404.6017; Training accuracy: 0.79355; Test accurracy: 0.51429.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  404.6017
+
+Kernel being expanded at this stage of the search is: SE6 + SE2 + SE5.
+
+startingHyperparameters = 
+
+    mean: 0.2619
+     cov: [-0.0997 -0.4615 -0.6307 -0.6374 3.4673 -0.6179]
+     lik: [-5.1038 5.6057]
+
+Best kernel constructed at this stage of the search is: SE6 + SE2 + SE5xSE3.
+BIC value: 384.8017; Training accuracy: 0.81613; Test accurracy: 0.57143.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  384.8017
+
+Kernel being expanded at this stage of the search is: SE6 + SE2 + SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3628
+     cov: [-0.1618 -0.5483 0.3320 -0.7452 2.6915 -1.3026 2.4712 1.0701]
+     lik: [-5.7660 4.8962]
+
+Best kernel constructed at this stage of the search is: SE6 + SE2 + SE5xSE3xSE4.
+BIC value: 376.4278; Training accuracy: 0.84839; Test accurracy: 0.54286.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  376.4278
+
+Kernel being expanded at this stage of the search is: SE6 + SE2 + SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.4877
+     cov: [-0.1870 -0.3575 0.3442 -0.7203 2.9717 -1.5487 2.9164 0.8240 2.7419 0.9457]
+     lik: [-4.9231 6.8819]
+
+Best kernel constructed at this stage of the search is: SE6 + SE2 + SE5xSE3xSE4 + SE1.
+BIC value: 368.6336; Training accuracy: 0.8871; Test accurracy: 0.62857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  368.6336
+
+Kernel being expanded at this stage of the search is: SE6 + SE2 + SE5xSE3xSE4 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.8112
+     cov: [1x12 double]
+     lik: [-7.1765 5.0783]
+
+Best kernel constructed at this stage of the search is: SE6 + SE2 + SE5xSE3xSE4 + SE1xSE4.
+BIC value: 372.8612; Training accuracy: 0.89032; Test accurracy: 0.6.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7311
+
+Currently evaluating 4/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  415.0168
+
+BIC values of base kernels: 427.388      407.4599       427.388      425.3291      416.0991      420.1867
+ Train accuracies:           0.58065     0.69032     0.58065     0.59355     0.61935     0.58065
+ Test accurracies:           0.57143     0.74286     0.57143     0.57143     0.45714     0.57143
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 2.3083
+     cov: [-3.9705 0.7546]
+     lik: [-0.7120 -1.3861]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5.
+BIC value: 416.5789; Training accuracy: 0.71935; Test accurracy: 0.62857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7340
+
+Currently evaluating 5/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  419.8771
+
+BIC values of base kernels: 427.3487      422.8838      425.1374       427.388      419.8771       420.292
+ Train accuracies:           0.58065     0.58065     0.58065     0.58065      0.6129     0.58065
+ Test accurracies:           0.57143     0.57143     0.57143     0.57143     0.65714     0.57143
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 0.2814
+     cov: [3.0476 -1.1672]
+     lik: [-5.0112 2.9130]
+
+Best kernel constructed at this stage of the search is: SE5xSE3.
+BIC value: 396.5538; Training accuracy: 0.74194; Test accurracy: 0.62857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  396.5538
+
+Kernel being expanded at this stage of the search is: SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3517
+     cov: [2.7152 -1.2307 2.3765 0.8663]
+     lik: [-3.6440 4.7701]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4.
+BIC value: 385.824; Training accuracy: 0.7871; Test accurracy: 0.57143.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  385.8240
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3855
+     cov: [2.9443 -1.7082 2.3050 0.3888 2.3462 1.2799]
+     lik: [-6.1133 5.1853]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6.
+BIC value: 380.1555; Training accuracy: 0.82903; Test accurracy: 0.65714.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  380.1555
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE6.
+
+startingHyperparameters = 
+
+    mean: 0.2652
+     cov: [2.9731 -1.6806 2.3524 0.4164 2.3566 1.3075 -0.2291 -0.5730]
+     lik: [-4.9661 5.5051]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6 + SE1.
+BIC value: 376.2094; Training accuracy: 0.83226; Test accurracy: 0.65714.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  376.2094
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE6 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.4633
+     cov: [3.0107 -1.6454 2.2938 0.4517 2.4438 1.3427 -0.1845 -0.5713 0.6865 -0.7774]
+     lik: [-6.5455 4.4474]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6xSE2 + SE1.
+BIC value: 377.4684; Training accuracy: 0.83548; Test accurracy: 0.68571.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7187
+
+Currently evaluating 6/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  420.5831
+
+BIC values of base kernels: 429.1248      420.5831      429.1248      428.8208      419.6454      421.1717
+ Train accuracies:           0.57878     0.70096     0.57878     0.58199     0.61093     0.60772
+ Test accurracies:           0.58824     0.64706     0.58824     0.58824         0.5     0.55882
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 0.2215
+     cov: [-0.6189 -0.8164]
+     lik: [-10.2662 8.1681]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5.
+BIC value: 417.2833; Training accuracy: 0.72026; Test accurracy: 0.55882.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  417.2833
+
+Kernel being expanded at this stage of the search is: SE2 + SE5.
+
+startingHyperparameters = 
+
+    mean: 0.3626
+     cov: [-0.4774 -0.7999 3.0804 -0.9971]
+     lik: [-4.8039 5.3059]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5xSE3.
+BIC value: 395.9164; Training accuracy: 0.75563; Test accurracy: 0.70588.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  395.9164
+
+Kernel being expanded at this stage of the search is: SE2 + SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3880
+     cov: [0.5969 -0.9487 2.8841 -1.3284 2.5792 0.9719]
+     lik: [-3.7309 6.0688]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5xSE3xSE4.
+BIC value: 384.1462; Training accuracy: 0.80064; Test accurracy: 0.70588.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  384.1462
+
+Kernel being expanded at this stage of the search is: SE2 + SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.4881
+     cov: [0.4950 -0.7897 3.2074 -1.5593 2.7842 0.7409 2.4154 0.8553]
+     lik: [-5.4213 5.0815]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5xSE3xSE4 + SE6.
+BIC value: 379.2056; Training accuracy: 0.83601; Test accurracy: 0.70588.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  379.2056
+
+Kernel being expanded at this stage of the search is: SE2 + SE5xSE3xSE4 + SE6.
+
+startingHyperparameters = 
+
+    mean: 0.3843
+     cov: [0.3584 -0.6932 3.2500 -1.5226 2.8680 0.7777 2.4614 0.8921 -0.1256 -0.5643]
+     lik: [-4.8522 5.3912]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5xSE3xSE4 + SE6 + SE1.
+BIC value: 376.8021; Training accuracy: 0.86817; Test accurracy: 0.76471.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  376.8021
+
+Kernel being expanded at this stage of the search is: SE2 + SE5xSE3xSE4 + SE6 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.6104
+     cov: [1x12 double]
+     lik: [-6.4084 4.3103]
+
+Best kernel constructed at this stage of the search is: SE2 + SE5xSE3xSE4 + SE6xSE2 + SE1.
+BIC value: 375.486; Training accuracy: 0.88103; Test accurracy: 0.70588.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  375.4860
+
+Kernel being expanded at this stage of the search is: SE2 + SE5xSE3xSE4 + SE6xSE2 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.6770
+     cov: [1x14 double]
+     lik: [-5.8531 6.0193]
+
+Best kernel constructed at this stage of the search is: SE2xSE6 + SE5xSE3xSE4 + SE6xSE2 + SE1.
+BIC value: 380.6087; Training accuracy: 0.88103; Test accurracy: 0.67647.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7165
+
+Currently evaluating 7/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  421.2011
+
+BIC values of base kernels: 429.1248      429.1248      425.8834      429.1248      421.2011      429.1248
+ Train accuracies:           0.57878     0.57878     0.59486     0.57878      0.6045     0.57878
+ Test accurracies:           0.58824     0.58824     0.55882     0.58824     0.55882     0.58824
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 0.3445
+     cov: [3.1422 -1.1085]
+     lik: [-5.7306 3.6325]
+
+Best kernel constructed at this stage of the search is: SE5xSE3.
+BIC value: 394.6961; Training accuracy: 0.73633; Test accurracy: 0.58824.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  394.6961
+
+Kernel being expanded at this stage of the search is: SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.4074
+     cov: [2.7982 -1.4004 2.5202 1.0659]
+     lik: [-3.9126 5.0386]
+
+Best kernel constructed at this stage of the search is: SE5xSE3 + SE1.
+BIC value: 388.2466; Training accuracy: 0.75241; Test accurracy: 0.70588.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  388.2466
+
+Kernel being expanded at this stage of the search is: SE5xSE3 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.6229
+     cov: [2.8261 -1.3301 2.5508 1.1363 0.7202 -0.8520]
+     lik: [-6.1514 4.0532]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE1.
+BIC value: 382.9427; Training accuracy: 0.80064; Test accurracy: 0.70588.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  382.9427
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.6626
+     cov: [2.9925 -1.5290 2.5640 0.9374 2.4465 0.6716 0.7086 -0.7411]
+     lik: [-5.1598 5.3260]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE1 + SE6.
+BIC value: 378.2715; Training accuracy: 0.83601; Test accurracy: 0.73529.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  378.2715
+
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE1 + SE6.
+
+startingHyperparameters = 
+
+    mean: 0.7222
+     cov: [2.9636 -1.5025 2.6216 0.9639 2.5340 0.6980 0.7247 -0.6582 -0.3942 -0.6217]
+     lik: [-5.2708 5.8099]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE1 + SE6xSE2.
+BIC value: 380.3752; Training accuracy: 0.83601; Test accurracy: 0.73529.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7192
+
+Currently evaluating 8/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+
+bestScore =
+
+  419.9677
+
+BIC values of base kernels: 429.1248      429.1248      427.7441      429.1248      422.3491      419.9677
+ Train accuracies:           0.57878     0.57878     0.57878     0.57878     0.58842     0.60772
+ Test accurracies:           0.58824     0.58824     0.58824     0.58824     0.70588     0.52941
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6.
+
+startingHyperparameters = 
+
+    mean: 0.1749
+     cov: [-0.3215 -0.9934]
+     lik: [-5.4157 3.3176]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5.
+BIC value: 415.0177; Training accuracy: 0.6881; Test accurracy: 0.76471.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  415.0177
+
+Kernel being expanded at this stage of the search is: SE6 + SE5.
+
+startingHyperparameters = 
+
+    mean: 0.2686
+     cov: [-0.0068 -0.5838 3.3872 -0.7351]
+     lik: [-4.2450 4.7469]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3.
+BIC value: 396.8093; Training accuracy: 0.75563; Test accurracy: 0.76471.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  396.8093
+
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3333
+     cov: [-0.1585 -0.6553 2.8259 -1.1903 2.5164 0.8480]
+     lik: [-3.5634 5.9013]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4.
+BIC value: 387.6168; Training accuracy: 0.8135; Test accurracy: 0.73529.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  387.6168
+
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3927
+     cov: [-0.2659 -0.4953 2.9791 -1.4227 2.6968 0.6156 2.3742 0.8540]
+     lik: [-5.2164 4.8766]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
+BIC value: 383.7244; Training accuracy: 0.82958; Test accurracy: 0.73529.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+bestScore =
+
+  383.7244
+
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.5701
+     cov: [-0.2111 -0.4852 2.9790 -1.3970 2.6216 0.6413 2.3733 0.8797 0.7252 -0.8495]
+     lik: [-6.1531 4.0550]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1 + SE2.
+BIC value: 386.0455; Training accuracy: 0.83601; Test accurracy: 0.73529.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7212
+
+Currently evaluating 9/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+BIC values of base kernels: 424.2508       427.388       427.388      426.9779      423.4582       416.552
+ Train accuracies:           0.58065     0.58065     0.58065     0.60323     0.60968     0.59355
+ Test accurracies:           0.57143     0.57143     0.57143     0.57143     0.65714     0.57143
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6.
+
+startingHyperparameters = 
+
+    mean: 0.2058
+     cov: [-0.5261 -0.9893]
+     lik: [-5.2975 3.1994]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5.
+BIC value: 415.6713; Training accuracy: 0.66774; Test accurracy: 0.71429.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6 + SE5.
+
+startingHyperparameters = 
+
+    mean: 0.2379
+     cov: [-0.2440 -0.7148 3.2766 -1.0343]
+     lik: [-5.2319 5.7338]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3.
+BIC value: 396.533; Training accuracy: 0.75806; Test accurracy: 0.8.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3243
+     cov: [-0.3284 -0.7574 2.8010 -1.3773 2.4125 0.9240]
+     lik: [-4.2217 6.5596]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4.
+BIC value: 385.3426; Training accuracy: 0.80323; Test accurracy: 0.77143.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3665
+     cov: [-0.3936 -0.5831 3.0169 -1.4039 2.5951 0.8974 2.3751 0.4707]
+     lik: [-5.6306 5.2908]
+
+Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
+BIC value: 378.6669; Training accuracy: 0.8129; Test accurracy: 0.74286.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.6002
+     cov: [-0.3405 -0.5853 3.0763 -1.3700 2.6058 0.9313 2.4039 0.5046 0.8045 -0.6972]
+     lik: [-6.3281 4.2299]
+
+Best kernel constructed at this stage of the search is: SE6xSE2 + SE5xSE3xSE4 + SE1.
+BIC value: 380.4927; Training accuracy: 0.84839; Test accurracy: 0.71429.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7236
+
+Currently evaluating 10/10 cross validation data sets.
+Evaluating the base SE kernels, number of experiments to run is 6. The number of dimensions is 6.
+BIC values of base kernels: 429.1248      429.1248      428.7254      429.1248      420.3142       422.109
+ Train accuracies:           0.57878     0.57878     0.57878     0.57878      0.6045     0.58842
+ Test accurracies:           0.58824     0.58824     0.58824     0.58824     0.55882     0.58824
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 0.3017
+     cov: [3.1425 -1.0815]
+     lik: [-4.0340 1.9359]
+
+Best kernel constructed at this stage of the search is: SE5xSE3.
+BIC value: 404.3927; Training accuracy: 0.72347; Test accurracy: 0.82353.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3437
+     cov: [2.7031 -1.4320 2.6255 1.0074]
+     lik: [-3.6881 4.8141]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4.
+BIC value: 399.2006; Training accuracy: 0.76206; Test accurracy: 0.85294.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3746
+     cov: [2.8992 -1.8253 2.5382 0.6140 2.3427 1.0483]
+     lik: [-5.9992 5.0712]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6.
+BIC value: 391.6504; Training accuracy: 0.81672; Test accurracy: 0.79412.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE6.
+
+startingHyperparameters = 
+
+    mean: 0.3828
+     cov: [2.9269 -1.7790 2.6331 0.6603 2.3526 1.0946 -0.2989 -0.5607]
+     lik: [-4.4964 5.0355]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6 + SE1.
+BIC value: 390.6647; Training accuracy: 0.82315; Test accurracy: 0.85294.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE6 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.5473
+     cov: [2.9640 -1.7555 2.5728 0.6839 2.3460 1.1182 -0.2262 -0.5720 0.7017 -0.9120]
+     lik: [-7.9257 5.8275]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6xSE2 + SE1.
+BIC value: 393.387; Training accuracy: 0.82958; Test accurracy: 0.85294.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7366
+
+
+ans =
+
+    0.7366
+
+ function[] = tpairtesting()
+ |
+Error: Function definitions are not permitted in this context.
+ 
+>> 
+    mean: 0.3017
+     cov: [3.1425 -1.0815]
+     lik: [-4.0340 1.9359]
+
+Best kernel constructed at this stage of the search is: SE5xSE3.
+BIC value: 404.3927; Training accuracy: 0.72347; Test accurracy: 0.82353.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3.
+
+startingHyperparameters = 
+
+    mean: 0.3437
+     cov: [2.7031 -1.4320 2.6255 1.0074]
+     lik: [-3.6881 4.8141]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4.
+BIC value: 399.2006; Training accuracy: 0.76206; Test accurracy: 0.85294.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.3746
+     cov: [2.8992 -1.8253 2.5382 0.6140 2.3427 1.0483]
+     lik: [-5.9992 5.0712]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6.
+BIC value: 391.6504; Training accuracy: 0.81672; Test accurracy: 0.79412.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE6.
+
+startingHyperparameters = 
+
+    mean: 0.3828
+     cov: [2.9269 -1.7790 2.6331 0.6603 2.3526 1.0946 -0.2989 -0.5607]
+     lik: [-4.4964 5.0355]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6 + SE1.
+BIC value: 390.6647; Training accuracy: 0.82315; Test accurracy: 0.85294.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE3xSE4 + SE6 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.5473
+     cov: [2.9640 -1.7555 2.5728 0.6839 2.3460 1.1182 -0.2262 -0.5720 0.7017 -0.9120]
+     lik: [-7.9257 5.8275]
+
+Best kernel constructed at this stage of the search is: SE5xSE3xSE4 + SE6xSE2 + SE1.
+BIC value: 393.387; Training accuracy: 0.82958; Test accurracy: 0.85294.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
+currentAverage =
+
+    0.7366
+
+
+ans =
+
+    0.7366

@@ -284,10 +284,92 @@ Kernels chosen by our method on synthetic data generated using known kernel stru
 \end{table*}
 
 
+\begin{table*}[ht!]
+\caption{{\small
+%Kernels used to generate synthetic data, dimensionality, $D$, of the input space, and the estimated kernels.% at different signal to noise ratios (SNR).
+True kernel: $ \SE_1 + \SE_3 \times \SE_7 + \SE_{10}$, with log-lengthscales all equal to 0 (all three terms have equal lengthscales). The synthetic data is ten dimensional. 
+Kernels chosen by our method on synthetic data generated using known kernel structures. SNR indicates the signal-to-noise ratio, sp\_noise the proportion of random outliers inserted.  
+%The two kernels marked with an asterisk * indicate when the search procedure inferred extraneous structure.
+}} 
+
+\label{tbl:synthetic3}
+\begin{center}
+{\small
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes optimal rate \\
+\hline
+
+ 100&  	 100&  	 0\% &  	 $\SE_{1} + \SE_{3} \times \SE_{7}$ & 	 96\% &  	 96\% &  	 98.2\%  \\   
+ 300&  	 100&  	 0\% &  	 $\SE_{1} + \SE_{3} \times \SE_{7} + \SE_{10}$ & 	 97.33\% &  	 97.33\% &  	 98.2\%  \\   
+ 500&  	 100&  	 0\% &  	 $\SE_{1} + \SE_{3} \times \SE_{7}$ & 	 96.6\% &  	 98\% &  	 98.2\%  \\ \hline  
+ 100&  	 100&  	 5\% &  	 $\SE_{1} + \SE_{3} \times \SE_{7} + \SE_{7}$ & 	 90\% &  	 88\% &  	 98.2\%  \\   
+ 300&  	 100&  	 5\% &  	 $\SE_{3} \times \SE_{7}$ & 	 94\% &  	 94.33\% &  	 98.2\%  \\   
+ 500&  	 100&  	 5\% &  	 $\SE_{3} \times \SE_{7}$ & 	 94\% &  	 94.8\% &  	 98.2\%  \\ \hline  
+ 100&  	 100&  	 20\% &  	 $\SE_{2}$ & 	 57\% &  	 68\% &  	 98.2\%  \\   
+ 300&  	 100&  	 20\% &  	 $\SE_{3} \times \SE_{7}$ & 	 85\% &  	 75.67\% &  	 98.2\%  \\   
+ 500&  	 100&  	 20\% &  	 $\SE_{8}$ & 	 45.8\% &  	 79.4\% &  	 98.2\%  \\ \hline  
+ 100&  	 1&  	 0\% &  	 $\SE_{3} \times \SE_{7}$ & 	 75\% &  	 72\% &  	 79.2\%  \\   
+ 300&  	 1&  	 0\% &  	 $\SE_{3} \times \SE_{7}$ & 	 77.33\% &  	 79.33\% &  	 79.2\%  \\   
+ 500&  	 1&  	 0\% &  	 $\SE_{3} \times \SE_{7}$ & 	 76.8\% &  	 77\% &  	 79.2\%  \\ \hline  
+ 100&  	 1&  	 5\% &  	 $\SE_{4}$ & 	 47\% &  	 66\% &  	 79.2\%  \\   
+ 300&  	 1&  	 5\% &  	 $\SE_{3} \times \SE_{7}$ & 	 76\% &  	 75.67\% &  	 79.2\%  \\   
+ 500&  	 1&  	 5\% &  	 $\SE_{3} \times \SE_{7}$ & 	 75.8\% &  	 73.2\% &  	 79.2\%  \\ \hline  
+ 100&  	 1&  	 20\% &  	 $\SE_{7}$ & 	 63\% &  	 67\% &  	 79.2\%  \\   
+ 300&  	 1&  	 20\% &  	 $\SE_{7}$ & 	 62.67\% &  	 63.67\% &  	 79.2\%  \\   
+ 500&  	 1&  	 20\% &  	 $\SE_{7}$ & 	 66\% &  	 68\% &  	 79.2\%  \\   
+ 
+
+\hline
+\end{tabular}
+}
+\end{center}
+\end{table*}
 
 
 
 
+ 
+ 
+ \begin{table*}[ht!]
+\caption{{\small
+%Kernels used to generate synthetic data, dimensionality, $D$, of the input space, and the estimated kernels.% at different signal to noise ratios (SNR).
+True kernel: $ \SE_1 + \SE_3 \times \SE_5 \times \SE_7 + \SE_{9}$, with log-lengthscales all equal to -1 (all three terms have equal lengthscales). The synthetic data is ten dimensional. 
+Kernels chosen by our method on synthetic data generated using known kernel structures. SNR indicates the signal-to-noise ratio, sp\_noise the proportion of random outliers inserted.  
+%The two kernels marked with an asterisk * indicate when the search procedure inferred extraneous structure.
+}} 
+
+\label{tbl:synthetic4}
+\begin{center}
+{\small
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes optimal rate \\
+\hline
+
+100&  	 100&  	 0\% &  	 $\SE_{7}$ & 	 42\% &  	 64\% &  	 95.8\%  \\   
+ 300&  	 100&  	 0\% &  	 $\SE_{7}$ & 	 48\% &  	 74.33\% &  	 95.8\%  \\   
+ 500&  	 100&  	 0\% &  	 $\SE_{3} \times \SE_{5} \times \SE_{7}$ & 	 75.6\% &  	 77.2\% &  	 95.8\%  \\ \hline  
+ 100&  	 100&  	 5\% &  	 $\SE_{1}$ & 	 50\% &  	 62\% &  	 95.8\%  \\   
+ 300&  	 100&  	 5\% &  	 $\SE_{7}$ & 	 47.67\% &  	 67.33\% &  	 95.8\%  \\   
+ 500&  	 100&  	 5\% &  	 $\SE_{3} \times \SE_{5} \times \SE_{7}$ & 	 73.4\% &  	 71\% &  	 95.8\%  \\ \hline  
+ 100&  	 100&  	 20\% &  	 $\SE_{1}$ & 	 52\% &  	 61\% &  	 95.8\%  \\   
+ 300&  	 100&  	 20\% &  	 $\SE_{9} \times \SE_{10}$ & 	 56.33\% &  	 58.67\% &  	 95.8\%  \\   
+ 500&  	 100&  	 20\% &  	 $\SE_{9}$ & 	 52.8\% &  	 57.2\% &  	 95.8\%  \\ \hline  
+ 100&  	 1&  	 0\% &  	 $\SE_{4}$ & 	 60\% &  	 58\% &  	 80.4\%  \\   
+ 300&  	 1&  	 0\% &  	 $\SE_{1}$ & 	 55.33\% &  	 65.67\% &  	 80.4\%  \\   
+ 500&  	 1&  	 0\% &  	 $\SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{10}$ & 	 64.8\% &  	 67.4\% &  	 80.4\%  \\ \hline  
+ 100&  	 1&  	 5\% &  	 $\SE_{3}$ & 	 60\% &  	 59\% &  	 80.4\%  \\   
+ 300&  	 1&  	 5\% &  	 $\SE_{3}$ & 	 52.33\% &  	 63.67\% &  	 80.4\%  \\   
+ 500&  	 1&  	 5\% &  	 $\SE_{3}$ & 	 44.2\% &  	 65.6\% &  	 80.4\%  \\ \hline  
+ 100&  	 1&  	 20\% &  	 $\SE_{4}$ & 	 58\% &  	 52\% &  	 80.4\%  \\   
+ 300&  	 1&  	 20\% &  	 $\SE_{8}$ & 	 49.33\% &  	 53.33\% &  	 80.4\%  \\   
+ 500&  	 1&  	 20\% &  	 $\SE_{5} + \SE_{8}$ & 	 46.8\% &  	 53\% &  	 80.4\%  \\   
+
+\hline
+\end{tabular}
+}
+\end{center}
+\end{table*}
+ 
 
 
 \clearpage
