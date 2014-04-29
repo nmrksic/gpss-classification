@@ -56,6 +56,25 @@ function [minimalScore, minHyp, hyperList, nlmlList, accuracyList] = random_rest
         nlmlList(i) = gp(hypN, inferenceMethod, meanfunc, covFunction, likelihoodFunction, X, y);
         accuracyList(i) = crossValidatedAccuracy(X, y, covFunction, hypN, inferenceMethod, likelihoodFunction);
         
+        % --------- Prune small lengthscales -----------------------
+             newHyperParamAll = hypN.cov;
+             newHyperParam = newHyperParamAll(1:2:end); % take only lengthscales
+             
+             encoderDims = encoderMatrix;
+             encoderDims = encoderDims';
+             
+             encoderDims = encoderDims(encoderDims > 0);
+             
+             for i2 = 1:size(encoderDims) % if any of the dimensions went under, stop considering this kernel
+                
+                 if exp( newHyperParam (i2) ) < minDist ( encoderDims ( i2 ) ) 
+                    nlmlList(i) = 2000000000;
+                    accuracyList(i) = 0;                 
+                 end
+             end
+        
+        % ----------------------------------------------------------
+        
     end
 
     % if we are using BIC, return the best NLML value:

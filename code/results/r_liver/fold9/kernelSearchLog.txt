@@ -1,0 +1,52 @@
+Evaluating the base SE kernels, number of experiments is: 30.
+BIC values of base kernels: 430.3432      430.3432      422.4875      430.2404      423.5564      430.3432
+ Train accuracies:           0.57235     0.57235     0.59807     0.57235     0.59486     0.57235
+ Test accurracies:           0.64706     0.64706     0.38235     0.64706     0.64706     0.64706
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE3.
+
+startingHyperparameters = 
+
+    mean: 0.2712
+     cov: [2.1902 -1.0860]
+
+Best kernel constructed at this stage of the search is: SE3xSE5.
+BIC value: 392.6529; Training accuracy: 0.72347; Test accurracy: 0.61765.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE3xSE5.
+
+startingHyperparameters = 
+
+    mean: 0.3737
+     cov: [2.3835 -1.1344 2.7101 0.8060]
+
+Best kernel constructed at this stage of the search is: SE3xSE5xSE4.
+BIC value: 387.015; Training accuracy: 0.78457; Test accurracy: 0.67647.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE3xSE5xSE4.
+
+startingHyperparameters = 
+
+    mean: 0.4266
+     cov: [2.4428 -1.5424 2.8789 0.3981 2.3999 1.0592]
+
+Best kernel constructed at this stage of the search is: SE3xSE5xSE4 + SE2.
+BIC value: 384.302; Training accuracy: 0.78135; Test accurracy: 0.61765.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE3xSE5xSE4 + SE2.
+
+startingHyperparameters = 
+
+    mean: 0.5494
+     cov: [2.5219 -1.5064 2.9331 0.4341 2.7328 1.0952 2.7025 -0.9867]
+
+Best kernel constructed at this stage of the search is: SE3xSE5xSE4 + SE2xSE6.
+BIC value: 388.0931; Training accuracy: 0.78778; Test accurracy: 0.61765.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+

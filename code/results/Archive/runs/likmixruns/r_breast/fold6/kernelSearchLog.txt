@@ -1,0 +1,66 @@
+
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBEvaluating the base SE kernels, number of experiments is: 45.
+
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBIC values of base kernels: 330.2381      220.8225      240.6638      368.5998       335.653      266.6985      298.3263      346.4982      481.5443
+ Train accuracies:           0.8139      0.8933     0.88089     0.80149     0.84864     0.87593     0.86104     0.84615      0.6799
+ Test accurracies:           0.63043     0.91304     0.93478     0.86957      0.8913     0.80435     0.86957     0.84783     0.69565
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 1.2181
+     cov: [0.2038 0.9776]
+     lik: [-2.3010 1.3731]
+
+
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6.
+BIC value: 155.9594; Training accuracy: 0.94789; Test accurracy: 0.91304.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6.
+
+startingHyperparameters = 
+
+    mean: 1.4271
+     cov: [0.4437 0.6602 0.2228 0.3106]
+     lik: [-6.8421 4.7866]
+
+
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6xSE1.
+BIC value: 139.3633; Training accuracy: 0.95533; Test accurracy: 0.8913.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6xSE1.
+
+startingHyperparameters = 
+
+    mean: 2.0028
+     cov: [0.9273 0.4451 0.0333 0.0956 0.9413 0.4903]
+     lik: [-7.9342 6.7391]
+
+
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6xSE1 + SE8.
+BIC value: 137.9714; Training accuracy: 0.96278; Test accurracy: 0.8913.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6xSE1 + SE8.
+
+startingHyperparameters = 
+
+    mean: 2.5803
+     cov: [0.8795 0.4223 -0.1502 0.0727 0.6449 0.4675 1.1068 0.4507]
+     lik: [-6.6170 7.7095]
+
+
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OA^[OA^[OA^[OA^[OA^[OA^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6xSE1 + SE8xSE7.
+BIC value: 141.6657; Training accuracy: 0.96526; Test accurracy: 0.8913.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+

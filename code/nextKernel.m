@@ -227,6 +227,27 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
              
              crossValidatedAccuracies(idx) = crossValidatedAccuracy(X, y, covFunction, hyperParameters{idx}, inferenceMethod, likelihoodFunction);
              
+             
+             % --------- Prune small lengthscales -----------------------
+             
+             newHyperParamAll = hypN.cov;
+             newHyperParam = newHyperParamAll(1:2:end); % take only lengthscales
+             
+             encoderDims = encoderMatrices{i};
+             encoderDims = encoderDims';
+             
+             encoderDims = encoderDims(encoderDims > 0);
+             
+             for i2 = 1:size(encoderDims) % if any of the dimensions went under, stop considering this kernel
+                
+                 if exp( newHyperParam (i2) ) < minDist ( encoderDims ( i2 ) ) 
+                     bicValues(idx) = 2000000000;
+                     crossValidatedAccuracies(idx) = 0;
+                 end
+             end
+             % ----------------------------------------------------------
+             
+             
          end
      end
      
@@ -255,6 +276,25 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
 
                   crossValidatedAccuracies(idx) = crossValidatedAccuracy(X, y, covFunction, hyperParameters{idx}, inferenceMethod, likelihoodFunction);
 
+             % --------- Prune small lengthscales -----------------------
+             newHyperParamAll = hypN.cov;
+             newHyperParam = newHyperParamAll(1:2:end); % take only lengthscales
+             
+             encoderDims = encoderMatrices{i};
+             encoderDims = encoderDims';
+             
+             encoderDims = encoderDims(encoderDims > 0);
+             
+             for i2 = 1:size(encoderDims) % if any of the dimensions went under, stop considering this kernel
+                
+                 if exp( newHyperParam (i2) ) < minDist ( encoderDims ( i2 ) ) 
+                     bicValues(idx) = 2000000000;
+                     crossValidatedAccuracies(idx) = 0;
+                 end
+             end
+             % ----------------------------------------------------------
+
+                  
               end
           end
   end

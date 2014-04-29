@@ -54,6 +54,8 @@ end
     
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, numFolds); % numFolds-fold cross validation data sets
     
+
+    
     dim = size(X, 2); % dimensionality of the data - used to determine number of runs. For now, set to a low multiple (say 2, max 3)
     
     searchDepth = 4*dim;
@@ -69,6 +71,8 @@ end
         disp(['Currently evaluating ', num2str(i), '/', num2str(numFolds), ' cross validation data sets.']);
                  
          kernelSearchLog = evalc('[BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); ');
+         %[BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); 
+         %kernelSearchLog = 'printing to screen' ;
        
          averageAcc = averageAcc + testAccuracies(i);
          
@@ -90,7 +94,7 @@ end
          kernelNames = cell(numIterations, 1);
          for j = 1:numIterations
             effHyperCount(j) = effectiveParams( allEncoderMatrices{j});
-            kernelNames{j} = decodeKernelName(allEncoderMatrices{i});
+            kernelNames{j} = decodeKernelName(allEncoderMatrices{j});
          end     
 
          save ( [ filePrefixNew, 'searchStats.mat'], 'kernelNames', 'BicValsList', 'trainAccuraciesList', ...

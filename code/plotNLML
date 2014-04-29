@@ -1,0 +1,13 @@
+
+nlml = [];
+
+for l = [ 0.1:0.1:10 ]
+    hyp.mean = 0;
+    hyp.cov = log([l 1]);
+    
+    nlml = [nlml; gp(hyp, @infLaplace, @meanConst, kernel, @likErf, xtr, ytr, xts, yts)];
+    
+end
+
+plot([ 0.1:0.1:10 ], nlml);
+

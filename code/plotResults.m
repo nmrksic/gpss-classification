@@ -42,11 +42,13 @@ function [] = plotResults(expName, numFoldsToPlot, X, y)
         
         disp(['Currently plotting fold ', num2str(i), ' of ', num2str(numFoldsToPlot), '. Number of stages to be plotted is:', num2str(numIterations-dataDim)]);
 
-        for plott = dataDim + 1 : numIterations
-    
-            filePrefixPlot = [filePrefixNew, 'Stage', num2str(plott), '/'];
+        for plott =  1 : numIterations
+            
+            filePrefixPlot  = [filePrefixNew, 'Stage', num2str(plott), '/'];
+            system ( ['mkdir -p ', filePrefixPlot]);
+           
             % close all
-            plotPosteriors(trnX{i}, trnY{i}, squeeze( allEncoderMatrices(plott, :, :) ) , hyperList{plott}, filePrefixPlot, dimensionLabels);
+            plotPosteriors(trnX{i}, trnY{i}, squeeze( allEncoderMatrices{plott} ) , hyperList{plott}, filePrefixPlot, dimensionLabels);
 
              %pause
             

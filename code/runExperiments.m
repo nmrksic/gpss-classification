@@ -1,11 +1,11 @@
-function [] =  runExperiments(numExp, numDatasets)
-% Starts the evaluation of the real world data sets... at this point, no
-% heart, done manually. 
+function [] =  runExperiments(numRestarts, numDatasets)
+% Starts the evaluation of the real world data sets... 
+% ...
 
-% Also, we are not trying feature selection.
+% We are not trying feature selection.
 
     if (nargin < 1)
-        numExp = 5;
+        numRestarts = 5;
     end
 
     if nargin < 2
@@ -35,11 +35,11 @@ function [] =  runExperiments(numExp, numDatasets)
         name = ['../Data/classification/', expNames{i}, '.mat']
         load(name);
         
-        evaluateGPC(X, y, numExp, @infLaplace, 10, 1, expNames{i});
+        evaluateGPC(X, y, numRestarts, @infLaplace, @likErf, 10, 1, expNames{i}, 0);
 
-        if i == 4
-             evaluateSyntheticData(5, 0, 1);  % after the four basic datasets, evaluate synthetic data as well. 
-        end
+      %  if i == 4
+      %       evaluateSyntheticData(5, 0, 1);  % after the four basic datasets, evaluate synthetic data as well. 
+      %  end
         
     end
     

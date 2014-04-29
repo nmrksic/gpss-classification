@@ -1,0 +1,49 @@
+
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBEvaluating the base SE kernels, number of experiments is: 40.
+
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBIC values of base kernels: 872.383      738.9098      900.2524      900.2525      900.2523      826.3576      888.3679      840.5534
+ Train accuracies:           0.67004      0.7424     0.65123     0.65123     0.65123     0.67149     0.65268     0.67873
+ Test accurracies:           0.67532     0.72727     0.64935     0.64935     0.64935     0.66234     0.68831      0.7013
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.1165
+     cov: [4.3156 0.1684]
+
+
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6.
+BIC value: 707.2182; Training accuracy: 0.76411; Test accurracy: 0.75325.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6.
+
+startingHyperparameters = 
+
+    mean: -0.2279
+     cov: [4.4407 0.0104 2.3140 0.2712]
+
+
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6xSE8.
+BIC value: 698.9528; Training accuracy: 0.77424; Test accurracy: 0.81818.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6xSE8.
+
+startingHyperparameters = 
+
+    mean: -0.6507
+     cov: [4.7204 -0.3941 3.8315 -0.1333 3.4848 0.9821]
+
+
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB
+^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OB^[OBBest kernel constructed at this stage of the search is: SE2xSE6xSE8 + SE2.
+BIC value: 695.9056; Training accuracy: 0.77713; Test accurracy: 0.76623.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+

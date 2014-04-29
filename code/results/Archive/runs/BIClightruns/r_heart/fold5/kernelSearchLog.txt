@@ -1,0 +1,59 @@
+Evaluating the base SE kernels, number of experiments is: 65.
+ 
+BIC values of base kernels: 357.3727       358.814      323.3603      373.2801      370.3408      374.0745      370.4117      330.3123      334.5746      331.3297      339.7708      317.8896       301.796
+ Train accuracies:           0.64045     0.61798     0.73783     0.58801     0.83146     0.53933     0.59176     0.70787     0.70787     0.68914     0.69288     0.74906     0.77154
+ Test accurracies:           0.6         0.6         0.9     0.53333     0.56667     0.53333     0.53333     0.66667     0.73333     0.63333     0.63333         0.7         0.7
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE13.
+
+startingHyperparameters = 
+
+    mean: -6.2501e-04
+     cov: [0.6736 -0.3223]
+
+Best kernel constructed at this stage of the search is: SE13xSE12.
+BIC value: 264.1789; Training accuracy: 0.79775; Test accurracy: 0.73333.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE13xSE12.
+
+startingHyperparameters = 
+
+    mean: 0.1714
+     cov: [1.0635 -1.0514 0.3306 1.1475]
+
+Best kernel constructed at this stage of the search is: SE13xSE12 + SE3.
+BIC value: 248.4575; Training accuracy: 0.8427; Test accurracy: 0.9.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE13xSE12 + SE3.
+
+startingHyperparameters = 
+
+    mean: 0.1608
+     cov: [0.9340 -1.0792 0.0266 1.1197 -1.1076 -0.6718]
+
+Best kernel constructed at this stage of the search is: SE13xSE12 + SE3 + SE11.
+BIC value: 239.2293; Training accuracy: 0.85019; Test accurracy: 0.83333.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE13xSE12 + SE3 + SE11.
+
+startingHyperparameters = 
+
+    mean: 0.3298
+     cov: [0.8546 -1.0570 -0.0837 1.1419 -1.4979 -0.6953 -1.5536 -0.6950]
+
+Best kernel constructed at this stage of the search is: SE13xSE12 + SE3xSE10 + SE11.
+BIC value: 239.7146; Training accuracy: 0.85019; Test accurracy: 0.86667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+

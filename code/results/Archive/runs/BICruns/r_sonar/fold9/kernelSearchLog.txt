@@ -1,0 +1,95 @@
+Evaluating the base SE kernels, number of experiments is: 300.
+ 
+BIC values of base kernels: 261.0101      261.8359      267.1221      260.7923      263.9998      263.0397      268.7948      265.2009      245.9506      242.5526      225.9179      225.4023      249.8621      265.9031      268.7948       267.894      267.7701      268.7948      268.7948      263.1669      259.4787      268.0785      268.7948      268.7948      268.7948      268.7948      263.5051      261.1984      268.7948      268.7948      268.7948      268.7948      268.7948      268.6758      264.1805      261.0803      263.2543      268.7948      267.7532      268.7948      268.7948      265.6265      261.6038      257.5361      254.1034      259.7365      257.1297      253.7227      246.7897      266.4274      255.4315      257.3569         268.5       263.906      268.7948      268.7948      268.7948      268.7948      267.1167      268.7948
+ Train accuracies:           0.62032     0.58289     0.56684     0.58824     0.59893     0.62032     0.53476     0.62567     0.68984     0.71123     0.76471     0.75401     0.69519     0.63102     0.53476     0.63102     0.62032     0.53476     0.53476     0.62567     0.68984     0.63102     0.53476     0.53476     0.53476     0.53476     0.63636     0.63102     0.53476     0.53476     0.53476     0.53476     0.53476     0.58824      0.6631     0.64171     0.63636     0.53476     0.62567     0.53476     0.53476     0.64171     0.60963     0.62567     0.62032     0.59893     0.63102      0.6738     0.68449     0.61497     0.67914     0.64706      0.5615     0.57754     0.53476     0.53476     0.53476     0.53476     0.68984     0.53476
+ Test accurracies:           0.33333     0.47619     0.61905     0.71429     0.71429     0.61905     0.52381     0.71429     0.71429     0.71429     0.61905     0.71429     0.66667     0.66667     0.52381     0.66667     0.47619     0.52381     0.52381     0.71429      0.7619     0.57143     0.52381     0.52381     0.52381     0.52381     0.57143     0.52381     0.52381     0.52381     0.52381     0.52381     0.52381     0.66667     0.57143      0.7619      0.7619     0.52381     0.47619     0.52381     0.52381     0.38095     0.42857     0.42857      0.7619     0.66667     0.61905      0.7619     0.66667     0.52381     0.61905     0.61905     0.52381     0.33333     0.52381     0.52381     0.52381     0.52381     0.61905     0.52381
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12.
+
+startingHyperparameters = 
+
+    mean: -0.0041
+     cov: [-2.6171 -0.0852]
+
+Best kernel constructed at this stage of the search is: SE12xSE16.
+BIC value: 200.3422; Training accuracy: 0.89305; Test accurracy: 0.71429.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12xSE16.
+
+startingHyperparameters = 
+
+    mean: -0.1665
+     cov: [-2.4257 -0.7589 -2.6418 1.1202]
+
+Best kernel constructed at this stage of the search is: SE12xSE16 + SE49.
+BIC value: 190.9217; Training accuracy: 0.8984; Test accurracy: 0.71429.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12xSE16 + SE49.
+
+startingHyperparameters = 
+
+    mean: 0.1711
+     cov: [-2.3800 -0.6730 -2.4350 1.2060 -2.8642 0.1925]
+
+Best kernel constructed at this stage of the search is: SE12xSE16 + SE49xSE27.
+BIC value: 185.5294; Training accuracy: 0.94118; Test accurracy: 0.66667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12xSE16 + SE49xSE27.
+
+startingHyperparameters = 
+
+    mean: 0.6674
+     cov: [-2.3474 -0.6625 -2.2317 1.2165 -3.2541 -0.0837 -1.3501 0.4198]
+
+Best kernel constructed at this stage of the search is: SE12xSE16 + SE49xSE27xSE51.
+BIC value: 182.1336; Training accuracy: 0.95722; Test accurracy: 0.66667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12xSE16 + SE49xSE27xSE51.
+
+startingHyperparameters = 
+
+    mean: 0.9908
+     cov: [-2.2442 -0.5975 -2.1080 1.2815 -3.1041 -0.4603 -1.3244 0.0431 -3.5325 1.0801]
+
+Best kernel constructed at this stage of the search is: SE12xSE16xSE21 + SE49xSE27xSE51.
+BIC value: 181.0585; Training accuracy: 1; Test accurracy: 0.71429.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12xSE16xSE21 + SE49xSE27xSE51.
+
+startingHyperparameters = 
+
+    mean: 1.9779
+     cov: [-2.2403 -1.1267 -2.0888 0.7522 -0.8664 1.6303 -2.9965 -0.2934 -1.1589 0.2101 -3.3619 1.2470]
+
+Best kernel constructed at this stage of the search is: SE12xSE16xSE21xSE58 + SE49xSE27xSE51.
+BIC value: 180.2659; Training accuracy: 1; Test accurracy: 0.66667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Kernel being expanded at this stage of the search is: SE12xSE16xSE21xSE58 + SE49xSE27xSE51.
+
+startingHyperparameters = 
+
+    mean: 2.2040
+     cov: [-1.9256 -1.5490 -1.9718 0.3299 -0.1832 1.2080 -3.8053 1.5870 -2.9720 -0.2479 -1.0288 0.2556 -3.3948 1.2925]
+
+Best kernel constructed at this stage of the search is: SE12xSE16xSE21xSE58 + SE49xSE27xSE51xSE1.
+BIC value: 182.1557; Training accuracy: 1; Test accurracy: 0.66667.
+ 
+---------------------------------------------------------------------------------------------------------------------
+ 
+Search unable to construct a better kernel. 
+Stopping the search procedure. 
+
