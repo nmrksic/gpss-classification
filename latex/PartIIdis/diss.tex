@@ -1,0 +1,2670 @@
+	\documentclass[12pt,twoside,notitlepage,amsart]{report} % amsart
+	
+	\usepackage{graphicx}
+	\usepackage{a4}
+	\usepackage{verbatim}
+	%\input{epsf}                            % to allow postscript inclusions
+	\usepackage{amsmath} 
+	\usepackage{amssymb,amsfonts}
+	\usepackage[hidelinks]{hyperref}
+	\usepackage{mathtools}
+	\usepackage{amsthm}
+	\usepackage{booktabs}
+	\usepackage{multirow}
+	\usepackage{algpseudocode}
+	\usepackage{algorithm}
+	\usepackage{adjustbox}
+	\usepackage{tocloft}
+  \usepackage[framed,numbered,autolinebreaks,useliterate]{mcode}
+
+  
+	\newtheorem{theorem}{Theorem}[section]
+	\newtheorem{proposition}[theorem]{Proposition}
+	\newtheorem{lemma}[theorem]{Lemma}
+	\newtheorem{definition}[theorem]{Definition}
+	\newtheorem{examples}[theorem]{Examples}
+	\newtheorem{remarks}[theorem]{Remarks}
+	\newtheorem{corollary}[theorem]{Corollary}
+	\newtheorem{remark}[theorem]{Remark}
+	\newtheorem{example}[theorem]{Example}
+	\newtheorem{conjecture}[theorem]{Conjecture}
+	\newtheorem{question}[theorem]{Question}
+	
+	
+	\raggedbottom                           % try to avoid widows and orphans
+	\sloppy
+	\clubpenalty1000%
+	\widowpenalty1000%
+	
+	\addtolength{\oddsidemargin}{6mm}       % adjust margins
+	\addtolength{\evensidemargin}{-8mm}
+	
+	\renewcommand{\baselinestretch}{1.1}    % adjust line spacing to make
+	                                        % more readable
+	
+	\parindent 0pt
+	\parskip 6pt
+	
+	\begin{document}
+	
+	\bibliographystyle{plain}
+	
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Title
+	
+	
+	\pagestyle{empty}
+	
+	\hfill{\LARGE \bf Nikola Mrk\v{s}i\'c}
+	
+	\vspace*{60mm}
+	\begin{center}
+	\Huge
+	{\bf Semi-supervised Learning Methods for Data Augmentation } \\
+	\vspace*{5mm}
+	Computer Science Tripos \\
+	\vspace*{5mm}
+	Trinity College \\
+	\vspace*{5mm}
+	May 15, 2013  % today's date
+	\end{center}
+	
+	\cleardoublepage
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% Proforma, table of contents and list of figures
+	
+	\setcounter{page}{1}
+	\pagenumbering{roman}
+	\pagestyle{plain}
+	
+	\chapter*{Proforma}
+	\begin{tabular}{ll}
+	Name:               & Nikola Mrksic                    \\
+	College:            & Trinity College                    \\
+	Project Title:      & Semi-supervised learning methods for data augmentation \\
+	% ~~~~~~~~~~~~~~	    & for data augmentation \\
+	Examination:        & Computer Science Tripos, Part II, 2013        \\
+	Word Count:         & 11926 %\footnotemark[1]            
+	\\
+	Project Originator: & Dr Sean Holden                    \\
+	Supervisor:         & Dr Sean Holden                    \\ 
+	\end{tabular}
+	
+	%\footnotetext[1]{This word count was computed
+	%by TeXcount (http://app.uio.no/ifi/texcount/).
+	%}
+	%\stepcounter{footnote}
+	
+	%\subsection*{Original Aims of the Project} % NB max 100 WORDS!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	\subsection*{Original Aims of the Project}	
+		
+	The original goal of this project was to investigate the extent to which data augmentation schemes based on semi-supervised learning algorithms can improve classification accuracy in supervised learning problems. The objectives included determining the appropriate algorithms, customising them for the purposes of this project and providing their Matlab implementations. These algorithms were to be used to develop a robust system for achieving data augmentation in arbitrary application areas. For evaluation purposes, a general framework for assessing the quality of data augmentation achieved was to be constructed.
+	\subsection*{Work Completed}  % NB max 100 WORDS!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	
+	The project met and exceeded all of the success criteria. A survey of theoretical results underlying data augmentation has been conducted. Full, general implementations of Bayesian Sets, Spy-EM and Roc-SVM algorithms, as well as their proposed extensions have been implemented. A general scheme for achieving data augmentation in binary and multi-class classification has been developed and successfully applied to the three application areas proposed. An evaluation framework for assessing the quality of data augmentation was implemented and used to give statistical significance to the results obtained.
+	
+	\subsection*{Special Difficulties}
+	
+	None.
+	 
+	\newpage
+	\section*{Declaration}
+	
+	I, Nikola Mrksic of Trinity College, being a candidate for Part II of the Computer
+	Science Tripos, hereby declare that this dissertation and the work described in it are my own work,
+	unaided except as may be specified below, and that the dissertation
+	does not contain material that has already been used to any substantial
+	extent for a comparable purpose.
+	
+	I give permission for my dissertation to be made available in the archive
+area of the Laboratory's website.
+	
+	\bigskip
+	\leftline{Signed }
+	
+	\medskip
+	\leftline{Date } 
+	
+	\cleardoublepage
+	
+	\tableofcontents
+	
+	%\listoffigures
+	
+	\newpage
+	\section*{Acknowledgements}
+	
+	This project was completed under supervision of Dr Sean Holden, whom I would like to thank for his invaluable assistance, support and guidance throughout my studies. I would also like to thank Dr Arthur Norman, Dr Simone Teufel, Professor Jon Crowcroft and Professor Katherine Heller for all the helpful advice and suggestions they provided.  
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% now for the chapters
+	
+	\cleardoublepage        % just to make sure before the page numbering
+	                        % is changed
+	
+	\setcounter{page}{1}
+	\pagenumbering{arabic}
+	\pagestyle{headings}
+	
+	\chapter{Introduction} % 1500 words  3524 Ch1+Ch2, should have up to 3627 per mark distribution
+	
+	\emph{In this chapter, the task of data augmentation is presented and framed as a semi-supervised machine learning problem. The necessary theoretical assumptions are outlined and a proof of utility of unlabelled data for improving classification is provided. }
+	
+	\section{Supervised Learning}
+	
+	\textbf{\emph{Supervised learning algorithms}} generate a function $f:X \rightarrow Y$ that maps potential inputs to desired outputs, also known as labels. $f$ maps any $x_i \in X$ to a specific label $y_i \in Y$. The algorithm is trained using a list of input-output pairs $(x_i, y_i)$. If the set of labels $Y$ is finite, the problem is known as classification; otherwise, the problem is known as regression. \\
+	
+	
+	The basic assumption of supervised learning is that the $(x_i, y_i)$ pairs are independent and identically distributed  random variables drawn from an underlying probability distribution on $X \times Y$. The function $f$ obtained by learning from the training data tries to capture the probability density function of this distribution. The main condition required for supervised learning to work (that is, to be able to generalise from a finite training set to infinitely many unseen test cases) is that the \emph{smoothness assumption of supervised learning} holds. Informally, it requires that if the points $x_1$ and $x_2$ are \emph{close}, their corresponding outputs (labels) $y_1$ and $y_2$ should be \emph{close} as well.
+	
+	
+	\section{Semi-supervised Learning}
+	
+	Classifier performance is highly dependent on the nature of the data to be classified. Across different application areas, the prediction quality correlates with the amount of labelled data used for training the classifier. In applications ranging from text classification and speech recognition to different biomedical applications, gathering unlabelled data is usually cheap and straightforward: large amounts of text can be gathered online, speech can be recorded automatically and protein sequences can be acquired at industrial speeds. This training data has to be labelled either by a human expert or through a set of physical experiments, making the acquisition of a \emph{sufficiently} large labelled training set expensive, time consuming, and often infeasible as a result. \\
+	
+	Due to the abundance of the unlabelled data available, we are interested in how this data can be used to improve the accuracy of the classifiers produced. This is the task of semi-supervised learning. \\
+	
+	\textbf{\emph{Semi-supervised learning}} algorithms use two different data sets for training: $X_l = ( (x_1, y_1) ,...,(x_l, y_l) )$, the set of inputs with labels available and $X_u = (x_{l+1},...,x_{l+u})$, the set of unlabelled data. Given these sets as input, the algorithm tries to build the same prediction function as in the case of supervised learning. Unlabelled data can boost prediction quality only if the distribution of $p(x)$ observed from the unlabelled data carries information applicable to the inference of $p(y|x)$.
+	
+	The \emph{semi-supervised smoothness assumption} formalises this notion: 
+	
+	If $x_1$ and $x_2$ are points \emph{close} to each other in a \emph{high density region}, their corresponding outputs $y_1$ and $y_2$ should be \emph{close} as well. By transitivity, points from the same \emph{cluster} are likely to have their respective outputs clustered as well. 
+	
+	\section{Data Augmentation}
+	
+	The performance of supervised learning algorithms improves with the size of the data set used for training the classifier. In application areas containing a limited amount of labelled, but a large amount of unlabelled data, \emph{data augmentation} schemes are used to create larger (\emph{augmented}) training data sets by incorporating some of the unlabelled examples into the labelled data set. 
+	
+	For each of the classes (labels) present in the data set, unlabelled examples most likely to belong to that class are identified. These examples, with their anticipated labels, become part of the labelled training set. Then, this \emph{augmented} data set is used to retrain the classifier (for example, a Support Vector Machine, presented in Chapter 2), in the hope that the data introduced may reduce the \emph{classification error} of the classifier built. 
+	
+	In general, constructing data augmentation schemes which result in both simple and fast algorithms is a highly non-trivial task, as successful strategies vary greatly with the nature of data present in different applications \cite{Nigam98}.
+	
+	\begin{figure}
+	\includegraphics[trim = 0 200 500 0, scale=0.75]{augmentation}
+	
+	\caption{Flow diagram of the data augmentation process. Additional training examples are extracted from the unlabelled data and used to re-train the SVM. }%
+	\label{}%
+	\end{figure}
+	
+	Under certain assumptions about the nature of the data model, namely that all of the examples were generated using the same \emph{mixture model} and that there exists a one-to-one correspondence between the generative components of this model and the labels present in the data set, it is possible to show that unlabelled data does \emph{carry information} about the parameters of this mixture model. A full discussion and the proof of this claim are given in Appendix A. 
+	
+	This result does not yield a mechanism for achieving a reduction in classification error using unlabelled data, which is what the principle goal of data augmentation is. In general, it is not always the case that this reduction can be achieved: given an infinite amount of labelled data, an optimal classifier can be built without using any unlabelled data. 
+	
+	Building upon the result derived in Appendix A, one can show that with a finite amount of labelled and an infinite amount of unlabelled data, definite improvement can be achieved \cite{Castelli95}: the classification error approaches the optimal one exponentially fast as the size of the labelled set increases. Little is known about the case when the sets of labelled and unlabelled data are both finite. Theoretical arguments relevant for understanding the fundamental limits of data augmentation are investigated in Chapter 3 and Appendix A. 
+	 
+	\cleardoublepage
+	
+	\chapter{Preparation}
+	
+	\emph{This chapter presents most of the research and planning conducted before the implementation of this project started. It contains my starting point, the rationale behind choices made in the implementation, an outline of the software engineering paradigm used and a description of the algorithms used for classification.}
+	
+	\section{Starting Point}
+	
+	At the start of the project, I had very limited knowledge of machine learning. All the algorithms used and the computational learning theory presented were learned and absorbed throughout the course of this project. The original project idea proposed the use of the Bayesian Sets algorithm for achieving data augmentation. The theoretical results presented, as well as the use of \emph{Spy-EM} and \emph{Roc-SVM} algorithms are my own refinements to the project proposal, identified through a thorough survey of the associated literature. 
+	
+	I had no knowledge of Matlab prior to starting work on this project, and no knowledge of any experimental methods used in the subsequent evaluation. 
+	
+	\section{Requirements Analysis}
+	
+	The project proposal outlined the idea of using different semi-supervised machine learning algorithms to achieve data augmentation across different application areas. The project consisted of three principle components: 
+	
+	\begin{enumerate}
+		\item Understanding the theoretical boundaries of the reduction in classification error achievable through data augmentation.
+		\item Identifying and implementing algorithms and statistical techniques applicable to data augmentation. 
+		\item Establishing a uniform criterion for measuring the success of different data augmentation schemes across different application areas and implementing a system which would empirically determine the extent to which data augmentation can aid classification.
+	\end{enumerate}
+	
+	\subsection{Theoretical Background}
+	
+	The first step in refining the project proposal was to identify the theoretical results that could allow us to more effectively determine which algorithms are likely to be most effective at boosting classifier accuracy. To this extent, a broad literature survey was conducted \cite{Castelli95, Chapelle06, Letham13, Liu02, Nigam98}. Understanding the material required familiarisation with the relevant aspects of computational learning theory, including the probably approximately correct ({PAC}) learning framework and the use of Vapnik Chervonenkis ({VC}) dimensions. Results most relevant to my work are presented in Chapter 3 and Appendix A. 
+	
+	\subsection{Algorithms for Achieving Entity Set Expansion}
+	
+	The task of \emph{entity set expansion} deals with extracting additional examples of each class from the unlabelled data. Initially, the following algorithms were proposed for achieving entity set expansion: 
+	\begin{itemize}
+	 \item The Bayesian Sets algorithm \cite{Ghahramani06} was envisioned as the principle set expansion method; it was to act as the representative of the \emph{ranking methods}.
+	 \item Spy Expectation Maximisation algorithm (\emph{Spy-EM}\cite{Li10, Liu02}) was proposed as an extension, acting as the representative of the \emph{classification methods}. 
+	\end{itemize}
+	
+	Further consideration of the related work revealed another \emph{potential extension}: the \emph{RocSVM} algorithm \cite{Li03}, a method based on a paradigm akin to \emph{Spy-EM}, but applicable to real-valued input data (unlike \emph{Spy-EM}, which supports only binary data). Implementing \emph{RocSVM} was incorporated into the project goals, as it promised the potentially most powerful \cite{Li03} and general approach to performing entity set expansion. 
+	
+	\subsection{Choosing the Benchmark Classifier}
+	
+	For the sake of meaningful evaluation of the quality of data augmentation achieved, a \emph{uniform measure} of the improvement in classification accuracy achieved through data augmentation had to be established. The simplest, most elegant solution was to use the same classifier across all application areas. \\
+	
+	A survey of relevant literature \cite{Bishop06} suggested that support vector machines ({SVMs}) could provide the benchmark classifier. {SVMs} are applicable to most classification and regression problems. Using {SVMs} across all application areas was a rational decision for the sake of this project: we are interested in improving the performance of \emph{arbitrary classifiers} through data augmentation, not in building optimal classifiers through domain specific knowledge. \\
+	
+	The alternative approach was to use classifiers specifically tailored for each of the application areas considered. This would provide insights into using very specific classifiers in very specific applications, restricting our ability to compare the performance of a data augmentation scheme across different application areas. \\
+	
+	{SVMs} are a very powerful tool applicable to a wide range of problems in machine learning. In addition to the practical consideration of allowing consistent evaluation, using \emph{SVMs} was beneficial for the following reasons: 
+	
+	\begin{itemize} 
+	
+	\item A technique applicable to improving {SVM} performance in any setting would be highly reusable: it would provide a wrapper method for boosting the performance of any (existing and new) supervised learning application which has a body of unlabelled data available to it.
+	
+	\item {SVM} performance is well understood and reliable library implementations exist (\emph{LIBSVM}, $ \textrm{SVM} ^{{light}} $). Choosing {SVMs} as our means of classification minimised the risk of this component becoming a bottleneck in developing the final data augmentation evaluation system.
+	
+	\end{itemize}
+	
+	The principal measure of data augmentation quality will be the improvement in classification accuracy achieved by training the {SVM} using the {augmented} data set produced by our data augmentation system (Figure 1.1). 
+	
+	\section{Application Areas Considered}
+		
+	The extent to which data augmentation can aid classification was investigated in three different application areas. The first two deal with \emph{two-group classification} of instances consisting of \emph{binary features}, whereas the third data set consists of \emph{continuous features} and deals with \emph{multi-class classification}.
+	\subsection{Text Classification}
+	
+	\emph{Reuters21578} text categorisation collection contains Reuters news documents from 1987, labelled manually by Reuters personnel. The total number of categories is 672, but many of them occur very rarely. % Some documents belong to many different categories, others to only one and some have no category at all. 
+	
+	For the purpose of the experiments, a subset of this data set representing feature vectors of the two most frequent labels was used. We are dealing with binary classification of feature vectors consisting of discrete binary data: each vector contains $18933$ binary features, each indicating the presence of some word in the given article. 
+	
+	Both categories are abundant in the training data, with an approximate $3:2$ class ratio. The training set $T_r$ consists of $4108$ articles and the testing set $T_s$ consists of $1660$ articles; the unlabelled set $U$ is sampled from $T_r$. The class distributions in the training and testing sets are the same. Consequently, $T_r$, $T_s$ and $U$ have the same class distributions. 
+	
+	\subsection{Prediction of Biomolecular Activity for Drug Design}
+	
+	\emph{KDD Cup 2001, Task 1: `Binding to Thrombin'} data set, produced by DuPont Pharmaceuticals Research Laboratories, is related to drug design.
+	
+	Drugs are usually small organic molecules. The first step in designing a new drug is to identify and isolate the receptor to which the drug should bind; in this case, the Thrombin site. Subsequently, many small molecules are tested to identify those able to bind to that site: these are known as the \emph{active compounds}.
+	
+	The data set contains examples of both active and inactive compounds: a list of binary attributes is provided for each molecule, indicating whether its structure possesses a certain three-dimensional property. Our goal is to build a classifier able to identify active compounds given only the molecules' structural properties. 
+	
+	This task is no different from the text classification one: it deals with binary classification of examples consisting of binary attributes. However, it is much more challenging for the following reasons: %the unlabelled set $U$ is drawn from $T_r$.
+	
+	\begin{enumerate}
+	
+	\item There is a great imbalance between active and inactive compounds in the training set: only 42 of the 1909 examples represent the active ones. 
+	
+	\item The number of attributes is \emph{very large}: {$139,351$ binary features} are used to represent each compound. 
+	
+	\item The data set exhibits \emph{selection bias}: the distribution of active and inactive compounds in $T_r$ and $U$ differs from the distribution encountered in the testing data set $T_s$. 
+	\end{enumerate}
+	
+	\subsection{Supervised Learning for Theorem Proving} 
+	
+	In this problem, supervised learning is used to guide an automated theorem prover. The data set was available from a recent research project in the Computer Laboratory \cite{Bridge13}. The prover can use five different heuristics to try to prove a first-order logic statement. Given attributes of these statements such as the number of variables per logical connective or the average number of times that variables are repeated in the statement, we want to help the prover decide which of the five heuristics would be best for tackling that given statement \cite{Bridge13}. 
+	
+	%The task is to produce a classifier that will, given the attributes of a statement, decide which of the five heuristics offered by the theorem prover is most likely to be successful at proving that statement. 
+	
+	The training examples represent statements labelled with the numerical identifier of the heuristic which proved them the fastest. The unlabelled data is the set of problems that {none of the heuristics} could solve within a certain time limit. A major distinction from the first two application areas is that the attributes describing the examples to be classified are no longer binary, or even discrete: they are now represented by {continuous (real-valued) data}.
+	
+	Examples are now classed into one of {five} different categories. Our goal is to achieve a reduction in the classification error by using examples from $U$ to {augment} each of the five labelled sets used for training. % the classifiers, $T_{r_1} \ldots T_{r_5}$ using examples drawn from $U$.
+	
+	There were three (new) major challenges associated with this task: 
+	\begin{enumerate}
+	
+	\item The attributes are \emph{continuous}, not binary, making the \emph{Spy-EM} algorithm inapplicable. Bayesian Sets provide no {efficient} algorithm for real-valued data \cite{Ghahramani06}. Thus, \emph{Roc-SVM} was the only admissible method: implementation of all project extensions was a \emph{prerequisite} for tackling this problem. 
+	
+	\item Instances belong to five different categories: in order to consider this application area, a \emph{multi-class} classification scheme had to be developed.  
+	
+	\item Unlabelled data does {not} have the same distribution as the training data: $U$ is the set of statements that the theorem prover \emph{did not prove}. It is questionable whether these examples contain any information applicable to discriminating between the five heuristics.
+	
+	\end{enumerate}
+	
+%	
+%	\begin{enumerate}
+%	
+%	\item \textbf{Text classification:} \emph{Reuters21578} text categorisation data set. This is a well known data set dealing with a standard problem in machine learning and natural language processing.
+%	
+%	\item \textbf{Prediction of biomolecular activity}: \emph{KDD Cup 2001}, Task 1 (Binding to Thrombin) data set. Achieving augmentation with this data set was expected to be very hard, as well as computationally difficult.  %While dealing with a fundamentally equivalent task as text classification (two-group classification, binary attributes), this problem is much more difficult: the number of features per instance is enormous; there are 139,351 features and only 1909 data points. Furthermore, the training set is very biased, providing a $42:1867$ split of the two categories. Hence, 
+%	
+%	\item \textbf{Supervised learning for theorem proving}: augmentation of the data set used in recent research about using supervised learning to guide automated theorem provers.\cite{Bridge13} Its inclusion in the results depended on the successful implementation of \emph{all} the proposed \emph{extensions}, including \emph{RocSVM} and \emph{multi-class classification}. %This data set consists of \emph{continuous features} and deals with \emph{multi-class classification} (categorising instances into five different categories), making it a very challenging one indeed. Its inclusion in the results depended on successful implementation of all the proposed \emph{extensions}, including \emph{RocSVM} and \emph{multi-class classification}.
+%	
+%	
+%	\end{enumerate}
+	
+%	Details of these experiments and the data sets used are presented in Chapter 3. 
+	
+	\section{Project Methodology}
+	
+	The target system consisted of four principle components (Figure 2.1). Project goals revolved around the application of the three data augmentation schemes to the three application areas proposed, and different classification schemes had to be used for binary and multi-class classification. The exact work schedule was highly unpredictable as the implementation of the more advanced schemes depended on success in earlier stages. 
+	
+	\begin{figure}%
+	\includegraphics[scale=0.7]{componentdiagram}
+	
+	\caption{Component diagram of the data augmentation evaluation system.}%
+	%\label{}%
+	\end{figure}
+	
+	The ambitious nature of the goals presented required careful planning to ensure that the primary success criteria were fulfilled notwithstanding potential complications with the more advanced goals such as the \emph{Roc-SVM} algorithm or the augmentation of the theorem prover data. 
+	
+	%Likewise, the desire to obtain a library that would allow application of these data augmentation algorithms to arbitrary data sets required that the implementations created %be robust and directly applicable to arbitrary data, not ad-hoc implementations applicable only for the purposes of evaluation in this project. 
+	
+%	An important consideration in choosing the development model was that the results of data augmentation achieved with simpler algorithms on simpler data sets were required to determine the direction of subsequent implementation, modify requirements, and \emph{potentially} limit the scope of the project. 
+	
+	\emph{Roc-SVM} and \emph{Spy-EM} can be very computationally demanding: processing the enormously large biomedical data set promised to be borderline intractable. Thus, having the entire system able to run at least some of the data augmentation schemes early on was instrumental for obtaining all the results in time.  
+	
+	Taking all of these requirements into account, the development paradigm chosen for this project was {\emph{evolutionary prototyping} \cite{Davis92}.
+	
+	\subsection{Evolutionary prototyping}
+	
+%	\emph{Software prototyping} refers to the activity of creating prototypes of software applications. Prototypes are typically \emph{incomplete} versions of the system being developed, \emph{usually} developed expressly in an attempt to learn more about the problem or a solution to the problem.
+	% , that is to refine the requirements or learn more about the alternative designs that could satisfy these requirements. 
+	
+	%\textbf{Throwaway prototyping} is the variant of this process most commonly used: the prototype is built as quickly as possible and implements only those requirements that are poorly understood. It is used experimentally to obtain further insight into these requirements. Then, the prototype is discarded and the new, \emph{refined} set of requirements is used to build the actual deliverable system. 
+	%
+	%This approach is very applicable to isolating and learning about small parts of complex problems.\cite{Davis92} Therefore, it is not very applicable for the purposes of this project, as there is no way to isolate the process of data augmentation.
+	%
+	%To determine how successful data augmentation is, one must measure how the use of augmented data sets impacts classification in the given application area! \\
+	
+	{\emph{Evolutionary prototyping}} is a form of software prototyping that builds each prototype in a quality manner: the process includes a requirements specification, design documentation and thorough testing. In each development cycle, only the \emph{well understood} requirements are implemented. Subsequently, the prototype is used experimentally to shed more light on the remaining requirements (those less understood), as well as to identify new requirements. 
+	
+	Evolutionary prototyping delivers incremental \emph{functional systems}, with {each iteration} providing a system meeting a set of \emph{well-defined} requirements. This paradigm was ideal for the needs of this project, as it catered perfectly to our need to start obtaining results about simpler schemes and simpler application areas while work on the more complicated ones was still under way.	
+	
+	More importantly, the constant requirements feedback warranted by this method proved to be instrumental in providing enough versatility and early warning signals to streamline my efforts towards a smooth and successful completion of all the success criteria and all of the proposed extensions.
+
+	
+	% In effect, the evolutionary prototype is used to make an \emph{informed decision} about the subsequent implementation steps. The system is continually refined and rebuilt. Each development cycle uses a rigorous development approach to create a prototype which uses the previous implementation as its starting point. Hence, the method \emph{incrementally} builds towards the \emph{final} system. 
+	
+%	Evolutionary prototyping works well when most of the critical requirements are well understood. By building the well understood parts of the system first, it ensures that the system can be changed easily by modifying the \emph{less familiar} requirements between incremental development steps. 
+	
+%	Finally, and most importantly for this project, evolutionary prototyping delivers incremental \emph{functional} systems, with \emph{each iteration} providing a system meeting a set of \emph{well defined} requirements. Hence, these non-final prototypes can be delivered to the user, who can subsequently contribute to improving the requirements. \\
+	
+%	This paradigm was ideal for the needs of this project, as it catered perfectly to our need to start obtaining results about simpler schemes and simpler application areas while work on the more complicated ones was still under way. Hence, I was able to complete the work on the system and obtain all the relevant evaluation metrics almost simultaneously! 
+	
+	
+	%Preparation: 2400 words up to here.
+%	\clearpage
+	
+	\section{Relevant Algorithms} 
+	This section presents two of the algorithms used as building blocks for the data augmentation schemes presented in the Implementation. Existing implementations of support vector machines and Naive Bayesian classifiers available from Matlab's Machine Learning toolbox were used in this project. 
+	
+	\subsection{Naive Bayes Classifier}
+	
+	In statistics and machine learning, classification refers to the problem of identifying to which category (of the given set of categories) a new observation (also known as \emph{instance} in machine learning) belongs to, based on the training data which consists of observations for which the categories (classes) are known. Instances are characterised by a vector of explanatory variables known as \emph{features}. 
+	
+	The probability model for the classifier is represented by the conditional distribution $ \displaystyle \Pr(C \mid {F_{1},...,F_{n}})$; $C$ represents the set of classes and $F_{1} \ldots F_{n} $ stand for the features of the examples. %The \emph{feature vectors} span the space of potential observations.
+	
+	The Naive Bayes classifier makes the assumption of \emph{conditional independence between features} of the observations: for any features $F_i$ and $F_j$, it must hold that $\Pr(F_i \mid C, F_j) = \Pr(F_i \mid C)$. Even though this is not the case in most data sets, it is a common assumption and it often results in very good performance. This assumption is 	useful as it can be used to simplify the probability model. 
+		
+	The expression for conditional probability can be rewritten using Bayes' theorem:	
+	
+	\begin{equation} \Pr(C\mid{F_{1} \ldots F_{n}}) = \displaystyle \frac { \Pr(C) \Pr( F_1 \ldots F_n \mid C) }{\Pr(F_1 \ldots F_n)}
+	\end{equation}
+	
+	The denominator represents the normalisation constant, which can be omitted. 
+	
+	Repeatedly unfolding the definition of conditional probability (and omitting all the normalisation factors) yields: \\
+	
+%\begin{align} 
+
+ $\displaystyle \phantom{aaaaaaaaa} {\Pr(C) \Pr(F_1 \ldots F_n\midC) \over \Pr(F_1 \ldots F_n) } \propto \Pr(C) \Pr(F_{1} \mid C) \Pr({F_{2} \ldots F_{n}} \mid {F_{1}, C})} $ \\ 
+ 	
+$\displaystyle \propto \phantom{aaaaaaaaa} \Pr(C) \Pr(F_{1} \mid C) \Pr(F_{2} \mid {C, F_{1}}) \Pr(F_3 \ldots F_n \mid {F_{1}, F_{2}, C}) $\\
+
+$	\displaystyle \propto \phantom{aa} \Pr(C) \Pr(F_1 \mid C) \Pr(F_{2} \mid {C, F_1}) \Pr(F_3 \mid {C, F_1, F_2}) \ldots \Pr({F_n} \mid {F_1 \ldots F_{n-1}, C}) $ \\
+
+ Applying the assumption of conditionally independent features to the final expression yields:
+	\begin{equation}
+	\displaystyle \Pr(C\mid{F_{1} \ldots F_{n}}) = { \Pr(C) \Pr(F_1 \ldots F_n \mid C) \over \Pr(F_1 \ldots F_n) } \propto \boxed{\Pr(C) \prod\limits_{i=1}^n \Pr(F_i|C)}  \end{equation} 
+	
+	The \emph{prior} for this model, $\Pr(C)$, can be estimated by observing the frequency of each class in the training data available. The conditional probability distributions of each feature, $\Pr(F_i \mid C)$ depend on the joint probability distribution $\Pr(F_i, C)$, as $\Pr(F_i \mid C) = \Pr(F_i, C) / \Pr(C)$. These can be estimated from the training data by dividing the number of occurrences of each \emph{(feature, class)} pair with the (already estimated) prior of that class (the \emph{bag of words} approach). \\
+	
+	Naive Bayes classifiers have been successfully used in a wide range of applications. Their popularity stems from their practicality: the decoupling of features allows one to estimate each feature's probability distribution independently and thus avoid the \emph{curse of dimensionality}, which occurs with many data models that scale exponentially with the number of features. 
+ 
+
+	% + 400 words = 1500 + 2400 + 400 = 4300
+	\subsection{Support Vector Machines}
+		
+	Support vector machines are a very popular supervised learning model used for two-group classification and regression analysis. \cite{Vapnik95}
+	
+	Given a set of training instances, the {SVM} training algorithm builds a model that assigns new examples into one category or the other. The {SVM} model represents instances as points in a high-dimensional space, mapped in such a way that the points representing instances of the two categories are separated from each other by a gap that is as wide as possible. {SVMs} construct a hyperplane (or a set of hyperplanes) in that high-dimensional space in order to split the two classes into two distinct subspaces (Figure 2.2). Subsequently, new examples are classified according to the subspace of the model space that they are mapped to. 
+	
+%	\begin{figure} [h]
+%	\includegraphics[scale=0.6]{svm1}
+%	
+%	\caption{\small{Two possible linear discriminant planes; both achieve total separation. \cite{Bishop06}}}%
+%	\label{}%
+%	\end{figure}
+	
+	Support vector machines are a direct product of work done in \emph{computational learning theory}. If $f$ denotes the target classifier, let $L(f(\mathbf(x)), y)$ be the function that measures its error of prediction (the \emph{loss function}): this can be the square error function, the negative log marginal likelihood function, etc. Then, one can obtain the parameters of the {optimal decision function} by minimising the \emph{expected error of classification} on all data: 
+
+	\begin{equation}
+	  \displaystyle R(f) = E[L(f(x), y] = \int_{y} \int_{x} L(f(x), y) \Pr(\mathbf{x},y) dx dy  
+	\end{equation} 
+
+	
+As $\Pr[\mathbf{x}, y]$ is not available, $R(f)$ can not be computed. Instead, it is replaced with the {sum} of errors across all {training data} (the \emph{empirical risk function}). 
+
+	\begin{figure} 
+	\includegraphics[scale=1]{svm2}
+	
+	\caption{\small{The optimal decision line is as far from both classes' points as possible \cite{Bishop06}.}}%
+	\label{}%
+	\end{figure}
+
+Out of all classifiers that {separate} the training data, SVMs choose the {optimal} one by \emph{maximising} the \emph{minimal} distance from the set of all training points (irrespective of class membership) to the separating hyperplane (Figure 2.2). This principle is known as \emph{empirical risk minimisation}. A relatively small number of data points known as \emph{support vectors} are required to determine the exact position of the optimal decision hyperplane. 
+	
+	% Out of all classifiers in $S$, the optimal one that achieves the \emph{largest margin separation} by maximising the distance of \emph{all} training points (irrespective of class), from the separating hyperplane (figure 2.3). A relatively small number of data points, known as the \emph{support vectors}, are required to determine the exact position of the optimal decision hyperplane.    according to the \emph{empirical risk minimisation} principle.
+
+	
+	%Support Vector Machines are a direct product of work done in \emph{computational learning theory} (also known as \emph{statistical learning theory}). The raison d'\^{e}tre of statistical learning theory is to provide a framework for studying the problem of gaining knowledge, making predictions and making decisions from a set of data. According to the \emph{empirical risk minimisation} principle, support vector machines choose as the \emph{optimal} classifier the one that yields the \emph{largest margin separation} between the two classes; it maximises the distance of any point of the two classes from the separating hyperplane (figure 2.3). A relatively small number of data points, known as the \emph{support vectors}, are required to determine the exact position of the optimal decision hyperplane.
+
+	
+	%In this case it deals with choosing the most suitable model to fit the available training data, that is with choosing the hyperplane space such that it closely represents the underlying function in the target space. 
+	
+	%Let $f(\mathbf{x}, \mathbf{ \alpha })$ denote the \emph{decision function} of the chosen probability model (the \emph{hypothesis}). This is the function that will be used to perform prediction for the new, unseen examples. $\mathbf{ \alpha }$ represents the parameters of the decision function, also known as the \emph{Lagrange multipliers}.
+	
+	%The training data $ \left\{ (\mathbf{x_1}, y_1) \ldots (\mathbf{x_N}, y_N) \right\} \subseteq R^{n} \times R $ is sampled according to an \emph{unknown} probability distribution function $\Pr(\mathbf{x}, y)$. 
+	
+%	Let $L(f(\mathbf(x)), y)$ denote the function that measures the error of prediction (the \emph{loss function}); this can be the square error function, the negative log marginal likelihood function, etc. Then, one can obtain the parameters $\mathbf{\alpha}$ of the \emph{optimal decision function} by minimising the \emph{expected error of classification} on all data: 
+%	\begin{equation}
+%	\displaystyle R(f) = E[L(f(x), y] = \int_{y} \int_{x} L(f(x), y) \Pr(\mathbf{x},y) dx dy  
+%	\end{equation} 
+%	 
+	%If we could compute $R(f)$, we could treat the learning of parameters $\mathbf{\alpha}$ as a constrained optimisation problem and solve it using the method of \emph{Lagrange multipliers}. However, $\Pr(\mathbf{x},y)$ is not available: this is the function we are trying to estimate. Hence, as the integral given above can not be computed, we replace it with the sum of errors over the training data, thus computing what is known as the \emph{empirical risk}. As the embodiment of this principle, support vector machines choose as the \emph{optimal} classifier the one that yields the \emph{largest margin separation} between the two classes; it maximises the distance of any point of the two classes from the separating hyperplane (figure 2.3). A relatively small number of data points, known as the \emph{support vectors}, are required to determine the exact position of the optimal decision hyperplane. Unlike the more traditional learning approaches (such as the Naive Bayes classifier), which consider all points when looking for the optimal classification, \emph{SVMs} consider only the points closest to the decision boundary (figure 2.3). This approach has formal grounding in computational learning theory. \\
+	
+	
+	%It is always possible to find a function that will \emph{exactly} fit the training data. However, in the presence of noise, this is a bad idea as it will almost surely negatively impact generalisation (classification performance on new, unseen examples). To avoid overfitting, learning algorithms choose, from a collection of possible models, the one which fits the data well, but at the same time is \emph{as simple as possible}. The \emph{simplicity} of the model is given by its \emph{VC (Vapnik Chervonenkis) dimension}, details of which will be introduced in Chapter 3). 
+	%
+	%Formally, this notion is captured by the \emph{Structural Risk} minimization principle: the classifier needs to achieve the optimal tradeoff between the number of prediction errors on the training set and the \emph{VC} dimension of the model used (figure 2.4).
+	%
+	%\begin{figure}
+	%\includegraphics[scale=0.5]{structuralrisk}
+	%
+	%\caption{\small{Structural risk: the optimal classifier is the one that achieves the best tradeoff between model complexity and empirical risk (classification error on training data).}}%
+	%\label{}%
+	%\end{figure}
+	
+	In real world data sets, it is rarely the case that the separating hyperplane can perform error-free classification of the training data. There are two different approaches to tackling these \emph{non-separable} data sets:
+	
+	
+	\textbf{Soft margin classification:} if the data is not linearly separable, we might still try to split the majority of the data points \emph{as cleanly} as possible, using the same approach as for the separable data. If no separating hyperplane exists, the \emph{soft margin method} will allow \emph{some of the examples} to be misclassified (Figure 2.3). 
+	
+	\begin{figure} 
+	\includegraphics[scale=1]{svm3}
+	\caption{\small{Soft margin SVM: here, outlier points are `ignored'; the decision plane still maximises the distance from the convex hulls of the \emph{reduced} sets of the two classes \cite{Bishop06}. }}%
+	\label{}%
+	\end{figure}
+	
+	
+	
+	%The penalty for misclassified points is defined as $\sum_{i=1}^n{\xi_i}$, where each \emph{slack variable} $\xi_i$ represents the \emph{degree of misclassification} of that data point. This penalty  becomes a part of the objective function used for the optimisation (equation 2.3). Consequently, the optimization itself becomes a \emph{trade-off} between enforcing rigid margins of separation and minimising the number of training errors. The soft margin parameter $C$ is used to control this trade-off. Increasing $C$ amplifies the cost of errors and results in a more accurate model, but (at some point) degrades the model's ability to generalise (make accurate predictions for unseen examples).
+	
+	%Soft margin SVMs were used as the benchmark classifier for this project. They were also used as the basis for implementing a multi-class classification scheme. \\
+	
+	\textbf{Non-linear SVMs} are the alternative approach. These use the \emph{kernel trick} to map the initial (non-separable) data points onto a higher-dimensional space where they become separable (Figure 2.4). This mapping is achieved by a non-linear kernel function such as the Gaussian radial basis function or the hyperbolic tangent. \\
+	
+	\phantom{a}
+	
+	
+	
+	\begin{figure} [h]
+	\includegraphics[scale=1]{svm4}
+	\caption{\small{Using the \emph{kernel trick} to separate an inseparable 2D training set \cite{Bishop06}. }}%
+	\label{}%
+	\end{figure}
+%	
+%	
+%	\noindent%
+%	\begin{minipage}{\linewidth}
+%	\makebox[\linewidth]{%
+%	
+%	\includegraphics[keepaspectratio=true,scale=1]{svm4}}
+%	\captionof{ \phantom{aa} Figure 2.6: }{\small{\phantom{a}Using the \emph{kernel trick} to separate an inseparable 2D training set.\cite{Bishop06} }}% only if needed\label{}
+%	\end{minipage}
+%	
+%	~~~
+%	
+%	\\
+%	
+%	~~
+%	
+%	
+	
+	%clearpage % 4750 up to this point. SVM has 854 words! 
+	
+	\section{Languages and Tools}
+	
+	Matlab was deemed to be the most suitable language for implementing the algorithms required for this project. Furthermore, Matlab is omnipresent in machine learning, so this decision facilitated subsequent reuse of these algorithms (of which there are no open-source implementations available) by the research community. 
+	
+	Throughout the course of the project, a number of additional tools were used:
+	
+	\begin{enumerate}
+	
+	\item C++ was used to pre-process the data sets used. 
+	\item Subversion, Tortoise SVN and Google Drive were used for version control.
+	\item TeXnicCenter was used to write the dissertation. 
+	\item GeoGebra, MS Word and Paint were used to draw the diagrams for the dissertation. 
+	\item Microsoft Excel was used for part of the evaluation work. 
+	
+	\end{enumerate}
+	
+\cleardoublepage	
+	
+	
+	\chapter{Implementation} % 6390 words. should have up to 5600 words.
+	
+	\emph{This chapter presents the data augmentation system created, focusing on the partially supervised algorithms developed for the problem of entity set expansion and their subsequent use for data augmentation. Theoretical arguments behind the implementation choices made are analysed and the specific requirements of each of the application areas are considered. } 
+	
+	\section{Overview} % 274 words
+	
+	The implementation work undertaken for this project consisted of solving two separate problems: \emph{entity set expansion} and \emph{data augmentation}. \\
+	
+	\textbf{Entity set expansion:} given a set $S$ of seed entities of a particular class S and a set $D$ of candidate entities, determine which of the entities in $D$ belong to S. In other words, \emph{expand} the set $S$ based on the given seeds. 
+	
+	This part of the project consisted of identifying and implementing  algorithms for achieving entity set expansion, as well as understanding the theoretical assumptions required in order for these algorithms to work. Three different algorithms were implemented: Bayesian Sets, \emph{a ranking method}, and \emph{Spy-EM} and \emph{Roc-SVM}, which are \emph{classification methods}.
+	
+	\textbf{Data augmentation:} given a supervised machine learning problem with unlabelled data available to it, label some of the unlabelled examples and add them to the training set so that the use of this new, augmented data set boosts the accuracy of the classifier produced. 
+	
+	The target system had to use the set expansion algorithms to achieve data augmentation and then measure how successful this augmentation was across three different application areas.
+	 
+	The two problems are interdependent. Entity expansion could be regarded as a stand-alone problem; however, the challenges faced in using these algorithms for data augmentation provided valuable feedback for the subsequent direction of their development, in accordance with the evolutionary prototyping paradigm adopted. For the sake of clarity, the work on the problem of entity set expansion will be covered first. Subsequently, the way in which these algorithms were used to achieve and assess data augmentation will be presented. 
+	 
+	\section{Partially Supervised Learning} % 342 words
+	
+	%dont forget to say why PU >> LU(labeled unlbaled) this is because in some applications we don't have labeled negatives, as was the case in thrombin!
+	%	
+	Partially supervised learning algorithms are a special class of semi-supervised learning algorithms. They learn from a set of \emph{positive examples} $P$ and a \emph{mixed set} of \emph{unlabelled examples} $U$ (hence the term PU learning). $U$ is implicitly assumed to contain both positive and negative examples. The key characteristic of PU learning is that \emph{no negative training examples} are available for learning. This is in contrast to the typical classification setting, in which the training data contains instances of \emph{every possible class}. \\
+	
+	Partially supervised learning algorithms create binary classifiers that decide whether an instance belongs to the positive set $P$ or not. These algorithms are ideal building blocks for our data augmentation scheme, as the classifiers built can be used to extract the \emph{hidden positives} from $U$. If the training set $T_r$ consists of different classes $P_i$ ($T_r = \bigcup_{i}{P_i} $), each of these is separately treated as the positive set and expanded using examples from $U$. 
+	
+	My major concern was that the knowledge about the negative sets (for class $i$, $N_i = T_r \setminus P_i$) was not used for entity set expansion. These negative sets will be utilised during the later data augmentation stages to \emph{purify} the augmented sets, by minimising the number of wrongly labelled examples introduced. \\
+	
+In the face of imbalance in the distribution of negative data in the training and testing sets (as is the case with our biomolecular data and many real world data sets), the use of negative data can degrade the quality of classification \cite{Li210}. In these settings, PU learning offers a superior approach to traditional binary classification \cite{Li210}. To ensure that our data augmentation scheme was as general as possible, entity set expansion was treated as a partially supervised problem.  
+
+	
+	%The appeal of using PU learning algorithms for data augmentation is boosted by the fact that they have formal theoretical grounding, as well as an extensive body of research and analysis produced primarily by Bing Liu and Xiao-Li Li \cite{Li03, Li10, Liu02}. \\
+	
+%Additionally, these PU learning algorithms can themselves be used for classification, abstracted away from our data augmentation schemes. An assessment of their performance is presented in Chapter 4. 
+	 
+	%
+	%The problem of \emph{entity set expansion} maps directly to PU learning: the set of seed entities $S$ is the set of positive examples $P$, whereas the set of candidate entities $D$ maps directly to the set of unlabeled examples $U$. This means that the existing body of algorithms developed for \emph{PU learning} is directly applicable to entity set expansion, providing a good way to assess the performance of novel approaches to this problem by comparing their performance to the already established ones.  \\
+	
+	\subsection{Theoretical Foundations} % 1275 words
+	
+	Prior to deciding to base data augmentation on partially supervised learning, a detailed investigation of relevant work was conducted: \cite{Castelli95, Chapelle06, Letham13, Liu02, Nigam98}. The theoretical results used to justify the decision to use PU learning for achieving data augmentation are presented in \emph{Appendix A}:
+	
+Partially supervised classification is treated using the \emph{probably approximately correct} (\emph{PAC}) framework to show that a classifier with an \emph{arbitrarily low} classification error can be produced given \emph{sufficiently large} sets of positive and unlabelled examples. This result is by no means trivial, as \emph{no labelled negative data} is introduced at any point. Indeed, it comes as a surprise that a classifier deciding membership of $P$ can approach \emph{perfect precision} {and} \emph{perfect recall} {without} using \emph{any negative examples} for training. \\
+	 
+	Detailed discussion and proofs of these claims are given in \emph{Appendix A}. The theorem presented there yields sufficient conditions on the sizes of $P$ and $U$ required so that partially supervised learning can (in theory) produce an \emph{arbitrarily accurate} classifier with \emph{very high probability}. This result provides the theoretical foundation to all the approaches to entity set expansion employed in this project. Together with the theoretical grounding of the utility of unlabelled data (also presented in Appendix A), it completes the computational learning theory argument showing that data augmentation, as framed and implemented in this project, promises (at least in theory) to be a well-founded scheme that can aid classification through the use of unlabelled data.  
+	
+	These proofs rely on many assumptions. It is unclear whether (or if at all) these assumptions hold in any of the application areas proposed. The theory presented yields no constructive (or efficient) method for implementing PU classification or using the constructed classifiers to achieve data augmentation. \\
+	
+	Henceforth, the discussion moves away from the theoretical aspects and focuses on the algorithms used, the data augmentation scheme developed and the results obtained in the suggested application areas. As will be shown in the experiments, schemes powered by PU learning can be successful at data augmentation, thus providing empirical support for the theoretical arguments presented.   
+	
+	\clearpage
+	% N.B: say how new positives are extracted in these! just use the classifier on all unlabeled examples, i.e. where it converges!
+	\section{Spy Expectation Maximisation Algorithm} % 951 word
+	
+	The \emph{Spy-EM} algorithm was first proposed for the task of partially supervised classification by Liu et al. in \cite{Liu02}. It is a heuristic technique based on Naive Bayes classifiers and the \emph{expectation-maximisation} (\emph{EM}) algorithm \cite{Liu02}. 
+	
+	\emph{Expectation-maximisation} is an iterative method for finding \emph{maximum likelihood parameters} for statistical models based on incomplete data. The {expectation step} fills in the missing values using estimates of their expected values based on existing data and the {current estimates} of the parameters. The {maximisation step} calculates the parameters most likely to have generated the values obtained in the {expectation step}. The two steps are repeated until the parameters converge. 
+	
+	In partially supervised classification, available data corresponds to the positive set $P$ and the missing data corresponds to $U$. Let $c_1$ and $c_2$ denote the positive and the negative \emph{class}.\footnotemark[1] Obviously, $\Pr[c_1 \mid x_i] = 1$ for all $x_i \in P$, but no information is available about $\Pr[c_1 \mid x_i]$ if $x_i \in U$. The expectation step will estimate $\Pr[c_1 \mid x_i]$ for each $x_i \in U$ (line 5), and the maximisation step will determine the conditional feature distribution $\Pr[f_j \mid c_1]$ and the prior $\Pr[c_1]$ most likely to have generated the values assigned to $\Pr[c_1 \mid x_i]$ in the expectation step (line 7). 
+	
+	\footnotetext[1]{Focus on the positive class $c_1$. All results for $c_2$ follow directly, as $\Pr[c_1 \mid x_i] = 1 - \Pr[c_2 \mid x_i]$.}
+	}
+	
+	\renewcommand{\algorithmicrequire}{\textbf{Input:}}
+	\renewcommand{\algorithmicensure}{\textbf{Output:}}
+	\renewcommand{\thealgorithm}{1.1}
+	\begin{algorithm}
+	  \caption{\emph{Spy-EM} Step 1: Initialisation via expectation-maximisation
+	    \label{alg:spyem1}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{$P$ and $U$, the sets of positive and unlabelled examples.}
+	 %   \Statex
+	    \Function{Initial-EM}{$P, U$}
+	    \Statex
+	%      \Let{$z$}{$x \oplus y$} %\Comment{$\oplus$: bitwise exclusive-or}
+	%      \Let{$\delta$}{$0$}      
+		\State $C$ $\gets$ TrainNB($P,U$) \Comment{Train the initial Naive Bayes classifier}
+		  \Statex
+	      \While{parameters of $C$ change}
+	   %   	\Statex
+	      	\For{\textbf{each} unlabelled example $x_i \in U$}
+	      			%\Statex
+	      			
+	      	    \State $\boxed{\Pr[c_1 \mid x_i]} \gets $ posterior($C, x_i$) \Comment{new probability that $x_i \in P$}
+	      	    \For{\textbf{each} feature $f_j$ of $x_i$} 
+								 \State \textbf{\emph{Recalculate}} $\Pr[f_j \mid c_1]$ and $\Pr[c_{1}]$ for the updated $\boxed{\Pr[c_1 \mid x_i]}$
+							\EndFor
+							%\Statex      	    
+	      	\EndFor
+	      	\Statex
+	      	\State \textbf{\emph{Retrain}} $C$ using new values of $\Pr[f_j \mid c_1]$ and $\Pr[c_{1}]$
+	     % 	\Statex
+	      	\EndWhile 
+	%			\Statex
+	   %		\State \textbf{return} $C$
+	    \Ensure{$C$, the classifier obtained via expectation maximisation.}  
+	  \end{algorithmic}
+	\end{algorithm}
+	
+	
+	Naive Bayes classifiers can be used as the basis of the \emph{EM} algorithm, as shown in Algorithm 1.1. The initial values for the prior $\Pr[c_1]$ and the conditional probabilities $\Pr[f_j \mid c_1]$ are estimated from the training data, as explained in the Preparation. 
+	
+	Initially, all the unlabelled data is treated as negative, and \emph{EM} iterates until the assignment of labels to $U$ converges. The original paper (\cite{Liu02}) claims that the algorithm converges quickly. In our experiments, expectation maximisation took no more than $4$-$5$ iterations to converge.
+	 
+	\emph{Initial-EM}, shown in Algorithm 1.1, can be used as a stand-alone classifier. Given \emph{easily separable} data sets, it exhibits good performance. However, the method is highly biased towards positive samples. To achieve better performance, the method should balance the influence that the positive and the (unknown) negative set have on classification: the first step of any PU algorithm is to extract a set of \emph{reliable negatives} $N$ from $U$. 
+	
+	%\emph{Initial-EM} provides information about which $x \in U$ are likely to belong to $c_1$, and which ones are not. However, making confident assertions about the class membership of any $x \in U$ is difficult: none of their labels are available to begin with or to provide a subsequent basis for comparison. 
+	
+	The {key trick} employed by \emph{Spy-EM} is to move a {randomly sampled subset} of $P$, the \emph{spy set} $SP$, into the mixed set $U$. If we use \emph{EM} on $P \setminus SP$ as the positive set and $U \cup SP$ as the negative set, the values of posterior probabilities assigned to \emph{the spy elements} ($SP$) will be in the same range as those assigned to positives originally {hidden} in $U$. These hidden positives represent the instances we want to extract for use in the later augmentation steps. 
+	
+Elements with dissimilar posteriors are \emph{more likely} to be the \emph{actual negatives} and should be put into $N$, the set of reliable negatives. The remaining set of unlabelled examples $M = U \setminus N$ will contain a higher proportion of positives than $U$ did. Thus, \emph{ExtractRN} (Algorithm 1.2) decomposes $U$ into sets $M$ and $N$, both of \emph{higher purity} (the proportion of positives/negatives) than $U$ (Figure 3.1). \\
+	
+	\begin{figure} [h]
+	\includegraphics[scale=1]{spy-em1}
+	\caption{ Extracting the set of \emph{reliable negatives} $N$ from the unlabelled set $U$. }%
+	\label{}%
+	\end{figure}
+	\renewcommand{\thealgorithm}{1.2}
+	\begin{algorithm}
+	  \caption{\emph{Spy-EM} Step 2: Extracting reliable negatives
+	    \label{alg:spyem2}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{positive set $P$, unlabelled set $U$, sampling rate $s$. }
+	  % \Statex
+	    \Function{ExtractRN}{$P, U$}
+	   % \Statex
+	%      \Let{$z$}{$x \oplus y$} %\Comment{$\oplus$: bitwise exclusive-or}
+	%      \Let{$\delta$}{$0$}      
+		\State $SP \gets$ sample($P, s$)
+		\State $U' \gets U \cup SP$
+		\State $P' \gets P  \setminus SP$
+		\State $C \gets$ Initial-EM($P'$, $U'$)\Comment{Use \emph{EM} to build the classifier}
+		%\Statex
+		\For{\textbf{each} $x_i \in U'$}
+	       \State $\boxed{\Pr[c_1 \mid x_i]} \gets $ posterior($C, x_i$) \Comment{\emph{EM} posterior probabilities}
+	  \EndFor
+	  \Statex 
+	  \State \emph{Choose threshold $\mathbf{t}$ using posteriors assigned to spy positives in EM}
+		\Statex 
+	     \State $N \gets \emptyset$, $M \gets \emptyset$ %\Comment{the set of reliable negatives}
+	     %\State  %\Comment{the remaining mixed set}
+		\For{\textbf{each} $x_i \in U$}
+				\State \textbf{if} $\Pr[c_1 \mid x_i] \leq t$ \textbf{then }$N \gets N \cup \left{{ x_i \right}} $ 
+				\State             \textbf{else} $M \gets M \cup \left{{ x_i \right}} $  
+		     
+	  \EndFor
+	  %    \Statex
+	     \Ensure{the set of reliable negatives $N$ and the remaining mixed set $M$.}
+	  \end{algorithmic}
+	  \Statex
+	\end{algorithm} \\
+	
+	Choosing the threshold $\mathbf{t}$ (line 9) used for decomposing $U$ is non-trivial. To extract all spy positives from $U'$ into $M$, we should set $\mathbf{t}$ to $\min \{ \Pr[c_1 \mid s] \mid s \in SP \} }$. In a noiseless setting, this is a reasonable approach, but most real-world data sets include some outliers which cause the value of $\mathbf{t}$ to be unacceptably low. In our experiments, choosing $\mathbf{t}$ so that $l\%$ of the examples have $\Pr[c_1\mid x] \leq \mathbf{t}$ proved to work well for any $l$ between 5 and 20 per cent: varying $l$ changed the number of iterations required for convergence, but had no effect on the final classifier produced.
+	
+	Given the positive set $P$, the reliable negatives set $N$ and the remaining mixed set $M$, the \emph{EM} algorithm is employed once again to obtain the final Naive Bayes classifier. Posteriors assigned by this classifier are used to determine which of the $x \in M \cup N$ actually belong to $c_1$. These are the \emph{hidden positives} that will be used to achieve {data augmentation}. 
+	
+	As shown in Algorithm 1.3, the posterior probabilities of examples in both $M$ and $N$ are allowed to change between subsequent \emph{EM} iterations (whereas the posteriors of $P$ {remain fixed}). This is the reason why the \emph{noise level} $l$ can be set to any value between $5$ and $20$ per cent: hidden positives wrongly placed into $N$ will have their posteriors corrected by the \emph{EM} algorithm after a sufficient number of iterations. 
+	
+	%If there are too many hidden positives in the set of reliable negatives $N$, the \emph{EM} algorithm will correct their posteriors after a sufficient number of iterations, pulling them closer to $c_1$. \\
+	\renewcommand{\thealgorithm}{1.3}
+	\begin{algorithm}
+	  \caption{\emph{Spy-EM} Step 3: Building the final classifier
+	    \label{alg:spyem3}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{positive set $P$, reliable negatives set $N$, mixed set $M$.}
+	    \Statex
+	    \Function{Final-EM}{$P, N, M$}
+	    \Statex
+	       \State \textbf{for all} $x_i \in P$} \textbf{let} $\Pr[c_1 \mid x_i] \gets 1$ \Comment{posteriors of $P$ \textbf{remain fixed} in \emph{EM}}
+	       \State \textbf{for all} $x_i \in N$} \textbf{let} $\Pr[c_1 \mid x_i] \gets 0$ \Comment{ \textbf{not fixed} in \emph{EM}}
+	
+			\Statex		
+			
+			\State $C \gets $Initial-EM($P$, $N$) \Comment{Build the first classifier without considering $M$}
+	
+				\Statex
+				\For{\textbf{each} example $x_i \in M$} 
+								 \State $\Pr[c_1 \mid x_i] \gets $posterior($C$, $x_i$)  \Comment{estimate posteriors for $M$ using $C$}	 
+				\EndFor
+				\Statex
+				\State $C_f \gets$ EM(\textbf{Pr}$[c_1 \mid \mathbf{x}]$) \Comment{Run \emph{EM} with the new posteriors for $M$ and $N$}		
+				\Statex
+				\Ensure {$C_f$, the final classifier for extracting \emph{hidden positives} from $N \cup M = U$.}       
+	  \end{algorithmic}
+	\end{algorithm}
+	
+	\\
+	
+	The final run of \emph{EM} produces a sequence of classifiers, the last of which is \emph{not necessarily the optimal one}. Further discussion of the stopping criteria used can be found in \cite{Liu02}.
+	 
+	Most of the work in \emph{Spy-EM} consists of training Naive Bayes classifiers required for expectation maximisation. The complexity of training a Naive Bayes classifier is $O(n')$, where $n'$ represents the number of non-zero elements in the \emph{feature matrix} of the training data. Assuming that the number of iterations required for \emph{EM} to converge is bounded, as was the case in our experiments, it follows that the complexity of \emph{Spy-EM} is at most $O(n \times f)$, $n$ being the number of examples and $f$ the number of features. In two of our application areas, the data sets are sparse, with each feature vector containing a limited number of non-zero attributes. Consequently, the complexity of \emph{Spy-EM} is closer to \emph{O($n$)}. \\
+
+The apparent simplicity of the pseudo-code presentation style used in this Dissertation is somewhat misleading. \emph{Appendix B} contains representative samples of the Matlab source code written. Due to the machine learning nature of the project, no user interface was required: all code was written in Matlab and all results were obtained by running the algorithms in the Matlab environment. 
+
+The following code snippet is the part of the \emph{Spy-EM} code that builds the final classifier (after the set of reliable negatives has been extracted):
+
+\lstset{linewidth=16cm}
+
+\begin{lstlisting}
+% labelsEM: the list of labels assigned by the EM algorithm:
+labelsEM = zeros(1, length(positiveSet)+length(negativeSet)+length(unlabeledSet));
+labelsEM(positiveSet) = 1; % fix the priors of positives to 1.
+
+if(~isempty(negativeSet) )% if the negative set is NOT empty:
+    labelsEM(negativeSet) = binarizePosteriors( posteriors( (length(positiveSet)+1) : (length(positiveSet)+length(negativeSet)) ,2) );
+    disp('Negative set not empty, all is well.')
+end
+
+% the negative examples, as well as those from U, can be relabelled:
+posteriorsU = PN_NBClassifier.posterior(FeatureMatrix(unlabeledSet, :));
+   
+labelsEM(unlabeledSet) = binarizePosteriors ( posteriorsU(:,2) );
+
+oldLabels = zeros(size(labelsEM));   numIterations = 0;
+
+% Finally, run EM: retrain the classifier using new labels, binarize the new posteriors, reset positives to 1; repeat until convergence:
+
+while ( not(isequal(oldLabels, labelsEM)))
+
+    oldLabels = labelsEM; numIterations = numIterations + 1;
+    
+    if(numIterations > 30) % enforce termination after many iterations
+        disp('Spy-EM failed to converge!')
+        break;
+    end
+    
+    EM_NBClassifier = NaiveBayes.fit(FeatureMatrix, labelsEM, 'Distribution', 'mn'); %multinomial distribution (bag of words).
+    
+    posteriorProbabilities = EM_NBClassifier.posterior(FeatureMatrix);
+
+    labelsEM = binarizePosteriors(posteriorProbabilities(:,2));
+    labelsEM(positiveSet) = 1;
+        
+end
+
+finalClassPosteriors = posteriorProbabilities(:,2);
+
+\end{lstlisting}
+	
+	\clearpage
+	
+	
+	\section{Rocchio-SVM Algorithm} % <= 500, just 1-2 sentence summary of Rocchio and k-means. Formulas for Rocchio in pseudocode. Focus on pseudocode to get SpyEM and RocSVM
+	
+	\emph{Spy-EM} was originally designed for text classification, where feature vectors consist of binary indicators stating whether certain words appear in a document or not. In this setting, the priors required for Naive Bayes classification can be estimated from the training data. By design, \emph{Spy-EM} is unable to perform classification if feature vectors consist of continuous attributes, as is the case with the theorem prover data set. An alternative scheme applicable to such data sets can be implemented using the \emph{Roc-SVM} algorithm.
+	
+	\emph{Roc-SVM} is a partially supervised learning algorithm first proposed by Li and Liu in \cite{Li03}. As in \emph{Spy-EM}, a set of \emph{reliable negatives} $N$ is extracted from $U$ and used to build the final classifier. Instead of expectation-maximisation, \emph{Roc-SVM} uses \emph{support vector machines} to build that classifier.
+	 
+	To extract reliable negatives, \emph{Roc-SVM} employs the \emph{Rocchio classifier}. The method first computes the \emph{centroids} (also known as the \emph{prototype vectors}) of $P$ and $U$. Then, for all the unlabelled examples $x \in U$, it computes the \emph{cosine similarity} between their feature vectors $\vec{d_x}$ and the two centroid vectors. All instances closer (more similar) to the negative centroid become members of the set of reliable negatives $N$. 
+	
+	\renewcommand{\thealgorithm}{2.1}
+	\begin{algorithm}
+	  \caption{\emph{Roc-SVM} Step 1: Rocchio classification
+	    \label{alg:rocsvm1}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{$P$ and $U$, the sets of positive and unlabelled examples.}
+	    \Statex
+	    \Function{Rocchio} {$P, U$}
+	    \Statex
+	      \State $ \displaystyle \vec{c^{+}} := \alpha \frac{1}{|P|} \sum_{\vec{d} \in P}{ \frac{\vec{d}}{||\vec{d}||}} - \beta \frac{1}{|U|} \sum_{\vec{d} \in U}{ \frac{\vec{d}}{||\vec{d}||}}$
+		   	\Statex
+	     \State $\displaystyle \vec{c^{-}} := \alpha \frac{1}{|U|} \sum_{\vec{d} \in U}{ \frac{\vec{d}}{||\vec{d}||}} - \beta \frac{1}{|P|} \sum_{\vec{d} \in P}{ \frac{\vec{d}}{||\vec{d}||} }$ 
+				\Statex
+					\State 	$N \gets \emptyset$
+	%      	\Statex
+	      	\For{the feature vector $\vec{d_x}$ of every unlabelled example $x \in U$}
+							%\Statex      	    
+	      	\State \textbf{if}  sim( $\vec{c^{+}}$, $\vec{d_x}$) $ \leq $ sim($\vec{c^{+}}$, $\vec{d_x}$) \textbf{then} \Comment sim$(\vec{c}$, $\vec{d}$) = $ \frac{\vec{c} \cdot \vec{d}}{||\vec{c}|| ||\vec{d}||} $
+	      	\State $N \gets N \cup \{ x \} $
+	      	\EndFor
+	
+	      
+				\Statex
+	   		\Ensure{the set of reliable negatives $N$.}
+	      
+	  \end{algorithmic}
+	\end{algorithm}
+	
+	
+	Rocchio classification could be used as a stand-alone method for extracting $N$. This method performs classification using a separating hyperplane equidistant from the two centroids. If the actual decision boundary is not represented by \emph{that specific hyperplane}, Rocchio misclassifies many of the examples. 
+	
+	Lower purity of the reliable negatives set does not degrade \emph{Spy-EM} performance because additional iterations of \emph{EM} relabel the positives present in $N$. \emph{Roc-SVM} builds the final classifier using support vector machines, which can be much more susceptible to noise than \emph{EM} is. Hence, purging as many positives from $N$ is of paramount importance for subsequent \emph{SVM} performance. 
+
+	$P$ contains examples from the positive class $c_1$. Conversely, $U$ may include negative examples of many different classes: $c_2 \ldots c_N$. Thus, the centroid vectors used in Rocchio are not representative of the negative classes; they tend to pull some of the hidden positives into $N$ (Figure 3.2). \\
+
+ \emph{K-means clustering} can be used to separate the negative set obtained using Algorithm 2.1 into $K$ clusters, each (hopefully) representing \emph{distinct} negative classes. Rocchio classification is then re-employed to identify instances closer to at least one of the new negative centroids than to the positive set $P$. These examples become the final negative set $N$. This method, shown in Algorithm 2.2, outperforms the stand-alone Rocchio classifier \cite{Li03}. 
+
+
+	\begin{figure}
+	\includegraphics[scale=1]{rocsvm}
+	
+	\caption{\small{Rocchio classifiers are not able to remove all positives from $N$ \cite{Li03}.}}%
+	\label{}%
+	\end{figure}
+	
+	\clearpage
+	
+	\renewcommand{\thealgorithm}{2.2}
+	
+	\begin{algorithm}
+	  \caption{\emph{Roc-SVM} Step 2: K-means clustering for negatives extraction
+	    \label{alg:rocsvm2}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{$P$ and $U$, the sets of positive and unlabelled examples.}
+	    \Statex
+	    \Function{Rocchio with K-means}{$P, U$}
+	   % \Statex
+	      \State $RN \gets$ Rocchio($P$, $U$)
+	      
+	      \State Randomly choose $k$ initial cluster centres from $RN$ \Comment{K = 10 was used in the experiments}
+	      \State Perform \emph{K-means clustering} to separate $RN$ into $N_1 \ldots N_k$
+	      
+	       	\For{ $i = 1$ to $k$ }
+							
+			%				\Statex      	 
+							
+							\State $\displaystyle \vec{p_i} := \alpha \frac{1}{|P|} \sum_{\vec{d} \in P}{ \frac{\vec{d}}{||\vec{d}||}} - \beta \frac{1}{|N_i|} \sum_{\vec{d} \in N_i}{ \frac{\vec{d}}{||\vec{d}||}} $ 
+							
+			%				\Statex 
+	        		 
+	        		\State $\displaystyle \vec{n_i} := \alpha \frac{1}{|N_i|} \sum_{\vec{d} \in N_i}{ \frac{\vec{d}}{||\vec{d}||}} - \beta \frac{1}{|P|} \sum_{\vec{d} \in P}{ \frac{\vec{d}}{||\vec{d}||}} $
+	      	
+	      	\EndFor
+	      
+	      \Statex
+	      \State $N \gets \emptyset$
+	 %   \Statex
+					\For{the feature vector $\vec{d_x}$ of every example $x \in RN$}
+							\State \textbf{if} $\exists \vec{n_i} \forall \vec{p_j} [$sim($\vec{d_x}$, $\vec{n_i}$) $\geq$ sim($\vec{d_x}$, $\vec{p_j}$)] \textbf{then} 
+							\State $N \gets N \cup \{ x \}$\Comment{$x$ is closer to \emph{some} negative than to \emph{all} positives}
+	      	\EndFor
+	
+	      
+				\Statex
+	   		\Ensure{the set of reliable negatives $N$.}
+	      
+	  \end{algorithmic}
+	\end{algorithm}
+	
+	\emph{K-means Rocchio} extracts a negative set of high purity by enforcing \emph{very rigid criteria} for including examples into $N$. This strictness can cause the resulting negative set to become too small to warrant a good classifier \cite{Li03}. If so, a method similar to expectation-maximisation is employed to \emph{iteratively grow} $N$: 
+	
+	The first SVM is trained using only $P$ and $N$ and used to extract $W_1 \subseteq M$, the set of examples in $M$ likely to be negative. The next SVM is trained using $P$ and the \emph{new negative set} $N \cup W_1$. This step is repeated until the (final) SVM built can extract no new negatives from the remaining mixed set $M_i$. The final mixed set $M_i \subseteq M$ represents the set of hidden positives identified by \emph{Roc-SVM}. 
+	
+	This iterative method has its drawbacks. As SVMs can be very sensitive to noise, an inclusion of a small number of positives from $M$ into $N$ in any iteration can cause an avalanche effect: the algorithm may pull many more similar positives into the negative set by the time it terminates. Consequently, the performance of the classifiers produced may fall into a downward spiral. 
+	
+	We can determine whether this method went awry by observing how the final SVM performs on the positive set. If it classifies more than $5\%$ of examples in $P$ as negatives, that means that too many positives were pulled into the negative set. If so, we revert to the first SVM, trained using only $P$ and $N$ (lines 12-14). 
+	
+	\renewcommand{\thealgorithm}{2.3}
+	
+	\begin{algorithm}
+	  \caption{\emph{Roc-SVM} Step 3: Building the final classifier
+	    \label{alg:rocsvm3}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{positive set $P$, mixed set $M$, reliable negatives set $N$.}
+	    \Statex
+	    \Function{Roc-SVM}{$P, M, N$}
+	        
+	      \Statex
+	        
+	      \State $i := 1$, $N_i \gets N$, $M_i \gets M$ 
+	            
+	      \State $C_i \gets$ TrainSVM($P$, $N_i$) \Comment{\small{use only $P$ and $N$ to build the first SVM}}
+	      
+	      \State $W_i \gets \{ x \in M_i \mid$ SVMClassify($C_i$, $x$)$ = -1 \}$ \Comment{\small{\emph{negatives} $C_1$ identifies in $M$}}
+	   		
+	   		\Statex
+	   		
+	   		\While{$W_i \neq \emptyset$} \Comment{\small{until no more negatives can be extracted from $M$}}
+	   		
+	   		\Statex
+	   		
+	   		\State $N_{i+1} \gets N_{i} \cup W_i$ \Comment{\small{move new negatives to the negative set}}
+	   		\State $M_{i+1} \gets M_i \setminus W_i$ \Comment{\small{...and remove them from the mixed set}}
+	   		
+	   		\Statex
+	 			
+	 			\State $i \gets i + 1$  		   		
+	   		\State $C_{i} \gets$ TrainSVM($P$, $N_{i}$) \Comment{\small{build the next SVM using the expanded $N$}}
+	 
+	   	  \Statex
+	   		\State $W_i \gets \{ x \in M_i \mid$ SVMClassify($C_i$, $x$)$ = -1 \} $ \Comment{\small{generate $W_i \subseteq M_i$ using $C_i$}}
+	   	  \Statex
+	   		\EndWhile
+	   		
+	   		\Statex
+	   		
+	   		\State $\displaystyle p \gets  \frac{ | \{ x \in P \mid \texttt{SVMClassify}(C_i, x) = 1 \} | }{|P|}$ \Comment{\small{Final SVM's \emph{recall} on set $P$}} 		
+	   		\Statex
+	   		\State \textbf{if} $p \geq 0.95$ $C_{\texttt{f}} := C_i$ \Comment{\small{if recall is high, use the final SVM}}
+	   		\State \textbf{else} $C_{\texttt{f}} := C_1$ \Comment{\small{otherwise, revert to the first SVM}}
+	   		\Statex
+	   		\Ensure{the final classifier $C_{\texttt{f}}$.}
+	      
+	  \end{algorithmic}
+	\end{algorithm}
+	
+	 \emph{Roc-SVM} can perform entity set expansion in data sets with real-valued attributes and tends to outperform \emph{Spy-EM} on binary data sets \cite{Li03}. These improvements come at the expense of efficiency. \emph{Roc-SVM} trains a sequence of SVMs in order to build the final classifier. SVM training has a quadratic and a cubic component. Estimating the exact complexity is hard, but we can expect training times of the order of (at least) $O(n^2)$, $n$ being the number of training examples. Assuming a \emph{constant} number of iterations in Algorithm 2.3, \emph{Roc-SVM's} best-case complexity is $O(n^2)$, still vastly inferior to \emph{Spy-EM's} $O(n)$.
+
+\emph{Roc-SVM} was not only the most computationally demanding algorithm considered, but also the one most difficult to implement. Issues related to the termination of SVM training, the handling of dangerously small clusters and the uncertainty in choosing the optimal value for the SVM soft margin parameter marked the implementation of this algorithm. The following code snippet illustrates some of the subtleties I had to deal with to make this scheme work. \emph{Appendix B} contains the full \emph{Roc-SVM} implementation.
+
+\begin{lstlisting} 
+% ...after Rocchio identifies the first reliable negatives set and after k-means clustering has been applied to partition it:
+
+for i = 1:numClusters 
+   [positiveCentroids(i, :), negativeCentroids(i, :)] = calculateCentroids(FeatureMatrix, PositiveSet, NegativeCluster{i}, alpha, beta);
+end
+
+% Compute the cosine similarities between clusters and entries:
+for i = 1:numClusters
+
+    % Calculate the dot product of the i-th centroid with all entries
+    similarityMatrixPositive(i, :) = (sum(FeatureMatrix .* repmat(positiveCentroids(i,:), size(FeatureMatrix, 1), 1), 2));
+    similarityMatrixNegative(i, :) = (sum(FeatureMatrix .* repmat(negativeCentroids(i,:) , size(FeatureMatrix, 1), 1), 2));
+
+    % Divide the dot product by the norms of the respective examples:
+    similarityMatrixPositive(i, :) = ( similarityMatrixPositive(i, :) ./  featureNorms ) / norm(positiveCentroids(i,:);
+    similarityMatrixNegative(i, :) = ( similarityMatrixNegative(i, :) ./ featureNorms ) / norm(negativeCentroids(i,:);
+end
+
+% Extract the final set of negatives using these similarities:
+maxSimilarityPositive(1:numEntries) = max( similarityMatrixPositive(:, 1:numEntries)); 
+maxSimilarityNegative(1:numEntries) = max( similarityMatrixNegative(:, 1:numEntries));
+
+% Examples with a positive value of this difference belong to the RN set:
+similarityDifference = maxSimilarityNegative - maxSimilarityPositive;
+similarityDifference(PositiveSet) = -1; %... and positives do not!
+
+reliableNegatives = sort(LabelToArray(similarityDifference));
+\end{lstlisting}
+\clearpage
+	%Computational complexity
+	
+	\section{Bayesian Sets} % up to 500-700, quick intro, all the math for sparse, discuss Negative Examples can affect classification, cutoff, attempt at Iterative...
+	
+	
+	Bayesian sets \cite{Ghahramani06} are an information retrieval inspired algorithm for entity set expansion. Unlike \emph{Spy-EM} and \emph{Roc-SVM}, which build classifiers to decide membership of the positive set $P$, Bayesian sets \emph{rank} all examples of the data set $D$ by their \emph{likelihood} of belonging to $P$. Formally, given the \emph{query set} $Q \subset D$, the goal of the algorithm is to order all items in $D$ by their \emph{similarity} with elements of $Q$, so that the elements of $Q$ hidden in $D$ feature highly in the ranking produced. % This task is a variation of clustering, different in that one of the clusters (concept classes) is \emph{partially} revealed. 
+	
+	Bayesian Sets take a probabilistic model approach, assuming all examples are independently and identically distributed from some statistical model $P(\mathbf{x} \mid \theta)$, where $\theta$ represents the model parameters. In this setting, examples belonging to the same concept class (in this case $Q$) must have been generated using the same set of parameters $\theta_{Q}$. 
+	
+	The marginal probability $P(\mathbf{x} \mid Q, \theta_Q)$ can be used to estimate $\Pr[\mathbf{x} \in Q]$. $\theta_Q$ is unknown, so we average across the possible values of $\theta$ according to $P(\theta)$, the \emph{prior} density on $\theta$, to obtain $P(\mathbf{x} \mid Q)$. To account for the biasing effect of longer examples (longer documents, proteins, etc.) being less frequent and thus having a lower marginal probability, \emph{normalise} the scoring metric to obtain:
+	
+	\begin{equation} \displaystyle \texttt{score}(\mathbf{x}) =  \frac{ P\left( \mathbf{x} \mid Q \right) }{ P(\mathbf{x}) } = \frac{P(\mathbf{x}, Q)}{ P(\mathbf{x}) P(Q) } \approx \frac{Pr[\mathbf{x} \in Q]}{\Pr[\mathbf{x} \notin Q]}. 
+	\end{equation} \\
+	
+	Using basic rules of probability, $P(\mathbf{x})$ and $P(\mathbf{x} \mid Q)$ can be expressed as:
+	
+	\begin{equation} \displaystyle P(\mathbf{x}) = \int{P(\mathbf{x} \mid \theta) P(\theta) d\theta}, \end{equation}
+	
+	\begin{equation*} \displaystyle P(Q) = \int{ \prod_{\mathbf{x_i} \in Q} P(\mathbf{x_i} \mid \theta) P(\theta) d\theta }, \end{equation*}
+	
+	\begin{equation*} \displaystyle P(\theta \mid Q) = \frac{P(Q\mid\theta)P(\theta)}{P(Q)}, \end{equation*}
+	   
+	\begin{equation} \displaystyle P(\mathbf{x} \mid Q) = \int{P(\mathbf{x} \mid \theta) P( \theta \mid Q ) d\theta}.   \end{equation}
+	
+	The scoring metric reflects the ratio between $\Pr[\mathbf{x} \in Q]$ and $\Pr[ \mathbf{x}\notin Q ]$ (equations 3.2-3.3, Figure 3.3). As such, this score can not be normalised to obtain $\Pr[\mathbf{x} \in Q]$; this would require integration over all $\theta$, which would be intractable. 
+	
+	Nevertheless, $\texttt{score}$ provides an adequate measure of likelihood, since $\forall \mathbf{x_1}, \mathbf{x_2} \in D. ~ \Pr[\mathbf{x_1} \in Q] \leq Pr[\mathbf{x_2} \in Q] \Rightarrow \texttt{score}(\mathbf{x_1}) \leq \texttt{score}(\mathbf{x_2})$. Therefore, it can be used to impose the desired ordering between the elements of $D$. Once the scoring function has been implemented, the Bayesian Sets algorithm is trivial: 
+	
+	\renewcommand{\thealgorithm}{3.1}
+	
+	\begin{algorithm}
+	  \caption{\emph{Bayesian Sets algorithm} 
+	    \label{alg:bayesiansets}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{set of items $D$, query set $Q = \{ \mathbf{x_i} \} \subset D$. }
+	    \Statex
+	    \Function{Bayesian Sets}{$Q, D$}
+	        \Statex
+	        \For{\textbf{each} $\mathbf{x} \in D$}
+	        \State \emph{\textbf{compute}} $ \displaystyle \texttt{score}(\mathbf{x}) =  \frac{ P(\mathbf{x} \mid Q) }{ P(\mathbf{x}) } $ 
+					\EndFor
+					\Statex
+	   	\Ensure{the list of all elements in $D$, sorted by decreasing scores. }
+	      
+	  \end{algorithmic}
+	\end{algorithm}
+	
+	\begin{figure}%
+	\includegraphics[scale=0.25]{bayes}
+	
+	\caption{the $\texttt{score}$ function compares the probabilities of the data being generated by the two graphical models given above \cite{Ghahramani06}. }%
+	%\label{}%
+	\end{figure} 
+	
+	
+	
+	%Clearly, the core complexity of this algorithm lies in computing the $score$ function. For simple models in which $p(\mathbf{x}|\theta)$ has an independent Bernoulli distribution for all of the candidate's features ($x_i \in \mathbf{x}$) the computation of all the scores can be reduced to a single sparse matrix multiplication. Even using this simple model Bayesian sets exibit avid performance. 
+	
+	%The mathematics involved in the computation of the scores is quite involved and will not be further examined here. However, it is important to note that the computational complexity of Bayesian sets is linear with respect to the size of $D$, even when $p( \mathbf{x} |\theta)$ uses a distribution from the exponential family. The Bayesian sets algorithm is very flexible; it can be used for a wide variety of data (discrete, continuous, text) and with different probabilistic models.\\
+	
+	Intractability and difficulties in choosing the probability models and priors are recurring themes in most approaches based on Bayesian inference, including this one. If we limit our discussion to data sets featuring binary attributes, that is, if for all $x_i \in D$ it holds that $x_{i,1} \ldots x_{i, n} \in \{0,1\}$, we can choose the probability models and the priors in a way that will make the integrals in equations 3.2 and 3.3 analytical. \clearpage
+	
+	Model the marginal probability $P(\mathbf{x} \mid \theta)$ using the \emph{Bernoulli distribution}:
+	
+	\begin{equation} \displaystyle P( \mathbf{x} \mid \theta) = \prod_{j=1}^{n}{ \theta_j^{x_{i,j}} (1 - \theta_j)^{1-x_{i,j}} } \end{equation}
+	
+	The distribution $P(\theta)$ is said to be a \emph{conjugate prior} for the likelihood $P(\mathbf{x}\mid\theta)$ if the posterior probability $P(\theta \mid \mathbf{x})$ belongs to the \emph{same family} of probability distributions as the prior. The use of conjugate priors can vastly simplify the task of inference. To this end, model the prior $P(\theta)$ using the conjugate prior of the Bernoulli distribution, given by the \emph{Beta distribution}: %which represents the conjugate prior of the Bernoulli distribution used for $P( \mathbf{x} \mid \theta)$: %Therefore, model the prior distribution on the parameteres $\theta$, using the Beta distribution:
+	
+	\begin{equation} \displaystyle P( \theta \mid \alpha, \beta) = \prod_{j=1}^{n}{ \frac{\Gamma(\alpha_j + \beta_j)}{\Gamma(\alpha_j)\Gamma(\beta_j)} \theta_j^{\alpha_j-1} (1-\theta_j)^{\beta_j - 1} },   \end{equation} 
+	
+	where $\alpha$ and $\beta$ represent the \emph{hyperparameters} of this distribution. In the experiments, these were set to $ \alpha = c \cdot \mathbf{m} $, $ \beta = c \cdot (1 -  \mathbf{m})$, where $c=2$ represents the \emph{Dirichlet coefficient} and $\mathbf{m}$ represents the \emph{mean vector} of all $\mathbf{x} \in D$.
+	 
+	From these assumptions, it follows that $P(\theta \mid \mathbf{x})$ is a Beta distribution as well. Its hyperparameters, $\alpha'$ and $\beta'$, can be expressed as closed-form expressions of $\alpha$, $\beta$ and $\{ x_{i,j} \}$. The integrals in equations 3.2 and 3.3 are now analytical, making \emph{exact inference} possible. As shown in \cite{Ghahramani06}, the use of Bernoulli and Beta distributions for $P( \mathbf{x} \mid \theta)$ and $P(\theta)$ reduces the computation of the list of \emph{log scores} $s_1 \ldots s_N$ to a single (sparse) matrix multiplication: %reduce the computation of $score(\mathbf{x})$ for \emph{all} $\mathbf{x} \in D$ to a single (sparse) matrix multiplication:% t he vector of log scores, $\mathbf{s}$, for all $\mathbf{x} \in D$ to a \emph{single multiplication of a sparse matrix with a vector}. 
+	
+	\begin{equation} \displaystyle \mathbf{s} = c + \mathbf{X} \mathbf{q}, ~~~~~~ \textit{            } s_i = \log(\texttt{score}(\mathbf{x_i})), \end{equation}
+	
+	where $\mathbf{X}$ is the $N$ by $n$ \emph{feature matrix} of $D$, and $c$ and $\mathbf{q}$ are auxiliary values computed in linear time using the hyperparameters and the feature matrix $\mathbf{X}$:
+	
+	\begin{equation} \displaystyle c = \sum_{i=1}^{n}{\log(\frac{\alpha_i + \beta_i}{\alpha_i + \beta_i + N}  \frac{\beta_{i}'}{\beta_{i}})}, ~~~~  ~~~~ q_i = \log( \frac{\alpha_i' \beta_i}{\alpha_i \beta_i'} ). \end{equation}
+	
+	For sparse feature matrices $\mathbf{X}$, the multiplication in equation 3.6 can be implemented \emph{very efficiently}, lowering the computational complexity of the algorithm to the order of \emph{O($N$)}, where $N$ is the number of examples in $D$. Even though Bayesian Sets have the same asymptotic complexity as \emph{Spy-EM}, there is practically \emph{no overhead} associated with their execution, making them (by far) the fastest entity expansion algorithm implemented in this project. 
+	
+  My Matlab implementation of Bayesian Sets manages to abstract away from the complexity of the underlying mathematics. Unlike the previous two algorithms, understanding the mathematical assumptions behind Bayesian Sets constituted the bulk of the effort in their implementation. After the $\texttt{score}$ function calculation is well understood, the Matlab code can be made very elegant:
+  
+\lstset{linewidth=16cm}
+
+\begin{lstlisting}
+function scoreVector = BayesianSet(FeatureMatrix, entitySetIndices, concentrationParameter)
+
+% FeatureMatrix : binary sparse matrix representing feature vectors.
+% entitySetIndices : indices of the set to be expanded.
+% concentrationParameter: Dirichlet concentration parameter.
+% scoreVector: the row vector of log likelihoods for all examples.
+
+if nargin < 3
+    concentrationParameter = 2;
+end
+
+clusterSize = length(entitySetIndices);
+numEntries = size(FeatureMatrix,2);
+
+% clusterFeatures: the total number of non-zero features in the data set. 
+clusterFeatures = sum(FeatureMatrix(:,entitySetIndices),2); 
+
+% meanVector: the mean vector of features accross all examples (the probability that the given feature appears in an entry).
+meanVector = full(sum(FeatureMatrix,2)) / numEntries;
+
+% alpha,beta : Beta hyperparameters of the prior distribution (column vectors which have values that represent how often specific features appear in the examples).
+
+alpha = concentrationParameter * meanVector;
+beta  = concentrationParameter * (1 - meanVector);
+
+q = log(1 + clusterFeatures ./ alpha) - log(1 + (clusterSize - clusterFeatures) ./ beta);
+
+c = sum(  log( (alpha + beta) ./ (alpha + beta + clusterSize) )  +  log( (beta + clusterSize - clusterFeatures) ./ beta )  );
+
+% the computation of the final score vector reduces to a single multiplication of a vector with a sparse matrix:
+
+scoreVector = c + q' * FeatureMatrix;
+
+\end{lstlisting} 
+
+  	
+	The following table provides the top twenty results I obtained by applying Bayesian Sets to the MovieLens data set (1643 films described by binary attributes). The query set $Q = \{ 172, 181, 210 \}$ consists of two Star Wars films and an Indiana Jones film (all directed by George Lucas). Bayesian Sets return a range of sci-fi films akin to Star Wars, but the Indiana Jones film is not even in the top twenty results, although its influence (presumably) manifests itself through the presence of films such as the African Queen and Operation Dumbo Drop, which have little to do with the two Star Wars films present in the query. \\
+	
+	\begin{center}
+	
+	\begin{tabular}{ | c | c | c | p{8cm}}
+	
+	\hline
+	Film ID & Score & Film Name \\
+	  \hline                        
+	\textbf{181} &	\textbf{9.58508}	& \textbf{Return of the Jedi (1983)} \\
+	50	& 9.58508	& Star Wars (1977) \\
+	\textbf{172}	& \textbf{9.34084}	& \textbf{Empire Strikes Back, The (1980)}\\
+	271	& 7.99097	& Starship Troopers (1997)\\
+	498	& 7.14069	& \emph{African Queen, The (1951)}\\
+	897	& 5.20461	& Time Tracers (1995)\\
+	450	& 5.20461	& Star Trek V: The Final Frontier (1989)\\
+	449	& 5.20461	& Star Trek: The Motion Picture (1979)\\
+	380	& 5.20461	& Star Trek: Generations (1994)\\
+	373	& 5.20461	& Judge Dredd (1995)\\
+	230	& 5.20461	& Star Trek IV: The Voyage Home (1986)\\
+	229	& 5.20461	& Star Trek III: The Search for Spock (1984)\\
+	228	& 5.20461	& Star Trek: The Wrath of Khan (1982)\\
+	227	& 5.20461	& Star Trek VI: The Undiscovered Country (1991)\\
+	222	& 5.20461	& Star Trek: First Contact (1996)\\
+	82	& 5.20461	& Jurassic Park (1993)\\
+	62	& 5.20461	& Stargate (1994)\\
+	121	& 5.01092	& Independence Day (ID4)\\
+	110	& 4.40121	& \emph{Operation Dumbo Drop (1995)}\\
+	1239 &	4.35433	& Cutthroat Island (1995)\\
+	
+	\hline  
+	\end{tabular}
+	\end{center}
+	
+	\\ 
+	
+	Users searching for films akin to Star Wars will be satisfied with these results. There exists \emph{no correct answer} to a query: different users might prefer different rankings, due to the potential semantic ambiguity of the query sets or the specific user's perception of similarity. Therefore, measuring the quality of the ranking produced is a highly non-trivial task, as discussed in subsequent sections. 
+	
+	
+	\subsection{Iterative Bayesian Sets}
+	
+	As presented in the Evaluation, data augmentation via Bayesian Sets proved to be inferior to \emph{Spy-EM} and \emph{Roc-SVM} in one of the application areas. In accordance with the evolutionary prototyping paradigm, I formulated and implemented a final extension to Bayesian Sets during the last stages of the project. 
+	
+	\emph{Blind (pseudo) relevance feedback} is a technique for achieving automatic query expansion in information retrieval systems. As used in this problem, the technique 
+	applies Bayesian Sets to obtain the ranking of $D$ for the given query set. Then, the top $K$ results in the ranking are added to the query set $Q$. This process is repeated until a new iteration identifies no new elements to be added to the query set. In the experiments, $K = 30$ and $K \in (0.05N, 0.2N)$ were attempted. \\
+	
+	\renewcommand{\thealgorithm}{3.2}
+	
+	\begin{algorithm}
+	  \caption{\emph{Iterative Bayesian Sets} 
+	    \label{alg:bayesiansets2}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{set of items $D$, query set $Q = \{ \mathbf{x_i} \} \subset D$. }
+	    \Statex
+	    \Function{Iterative Bayesian Sets}{$Q, D$}
+	       
+	        \Statex
+	        
+	
+	        \State $ i \gets 1,~ Q^{0} \gets \emptyset,~ Q^{1} \gets Q$ \Comment{\small{auxiliary variables, the initial query}}       
+	
+	        \Statex
+	        
+	        \While{$Q^{i} \neq Q^{i-1}$} \Comment{\small{until the query converges}} 
+	        	
+	        	\Statex
+	        	\State $R_{i}[1 \ldots N] \gets $ Bayesian Sets($Q^i$, $D$) \Comment{\small{ranking of $D$ using the $i$-th query}}
+	        	
+	        	\Statex
+	        	\State $Q^{i+1} \gets Q^i \cup \{ R[1], R[2] \ldots R[K] \} $\Comment{\small{add the top K elements to the query}}
+	        	
+	        	\Statex
+	        	\State $i \gets i+1$                                
+	        	\Statex
+	        \EndWhile
+	
+					\Statex
+	   	\Ensure{$R_f[1 \ldots N]$, the ranking of $D$ produced using the final query.}
+	      
+	  \end{algorithmic}
+	\end{algorithm} \\
+	
+	In some application areas, as shown in the Evaluation, pseudo relevance feedback managed to improve data augmentation achieved using Bayesian Sets by a substantial margin.
+	
+	\clearpage
+	
+	%\section{Application Areas Considered} % 837 words
+	
+	% The extent to which the proposed algorithms can be used to achieve data augmentation was investigated in three different application areas.
+	
+	
+	\section{Data Augmentation} 
+	
+	Support vector machines were used as the \emph{benchmark classifier} for all three tasks. The SVM is first trained using $T_r$, the original training data. Then, the algorithm creates the augmented training set $T_r^{+}$ by labelling examples from $U$, the unlabelled set. The new data set is then used to train another SVM. The success of data augmentation is reflected through the \emph{difference in the classification error} between these two classifiers. 
+	
+	As discussed in the Preparation, SVMs support two-group classification of examples with both discrete and continuous features. As such, they can be applied to the first two tasks directly. Task III boasts five different classes, but SVMs can be used as building blocks of a multi-class classification scheme as well.  
+	
+	\begin{figure}
+	\includegraphics[trim = 0 200 500 0, scale=0.75]{augmentation}
+	
+	\caption{Flow diagram of the data augmentation process.}%
+	\label{}%
+	\end{figure}
+	
+	The operation of the data augmentation scheme is the same across all three tasks (Algorithm 4.1, Figure 3.4). For each of the $K$ classes in the training set, the algorithm identifies which examples in $U$ are likely to belong to that class. 
+
+
+	\renewcommand{\thealgorithm}{4.1}
+	\begin{algorithm}
+	  \caption{\emph{Data augmentation} 
+	    \label{alg:dataaug1}}
+	  \begin{algorithmic}[1]
+	    %\Statex
+	    \Require{Training set $T_r = T_{r_1} \cup \ldots \cup T_{r_K}$, unlabelled set $U$.}
+	    \Statex
+	    \Function{AugmentData}{$T_{r_1} \ldots T_{r_K}, U$}
+	       
+	        \Statex
+	 
+	 				\For{\textbf{each} class $i \in (1, K)$ } \Comment{\small{K = 2 for Tasks I, II; K = 5 for Task III}} 
+							
+							\State $ T_{r_i}^{+}} \gets $ Entity Set Expansion ($T_{r_i}$, $U$) \Comment{\small{$T_{r_i}$ is used as the positive set}} 
+							 				
+	 				\EndFor
+	 				
+	 				\Statex
+	 				
+	 				\State $S \gets \emptyset$ 
+	 				\For{\textbf{each} class $i \in (1, K)$ } \Comment{\small{find all duplicates}  } 
+							
+							\For{\textbf{all} $j \in [1,K]$}
+							 \State \textbf{if} $i \neq j$ \textbf{then} $S \gets S \cup \{ T_{r_i} \cap T_{r_j} \}$ %  T_{r_i}^{+}} \gets T_{r_i}^{+}} \setminus T_{r_j}^{+}}  $
+							\EndFor
+	 						\State $T_{r_i}^{+} \gets T_{r_i}^{+} \setminus S$				\Comment{\small{remove duplicates}  } 
+	 				\EndFor
+	 				 			
+	 				\Statex
+	   	\Ensure{$T_{r_1}^{+} \ldots T_{r_K}^{+}}$, the augmented training sets for each class.}
+	      
+	  \end{algorithmic}
+	\end{algorithm} 
+	
+
+The \emph{hidden members} of each of the classes are identified using the three entity set expansion algorithms implemented. The set of training examples belonging to the $i$th class $T_{r_i}$ acts as the positive set to be expanded using the unlabelled set $U$. The newly identified members of the $i$th class are then added to $T_{r_i}$ in order to obtain the augmented set $T_{r_i}^{+}$. 
+	
+%	When deciding membership of class $i$, $T_{r_i}$ acts as the positive set, whereas the remainder of the training set, $N_i = T_r \setminus T_{r_i}$, could be used as \emph{the negative set}. One major concern throughout the work on this project was that the use of PU learning algorithms failed to capitalise on these negative examples available. However, in face of \emph{selection bias}, when the training set $T_r$ and the testing set $T_s$ have a different distribution of negative examples, the use of negatives for building the classifier actually \emph{harms the subsequent classification error}, as shown in \cite{Li10}. The selection bias is present in Task II, and (to an extent) in Task III. In these settings, PU learning outperforms traditional supervised learning \cite{Li10}. Therefore, the use of PU learning algorithms for extracting  $T_{r_i}^{+}$ warranted the more general and robust approach to achieving data augmentation. %The negative sets $N_i$ were not used at this stage. 
+	
+		
+	
+	The success of data augmentation depends on achieving a good trade-off between {creating a (substantially) larger training data set} and {introducing too much noise} (wrongly labelled examples) into the training set. In our experiments, erring on the conservative side (adding {fewer elements} in order to achieve {higher purity} of the augmented data set) proved to be the superior approach. 
+	
+	PU learning makes no use of the negative classes. Once the augmented data set $T_{r}^{+}$ has been created, I tried to extract some marginal utility from the fact that instances of all classes are available: to maximise the purity of the augmented set, all examples identified as members of multiple classes are removed from $T_r^{+}$ (lines 5-11). As shown in the Evaluation, removing these \emph{unreliable examples} from the augmented data set immensely improved the subsequent classification error.  
+	
+	
+	Of the three methods used to achieve entity set expansion (line 3), there is not much to say about the use of \emph{Spy-EM} and \emph{Roc-SVM} algorithms: they produce binary classifiers that decide membership of each of the $K$ classes present in the training set $T_r$. These classifiers identify a subset of $U$ to be used for augmenting each of the classes in the training set.
+	
+%	\subsection{Using Bayesian Sets for data augmentation}
+	
+	Unlike \emph{Spy-EM} and \emph{Roc-SVM}, Bayesian Sets do not provide binary decisions about class membership. Instead, for each of the $K$ classes, they provide a ranking of all elements in $U$ by their likelihood of belonging to that class. As these likelihoods do not represent the actual probabilities, they can not be used to determine a clear cut-off criterion $d_i$ for the number of elements from the $i$th ranking to be included into $T_{r_i}^{+}$. Making an informed decision proved to be very difficult. Two different methods for setting the value of $d_i$ were attempted: 
+	
+%	Setting this cut-off criterion has proven to be very problematic for two reasons. Firstly, $d_i$, the number of hidden positives of each class in the unlabelled set $U$, is not available and is (usually) hard to estimate. Secondly, even if $d_i$ is available, we do not know in advance how well Bayesian Sets will rank the elements of $U$. If the rankings were perfect, including the top $d_i$ elements would be optimal. If this is not the case, the choice of $d_i$ has to balance between the number of hidden positives and the number of wrongly labelled examples introduced into the training set. Since we can not quantify the effect of noise introduced or the ratio of hidden positives to false positives in the rankings produced, making a good, well informed decision about this cut-off criterion is very hard. 
+	
+%	Therefore, two simple methods for setting the value of $d_i$ were used: 
+	
+	\begin{enumerate} 
+	
+	\item If the class distributions in $T_r$ and $U$ are the same, the number of elements of each class in $U$ can be reliably estimated from the class distribution observed in $T_r$. %If the assumption of the same class distributions in $T_r$ and $U$ holds, $d_i$ represents a solid cut-off criterion. 
+	  
+	\item Set each $d_i$ to the number of elements of that class included into the augmented data set $T_{r_i}^{+}$ by \emph{Spy-EM}. As shown in the Evaluation, this ad-hoc approach was useful for comparing Bayesian Sets to \emph{Spy-EM}. %, and let $T_{r_i}^{B}$ denote the set of top $d_i$ elements in the ranking produced by Bayesian Sets. This approach relies on the assumption that \emph{Spy-EM} derives a sensible \emph{lower bound} on the number of hidden positives of each class in $U$. Although this is quite an ad-hoc approach, it is useful for the sake of comparing Bayesian Sets to \emph{Spy-EM}. If $T_{r_i}^{B}$ has a higher purity (the proportion of hidden elements of the $i$-th class in it) than the augmented set produced by \emph{Spy-EM} ({$T_{r_i}^{+}}$), then the subsequent reduction in the classification error of the SVM trained using $T_{r_i}^{B}$ should be better than the reduction achieved using \emph{Spy-EM's} $T_r^{+}$. As will be seen in the evaluation, this has proven to be the case in Task II, but not in Task I.
+	
+	\end{enumerate}
+	
+	%Hence, having implemented the entirety of these algorithms and the scheme presented, all that is left before we are able to start evaluating the extent to which data augmentation can be achieved in these application areas is to implement a multi-class classification scheme for Task III.  
+	
+Different variations of this algorithm were implemented for applying each augmentation scheme to each of the data sets. The following code snippet shows how these methods are used to obtain statistically significant comparisons between the three schemes when used to augment the data sets of Tasks I and II: 
+	
+
+\lstset{linewidth=16cm}
+
+\begin{lstlisting}
+function [ResultsBayes, ResultsSEM, ResultsRocSVM, entitySetExpansionQuality] = assessDataAugmentation(TrainFM, TrainLabels, TestFM, TestLabels, kkt_threshold, max_iter, dist_bias, bidirection_pull, useBayes, useSEM, useRocSVM)
+
+% dist_bias: parameter used to change the positives to negatives ratio in the reduced training set constructed. 
+% For example, dist_bias = 2 means that P:N ratio of ReduxTrainFM constructed is twice that of TrainFM. 0.5 means the opposite.
+
+ResultsSVM = zeros(13,7); % 1-3 reduced sets, 4 original, 5-7 first redux with 3 different augmentations, 8-10 second, 11-13 third.
+
+disp('starting algorithm')
+
+SVMCLassifer = svmtrain(full(TrainFM), TrainLabels ,'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'final' ));
+
+Results = svmclassify(SVMCLassifer, full(TestFM));
+ResultsSVM(4,:) = quality(Results, TestLabels);
+
+% Now, we need to create redux sets with their labels and the remaining unlabeled set: its feature matrix and its (true) labels required to assess the quality of entity set expansion.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+sample = 0.1; % first redux
+
+[reduxFM, reduxLabels, reduxAugLabels, reduxAugLabelsNegative] = createRedux(TrainFM, TrainLabels, sample, dist_bias);
+
+[newPosBayes, newPosSEM, newPosRocSVM] = augmentData(TrainFM, reduxAugLabels, LabelToArray(reduxAugLabelsNegative), useBayes, useSEM, useRocSVM, kkt_threshold, max_iter);
+
+% Augment both classes; remove examples belonging to both augmented sets:
+if(bidirection_pull==1)
+    
+    [newNegBayes, newNegSEM, newNegRocSVM] = augmentData(TrainFM, reduxAugLabelsNegative, 1:sum(reduxAugLabels), useBayes, useSEM, useRocSVM, kkt_threshold, max_iter);
+
+    interBayes = intersect(newPosBayes, newNegBayes);
+    interSem = intersect(newPosSEM, newNegSEM);
+    interRocSVM = intersect(newPosRocSVM, newNegRocSVM);
+    newPosBayes = setdiff(newPosBayes, interBayes);
+    newNegBayes = setdiff(newNegBayes, interBayes);
+    newPosSEM = setdiff(newPosSEM, interSem);
+    newNegSEM = setdiff(newNegSEM, interSem);
+    newPosRocSVM = setdiff(newPosRocSVM, interRocSVM);
+    newNegRocSVM = setdiff(newNegRocSVM, interRocSVM);
+    
+end
+
+% Train the (baseline) classifier using the reduced training set:
+SVMClassifierRedux10 = svmtrain(full(reduxFM), reduxLabels,'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'off' ));
+
+Results = svmclassify(SVMClassifierRedux10, TestFM);
+
+ResultsSVM(1,:) = quality(Results, TestLabels);
+
+clear SVMClassifierRedux10; 
+
+% Then, train a SVM using each of the new augmented data sets.
+% ......
+% ......
+\end{lstlisting}
+	
+	The use of these methods was constantly plagued by the lack of RAM memory. As explained in the Evaluation, the same samples of $T_r$ had to be used to ensure that the comparisons between the three methods had statistical significance. Thus, all three variations of $T_r^{+}$ had to be present in memory simultaneously. 
+
+Different optimisations were implemented to relieve the memory requirements. Matlab's `single' and `sparse' data types were used extensively and constant manual garbage collection was enforced to pre-empt the use of virtual memory by Matlab. As a result, most schemes' execution and evaluation completed relatively quickly and gracefully.
+
+The only exception was the \emph{Roc-SVM} scheme: it could not handle the biomedical data set using the 6GB of RAM on my laptop. By my estimates, using an extra 4GB would have sufficed, but my laptop can support no more than 8GB. The use of substantial amounts of virtual memory made the execution \emph{very slow}: \emph{Roc-SVM} augmentation took 34 hours to terminate. In stark contrast, Bayesian Sets executed in a matter of minutes and the \emph{Spy-EM} scheme took less than an hour. 
+
+The execution and evaluation of these methods was performed in the Matlab environment. Additional code samples can be found in \emph{Appendix B}. 
+ 
+
+	\subsection{Multi-class Classification} % 200-300 words
+	
+	In Task III, each example $\mathbf{x}$ is represented by a set of (real-valued) properties of a first order logic statement and belongs to one of the $K$ ({five}) classes. To achieve data augmentation, we first need to construct $f$, the classifier deciding which heuristic should be used to attempt to prove an unseen statement $\mathbf{x'}$. Having built that function, \emph{Roc-SVM} can be used for attempting data augmentation, that is, reducing the classification error of $f$. 
+	
+	Two different methods that use SVMs to create multi-class classification schemes have been implemented: \emph{one-vs-all} and \emph{all-vs-all}. 
+	
+%	If $p_i(\mathbf{x})$, the probability density functions of all five classes were available, classification could be performed simply by choosing the most probable class:
+	
+	\newcommand{\argmax}{\operatornamewithlimits{argmax}}
+	
+%	\begin{equation*} \displaystyle f(\mathbf{x}) = \argmax_{i \in 1 \ldots K} p_i(\mathbf{x}) \end{equation*}
+	
+%	However, as was the case with binary classification, estimating these densities is hard. Better results can usually be achieved using smooth separating functions, such as the hyperplanes constructed by SVMs. Two different methods that use SVMs to create multi-class classification schemes exist: \emph{one-vs-all} and \emph{all-vs-all}. 
+	
+	In \emph{one-vs-all classification}, $K$ different classifiers (SVMs) are built. Given a new example $\mathbf{x}$, $f_i(\mathbf{x})$ decides membership of class $i$ (whether $\mathbf{x}$ belongs to class $i$ or not). $f_i$ is trained using $T_{r_i}$ (training examples of class $i$) as the positive set and $T_r \setminus T_{r_i}$ (the remaining examples) as the negative set. Classification is performed using: 
+	
+	
+	\begin{equation} \displaystyle f(\mathbf{x}) = \argmax_{i \in 1 \ldots K} f_i(\mathbf{x}). \end{equation}
+
+%	In the experiments, this scheme was unable to perform any meaningful classification in Task III, its results being outperformed by the \emph{baseline algorithm}, which always chose the class most frequently encountered in the training data. \\ 
+	
+	
+ \emph{All-vs-all classification} schemes build $\frac{K (K-1)}{2}$ different classifiers to decide preference between all pairs of classes. Let $f_{i,j}$ denote the SVM used to determine preference between classes $i$ and $j$, trained using $T_{r_i}$ as the positive set and $T_{r_j}$ as the negative set. $f_{i,j}(\mathbf{x})=1$ if $\mathbf{x}$ is more likely to belong to class $i$; otherwise, $f_{i,j}(\mathbf{x})=-1$. As the final class of an example $\mathbf{x}$, choose: 
+	
+	
+	\begin{equation} \displaystyle f(\mathbf{x}) = \argmax_{i}{ \left( ~\sum_{j\neq i}{f_{i,j}(\mathbf{x})}~ \right)}.   \end{equation} 
+
+	
+%	If SVMs are used as the underlying classifiers, the all-vs-all scheme usually outperforms the one-vs-all scheme. Counterintuitively, all-vs-all is also the \emph{more efficient} scheme: it builds \emph{O($K^2$)} classifiers, compared to \emph{$O(K)$} for one-vs-all, but its classifiers are much smaller than the ones produced in one-vs-all. As discussed in previous sections, the complexity of training an SVM is \emph{at least} of the order of $O(N^2)$, $N$ being the number of training examples. Given a balanced data set, the all-vs-all scheme trains its required classifiers in $ O( K^2 * (2N/K)^2 ) \approx O(N^2)$ time, which is substantially faster than $O(K * N^2)$ taken by the one-vs-all scheme. \\
+	
+	In the experiments, all-vs-all classification managed to outperform the baseline algorithm (always choosing the most frequent class from $T_r$), whereas one-vs-all {did not}. As a result, the all-vs-all classification scheme based on support vector machines was used as \emph{the benchmark classifier} for Task III. Samples of the code implementing the multi-class augmentation scheme can be found in \emph{Appendix B}.
+	
+	
+	% will interleave with evaluation, diagram of first two areas setup, making artificial unlabeled sets, etc. up to 600, 700
+	% diagram of the training set divisions, explanation of base, ceiling, etc... I think this can fit into 1000
+	% one diagram with whole data set, turning into three different ones for train/unlabed all with same distribution, mention bias implemented. 
+	%then, pseudocode for the algo, i.e. create data sets, augment1,2,3, svm on augment 1,2,3, plot precision, recall, f-score as result.
+	
+	% just explain multi label possibilities, one-vs-all, one-vs-one (all pairs), explain how this is the only one where we have (unartificial) unlabeled data...
+	% Remember to mention inclusion exclusion for generalisation here. 
+	% discuss different values of the c, the soft margin parameter, and how we tried both to use simplex and more complex models (SVMs with lower and higher margin, that is)
+	% just discuss how augmentation is achieved through extraction of hidden elements of each class via the three algorithms introduced....
+	
+	%lots and lots of pseudocode to make it clear and nice.
+	%
+	%SPLIT into 1. Sparse binary data, 2. Continuous, multi-class data! nothing about the experiment with reduxes, that is all best left to Eval.
+	%
+	%HAVING IMPLEMENTED... say that all given so far was implemented and tested in matlab with simple document sets, newsgroups and the movielens 
+	%6. Assumptions about same distribution train/test (very bad, cite Neg. Ex can be harmful to classification
+	%
+	%say that this part of the project can be understood as having two principle components, comparing the algorithms, choosing how to use each of them for data augmentation, and then treating each data set with each algo as a separate problem to be solved.
+	%
+	%talk about how we do augmentation.  pseudo code of the augmentation process then multiclass then incl excl, 
+	%
+	%say that bayesian sets do not even take the notion of existence of negative elements into account, no assessment of the negative pull as in classification one
+	%
+	%stopping criteria in spyem, rocsvm, take them as it is, no variability. 
+	%
+	%bayes as ranking potentially gives us more information, but no stopping criteria. determining a clear bound has proven to be very problematic.
+	%5.bayes  Ranking method -> no stopping criteria
+	%
+	%stress that we are introducing more (good) training data, but additional noise as well!
+	%
+	%talk about augmenting both sets vs only one set. talk about (Negative Data can Harm classification). talk about choosing the cutoff for Bayes and its inapplicability if distributions are not the same. talk about its inability to set prior for a specific applciation area. talk about usint spy-em cutoff for bayes sets. say bayes is more of an information retrieval technique. talk about different soft margin parameters and how we are interested in the range of values for c, as they reflect the ability to achieve data augmentation for classifiers of different complexity (VC dim?). 
+	%
+	%Move as much as possible into eval!
+	%
+	%The most important (and problematic) practical difference between Bayesian Sets and \emph{Spy-EM} and \emph{Roc-SVM} is that they produce no clear cut criteria for deciding how many top elements from the ranking should be used for expanding the set $Q$. As already explained, the $score$ function merely provides a likelihood, that is an ordering of these elements. In information retrieval, this often suffices, as we are frequently interested only in the top10 results. However, in the machine learning context of data augmentation, we usually have much more unlabelled than labelled data and would like to extract as many new examples as possible. Therefore, the criteria for how many examples to include is an essential part of our data augmentation scheme. Therefore, 
+	
+	\cleardoublepage 
+	
+	\chapter{Evaluation} % <= 2624, up to 3k per mark distribution
+	
+	%Having understood the theoretical assumptions behind partially supervised classification, implemented all of the required entity set expansion algorithms in Matlab, prepared the proposed data sets for use and implemented the classification schemes, we are in a position to evaluate the extent to which data augmentation can aid classification in these application areas. 
+
+\emph{This chapter evaluates the performance of the PU algorithms and the data augmentation schemes implemented. The system designed to provide statistically significant insights into the extent to which data augmentation improves classification is presented and used to analyse the three application areas suggested. } 
+
+	\section{Overview}
+		
+	Testing machine learning algorithms is an inherently hard task \cite{Bishop06}. In this chapter, I will present a detailed analysis of the performance measures for the schemes implemented. Functional correctness of these algorithms is hard to establish: to this end, the first part of this chapter is devoted to the results obtained by applying our PU algorithms to the task of entity set expansion. These results are in line with those obtained in \cite{Li03, Li10, Liu02}. 
+	
+	The second part of the chapter analyses the extent to which data augmentation can reduce the classification error. The experiments were designed to facilitate direct statistically significant comparisons between the data augmentation schemes. The task of applying each of these schemes to the three data sets was considered. \\
+	
+	As far as I am aware, this is the first time that these algorithms have been used to attempt data augmentation. The results obtained clearly show that this endeavour has been a major success. 
+	 
+%	The data augmentation scheme presented is based on three different algorithms for achieving entity set expansion. The first step in evaluating the performance of this scheme was to determine how well the PU algorithms perform entity set expansion in the application areas suggested. Subsequently, an experiment for measuring the extent to which data augmentation can reduce the classification error was conducted: this experiment was designed to facilitate direct statistically significant comparisons between the three schemes. Finally, the specific problem of applying each of these schemes to each of the data sets was addressed.  
+	
+	\subsection{Performance Measures}
+	
+	In order to reason about the quality of the classifiers produced, both for entity set expansion and in Tasks I - III (the application areas), five standard measures were employed. The classifier produced is used to classify all examples in the test set: let $TP$ denote the number of true positives (positives examples classified as such), $TN$ the number of true negatives, $FP$ of false positives (negatives classified as positives) and $FN$ of false negatives. Then, define:
+	
+	\begin{enumerate}
+	
+	\item \emph{Accuracy}: the proportion of examples (both positives and negatives) classified correctly:
+	
+	\begin{equation} ACC ~=~ \frac{TP + TN}{TP + TN + FP + FN}~. \end{equation}
+	
+	\item \emph{Classification error}: the proportion of examples classified incorrectly:
+	
+	\begin{equation}  ERR ~=~ \frac{FP + FN}{TP + TN + FP + FN} ~=~ 1 - ACC~.  \end{equation}
+	
+	\item \emph{Precision} (also known as positive predictive accuracy): the proportion of positives among all elements classified as positive:
+	
+	\begin{equation} PR \ = \  \frac{TP}{ TP + FP}~. \end{equation}
+	
+	\item \emph{Recall} (also known as sensitivity): the proportion of positive examples correctly identified as such:
+	
+	\begin{equation} RC \ = \ \frac{TP}{TP + FN}~. \end{equation}
+	
+	\item \emph{F-score}: harmonic mean of precision and recall. This metric unifies precision and recall, penalising low values of either of them:
+	
+	\begin{equation} F \ = \ \frac{2\ PR \ RC}{ PR + RC} \ = \ \frac{2\ TP}{2\ TP + FP + FN}~.   \end{equation} 
+	
+	\end{enumerate}
+	
+	All of these measures range between 0 and 1, with higher values representing the better ones. \emph{Precision} and \emph{F-Score} are the principal measures we will use to compare the quality of the classifiers produced.
+	
+	% 4000 words in Introduction & Preparation
+	% 6406 words in Implementation
+	
+	\section{Entity Set Expansion}
+	
+	The differences in entity set expansion quality between \emph{Spy-EM} and \emph{Roc-SVM} are relatively minor \cite{Li03}. Therefore, consideration of \emph{Roc-SVM} will be delayed until the next section. The performance of \emph{Spy-EM} and Bayesian Sets will be compared in three different data sets:
+	\begin{enumerate}
+	\item \emph{20Newsgroups} text categorisation collection. This data set was used for testing and verifying that the implementation of \emph{Spy-EM} produced results comparable to those presented in \cite{Liu02}. 
+	\item \emph{Reuters21578} text categorisation collection, used in Task I.
+	\item \emph{KDD Cup 2001}, Task 1 (Binding to Thrombin) data set, used in Task II.
+	\end{enumerate}
+	
+	As explained in the Implementation, finding a cut-off criterion for Bayesian Sets is non-trivial. In this section, the second approach is taken: the element count set by \emph{Spy-EM} is reused. Even though this boundary does not represent the ideal cut-off for Bayesian Sets, it provides a good setting for comparing the purity of the expanded entity sets produced by these two algorithms. 
+	
+	Precision and recall are measures best suited to assess the quality of entity set expansion; accuracy and classification error will be used to assess the subsequent classifiers produced. All three data sets were attempted with several different proportions of positives left in the unlabelled set $U$, as shown in the tables. The fewer positives are left in $U$, the worse the subsequent performance is, as shown by the results obtained. 
+	
+	\begin{table}
+	\begin{center}
+	\caption{Entity Set Expansion in 20Newsgroups data set}
+	
+	\begin{tabular}{ |c| c|c|c|c | c | c |}
+	
+	\hline
+	\multirow{2}{*}{\textbf{Positives in $U$}} & \multicolumn{3}{|c|}{\textbf{Bayesian Sets}} & \multicolumn{3}{|c|}{\textbf{Spy-EM}} \\\cline{2-7}
+	
+	
+	& Precision & Recall & F-Score & Precision & Recall & F-Score \\
+	
+	\hline                        
+	
+	90\% & 0.759   & 0.846  &  0.800	&	 0.778  &  0.866  &  0.820 \\		
+	67\% & 0.678   & 0.893  &  0.771	&	 0.676  &  0.891  &  0.769 \\
+	20\% & 0.326   & 0.946  &  0.485 &  0.325  &  0.942  &  0.483 \\
+	
+	\hline  
+	
+	\end{tabular}
+	\end{center}
+	\end{table}
+	
+	\begin{table}
+	\begin{center}
+	
+	\caption{Entity Set Expansion in Reuters21578 data set}
+	
+	
+	\begin{tabular}{ |c| c|c|c|c | c | c | p}
+	
+	\hline
+	
+	\multirow{2}{*}{\textbf{Positives in $U$}} & \multicolumn{3}{|c|}{\textbf{Bayesian Sets}} & \multicolumn{3}{|c|}{\textbf{Spy-EM}} \\\cline{2-7}
+	
+	& Precision & Recall & F-Score & Precision & Recall & F-Score \\
+	\hline                        
+	90\% & 0.664 & 1.000 & 0.798 & 0.663 & 0.999 & 0.797 \\
+	67\% & 0.587 & 1.000 & 0.739 & 0.586 & 0.998 & 0.738 \\
+	20\% & 0.282 & 1.000 & 0.440 & 0.282 & 1.000 & 0.440 \\
+	
+	\hline  
+	
+	\end{tabular}
+	
+	\end{center}
+	\end{table}
+	
+	The results of 20Newsgroups and Reuters21578 experiments reveal stark similarities between the performance of these algorithms. With fewer positives left in $U$ and more of them in $P$, the performance of the two algorithms converges, showing that Bayesian Sets can match and even improve on \emph{Spy-EM's} performance. Given a cut-off criterion specifically tailored for Bayesian Sets, it is not unreasonable to believe that they would be capable of outperforming \emph{Spy-EM}. 
+	
+	In the three experiments with the biomolecular data set, Bayesian Sets exhibit performance inferior to that of \emph{Spy-EM}. The performance of both schemes is somewhat anomalous: both precision and recall \emph{decrease} with the number of positives revealed to the algorithms. However, the difficulty of the data set must be taken into account when evaluating these results. The data set contains a very small number of positive instances: if only 10\% of these (4 of them) are revealed, more than half of the positives in $U$ (24 of them) are extracted. As shown later, SVMs do not come close to replicating this performance (on their own) despite taking {much longer} to train. 
+	
+	
+	\begin{table} [h]
+	
+	\begin{center}
+	
+	\caption{Entity Set Expansion in KDDCup2001 data set}
+	
+	\begin{tabular}{ |c| c|c|c|c | c | c | p}
+	
+	\hline
+	
+	\multirow{2}{*}{\textbf{Positives in $U$}} & \multicolumn{3}{|c|}{\textbf{Bayesian Sets}} & \multicolumn{3}{|c|}{\textbf{Spy-EM}} \\\cline{2-7}
+	
+	& Precision & Recall & F-Score & Precision & Recall & F-Score \\
+	\hline                        
+	90\% & 0.264 &	0.632	& 0.372 & 0.286 &	0.684	& 0.403 \\
+	67\% & 0.194 &	0.655	& 0.299 & 0.225 &	0.759 &	0.347 \\
+	20\% & 0.060 &	0.556 &	0.109 & 0.072 &	0.667 &	0.130 \\
+	
+	\hline  
+	
+	\end{tabular}
+	
+	
+	\end{center}
+	\end{table}
+	
+	
+	%\section{Data augmentation}
+	
+	\section{Setting up the Experiment}
+		
+	In order to assess the quality of data augmentation and make statistically significant comparisons between different methods, the experiment setup must ensure that data augmentation via different methods is attempted using the same data sets. Figure 4.1 shows a scheme of the system implemented to evaluate data augmentation in Tasks I, II and III. 
+	
+	The body of examples is first split into the training set $T$ and the testing set $T_s$. The training set is decomposed into the \emph{reduced training set} $T_r$ and the unlabelled set $U$, with sampling rates of $s=10\%$, $s=33\%$ and $s=80\%$ used to extract $T_r$ in the experiments (Figure 4.1). 
+	
+	The \emph{pre-augmentation} SVM is trained using the reduced training set $T_r$. The accuracy and F-Score achieved by this classifier on the testing set $T_s$ act as the \textbf{baseline} for classifier performance in the experiments: if the data augmentation schemes aid classification, the performance of the classifiers produced must improve on the baseline classifier. 
+	
+	All three schemes attempt to augment $T_r$ using examples from $U$, each of them producing a separate augmented data set $T_{r}^{+}$. These data sets are used to train their respective \emph{post-augmentation} SVMs. The differences in performance between the {post-augmentation} SVMs and the baseline ({pre-augmentation}) SVM represent the success of the data augmentation achieved in the given experiment. \\
+	
+	\begin{figure} 
+	\includegraphics[scale = 0.3]{eval}%
+	\caption{The experiment used to evaluate the quality of data augmentation.}%
+	\label{}%
+	\end{figure}
+	
+	The \textbf{ceiling} for the classifier performance \emph{in all experiments} (for \emph{any sampling rate} $s$) is determined by training an SVM using the whole training set ($s~=~100\%$, $T_r = T$, $U = \emptyset$) and evaluating it using $T_s$. The post-augmentation SVMs are not likely to outperform this one, as it is trained using the best training set that can be obtained from $T_r$ and $U$. 
+	
+	\subsection{Establishing Statistical Significance}
+	
+	If applicable to the specific data set, each of the data augmentation schemes (Bayesian Sets, \emph{Spy-EM}, \emph{Roc-SVM}) is applied to the \emph{same instances (samples)} of $T_r$ and $U$. The accuracy of the classifiers produced is evaluated against the \emph{same testing set} $T_s$. As a result, confident assertions about the differences in performance between these three methods can be made. \\
+	
+	As long as the testing set $T_s$ is sufficiently large ($|T_s| > 30$ suffices), the \emph{Central Limit Theorem} warrants that the distribution of the errors in that sample can be approximated by a Gaussian distribution. If so, the \emph{Z-Score test for comparing learned hypotheses} can be used to establish the statistical significance of the differences between classifiers. Let $err_{T_s}(C)$ denote the testing error of classifier $C$ evaluated on $T_s$. Then, the difference in the classification performance between two classifiers $C_1$ and $C_2$ is reflected by their \emph{z-score}: 
+	
+	\begin{equation*} \displaystyle \boxed{z ~=~ \frac{d}{\sigma_d}}~~~~~~where~~~~~~  d = | {err}_{T_s}(C_1) -  {err}_{T_s}(C_2)|  \end{equation*}
+	
+	\begin{equation}  \sigma_d = \sqrt{ \frac{{err}_{T_s}(C_1) (1 - {err}_{T_s}(C_1)) + {err}_{T_s}(C_2) (1 - {err}_{T_s}(C_2))}{|T_s|} } \end{equation}  \\
+	
+	
+The \emph{z-score} represents the distance from the sample mean to the population mean in units of the standard error: each value of $z$ corresponds to some $p$ such that $P[Z > z] = p$, where $Z \sim N(0,1)$. For any $z$, the value of the corresponding $p$ can be computed using a standard table of the cumulative distribution of $N(0,1)$. 
+	
+	This \emph{p-value} represents the probability (significance level) of the \emph{null hypothesis} which assumes that the two samples (classifications of $C_1$ and $C_2$) are drawn from the same underlying distribution. When the \emph{p-value} is less than 0.01, the null hypothesis is rejected. If so, the differences between classification accuracies of $C_1$ and $C_2$ are due to an underlying cause with a certainty of $100(1-p) \%$. Thus, if $p<0.01$, these differences have \emph{statistical significance}. \\ 
+	  	  
+Having implemented this evaluation system, we are finally in a position to make statistically relevant claims about the extent to which this data augmentation scheme reduces classification error in the three application areas suggested.
+	
+	
+	\section{Text Classification}
+	
+The results of data augmentation with the Reuters21578 data set are shown in Table 4.4. \emph{Spy-EM} and \emph{Roc-SVM} achieve \emph{formidable performance}: both improve on the \emph{baseline} in \emph{all experiments}, usually by a substantial margin. The worse the pre-augmentation SVM performance is and the more unlabelled data is available, the greater the \emph{relative improvement} in classification accuracy is. 
+
+The \emph{Z-score test} reveals that the differences between the classifiers produced by \emph{Spy-EM} and \emph{Roc-SVM} are {not statistically significant} ($p > 0.01$ in all experiments). The differences between baseline SVMs and the ones produced by these two schemes are statistically significant in the first two experiments ($p < 0.01$). This means that the two schemes achieve statistically significant improvements in classification accuracy, with neither of them being the clear favourite.  
+
+	\begin{table} 
+	\begin{center}
+	\caption{Data augmentation in Reuters21578 data set}
+	
+	\begin{adjustbox}{center}
+	
+	\renewcommand{\arraystretch}{1.6}
+	\begin{tabular}{||c||c c||c c|c c|c c|| }
+	
+	\hline
+	
+	\multirow{2}{*}{$|\mathbf{T_r}|$ : $|\mathbf{T}|$ } & \multicolumn{2}{|c||}{\textbf{Baseline SVM}} & \multicolumn{2}{|c|}{\textbf{Bayesian Sets SVM}} & \multicolumn{2}{|c|}{\textbf{\emph{Spy-EM} SVM}} & \multicolumn{2}{|c||}{\textbf{\emph{Roc-SVM} SVM}} \\\cline{2-9}
+	
+	& Accuracy & F-Score & Accuracy & F-Score & Accuracy & F-Score & Accuracy & F-Score \\
+	\hline \hline
+	10\% & 0.869 & 0.793  & 0.556 & 0.595 & \textbf{0.922} & \textbf{0.904} & \textbf{0.905} & \textbf{0.859} \\ \hline
+	33\% & 0.899 & 0.854  & 0.721 & 0.705 & \textbf{0.918} & \textbf{0.895} & \textbf{0.908} & \textbf{0.868} \\ \hline 
+	80\% & 0.939 & 0.915  & 0.885 & 0.851 & \textbf{0.940} & \textbf{0.919} & \textbf{0.945} & \textbf{0.924}  \\ \hline 
+	\hline
+	\textbf{\small{Ceiling (100\%)}}: & \multicolumn{4}{|c}{ Accuracy: \textbf{0.946} } & \multicolumn{4}{c|}{F-Score: \textbf{0.926}} \\
+	}
+	\hline  
+	
+	\end{tabular}
+	\end{adjustbox}
+	\end{center}
+	\end{table}
+	
+
+	 
+	
+In cases when only a small amount of unlabelled data is available and the extent to which performance can be improved is negligible (as in the third experiment), these two schemes still manage to improve performance. This \emph{non performance decreasing property} is highly elusive: in such settings, data augmentation schemes usually construct SVMs inferior to the pre-augmentation ones. The reason why these two schemes consistently improve accuracy is that, as explained in the Implementation, the algorithms \emph{purify} the augmented set $T_r^{+}$ by removing those elements that appear in the augmented sets of both classes: $T_r^{+} = T_r^{+} \setminus \{ T_{r_1}^{+} \cap T_{r_2}^{+} \}$.
+
+Without {purification}, the performance of the \emph{Spy-EM} augmentation scheme deteriorates: the scheme actually degrades SVM accuracy in the third experiment (Table 4.5). The \emph{Roc-SVM} scheme was originally designed to perform more conservative set expansion than \emph{Spy-EM}: it exhibits avid performance even without purification, boosting accuracy in all experiments. The differences between these versions of \emph{Spy-EM} and \emph{Roc-SVM} become statistically significant ($p > 0.01$ in 2/3 experiments). %: Spy-EM outperforms \emph{Roc-SVM} in the first experiment but pushes the accuracy below the baseline in the third experiment.
+
+	\begin{table} 
+	
+	\begin{center}
+	
+	\caption{Reuters21578 data augmentation without the \emph{purification step}.}
+	
+	\begin{adjustbox}{center}
+	\renewcommand{\arraystretch}{1.6}
+	\begin{tabular}{||c||c c||c c|c c|c c|| }
+	
+	\hline
+	
+	\multirow{2}{*}{$|\mathbf{T_r}|$ : $|\mathbf{T}|$ } & \multicolumn{2}{|c||}{\textbf{Baseline SVM}} & \multicolumn{2}{|c|}{\textbf{Bayesian Sets SVM}} & \multicolumn{2}{|c|}{\textbf{\emph{Spy-EM} SVM}} & \multicolumn{2}{|c||}{\textbf{\emph{Roc-SVM} SVM}} \\\cline{2-9}
+	
+	& Accuracy & F-Score & Accuracy & F-Score & Accuracy & F-Score & Accuracy & F-Score \\
+	\hline \hline
+	10\% & 0.855 & 0.774  & 0.624	& 0.642 & \textbf{0.916}	& \textbf{0.898} & \textbf{0.879}	& \textbf{0.819} \\ \hline
+	33\% & 0.907 & 0.868  & 0.783	& 0.747 & \textbf{0.934}	& \textbf{0.916} & \textbf{0.929}	& \textbf{0.899} \\ \hline 
+	80\% & 0.933 & 0.906  & 0.869	& 0.830 & {0.922}	& {0.894} & \textbf{0.942}	& \textbf{0.921}  \\ \hline 
+	\hline
+	\textbf{\small{Ceiling (100\%)}}: & \multicolumn{4}{|c}{ Accuracy: \textbf{0.946} } & \multicolumn{4}{c|}{F-Score: \textbf{0.926}} \\
+	}
+	\hline  
+	
+	\end{tabular}
+	\end{adjustbox}
+	\end{center}
+	\end{table}
+	
+	
+Bayesian Sets using the number of elements included by \emph{Spy-EM} as the cut-off criterion exhibit vastly inferior performance to \emph{Spy-EM} and \emph{Roc-SVM}: their post-augmentation SVMs perform below the baseline in all experiments. 
+Iterative Bayesian Sets were designed in an attempt to improve the original scheme. As shown in Table 4.6, the new scheme greatly outperforms the original one, even constructing an SVM which {reaches the ceiling performance} in the third experiment. However, it falls short of matching the \emph{consistent quality} or the \emph{extent} of data augmentation achieved by \emph{Spy-EM} and \emph{Roc-SVM}. In fact, the \emph{Z-Score test} reveals that the differences in performance between pre-augmentation SVMs and the ones produced by Iterative Bayesian Sets are \emph{not statistically significant}. 
+
+%, which use pseudo relevance feedback using the top 5\% of the expected number of positive elements in $U$ to \emph{iteratively refine} the query set. The size of the augmented set $T_r^{+}$ is computed using the assumption of same class distributions in $T_r$ and $U$.
+
+	\begin{table} [h]
+	
+	\begin{center}
+	
+	\caption{\small{Reuters21578 data augmentation, regular versus Iterative Bayesian Sets.}}
+	
+	\begin{adjustbox}{center}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{||c||c c||c c|c c|| }
+	
+	\hline
+	
+	\multirow{2}{*}{$|\mathbf{T_r}|$ : $|\mathbf{T}|$ } & \multicolumn{2}{|c||}{\textbf{Baseline SVM}} & \multicolumn{2}{|c|}{\textbf{Bayesian Sets SVM}} & \multicolumn{2}{|c||}{\textbf{Iterative BS SVM}}\\\cline{2-7}
+	
+	& Accuracy & F-score & Accuracy & F-Score & Accuracy & F-Score \\
+	\hline \hline
+	10\% & 0.853 & 0.766  & 0.722 &	0.562 & \textbf{0.856}	& \textbf{0.772}\\ \hline
+	33\% & 0.915 & 0.877  & 0.705	& 0.621 & {0.910}	& {0.870}  \\ \hline 
+	80\% & 0.932 & 0.905  & 0.823	& 0.758 & \textbf{0.946}	& \textbf{0.926}   \\ \hline 
+	\hline
+	\textbf{\small{Ceiling (100\%)}}: & \multicolumn{3}{|c}{ Accuracy: \textbf{0.946} } & \multicolumn{3}{c|}{F-Score: \textbf{0.926}} \\
+	}                                                             
+	\hline  
+	
+	\end{tabular}
+	\end{adjustbox}
+	\end{center}
+	\end{table}
+	
+
+	
+\section{Biomolecular Activity Prediction}
+
+
+	\begin{table}
+	
+	\begin{center}
+	
+	\caption{Data augmentation in the biomolecular activity prediction data set.}
+	
+	\begin{adjustbox}{center}
+	\renewcommand{\arraystretch}{1.6}
+	\begin{tabular}{||c||c c c||c c c||c c c|| }
+	
+	\hline
+	
+	\multirow{2}{*}{$|\mathbf{T_r}|$ : $|\mathbf{T}|$ } & \multicolumn{3}{|c||}{\textbf{Baseline SVM}} & \multicolumn{3}{|c||}{\textbf{Bayesian Sets SVM}} & \multicolumn{3}{|c||}{\textbf{\emph{Spy-EM} SVM}}\\\cline{2-10}
+	
+	& Precision & Recall & F-Score & Precision & Recall & F-Score & Precision & Recall & F-Score \\
+	\hline \hline
+	10\%  & 0.143 &	0.007 &	0.013  & 0.182  &	0.120 &	\textbf{0.145}  &  0     &  0     &  0   \\ \hline
+	33\%  & 0.158 & 0.020	& 0.036  & 	0.167	& 0.113 &	\textbf{0.135}  &  0.118 &	0.073	 &  \textbf{0.091}  \\ \hline 
+	80\%  & 0.191	& 0.027	& 0.047  & 	0.165 &	0.107 &	\textbf{0.130}  &  0.135 &	0.080  &	\textbf{0.100}     \\ \hline 
+	\hline
+	\textbf{\small{Ceiling (100\%)}}: & \multicolumn{3}{|c}{ Precision: \textbf{0.294} } & \multicolumn{3}{c}{Recall: 	\textbf{0.033}   } & \multicolumn{3}{c||}{F-Score: \textbf{0.060}	 } \\
+	}                                                             
+	\hline  
+	
+	\end{tabular}
+	\end{adjustbox}
+	\end{center}
+	\end{table}
+
+
+The goal of this task was to build a classifier identifying active compounds given information about the 3D structure of their molecules. As the number of negatives vastly exceeds the number of positives in the data set, high accuracy no longer warrants that the classifier performs the task well: a function classifying all examples as negatives has a high accuracy while being of no use for this task. Instead, the precision and recall of the positive class are the values to be optimised. The \emph{F-Score} is the ideal metric for comparing the classifiers produced.
+
+Table 4.7 shows the results achieved using the augmentation schemes based on Bayesian sets and \emph{Spy-EM}. Data augmentation via \emph{Roc-SVM} proved to be intractable for this data set given the computational resources at my disposal.
+
+Given the complexity of this data set ($139,351$ binary features), the amount of data available (1909 examples) does not suffice for the SVM to learn enough about this problem. All baselines, as well as the ceiling of the SVM performance are {incredibly poor}. This is caused primarily by the \emph{selection bias} present in the data set: $T_r$ contains $2.2\%$, whereas $T_s$ contains $23.6\%$ of positives. As a result, the SVMs trained are extremely `\emph{reluctant}' to assign positive labels and their performance can benefit immensely from the addition of extra positives into $T_r$. 
+
+In all experiments, both Bayesian Sets and \emph{Spy-EM} raise SVM performance \emph{far above the ceiling value}: Bayesian sets induce at least a \emph{three-fold improvement} of the SVM's \emph{F-Score} in all experiments. The main reason for the enormous scale of this improvement is that adding more positives into $T_r$ mitigates the disastrous effects that the {selection bias} had on the subsequent testing error. 
+
+Wrongly labelled examples introduced into an already small training set can completely ruin subsequent SVM performance. This is the case with the \emph{Spy-EM} scheme in the first experiment: the post-augmentation SVM reverted to labelling all examples as negatives.
+
+The \emph{Z-Score test} confirms that both schemes improve on the baselines' and on the ceiling SVM's performance. The difference between the classifiers produced is statistically significant, and Bayesian Sets are the clear favourite. \\
+
+The performance of the augmented SVMs is still far from impressive. Nonetheless, the \emph{magnitude} of the \emph{relative improvement in performance} achieved by these data augmentation schemes attests to their ability to reduce classification error in difficult problems without utilising any domain-specific knowledge.  
+
+
+
+	
+\section{Supervised Theorem Proving}
+	
+Data augmentation in this task could only be attempted using the \emph{Roc-SVM} algorithm. Table 4.8 summarizes the results achieved. As there are five different classes, accuracy is the only metric appropriately reflecting the differences in quality between the classifiers produced. 
+	
+
+	\begin{table} [h] 
+	\begin{center}
+	\caption{Data augmentation in the supervised theorem proving data set.}
+	
+	\begin{adjustbox}{center}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{||c||c||c||}
+	
+	\hline
+	
+	\multirow{2}{*}{$|\mathbf{T_r}|$ : $|\mathbf{T}|$ } & \multicolumn{1}{|c||}{\textbf{Baseline SVM}} & \multicolumn{1}{|c||}{\textbf{\emph{Roc-SVM} SVM}}  \\\cline{2-3}
+	
+	& Accuracy & Accuracy \\
+	\hline \hline
+	5\%   &  \textbf{0.335}  &  \textbf{0.346}  \\ \hline
+	
+	10\%  &  0.316  &  \textbf{0.369}  \\ \hline % say that 0.05 and 0.1 get much more of the unlabelled set
+	
+	20\%  &  0.313  &  \textbf{0.361}  \\ \hline
+	
+	33\%  &  \textbf{0.345}  &  \emph{0.313}  \\ \hline 
+	
+	50\%  &  0.259  &  \textbf{0.333}  \\ \hline
+	
+	80\%  &  0.326  &  \emph{0.201}  \\ \hline 
+
+	\hline
+	\textbf{\small{Ceiling (100\%)}}: & \multicolumn{2}{|c||}{   0.320   }   \\
+	                                                             
+	\hline  
+	
+	\end{tabular}
+	\end{adjustbox}
+	\end{center}
+	\end{table}	
+		
+The results achieved by the baseline and ceiling SVMs are far from impressive, barely improving on the accuracy of 0.298 achieved by a classifier which always picks the most frequent class. The insufficient amount of training data is the primary cause for such weak performance. 
+
+Counter-intuitively, the SVM accuracy does not grow monotonously with the size of the training set used. The explanation for this variability in performance is that the \emph{all-vs-all} voting scheme implemented uses no meaningful mechanism for resolving ties, which occur frequently as only five different classes exist. \\
+
+The \emph{Roc-SVM} scheme achieves \emph{substantial improvements} in SVM performance when $U$ is significantly larger than $T_r$ (experiments 1, 2, 3). When $U$ is not large enough, the impact \emph{Roc-SVM} has is somewhat arbitrary: it may either degrade (experiments 4,6) or boost SVM performance (experiment 5). Thus, applying the \emph{Roc-SVM} augmentation scheme makes sense if the amount of unlabelled data \emph{greatly exceeds} the amount of labelled data.
+	
+The \emph{Z-Score test} reveals that the differences in performance between baseline SVMs and the ones produced by the \emph{Roc-SVM} scheme are {statistically significant}. The underlying multi-class classifier (based on SVMs) is susceptible to noise introduced during augmentation, so the post-augmentation SVMs {do not always improve} on the performance achieved by the pre-augmentation ones. \\
+
+An additional data set from the original work \cite{Bridge13} was available for the purposes of evaluation. Examples in $U'$ consist of features of FOL statements that none of the heuristics could prove within a specified time limit. As these statements do not belong to any of the five classes, data augmentation using subsets of $U'$ only degraded the accuracy of the SVM produced (Table 4.9). The more of the examples from $U'$ were introduced, the more the classification accuracy suffered.  \\
+
+	\begin{table} [h]
+	\begin{center}
+	\caption{{Augmentation using statements not proven by the five heuristics.}}
+	
+	\begin{adjustbox}{center}
+	\renewcommand{\arraystretch}{1.2}
+	\begin{tabular}{||c||c||c||}
+	
+	\hline
+	
+	\multirow{2}{*}{$|\mathbf{T_r}|$ : $|\mathbf{U}|$ } & \multicolumn{1}{|c||}{\textbf{Baseline SVM}} & \multicolumn{1}{|c||}{\textbf{\emph{Roc-SVM} SVM} }  \\\cline{2-3}
+	
+	& Accuracy & Accuracy (average) \\
+	\hline \hline
+	
+	$1:10$  &  \multirow{4}{*}{\textbf{0.3601}} &  0.321   \\ \cline{1-1} \cline{3-3} % say that 0.05 and 0.1 get much more of the unlabelled set
+	
+	$1:2$  &  & 0.334   \\ \cline{3-3}  \cline{1-1}
+	
+	$1:1$  & & 0.337     \\ \cline{3-3} \cline{1-1}
+	
+	$4:1$  &  & 0.340     \\ \hline 
+
+	%\hline
+	%\textbf{\small{Ceiling (100\%)}}: & \multicolumn{2}{|c||}{   0.319  }   \\
+	                                                             
+	\hline  
+	
+	\end{tabular}
+	\end{adjustbox}
+	\end{center}
+	\end{table}		
+	
+	%add 3x3 table of what algo can do what. have bayes green for task I, yellow for task II (Spy-EM dependent), red Task III. Spy-EM green green red. RocSVM green yellow(borderline intractable) green. 
+	%testing macine learning?
+	%Running times comparisons, efficiency (big Oh) of the three algorithms
+	
+
+	
+	\cleardoublepage
+	
+	
+\chapter{Conclusion} % 2 A4 pages, <= 500
+	
+The principle goal of this project was to investigate the extent to which \emph{data augmentation} using semi-supervised learning algorithms can improve classification performance. The final data augmentation schemes substantially improve classification accuracy in all of the application areas considered. \\
+	
+The initial success criteria consisted of implementing the Bayesian Sets and \emph{Spy-EM} algorithms and using them for data augmentation in different application areas. The project itself was highly underspecified since two of the data sets were not available until the later stages of the project. In accordance with the evolutionary prototyping paradigm adopted, the data augmentation system was built incrementally, developing progressively harder augmentation schemes and evaluating them using progressively harder data sets until all the success criteria were satisfied. \\
+	
+During the early stages of the project, Bayesian Sets were envisioned as the chief instrument for achieving entity set expansion. Further research indicated that partially supervised learning algorithms such as \emph{Spy-EM} could be used to build data augmentation schemes with formal grounding in computational learning theory (\emph{Appendix A}).
+
+The \emph{RocSVM} algorithm was identified as the only method capable of operating on data sets with real-valued attributes; it was incorporated into the project goals as the final extension. The implementations (\emph{Appendix B}) of these entity set expansion algorithms produced results comparable to those obtained in \cite{Ghahramani06, Li03, Li10}.
+\clearpage
+	
+The data augmentation schemes built use these algorithms to \emph{augment} the \emph{training data} of the support vector machines used to perform classification. A substantial amount of effort was spent refining Bayesian Sets and establishing an appropriate \emph{cut-off criterion} for their rankings. 
+
+The final system built to evaluate these schemes was designed to provide \emph{statistically significant} results about the extent to which data augmentation affects classifier performance. It was successfully implemented and applied to the three application areas proposed: 
+	
+	\begin{enumerate}
+	
+	\item \textbf{Text classification:} the schemes based on \emph{Spy-EM} and \emph{Roc-SVM} achieved substantial improvements in classification, both of them producing SVMs with performance levels comparable to the ceiling performance. Bayesian Sets proved to be inadequate for this data set, not managing to improve accuracy even after pseudo relevance feedback was used to improve their original augmentation scheme. 
+	
+	\item \textbf{Biomolecular activity prediction:} Bayesian Sets and \emph{Spy-EM} achieved \emph{formidable results}, improving classification accuracy by \emph{an order of magnitude}. Not only did these schemes effectively utilise the unlabelled data to expand the training set, but they managed to mitigate the negative effects that the \emph{selection bias} had on classification, thus confirming the claims given in \cite{Li210}. In this experiment, Bayesian Sets revealed their underlying potential by outperforming \emph{Spy-EM} using a very ad-hoc cut-off criterion. 
+
+\item \textbf{Supervised theorem proving:} this part of the project dealt with a \emph{continuous} data set consisting of five different classes. A multi-class classification scheme based on SVMs was implemented and the \emph{Roc-SVM} augmentation scheme successfully improved its classification accuracy using unlabelled data drawn from a separate subset of training data. Subsequently, the system built revealed that the body of unlabelled examples available from the original research project could not be used to achieve data augmentation in the original work.
+
+\end{enumerate}
+
+In addition to providing an open-source library for achieving entity set expansion and data augmentation in arbitrary data sets, work on this project generated some interesting ideas for further research. With the benefit of hindsight and the knowledge gained through work on this project, I would consider including the following two ideas into the original list of project goals: \\
+	
+\textbf{{Spy Bayesian Sets}}: Bayesian Sets provide the most efficient scheme out of the ones implemented. However, their performance is inhibited by the absence of a clear criterion for establishing the cut-off point in the rankings produced. The use of \emph{spy positives} for extracting \emph{reliable negatives} proved to be instrumental for the success of \emph{Spy-EM} and \emph{Roc-SVM}. Incorporating this idea into (Iterative) Bayesian Sets may yield an entity set expansion algorithm superior to all algorithms considered in this project. \\
+	
+\textbf{Further evaluation:} the results obtained in this project clearly show that the augmentation schemes developed reduce the classification error when support vector machines are used as the underlying classifiers. To establish the applicability of these schemes to real world supervised learning problems, a thorough investigation of their impact on application-specific classifiers tailored to each of the application areas should be conducted. 
+
+	
+		
+	
+	
+	\cleardoublepage
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% the bibliography
+	
+	\addcontentsline{toc}{chapter}{Bibliography}
+	\bibliography{refs}
+	\cleardoublepage
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	% the appendices
+	\appendix % 2819 words so far
+	
+	\cleardoublepage
+	
+	\chapter{Computational learning theory}
+	
+	This appendix contains the theoretical arguments used to justify the use of partially supervised learning to achieve data augmentation, as attempted in this project. It contains proofs of two major arguments. Informally:
+	
+	\begin{enumerate} \item  Partially supervised learning can yield \emph{arbitrarily} good classifiers.
+	\item  Unlabelled data carries information relevant to the task of classification. \end{enumerate}
+	
+	Furthermore, this appendix introduces the relevant concepts in computational learning theory, such as the PAC learning framework and the VC dimension.
+	\clearpage
+	
+	\section{Theoretical Foundation of Partially Supervised Learning}
+	
+	\emph{This section provides a theoretical foundation of partially supervised learning, as framed in Chapter 3.2.} \\
+	
+	Let $X$ denote the space of feature vectors of possible instances and let $Y = \left\{ 0,1 \right\} $ denote the set of possible outcomes: $1$ for positives, $0$ otherwise. Assume that all of the examples $(x,y) \in X \times Y$ are independently and identically distributed random variables drawn from some fixed probability distribution over $ X \times Y$. 
+	
+	Let $\Pr_{D}[A]$ denote the probability of event $A$ if the examples are drawn from some probability distribution $D$. For a finite set of examples $L$, let $\Pr_{L}[A]$ denote the probability of event $A$ if the examples are uniformly drawn from $L$.
+	
+	The input of the algorithm consists of the positive set $P$ with $n_1$ elements drawn from $D_{X \mid Y=1}$, the conditional distribution of all positives, and the unlabelled set $U$ with $n_2$ elements drawn from $D_{X}$, the marginal distribution on $X$.  \\
+	
+	The learning algorithm produces the classifier by choosing a function $f$ from the class of functions $F: X \rightarrow \left\{ 0,1 \right\} $. The task of learning is equivalent to the task of minimising the expected error of $f$, that is the probability that the chosen classifier $f$ makes a wrong prediction. \\
+	
+	The best possible classifier of all $f \in F$ is the one that minimises the expected error, that is the probability of making wrong predictions:\\
+	
+	$ \displaystyle \phantom{=aaaa} \Pr[ f(X) \neq Y ] \phantom{a} = \phantom{a} \Pr[ f(X) = 1 \wedge Y = 0 ] + \Pr[ f(X) = 0 \wedge Y = 1] 
+	
+	=\phantom{aaaa} \Pr[ f(X) = 1] - \Pr[ f(X) = 1 \wedge Y = 1] + \Pr[ f(X) = 0 \wedge Y = 1] 
+	
+	=\phantom{aaaa} \Pr[ f(X) = 1] - \Pr[Y = 1] + \Pr[f(x) = 0 \wedge Y = 1] + \Pr[ f(X) = 0 \wedge Y = 1]
+	
+	=\phantom{aaaa} \Pr[ f(X) = 1] - \Pr[Y = 1] + 2 \Pr[f(x) = 0 \wedge Y = 1]
+	
+	= \phantom{aaaa}\Pr[ f(X) = 1] - \Pr[Y = 1] + 2 \Pr[f(x) = 0 \mid Y = 1] \Pr[Y = 1]  $ \\
+	
+	The first thing to note is that $\Pr[Y=1]$ is constant. Therefore, minimising the expression given above involves simultaneously minimising $\Pr[f(X) = 0 \mid Y = 1]$ and $\Pr[f(X) = 1]$. However, $(X,Y)$ is drawn from $D$, which we know nothing about. Hence, to obtain a method of choosing the best classifier, we need to transform the task of minimising the error across $D$ to one that deals only with the sets $P$ and $U$. Intuitively, we can only hope to find a \emph{good} approximation to the best classifier given limited knowledge of $D$ (obtained through $P$ and $U$). \\
+	
+	We shall focus on the \emph{noiseless case}: classification settings such that there exists $f_t \in F$ such that $Y = f_t(X)$ for every example $(X,Y)$ drawn from $D$. The noisy case, where all labels $Y$ are flipped with some probability and the target classification function $f_t \notin F$ is presented in \cite{Liu02}. 
+	 
+	We want to relate the task of finding a \emph{good} classifier $f \in F$ to the task of minimising $\sum_{i=1}^{n_2}{f(X_i)}$ (where $X_i \in U$) while maximising $\Pr_{P}[f(X)=1]$ at the same time. Therefore, we need to find conditions on the sizes of $P$ and $U$, $n_1$ and $n_2$, under which the function that chooses $f$ by minimising $\sum_{i=1}^{n_2}{f(X_i)}$ generalises well, that is achieves \emph{good} expected precision and recall across all examples drawn from $D$. 
+	
+	Formally, we can set this problem in the \emph{probably approximately correct} (PAC) framework \cite{Valiant84}: if the target function is any $f_t \in F$, the learning algorithm $A$ needs to produce a function $f \in F$ such that, given enough training data, $\forall \epsilon>0, \delta>0. \Pr[E[f(X) \neq f_t(X)] > \epsilon] \leq \delta$. If $A$ can do this for any $ f_{t} \in F$, then $A$ represents a \emph{PAC learning algorithm} for $F$. However, before we can formally reason about the class of functions $F$, we need to provide a formal measure of how complicated these classes can be. \\
+	
+	\textbf{Vapnik Chervonenkis (VC) dimension} is a measure of the capacity of the probability model used for classification. It is defined as the cardinality of the largest set of examples that the algorithm can \emph{shatter}. An algorithm can \emph{shatter} a set of training examples $ T = \left\{ (x_1, y_1) \ldots (x_n, y_n) \right\} $ if for all potential label assignments to $y_1 \ldots y_n$ there exists some $f \in F$ which makes no classification errors when evaluating $T$. If $T$ is the greatest set that can be shattered using elements of $F$, then $n$ represents the VC dimension of $F$. 
+	
+	The VC dimension reflects the power of the classifier used. A high VC dimension means that a classifier can model complex classifiers but might overfit, whereas a low VC dimension reduces the risk of overfitting but also restricts what the classifier can model. The VC dimension does not depend on the training set used, but solely on the maximum \emph{number} of data points that the model can classify without making an error. Hence, it is an \emph{inherent property} of the function class used to represent the classifiers produced by the learning algorithm. The utility of VC dimensions stems from the fact that they can be used in conjunction with the training error %$\epsilon_{t}$ 
+	to obtain a \emph{probabilistic upper bound} on the subsequent testing error for the classifier, that is the classification error on new, unseen data. \cite{Vapnik71}  
+	
+	For the function class of our classifier $F: X \rightarrow \left\{ 0,1 \right\} $ it must hold that $VC(F) \leq \log_{2}(F)$, as there are two possible label assignments to each $x_i \in X$. Similarly, the Naive Bayes classifier has a VC dimension of no more than $2m+1$, where $m$ represents the number of words used in the classifier \cite{Liu02}. The VC bounds presented henceforth are \emph{not exact}; they are used as an illustration of the rate at which sample sizes have to grow so that the chosen classifier $f$ becomes arbitrarily close to the ideal one, $f_t$. \\
+	
+	Let $A'$ be the algorithm that chooses $f$ by minimising $\sum_{i=1}^{n_2}{f(X_i)}$. The conditions for $A'$ to be a \emph{PAC learning algorithm} for the \emph{concept class} represented by $F: X \rightarrow \left\{ 0,1 \right\}$ are given by the following theorem \cite{Liu02}: \\
+	
+	\newcommand{\argmin}{\operatornamewithlimits{argmin}}
+	
+	\textbf{Theorem 1}\emph{ Let $F$ be a permissible\footnotemark[1] class of functions of VC dimension $d$. Let $f_t \in F$ be the target function and let $\nu = E[f_t(X)]$.  Let the sets $P$ and $U$ consist of $n_1$ and $n_2$ random variables drawn from $D_{X \mid Y = 1}$ and $D_{X}$, respectively. Take any $\epsilon>0$, $\delta>0$ and assume that $n_1, n_2 > \frac{16}{\epsilon} d \ln( \frac{16e}{\epsilon} \ln \frac{16e}{\epsilon}) + \ln(\frac{24}{\delta} )$. Let $F'$ be the subset of $F$ such that all members of $F'$ achieve perfect recall on $P$. If $ f' = \argmin_{f \in F'}\sum_{i=1}^{n2}{f(Z_i)}$ then with probability of at least $1 - \delta$, it holds that: }
+	\footnotetext[1]{A function class measurability condition not relevant in practice \cite{Liu02}. }
+	$\phantom{aa} ER(f') > 1 - \epsilon \textit{ and } EP(f') >  \frac{(1 - \epsilon) \nu}{(1+9\epsilon) \nu + 4 \epsilon} \textit{ and } $E[f'(X) \neq f_t(X)] < (10 \nu + 4) \epsilon$. $ 
+	
+	\begin{proof} To prove this theorem, start from the following one:
+	
+	\textbf{Theorem 1.1}(Haussler, 1992) \emph{Let $F: Z \rightarrow \left\{ 0,1 \right\}$ be a permissible\footnotemark[1] class of functions with VC dimension $d$. Let $ (X_1, Y_1) \ldots (X_n, Y_n) $ be independent identically distributed random variables. For any $\epsilon > 0$, if $\Phi$ denotes}
+	
+	$
+	\displaystyle \small{\Pr\left[ \exists f \in F: \left| \frac{1}{n} \sum_{i=1}^{n}{f(X_i, Y_i)} - E[f(X,Y)] \right| > \alpha \left( \frac{1}{n} \sum_{i=1}^{n}{f(X_i, Y_i)} + E[f(X,Y)] + \nu \right) \right] } 
+	$
+	
+	\emph{\phantom{aaaaaaaaaaa} then} $\displaystyle \Phi \leq 8 \left( \frac{16e}{\alpha \nu} \ln\frac{16e}{\alpha \nu} \right)^{d} e^{- \alpha^2 \nu n / 8 }$. 
+	
+	%$\Phi = \Pr\left[ \exists f \in F:$
+	Therefore, the probabilistic upper bound on the error decreases with the size of the training set $n$. Thus, if we set the parameters $\alpha = \frac{1}{2} $ and $\nu =  2 \epsilon$, and try to substitute the upper bound on the error with any $\delta>0$, Haussler's theorem specialises to the following claim:
+	
+	\textbf{Corollary 1} \emph{Let $F$ be a permissible class of functions of VC dimension $d$ and let $ T = X_1 \ldots X_n $ be a set of independently and identically distributed random variables. By Haussler's theorem, if $n > \frac{16}{\epsilon} \left( d \ln( \frac{16e}{\epsilon}\ln\frac{16e}{\epsilon}) + \ln\frac{8}{\delta} \right)$, then:} 
+	
+	$\phantom{a} \Pr\big[ \ \ \exists f \in F:  \left(  E[f(X) \neq f_t(X)] > 3 \Pr_{T}[f(X) \neq f_t(X)] + \epsilon \right) \vee \\ \phantom{aaaaaaaaaaaaa} \left( \Pr_{T}[f(X) \neq f_t(X)] > 3 E[f(X) \neq f_t(X)] + \epsilon \right) \ \ \ \ \big] \ \displaystyle \leq \ \delta$.
+	
+	The \emph{two separate events in this expression} distinguish between large training errors and overfitting, thus providing a unifying expression for achieving \emph{Structural Risk Minimisation}. Algebraically, the two events result from removing the absolute values present in Haussler's theorem. 
+	
+	Finally, we are in a position to prove Theorem 1:  
+	
+	From Corollary 1, we know that if $n_1 > \frac{16}{\epsilon} \left( d \ln( \frac{16e}{\epsilon}\ln\frac{16e}{\epsilon}) + \ln\frac{24}{\delta} \right)$, then $ \boxed{ ER(f') \geq 1 - \epsilon } $ with probability of at least $1 - \delta / 3$, as required in the theorem statement. Consequently, $\Pr[f'(X)=0 \wedge Y = 1] \leq \epsilon \nu$. \\
+	
+	From $ f' = \argmin_{f \in F'}\sum_{i=1}^{n2}{f(Z_i)}$ it follows that $\Pr_U[f'(X) = 1] \leq \Pr_U[Y=1]$: 
+	
+	$\phantom{aaaa}\Leftrightarrow \ \Pr_U[f'(X) = 1 \wedge Y = 0] + \Pr_U[f'(X) = 1 \wedge Y = 1] \leq \Pr_U[Y=1]$
+	
+	$\phantom{aaaa}\Leftrightarrow \ \Pr_U[f'(X) = 1 \wedge Y = 0] \leq \Pr_U[Y = 1] - \Pr_U[f'(X) = 1 \wedge Y = 1]$  
+	
+	$\phantom{aaaa}\Leftrightarrow \phantom{aaaaa} \Pr_U[f'(X) = 1 \wedge Y = 0] \leq \Pr_U[f'(X) = 0 \wedge Y = 1] $. \\
+	
+	Similarly (again via Corollary 1), if $n_2 > \frac{16}{\epsilon} \left( d \ln( \frac{16e}{\epsilon}\ln\frac{16e}{\epsilon}) + \ln\frac{24}{\delta} \right)$ then with probability of at least $1 - \delta / 3$, it holds that: 
+	
+	$\phantom{aaa} \Pr_U[f'(X) = 0 \cap Y = 1] \leq 3 \Pr[f'(X)=0 \cap Y=1] + \epsilon$ \emph{and}  
+	
+	$\phantom{aaa} \Pr[f'(X) = 1 \cap Y = 0] \leq 3 \Pr_U[f'(X)=1 \cap Y=0] + \epsilon$.
+	
+	Combining the expressions obtained thus far:
+	
+	$\phantom{aa} \Pr[f'(X) = 1 \wedge Y=0] \leq 3(\ 3\Pr[f'(X)=0 \wedge Y=1]+\epsilon \ ) + \epsilon \leq 9 \epsilon \nu + 4 \epsilon  $
+	
+	Hence, with probability of at least $1 - \delta$, ($1-\delta/3$, even) the \emph{probability of error} can be bounded by:
+	 
+	$ \phantom{aaaa} \Pr[f'(X) \neq Y] = \Pr[f'(X) = 0 \wedge Y = 1] + \Pr[f'(X) = 1 \wedge Y = 0] < \\ \phantom{aaaaaaaaaaaaaaaaaaaaaaaaaaaaa} < \nu \epsilon + 9 \epsilon \nu + 4 \epsilon = \boxed{10 \epsilon \nu + 4 \epsilon}$, as required.
+	
+	Finally, using these results, one can show that the \emph{expected precision} converges to the optimal one at the rate suggested by Theorem 1: \\
+	
+	
+	$\displaystyle \phantom{aaaaaa} EP(f') \ = \ \Pr[Y = 1 \mid f'(X) = 1] \ = \ \frac{\Pr[Y = 1 \wedge f'(X) = 1]}{\Pr[f'(X) = 1]} $
+	
+	$\displaystyle \phantom{aaaaaa} = \phantom{aaaaaa} \frac{ \Pr[Y = 1 \wedge f'(X) = 1] }{\Pr[f'(X) = 1 \wedge Y = 0] + \Pr[f'(X) = 1 \wedge Y = 1]} $
+	
+	$\displaystyle \phantom{aaaaaa} = \ \  \frac{\Pr[Y = 1 \wedge f'(X) = 1]}{\Pr[f'(X) = 1 \wedge Y = 0] + \Pr[Y = 1] - \Pr[f'(X) = 0 \wedge Y = 1]} $
+	
+	$\displaystyle \phantom{aaaaaa} \geq \ \ \ \frac{ER(f') \Pr[Y=1]}{\Pr[f'(X) = 1 \wedge Y = 0] + \Pr[Y = 1]} \phantom{a} > \phantom{a} \boxed{ \frac{\nu - \nu \epsilon}{ (1+9 \epsilon) \nu + 4 \epsilon} } $
+	
+	\end{proof} \\
+	
+	
+	\section{Theoretical Foundation of Data Augmentation}
+	
+	In this section, a probabilistic framework for describing the classifiers and observations (training/testing data) \cite{Nigam98} will be used to give a theoretical grounding for data augmentation:
+	
+	A \emph{mixture distribution} is the probability distribution of a random variable whose probability density function is a linear combination of density functions of other random variables. Given a finite set of probability density functions $p_1(x)...p_n(x)$ and weights $w_1...w_n$ such that $w_i \geq 0$ and $\sum\limits_{i=1}^n w_i = 1$, the probability density function of the mixture distribution is given by: $f(x) = \sum\limits_{i=1}^n w_i p_i(x)$. The cumulative distribution function of the mixture distribution is defined analogously.
+	
+	A \emph{mixture model} is a mixture distribution that represents the probability distributions of observations in the overall population, without requiring that the set of observations identifies the sub-population that an observation belongs to. Unlike mixture distributions, which are used to derive properties of the overall population from the properties of sub-populations, mixture models are used to perform statistical inference about properties of specific sub-populations given only observations on the entire population, without the sub-population membership information revealed. \\
+	
+	We shall assume that all of our data was produced by a mixture model, and that there exists a one to one correspondence between its generative components (underlying random variables) and the classes (corresponding to labels). 
+	  
+	Under these assumptions, every observation $d_i$ is generated according to a probability distribution given by a mixture model parametrised by $\theta$. The mixture model consists of generative components $c_j \in C$, where $C = \left\{ c_1, ..., c_{ \left| C \right| } \right\} $, and each of these components is parametrised by a disjoint subset of $\theta$. Therefore, an observation is obtained by first selecting a component according to the prior probabilities $P(c_j|\theta)$ and then having that component generate an observation according to its conditional distribution $P(d_i|c_j; \theta)$. Therefore, the probability of any observation $d_i$ can be expressed as a weighted sum over all generative components: 
+	\begin{equation}  P(d_i|\theta) = \sum\limits_{j=1}^{\left|C\right|} P(c_j|\theta) P(d_i|c_j; \theta) \end{equation}
+	By our assumption of one to one correspondence between classes and generative components, $c_j$ denotes both the $j$-th generative component and the $j$-th class. Let $y_i$ denote the class label for the $i$-th observation. If observation $d_i$ was generated by component $c_j$, we enforce the correspondence: $c_j = c_{y_i}$. These class labels  are known only for labelled data.\\
+	
+	In this environment, the problem of learning concept classes is equivalent to estimating the parameters of the mixture model which produced the given set of observations. Therefore, to prove that unlabelled data is useful for learning concept classes, it suffices to show that it carries information about the parameters $\theta$. This will hold if and only if the learning task is not \emph{degenerate}:
+	\begin{equation}  \exists d_i, c_j, \theta', \theta'' . P(d_i|c_j; \theta') \neq P(d_i|c_j; \theta'') \wedge P(c_j|\theta') \neq P(c_j|\theta'')   \end{equation}
+	The set of tasks which fail this condition (those tasks for which any parametrisation yields the same outcomes) corresponds to the set of tasks for which learning is impossible. High-dimensional mixture models (such as Gaussian mixture models) always satisfy this condition. \\
+	
+	To show that the unlabelled data carries information about the parameters $\theta$, we need to show that $\theta$ and $D$ are conditionally dependent, $D$ being the random variable representing the probability distribution of the unlabelled observations:
+	
+	We need to show $P(\theta|D) \neq P(\theta)$. Assume the opposite, that $P(\theta|D) = P(\theta)$. Hence, $ \forall \theta'. P(\theta'|D) = P(\theta')$. Therefore, any two parametrisations $\theta'$ and $\theta''$ provide the same \emph{class probabilities} for any observation. 
+	
+	Applying Bayes' rule to our assumption, we find that $\forall \theta', \theta'', P(D|\theta') = P(D|\theta'')$. Substituting this into equation 1.1, we obtain: \begin{equation} \forall \theta', \theta''. \sum\limits_{j=1}^{\left|C\right|} P(c_j|\theta') P(d_i|c_j; \theta') = \sum\limits_{j=1}^{\left|C\right|} P(c_j|\theta'') P(d_i|c_j; \theta'') \end{equation} 
+	Our non-degeneracy condition(1.2) requires that there must exist an observation $d_i$ such that some of its individual terms in equation 1.3 differ for some parametrisations $\theta'$ and $\theta''$. If this is the case, the total probability of the observation must be different with these different parametrisations as well. This contradicts our conditional independence assumption. Therefore, it follows that $P(\theta|D) \neq P(\theta)$. The parametrisations are conditionally dependent on the observations. This means that unlabelled data \emph{does} carry information about the parameters of the generative model.\\
+
+	\chapter{Matlab code}
+	
+	This section contains the Matlab code samples for some of the algorithms and the data augmentation and evaluation schemes I implemented. This code constitutes around 20\% of the code written. The data augmentation evaluation framework, multi-class SVMs, Bayesian Sets, Iterative Bayesian Sets, Rocchio classification, as well as the many supporting functions used for testing, evaluation and data set manipulation have been ommited from this section. 
+	
+	\section{Spy-EM}
+	\begin{lstlisting}
+function [finalClassPosteriors, P, U, N, iterationCount] = SpyEM(FeatureMatrix, PositiveSet, MixedSet, negativeThreshold, realLabels)
+
+if( nargin < 4)
+    negativeThreshold = 0.15;
+% entries with posterior Probability less than negativeThreshold are put in the reliable negative set - set default value to 0.15.
+end
+
+% Positive set contains the array indices of positive elements in the Feature Vector
+% FeatureMatrix is the entry * features (binary) matrix 
+% MixedSet represents array indices of unlabeled elements
+% We are implicitly assuming that P and MS cover all rows of FeatureMatrix
+% If they are not, prepareData method can take care of that.
+
+numPositives = length(PositiveSet);
+
+permutationOfPositives = randperm(numPositives);
+
+setPositives(1:numPositives) = PositiveSet(permutationOfPositives);
+
+% use s = 10% sampling rate
+reducedPositives = setPositives(1:round(numPositives*9/10));
+
+spyPositives = setPositives( (round(numPositives*9/10)+1):numPositives);
+
+mixedSet = zeros(1, length(spyPositives) + length(MixedSet) );
+
+mixedSet(1:length(MixedSet)) = MixedSet;
+
+mixedSet(  (length(MixedSet)+1):length(mixedSet) ) = spyPositives;
+
+% mixedSet contains the whole mixed set + 10% of the positive set
+
+numberOfSpies = length(spyPositives);
+% the number of spy elements at the end of the (new) mixedSet
+
+reorderedFeatureMatrix(1:length(reducedPositives), :) = FeatureMatrix(reducedPositives, :);
+
+reorderedFeatureMatrix( length(reducedPositives)+1 : (length(reducedPositives) + length(mixedSet)), :) = FeatureMatrix(mixedSet, :);
+
+initialEMLabels = InitialEM (reorderedFeatureMatrix, 1:length(reducedPositives), length(reducedPositives)+1: (length(reducedPositives) + length(mixedSet)));
+% [1,length(reducedPositives)] is the set of posteriors of positives used in training the classifier, and the rest is the mixedSet. Indexing is the same as in reducedPositives, so IEMLabelsIndexed(1) is reducedPositives(1) and IEMLabelsIndexed(length(reducedPositives)+1) is mixedSet(1) 
+
+% Place all members of initialEMClasses with posterior probability <= t into the Reliable Negative set, and restore the original positive set (just use the old one, PositiveSet)
+
+initialEMLabels = initialEMLabels( (1+length(reducedPositives)) : (length(initialEMLabels) - numberOfSpies));
+
+[valuesPosterior, valuesIndices] = sort(initialEMLabels);
+% sort by posterior probabilities in order to easily identify the likely negatives set. No need for binary search, linear is fast enough!
+
+bound = length(valuesPosterior);
+
+for i=1:length(valuesPosterior)
+    if(valuesPosterior(i)>=negativeThreshold)
+        bound = i - 1;
+        break;
+    end
+end
+
+% since valuesIndices are indexes in the mixedSet, which is an array of indices, that means that we need to feed these into N/U with these indices:
+negativeSet = MixedSet(sort(valuesIndices(1:bound)));
+
+unlabeledSet = MixedSet(sort(valuesIndices((bound+1):(length(valuesIndices)))));
+
+positiveSet = PositiveSet;
+
+
+% Sanity check to see if all elements were divided into these three sets by checking that the sum is what it should be:
+ d = length(positiveSet) + length(negativeSet) + length(unlabeledSet);
+ isequal( sum(positiveSet) + sum(negativeSet) + sum(unlabeledSet), d*(d+1)/2)
+ 
+P = positiveSet;
+U = unlabeledSet;
+N = negativeSet;
+
+% what the sEM algorithm does next is train an NB classifier only using the sets P and N. This classifier is then used to classify all of U. Then, given these posteriors -> labels, we iteratively construct new NB classifiers, as in iEM, using all three sets with their labels, until they converge. We can't reuse the iEM code here, as it resets the positive set to 1 in each iteration, so elements of U labeled 1 by the initial NB won't be able to change label - which is incorrect!!!
+
+newLabels = zeros(1, length(positiveSet)+length(negativeSet)+length(unlabeledSet));
+newLabels(1:length(positiveSet)) = 1;
+
+clear reorderedFeatureMatrix;
+
+[reorderedFeatureMatrix, newLabels] = prepareData(FeatureMatrix, positiveSet, negativeSet, newLabels);
+% obtain the feature matrix just for P and N, get newLabel to resize to get rid of its elements from unused set.
+
+%train the classifier using only P and N
+PN_NBClassifier = NaiveBayes.fit(reorderedFeatureMatrix, newLabels, 'Distribution', 'mn');
+
+% Now, we need to classify all elements of U, N according to the new classifier, and then run the EM algorithm, fixing posteriors of P to 1.
+posteriors = PN_NBClassifier.posterior(reorderedFeatureMatrix);
+
+labelsEM = zeros(1, length(positiveSet)+length(negativeSet)+length(unlabeledSet));
+% this will be the list of labels for our EM algorithm
+
+labelsEM(positiveSet) = 1;
+% the elements in the positiveSet are fixed to have posterior probability 1
+
+if(~isempty(negativeSet) )% if the negative set is NOT empty:
+    labelsEM(negativeSet) = binarizePosteriors(posteriors( length(positiveSet)+1:length(positiveSet)+length(negativeSet) ,2));
+    disp('negatives not empty, all good')
+end
+
+% the negative ones are free to be relabeled, as will be those from U
+posteriorsU = PN_NBClassifier.posterior(FeatureMatrix(unlabeledSet, :));
+
+if(size(posteriorsU, 2) < 2) % in case empty or fully determined
+    finalClassPosteriors = labelsEM; % if determined, U is all 0
+    disp('massive bug2')
+    return;
+end
+   
+labelsEM(unlabeledSet) = binarizePosteriors ( posteriorsU(:,2));
+
+oldLabels = zeros(size(labelsEM));
+
+numIterations = 0;
+
+while ( not(isequal(oldLabels, labelsEM)))
+
+    if(numIterations > 30) 
+        str = ['Cut SEM optimization after 30 iterations - the number of different labels is:', num2str(sum(abs(oldLabels - labelsEM)))];
+        disp(str)
+        break;
+    end
+    
+    EM_NBClassifier = NaiveBayes.fit(FeatureMatrix, labelsEM, 'Distribution', 'mn');
+    
+    posteriorProbabilities = EM_NBClassifier.posterior(FeatureMatrix);
+    
+    oldLabels = labelsEM;
+    
+    labelsEM = binarizePosteriors(posteriorProbabilities(:,2));
+    
+    labelsEM(positiveSet) = 1;
+    % make sure to keep these fixed to 1.
+        
+    numIterations = numIterations + 1;
+    
+    % The next two lines, and the realLabels that might be passed in as
+    % argument, can be used to track how subsequent classifiers improve the
+    % estimation metrics! will only write this if we pass these as argument
+    
+end
+
+iterationCount = numIterations;
+finalClassPosteriors = posteriorProbabilities(:,2);
+
+finalClassPosteriors(positiveSet) = 1;
+
+	\end{lstlisting}
+
+\clearpage
+
+	\section{Roc-SVM}
+
+	\begin{lstlisting}
+function [finalClass, reliableNegatives, svmClassifierFinal, svmFirstResults, SVMFirstClassifier] = RocSVM(FeatureMatrix, PositiveSet, MixedSet, kkdThreshold, numIter, numClusters, alpha, beta)
+
+% This code implements the Rocchio SVM (with k-clustering) PU learning algorithm given in (Learning to Classify Texts using PU data, Li & Liu)
+
+% kkdThreshold is the proportion of points allowed to be on the wrong side of the separating hyperplane. The lower it is, the better result the algorithm should produce. Furthermore, the lower it is, the longer it takes to converge ( exponentially increases the running time). A value that is too low leads to overfitting. 
+
+% numClusters - parameter used for k-means clustering after Rocchio, default 10
+
+% reliableNegatives - the set of RN identified in step 1 of the algorithm
+
+if(nargin < 6)
+     numClusters = 10; alpha = 16; beta = 4;
+end
+
+if(nargin < 5)
+    numIter = 1000000;
+end
+
+if(nargin < 4) 
+    kkdThreshold = 0;
+end
+
+numEntries = size(FeatureMatrix, 1);
+
+reliableNegatives = Rocchio(FeatureMatrix, PositiveSet, MixedSet, alpha, beta);
+
+if(length(reliableNegatives) == 0) 
+    disp('degenerate svm - no RNs')
+    finalClass = zeros(1, size(FeatureMatrix, 1));
+    return;
+end
+
+KMeansCentroids = kmeans(FeatureMatrix(reliableNegatives, :), numClusters, 'start', 'sample', 'emptyaction', 'singleton');
+
+temporaryLabels = zeros(numClusters, length(KMeansCentroids));
+
+for i = 1:length(KMeansCentroids)
+    temporaryLabels(KMeansCentroids(i), reliableNegatives(i)) = 1;
+end
+
+NegativeCluster = cell(numClusters);
+
+for i = 1:numClusters
+  NegativeCluster{i} = LabelToArray(temporaryLabels(i, :));
+end
+
+% Given the cluster of each entry, produce centroids for each cluster:
+
+positiveCentroids = zeros(numClusters, size(FeatureMatrix, 2), 'single');
+negativeCentroids = zeros(numClusters, size(FeatureMatrix, 2), 'single');
+
+for i = 1:numClusters 
+   [positiveCentroids(i, :), negativeCentroids(i, :)] = calculateCentroids(FeatureMatrix, PositiveSet, NegativeCluster{i}, alpha, beta);
+end
+
+
+% similarityMatrix[i,j] = cosine_similarity(centroid i, entry j)
+similarityMatrixPositive = zeros(numClusters, numEntries, 'single');
+similarityMatrixNegative = zeros(numClusters, numEntries, 'single');
+
+% the list of norms of all entries in the FeatureMatrix, needed for calculation
+featureNorms = sqrt(sum(FeatureMatrix.^2,2))';
+
+for i = 1:numClusters
+    
+    % calculate the dot product of the i-th centroid with all entries
+    similarityMatrixPositive(i, :) = (sum(FeatureMatrix .* repmat(positiveCentroids(i,:), size(FeatureMatrix, 1), 1), 2));
+    similarityMatrixNegative(i, :) = (sum(FeatureMatrix .* repmat(negativeCentroids(i,:) , size(FeatureMatrix, 1), 1), 2));
+
+    % now, divide the dot product by the norm of the respective document:
+    similarityMatrixPositive(i, :) = similarityMatrixPositive(i, :) ./  featureNorms;
+    similarityMatrixNegative(i, :) = similarityMatrixNegative(i, :) ./ featureNorms;
+    
+    % in order to complete the cosine similarity calculation, we need to divide by norm of centroid:
+    similarityMatrixPositive(i, :)  = similarityMatrixPositive(i, :) / norm(positiveCentroids(i,:));
+    similarityMatrixNegative(i, :) = similarityMatrixNegative(i, :) / norm(negativeCentroids(i,:));
+
+end
+
+% Left to determine which elements of RN stay in the negative set. For each entry of the unlabeled set, check if the maximal of its negative similarities is greater than the maximum of its positive similarities.
+
+% Precompute these maxima/minima:
+maxSimilarityPositive(1:numEntries) = max( similarityMatrixPositive(:, 1:numEntries)); 
+maxSimilarityNegative(1:numEntries) = max( similarityMatrixNegative(:, 1:numEntries));
+
+similarityDifference = maxSimilarityNegative - maxSimilarityPositive;
+% entries which have a positive value belong in the negative set
+
+% As in Rocchio, we need to make sure to remove positives from RN:
+similarityDifference(PositiveSet) = -1;
+
+reliableNegatives = sort(LabelToArray(similarityDifference));
+
+% Now, construct the set Q, which is the set of the remaining unlabeled entries (the set of their indices):
+
+Q_Label = zeros(1, numEntries);
+
+Q_Label(MixedSet) = 1;
+
+Q_Label(reliableNegatives) = 0;
+
+Q = LabelToArray(Q_Label);
+
+% The RocSVM Method returns either the first classifier produced (if the SVM construction step failed), or the last classfier. Hence, save the classifications of the first classifier, and then iterate onwards:
+
+svmLabels = zeros(1, length(PositiveSet) + length(reliableNegatives));
+svmLabels(1:length(PositiveSet)) = 1;
+svmLabels( ( length(PositiveSet)+1 ) : ( length(PositiveSet)+length(reliableNegatives)) ) = -1;
+    
+SVMTrainingSet = prepareData(FeatureMatrix, PositiveSet, reliableNegatives, zeros(1, numEntries) );
+
+SVMFirstClassifier = svmtrain( full(SVMTrainingSet), svmLabels, 'kktviolationlevel', kkdThreshold, 'options', statset('MaxIter', numIter )); %'Display', 'iter' 
+SVMClassifier = SVMFirstClassifier;
+
+svmResults = svmclassify(SVMClassifier, FeatureMatrix);
+svmFirstResults = binarizePosteriors( svmResults, 1 );
+
+svmResults(PositiveSet) = 0;
+svmResults(reliableNegatives) = 0;
+
+W = LabelToArray(-svmResults);
+
+% As long as there remain negative elements extracted from Q in the SVM step: designate the set of these as W, remove them from Q and repeat the step.
+    
+while(not(isempty(W)))
+    
+    % First, remove W from Q: 
+    tempLabels = zeros(1, numEntries);
+    tempLabels(Q) = 1;
+    tempLabels(W) = 0; % W is a subset of Q, so just remove them from it.
+    Q = LabelToArray(tempLabels); % gets the new value of Q
+
+    reliableN = zeros(1, length(reliableNegatives) + length(W)); % the new set of reliable negatives
+    reliableN(1:length(reliableNegatives)) = reliableNegatives;
+    reliableN( (length(reliableNegatives)+1):(length(reliableN)) ) = W;
+    reliableNegatives = reliableN;
+ 
+    % svmLabels will contain the training labels for the SVM
+    svmLabels = zeros(1, length(PositiveSet) + length(reliableNegatives));
+    svmLabels(1:length(PositiveSet)) = 1;
+    svmLabels( ( length(PositiveSet)+1 ) : ( length(PositiveSet)+length(reliableNegatives)) ) = -1;
+
+    % SVMTraining set will contain the part of FeatureMatrix with P and RN
+    SVMTrainingSet = prepareData(FeatureMatrix, PositiveSet, reliableNegatives, zeros(1, numEntries) );
+    
+    % Train i-th classifier:
+    SVMClassifier = svmtrain( full( SVMTrainingSet) , svmLabels, 'kktviolationlevel', kkdThreshold, 'options', statset('MaxIter', numIter));    
+    size(W)
+    % Use S_i to classify all the entries:
+    svmResults = svmclassify(SVMClassifier, FeatureMatrix);
+
+    svmResultsW = -svmResults;
+    svmResultsW(PositiveSet) = 0;
+    svmResultsW(reliableNegatives) = 0;
+    svmResults = binarizePosteriors(svmResults, 1); % -1 for N needs to be 0
+    W = LabelToArray(svmResultsW);
+    
+end
+
+% Left to check whether svmResults( PositiveSet ) has more than 5% of negatives: if so, the SVM classifier malfunctioned -> revert to S1.
+
+svmR = sum(svmResults(PositiveSet)) / length(PositiveSet); % the count of positives classified as such by the last classifier
+
+if(svmR < 0.95) 
+
+    finalClass = svmFirstResults; % positives labeled with 1, negatives with -1.
+    svmClassifierFinal = SVMFirstClassifier;
+    str = ['Reverted to original classifier - SVM iterations converged with ', num2str(svmR)];
+    disp(str);
+    
+else
+    
+    finalClass = svmResults; % will labeled with 1, negatives with -1.
+    svmClassifierFinal = SVMClassifier;
+    str = ['Using the final classifier. SVM iterations converged with ', num2str(svmR)];
+    disp(str);
+    
+end
+	
+	\end{lstlisting}
+
+\clearpage
+
+\section{Multi-class augmentation}
+
+\begin{lstlisting}
+function [augmentedResults, originalResults] = assessMultiClass(TrainFM, TrainLabels, TestFM, TestLabels, UnlabeledFM, kkdThreshold)
+
+numClasses = length(unique(TestLabels));
+
+originalLabeling = MultiClassSVM(TrainFM, TrainLabels, TestFM, 0);
+
+originalResults = quality(originalLabeling, TestLabels);
+
+% We need to extract new positives of every class!
+
+newPositives = cell(numClasses);
+
+for i = 1 : numClasses 
+    
+    idxAccess = LabelToArray((TrainLabels == i));
+    
+    augFM = zeros(length(idxAccess) + size(UnlabeledFM, 1), size(TrainFM, 2));
+
+    augFM(1:size(UnlabeledFM, 1), :) = UnlabeledFM(1:size(UnlabeledFM, 1), :);
+
+    augFM( size(UnlabeledFM, 1) + 1 : size(UnlabeledFM, 1) + length(idxAccess), :) = TrainFM(idxAccess, :);
+
+    Labels = zeros(size((augFM), 1), 1);
+    
+    Labels( size(UnlabeledFM, 1) + 1 : size(UnlabeledFM, 1) + length(idxAccess) ) = 1;
+    
+    % as of now, we can only use RocSVM:
+    [~, ~, newPositives{i}] = augmentData(augFM, Labels, [], 0, 0, 1, kkdThreshold, 10000000);
+    
+    newPositives{i} =  newPositives{i} (LabelToArray( newPositives{i} <= size(UnlabeledFM, 1) ))  ;
+    
+end
+
+newPos = cell(numClasses);
+
+for i = 1 : numClasses
+    newPos{i} = newPositives{i};
+end
+
+for i = 1 : numClasses
+    
+    numMemb = size(newPositives{i})
+    
+    for j = 1 : numClasses
+        
+        if i ~= j
+            
+            newPositives{i} = setdiff( newPositives{i}, newPos{j});
+            
+        end        
+    end    
+end
+
+for i = 1 : numClasses
+        
+    if ( ~isempty( newPositives{i} ) )
+        
+        str = ['Number of new positives of class', num2str(i), 'is:', num2str(size(newPositives{i}, 2))];
+        disp(str)
+        
+        TrFM = zeros( size(TrainFM, 1) + size(newPositives{i}, 2), size(TrainFM, 2));
+        TrFM(1:size(TrainFM, 1), :) = TrainFM( 1 : size(TrainFM, 1), :);
+        TrFM( size(TrainFM, 1) + 1 : size(TrFM, 1), :) = UnlabeledFM( newPositives{i}, : );
+
+        TrainL = zeros( size(TrainFM, 1) + size(newPositives{i}, 2), 1);
+        TrainL(1:size(TrainFM, 1), :) = TrainLabels( 1 : size(TrainFM, 1));
+        TrainL(size(TrainFM, 1) + 1 : size(TrFM, 1)) = i;
+
+        TrainFM = TrFM;
+        TrainLabels = TrainL;
+    end
+    
+end
+
+newLabelling = MultiClassSVM(TrainFM, TrainLabels, TestFM, 0);
+
+augmentedResults = quality(newLabelling, TestLabels);
+    
+\end{lstlisting}
+%	
+%	\section{Data augmentation}
+%	
+%	\begin{lstlisting}
+%	function [ResultsBayes, ResultsSEM, ResultsRocSVM, entitySetExpansionQuality] = assessDataAugmentation(TrainFM, TrainLabels, TestFM, TestLabels, kkt_threshold, max_iter, dist_bias, bidirection_pull, useBayes, useSEM, useRocSVM)
+%
+%% bias means how to change the ratio of Positives to Negatives. 
+%% For example, dist_bias = 2 means that P:N ratio in bias will be twice
+%% that of the trainset. 0.5 means the opposite.
+%
+%% the following matrix will contain the performances pre/post-augmentation:
+%ResultsSVM = zeros(13,7); % 1-3 reduxes, 4 original, 5,6,7 first redux with three different augmentations, 8,9,10 second, 11, 12, 13 third.
+%
+%newNegBayes = []; % to make sure that they're empty unless we specifically want bidirectional expansion!
+%newNegSEM = [];
+%newNegRocSVM = [];
+%
+%disp('starting algorithm')
+%
+%SVMCLassifer = svmtrain(full(TrainFM), TrainLabels ,'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'off' ));
+%Results = svmclassify(SVMCLassifer, full(TestFM));
+%ResultsSVM(4,:) = quality(Results, TestLabels);
+%
+%% Now, we need to create redux sets, with their labels, respective unlabeled set - its feature matrix, and its (true) labels to assess quality of entity set expansion.
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%sample = 0.1; % first reduced (redux) training set
+%
+%[reduxFM, reduxLabels, reduxAugLabels, reduxAugLabelsNegative] = createRedux(TrainFM, TrainLabels, sample, dist_bias);
+%
+%[newPosBayes, newPosSEM, newPosRocSVM] = augmentData(TrainFM, reduxAugLabels, LabelToArray(reduxAugLabelsNegative), useBayes, useSEM, useRocSVM, kkt_threshold, max_iter);
+%
+%if(bidirection_pull==1)
+%    
+%    [newNegBayes, newNegSEM, newNegRocSVM] = augmentData(TrainFM, reduxAugLabelsNegative, 1:sum(reduxAugLabels), useBayes, useSEM, useRocSVM, kkt_threshold, max_iter);
+%
+%    interBayes = intersect(newPosBayes, newNegBayes);
+%    interSem = intersect(newPosSEM, newNegSEM);
+%    interRocSVM = intersect(newPosRocSVM, newNegRocSVM);
+%
+%    newPosBayes = setdiff(newPosBayes, interBayes);
+%    newNegBayes = setdiff(newNegBayes, interBayes);
+%    newPosSEM = setdiff(newPosSEM, interSem);
+%    newNegSEM = setdiff(newNegSEM, interSem);
+%    newPosRocSVM = setdiff(newPosRocSVM, interRocSVM);
+%    newNegRocSVM = setdiff(newNegRocSVM, interRocSVM);
+%    
+%end
+%
+%SVMClassifierRedux10 = svmtrain(full(reduxFM), reduxLabels,'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'off' ));
+%
+%Results = svmclassify(SVMClassifierRedux10, TestFM);
+%
+%ResultsSVM(1,:) = quality(Results, TestLabels);
+%
+%clear SVMClassifierRedux10;
+%
+%% Bayes:
+%if(useBayes)
+%
+%    LabelsPrecNew = zeros(1, length(TrainLabels));
+%    LabelsPrecNew(newPosBayes) = 1;
+%    entitySetExpansionQuality(1, :) = quality(LabelsPrecNew, LabelsPrecision);
+%
+%    reduxx = zeros(size(reduxFM, 1) + length(newPosBayes) + length(newNegBayes), size(reduxFM, 2), 'single');
+%    reduxx(1:size(reduxFM, 1), :) = reduxFM;
+%    reduxx(size(reduxFM,1) + 1 : size(reduxFM,1) + length(newPosBayes), :) = TrainFM(newPosBayes, :);
+%    if(not(isempty(newNegBayes)))
+%        reduxx( size(reduxFM,1) + length(newPosBayes) + 1 : size(reduxx, 1), :) = TrainFM(newNegBayes, :);
+%    end
+%
+%    reduxxLabels = ones(1, size(reduxx, 1));   
+%    reduxxLabels(size(reduxFM,1) + length(newPosBayes) + 1 : size(reduxx, 1)) = 0;
+%    reduxxLabels(1:size(reduxFM, 1)) = reduxLabels;
+%
+%    disp('bayes10 test set made')
+%
+%    SVMCLassifer = svmtrain(full(reduxx), reduxxLabels, 'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'off' ));
+%    Results = svmclassify(SVMCLassifer, full(TestFM));
+%    ResultsSVM(5,:) = quality(Results, TestLabels);
+%
+%    disp('bayes redux10 done')
+%
+%    clear SVMCLassifer;
+%    clear reduxx;
+%end
+%
+%% SEM:
+%if(useSEM)
+%    
+%    LabelsPrecNew = zeros(1, length(TrainLabels));
+%    LabelsPrecNew(newPosSEM) = 1;
+%    entitySetExpansionQuality(2, :) = quality(LabelsPrecNew, LabelsPrecision);
+%
+%    reduxx = zeros(size(reduxFM, 1) + length(newPosSEM) + length(newNegSEM), size(reduxFM, 2), 'single');
+%    reduxx(1:size(reduxFM, 1), :) = reduxFM;
+%    reduxx(size(reduxFM,1) + 1 : size(reduxFM,1) + length(newPosSEM), :) = TrainFM(newPosSEM, :);
+%    if(not(isempty(newNegSEM)))
+%        reduxx( size(reduxFM,1) + length(newPosSEM) + 1 : size(reduxx, 1), :) = TrainFM(newNegSEM, :);
+%    end
+%    reduxxLabels = ones(1, size(reduxx, 1));   
+%    reduxxLabels(size(reduxFM,1) + length(newPosSEM) + 1 : size(reduxx, 1)) = 0;
+%    reduxxLabels(1:size(reduxFM, 1)) = reduxLabels;
+%
+%    disp('sem10 test set made')
+%
+%    lenLabels = size(reduxxLabels)
+%    sumLabels = sum(reduxxLabels)
+%
+%    SVMCLassifer = svmtrain(full(reduxx), reduxxLabels, 'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'off' ));
+%    Results = svmclassify(SVMCLassifer, full(TestFM));
+%    ResultsSVM(6,:) = quality(Results, TestLabels);
+%
+%    clear SVMCLassifer;
+%    clear reduxx;
+%
+%    disp('sem redux10 done')
+%
+%end
+%
+%
+%% RocSVM:
+%
+%if(useRocSVM)
+%
+%    LabelsPrecNew = zeros(1, length(TrainLabels));
+%    LabelsPrecNew(newPosRocSVM) = 1;
+%    entitySetExpansionQuality(3, :) = quality(LabelsPrecNew, LabelsPrecision);
+%
+%    reduxx = zeros(size(reduxFM, 1) + length(newPosRocSVM) + length(newNegRocSVM), size(reduxFM, 2), 'single');
+%    reduxx(1:size(reduxFM, 1), :) = reduxFM;
+%    reduxx(size(reduxFM,1) + 1 : size(reduxFM,1) + length(newPosRocSVM), :) = TrainFM(newPosRocSVM, :);
+%    if(not(isempty(newNegRocSVM)))
+%        reduxx( size(reduxFM,1) + length(newPosRocSVM) + 1 : size(reduxx, 1), :) = TrainFM(newNegRocSVM, :);
+%    end
+%    reduxxLabels = ones(1, size(reduxx, 1));   
+%    reduxxLabels(size(reduxFM,1) + length(newPosRocSVM) + 1 : size(reduxx, 1)) = 0;
+%    reduxxLabels(1:size(reduxFM, 1)) = reduxLabels;
+%
+%    disp('rocSVM10 test set made')
+%
+%    lenLabels = size(reduxxLabels)
+%    sumLabels = sum(reduxxLabels)
+%
+%    SVMCLassifer = svmtrain(full(reduxx), reduxxLabels, 'kktviolationlevel', kkt_threshold, 'options', statset('MaxIter', max_iter, 'Display', 'off' ));
+%    Results = svmclassify(SVMCLassifer, full(TestFM));
+%    ResultsSVM(7,:) = quality(Results, TestLabels);
+%
+%    clear SVMCLassifer;
+%    clear reduxx;
+%
+%    disp('rocsvm redux10 done')
+%
+%end
+%
+%clear reduxFM;
+%clear reduxAugLabels;
+%clear reduxLabels;
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%.........
+%%.........
+%%.........
+%%.........
+%%.........
+%% Samples of differenst sizes considered as well......
+%%.........
+%%.........
+%%.........
+%%.........
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%ResultsBayes = zeros(7, 7);
+%
+%ResultsBayes(1,:) = ResultsSVM(1,:); % result of first redux
+%ResultsBayes(2, :) = ResultsSVM(5, :); % augmentation of first Bayes
+%ResultsBayes(3, :) = ResultsSVM(2, :); % second redux
+%ResultsBayes(4, :) = ResultsSVM(8, :); % augmentation of second redux
+%ResultsBayes(5, :) = ResultsSVM(3, :); % third redux's result
+%ResultsBayes(6, :) = ResultsSVM(11, :);
+%ResultsBayes(7, :) = ResultsSVM(4, :) % full train used
+%
+%
+%ResultsSEM = zeros(7,7);
+%
+%ResultsSEM(1,:) = ResultsSVM(1,:); % result of first redux
+%ResultsSEM(2, :) = ResultsSVM(6, :); % augmentation of first SEM
+%ResultsSEM(3, :) = ResultsSVM(2, :); % second redux
+%ResultsSEM(4, :) = ResultsSVM(9, :); % augmentation of second redux
+%ResultsSEM(5, :) = ResultsSVM(3, :); % third redux's result
+%ResultsSEM(6, :) = ResultsSVM(12, :); % third aug
+%ResultsSEM(7, :) = ResultsSVM(4, :); % full train used
+%
+%
+%ResultsRocSVM = zeros(7,7);
+%
+%ResultsRocSVM(1,:) = ResultsSVM(1,:); % result of first redux
+%ResultsRocSVM(2, :) = ResultsSVM(7, :); % augmentation of first SEM
+%ResultsRocSVM(3, :) = ResultsSVM(2, :); % second redux
+%ResultsRocSVM(4, :) = ResultsSVM(10, :); % augmentation of second redux
+%ResultsRocSVM(5, :) = ResultsSVM(3, :); % third redux's result
+%ResultsRocSVM(6, :) = ResultsSVM(13, :); % third aug
+%ResultsRocSVM(7, :) = ResultsSVM(4, :); % full train used
+%
+%\end{lstlisting}
+
+
+	\chapter{Project Proposal}
+	
+	\input{propbody}
+	
+	\end{document}

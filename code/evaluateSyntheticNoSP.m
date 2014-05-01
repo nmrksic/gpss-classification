@@ -17,41 +17,40 @@ function evaluateSyntheticNoSP ( numRestarts, runParallel)
     searchCriterion = 0; % use BIC (light) as search criterion.
 
     format long
-
     
-    experimentCount = 12;
+    experimentCount = 5;
     encoders = cell(10, 1);
     dims = cell(10, 1); 
     covFunction = cell(experimentCount, 1);
     covParams = cell(experimentCount, 1); 
         
-    encoders{1} = [1 0 0; 0 0 0; 0 0 0];            dims{1} = 3;     % SE1 in 3D
-    encoders{2} = [2 2 0; 0 0 0; 0 0 0];            dims{2} = 3;     % SE2 X SE2, 3D
-    encoders{3} = [2 0 0; 2 0 0; 0 0 0];            dims{3} = 3;     % SE2 + SE2, 3D
-    encoders{4} = [2 0 0; 2 0 0; 2 0 0];            dims{4} = 3;     % SE2 + SE2 + SE2, 3D
-    encoders{5} = [2 3 0; 0 0 0; 0 0 0];            dims{5} = 4;     % SE2 x SE3, 4D
-    encoders{6} = [2 3 0; 1 0 0; 4 0 0];            dims{6} = 4;     % SE1 + SE2 x SE3 + SE4, 4D
-    encoders{7} = [2 3 0; 1 0 0; 4 0 0];            dims{7} = 10;    % SE1 + SE2 x SE3 + SE4, 10D
-    encoders{8} = [2 3 0; 1 0 0; 4 0 0; 5 6 0];     dims{8} = 10;    % SE1 + SE2 x SE3 + SE4 + SE5 X SE6, 10D
-    encoders{9} = [3 5 7; 0 0 0; 0 0 0];            dims{9} = 10;    % SE3 X SE5 X SE7, 10D
-    encoders{10} = [3 5 7; 1 0 0; 10 0 0];          dims{10} = 10;   % SE1 + SE3 X SE5 X SE7 + SE10, 10D
-    encoders{11} = [3 5 7 9; 0 0 0 0; 0 0 0 0];     dims{11} = 10;   % SE3 X SE5 X SE7 X SE9, 10D
-    encoders{12} = [3 5 7 9; 1 0 0 0; 10 0 0 0];    dims{12} = 10;   % SE1 + SE3 X SE5 X SE7 X SE9 + SE10, 10D
+  %  encoders{1} = [1 0 0; 0 0 0; 0 0 0];            dims{1} = 3;     % SE1 in 3D
+  %  encoders{2} = [2 2 0; 0 0 0; 0 0 0];            dims{2} = 3;     % SE2 X SE2, 3D
+  %  encoders{3} = [2 0 0; 2 0 0; 0 0 0];            dims{3} = 3;     % SE2 + SE2, 3D
+  %  encoders{4} = [2 0 0; 2 0 0; 2 0 0];            dims{4} = 3;     % SE2 + SE2 + SE2, 3D
+  %  encoders{5} = [2 3 0; 0 0 0; 0 0 0];            dims{5} = 4;     % SE2 x SE3, 4D
+    encoders{1} = [2 3 0; 1 0 0; 4 0 0];            dims{1} = 4;     % SE1 + SE2 x SE3 + SE4, 4D
+    encoders{2} = [2 3 0; 1 0 0; 4 0 0];            dims{2} = 10;    % SE1 + SE2 x SE3 + SE4, 10D
+    encoders{3} = [2 3 0; 1 0 0; 4 0 0; 5 6 0];     dims{3} = 10;    % SE1 + SE2 x SE3 + SE4 + SE5 X SE6, 10D
+   % encoders{9} = [3 5 7; 0 0 0; 0 0 0];            dims{9} = 10;    % SE3 X SE5 X SE7, 10D
+    encoders{4} = [3 5 7; 1 0 0; 10 0 0];          dims{4} = 10;   % SE1 + SE3 X SE5 X SE7 + SE10, 10D
+  %  encoders{11} = [3 5 7 9; 0 0 0 0; 0 0 0 0];     dims{11} = 10;   % SE3 X SE5 X SE7 X SE9, 10D
+    encoders{5} = [3 5 7 9; 1 0 0 0; 10 0 0 0];    dims{5} = 10;   % SE1 + SE3 X SE5 X SE7 X SE9 + SE10, 10D
  
     for i = 1:experimentCount
+        
         covFunction{i} = encodeKernel(encoders{i}, dims{i});
-        temp = covFunction{i};
-        numHyper = str2double(feval(temp{:}));
-        temp2 = zeros(numHyper, 1); % all lengthscales set to 1, that is 0 in log-domain
-        temp2(2:2:end) = 1; % set signal variances
-        covParams{i} = temp2;
+        numHyper = nnz(encoders{i}) * 2;
+        temp = zeros(numHyper, 1); % all lengthscales set to 1, that is 0 in log-domain
+        %temp(2:2:end) = 1; % set signal variances
+        covParams{i} = temp;
        
     end
     
     % modify lengthscales for those kernels with repeating dimensions (2, 3, 4)
-    covParams{2} = [1 1 0 1];
-    covParams{3} = [1 1 0 1];
-    covParams{4} = [1 1 0 1 -1 1];
+  %  covParams{2} = [1 0 0 0];
+   % covParams{3} = [1 0 0 0];
+    %covParams{4} = [1 0 0 0 -1 0];
 
     results = cell(experimentCount * 3, 9);
     
@@ -128,12 +127,12 @@ function evaluateSyntheticNoSP ( numRestarts, runParallel)
                 
                 currentLine = currentLine + 1;
                 
-                disp(['Evaluated ', num2str(currentLine - 1), ' out of ', num2str(experimentCount * 6), ' experiments.']);
+                disp(['Evaluated ', num2str(currentLine - 1), ' out of ', num2str(experimentCount * 3), ' experiments.']);
                 
-                if sample == 100
-                    results{currentLine, 1} = [decodeKernelToLatex(encoders{i}), '& ' ];
+                if sample == 300
+                    results{currentLine, 1} = ['$', decodeKernelToLatex(encoders{i}), '$ &' ];
                 else 
-                    results{currentLine, 1} = '& ' ;
+                    results{currentLine, 1} = '&' ;
                 end
                 
                 if SNR == 1
@@ -151,12 +150,10 @@ function evaluateSyntheticNoSP ( numRestarts, runParallel)
                     results{currentLine, 9} = [ num2str(round( kernelOptimalRates * 10000) / 100), '\% \\ '];
                     
                 end
-                
-                                
+                                           
                 fileprefixAux = 'results/SyntheticDataEvaluation/synthResultsTemp.mat';
                 save(fileprefixAux, 'results');
-                
- 
+           
             end
             
             if SNR == 100
@@ -170,23 +167,23 @@ function evaluateSyntheticNoSP ( numRestarts, runParallel)
   
     results2  = cell(experimentCount * 3, 9);
     
-    for i = 2:3:experimentCount * 3
+    for i = 1:3:experimentCount * 3
         for j = 1:9
             results2{i+2, j} = results{i, j};
         end
     end
     
-    for i = 4:3:experimentCount * 3
+    for i = 3:3:experimentCount * 3
         for j = 1:9
             results2{i-2, j} = results{i, j};
         end
     end
-    for i = 3:3:experimentCount * 3
+    for i = 2:3:experimentCount * 3
         for j = 1:9
             results2{i, j} = results{i, j};
         end
     end
     
-    save( [ fileprefix, num2str(likelihoodMod), '.mat' ], 'results', 'results2');
+    save( [ fileprefix, '.mat' ], 'results', 'results2');
     
 end

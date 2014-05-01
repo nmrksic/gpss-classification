@@ -1,6 +1,37 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}
-\BOOKMARK [0][-]{chapter.2}{Background}{}
+\BOOKMARK [1][-]{section.1.1}{Bayesian Machine Learning in the context of Data Science}{chapter.1}
+\BOOKMARK [1][-]{section.1.2}{Contribution}{chapter.1}
+\BOOKMARK [0][-]{chapter.2}{Gaussian Processes}{}
+\BOOKMARK [1][-]{section.2.1}{The Role of Kernels for Gaussian Processes}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Gaussian Process Classification}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.2.1}{Laplace}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.2}{EP}{section.2.2}
+\BOOKMARK [2][-]{subsection.2.2.3}{Variational Bayes}{section.2.2}
 \BOOKMARK [0][-]{chapter.3}{Related Work}{}
-\BOOKMARK [0][-]{chapter.4}{Design and Implementation}{}
+\BOOKMARK [1][-]{section.3.1}{Kernel learning}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Unsupervised structure discovery}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Additive Gaussian Processes}{chapter.3}
+\BOOKMARK [1][-]{section.3.4}{Kernel structure discovery for regression}{chapter.3}
+\BOOKMARK [0][-]{chapter.4}{Kernel Structure Discovery for GP Classification}{}
+\BOOKMARK [1][-]{section.4.1}{Defining the Kernel Grammar}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.1.1}{The Search Operators}{section.4.1}
+\BOOKMARK [1][-]{section.4.2}{Model selection}{chapter.4}
+\BOOKMARK [1][-]{section.4.3}{Optimising the Hyperparameters}{chapter.4}
+\BOOKMARK [1][-]{section.4.4}{Guiding the Structure Search}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.4.1}{Bayesian and Akaike Information Criteria}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.2}{The Number of Effective Hyperparameters}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.3}{Cross-validated training accuracy}{section.4.4}
+\BOOKMARK [1][-]{section.4.5}{Adapting the likelihood function}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.5.1}{Dealing with Outliers}{section.4.5}
+\BOOKMARK [1][-]{section.4.6}{Providing Interpretability}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{Visualising the kernel decomposition}{section.4.6}
+\BOOKMARK [1][-]{section.4.7}{Bayesian Model Averaging}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.7.1}{BMA for Model Selection}{section.4.7}
+\BOOKMARK [2][-]{subsection.4.7.2}{BMA for Predictive Performance}{section.4.7}
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}
+\BOOKMARK [1][-]{section.5.1}{Experiments with Synthetic Data}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.1.1}{Adding Salt and Pepper Noise}{section.5.1}
+\BOOKMARK [1][-]{section.5.2}{Experiments on Real World Data Sets}{chapter.5}
+\BOOKMARK [1][-]{section.5.3}{Visualisation}{chapter.5}
 \BOOKMARK [0][-]{chapter.6}{Summary and Conclusions}{}
+\BOOKMARK [1][-]{section.6.1}{Further Work}{chapter.6}

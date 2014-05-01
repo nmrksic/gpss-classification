@@ -9,7 +9,7 @@
 %%   SMH, May 2010. 
 
 
-\documentclass[a4paper,12pt,twoside,openright]{report}
+\documentclass[a4paper,12pt ]{report}
 
 
 %%
@@ -20,31 +20,38 @@
 \def\authorcollege{Trinity College\xspace}
 \def\authoremail{nm480@cam.ac.uk}
 \def\dissertationtitle{{The Automated Statistician for Gaussian Process Classification}}
-\def\wordcount{12,000}
+\def\wordcount{0}
 
 
-	%\usepackage{a4}
-	\usepackage{verbatim}
-	\usepackage{amsmath} 
-	\usepackage{amssymb,amsfonts}
-	\usepackage{hyperref}
-	\usepackage{mathtools}
-	\usepackage{amsthm}
-	\usepackage{booktabs}
-	\usepackage{multirow}
-	\usepackage{algpseudocode}
-	\usepackage{algorithm}
-	%\usepackage{adjustbox}
-	\usepackage{tocloft}
+%\usepackage{a4}
+\usepackage{verbatim}
+\usepackage{amsmath} 
+\usepackage{amssymb,amsfonts}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{adjustbox}
+\usepackage{tocloft}
   %\usepackage[framed,numbered,autolinebreaks,useliterate]
 
   \usepackage{epsfig, epstopdf, graphicx,parskip,setspace,tabularx,xspace} 
 
+\usepackage{preamble}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{wasysym}
+%\usepackage{subfigure}
+\usepackage{bm}
+  
   
 \newtheorem{theorem}{Theorem}[section]
 \newtheorem{proposition}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{definition}[theorem]{Definition}
+%\newtheorem{definition}[theorem]{Definition}
 \newtheorem{examples}[theorem]{Examples}
 \newtheorem{remarks}[theorem]{Remarks}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -53,6 +60,10 @@
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{question}[theorem]{Question}
 
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
 
 
 %% START OF DOCUMENT
@@ -79,14 +90,12 @@
 
 \clearpage
 
-\listoffigures
+%\listoffigures
+%\clearpage
 
-\clearpage
 
-
-\listoftables
-
-\clearpage
+%\listoftables
+%\clearpage
 
 
 \onehalfspacing
@@ -97,86 +106,442 @@
 \pagenumbering{arabic} 
 \setcounter{page}{1} 
 
-This is the introduction where you should introduce your work.  In
-general the thing to aim for here is to describe a little bit of the
-context for your work --- why did you do it (motivation), what was the
-hoped-for outcome (aims) --- as well as trying to give a brief
-overview of what you actually did.
+\section{Bayesian Machine Learning in the context of Data Science}
 
-It's often useful to bring forward some ``highlights'' into 
-this chapter (e.g.\ some particularly compelling results, or 
-a particularly interesting finding). 
 
-It's also traditional to give an outline of the rest of the
-document, although without care this can appear formulaic 
-and tedious. Your call. 
+%This is the introduction where you should introduce your work.  In general the thing to aim for here is to describe a little bit of the
+%context for your work --- why did you do it (motivation), what was the hoped-for outcome (aims) --- as well as trying to give a brief
+%overview of what you actually did.
+
+% It's often useful to bring forward some ``highlights'' into this chapter (e.g.\ some particularly compelling results, or a particularly interesting finding). 
+
+%It's also traditional to give an outline of the rest of the document, although without care this can appear formulaic and tedious. Your call. 
+
+\section{Contribution}
+
 
 \clearpage
 
-\chapter{Background} 
+%\chapter{Background} 
 
-A more extensive coverage of what's required to understand your 
-work. In general you should assume the reader has a good undergraduate 
-degree in computer science, but is not necessarily an expert in 
-the particular area you've been working on. Hence this chapter 
-may need to summarize some ``text book'' material. 
+% A more extensive coverage of what's required to understand your work. In general you should assume the reader has a good undergraduate degree in computer science, but is not necessarily an expert in 
+% the particular area you've been working on. Hence this chapter may need to summarize some ``text book'' material. 
 
-This is not something you'd normally require in an academic paper, 
-and it may not be appropriate for your particular circumstances. 
-Indeed, in some cases it's possible to cover all of the ``background'' 
-material either in the introduction or at appropriate places in 
-the rest of the dissertation. 
+% This is not something you'd normally require in an academic paper, and it may not be appropriate for your particular circumstances. Indeed, in some cases it's possible to cover all of the ``background'' 
+%material either in the introduction or at appropriate places in the rest of the dissertation. 
+
+\chapter{Gaussian Processes}
+
+\section{The Role of Kernels for Gaussian Processes}
+
+\section{Gaussian Process Classification}
+
+\subsection{Laplace}
+
+\subsection{EP}
+
+\subsection{Variational Bayes}
 
 \clearpage
 
 \chapter{Related Work} 
 
-This chapter covers relevant (and typically, recent) research 
-which you build upon (or improve upon). There are two complementary 
-goals for this chapter: 
-\begin{enumerate} 
-  \item to show that you know and understand the state of the art; and 
-  \item to put your work in context
-\end{enumerate} 
+\section{Kernel learning}
 
-Ideally you can tackle both together by providing a critique of
-related work, and describing what is insufficient (and how you do
-better!)
+Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
 
-The related work chapter should usually come either near the front or
-near the back of the dissertation. The advantage of the former is that
-you get to build the argument for why your work is important before
-presenting your solution(s) in later chapters; the advantage of the
-latter is that don't have to forward reference to your solution too
-much. The correct choice will depend on what you're writing up, and
-your own personal preference.
+%This chapter covers relevant (and typically, recent) research 
+%which you build upon (or improve upon). There are two complementary 
+%goals for this chapter: 
+%\begin{enumerate} 
+%  \item to show that you know and understand the state of the art; and 
+%  \item to put your work in context
+%\end{enumerate} 
+
+% Ideally you can tackle both together by providing a critique of
+% related work, and describing what is insufficient (and how you do
+% better!)
+
+%The related work chapter should usually come either near the front or
+%near the back of the dissertation. The advantage of the former is that
+%you get to build the argument for why your work is important before
+%presenting your solution(s) in later chapters; the advantage of the
+%latter is that don't have to forward reference to your solution too
+%much. The correct choice will depend on what you're writing up, and
+%your own personal preference.
+
+\section{Unsupervised structure discovery}
+
+\section{Additive Gaussian Processes}
+
+\section{Kernel structure discovery for regression}
+
+Find other relevant work - Dave mentioned some of these. Read through all the papers' relevant work sections. 
+
 
 \clearpage
 
-\chapter{Design and Implementation} 
+\chapter{Kernel Structure Discovery for GP Classification} 
 
-This chapter may be called something else\ldots but in general 
-the idea is that you have one (or a few) ``meat'' chapters which
-describe the work you did in technical detail. 
+\section{Defining the Kernel Grammar}
+
+Draw the basic kernels, describe additive and product kernels. 
+
+Present challenges for classification, difference from regression, lack of clear component interpretability, as opposed to i.e. time-series data. 
+
+\subsection{The Search Operators}
+
+Adding or multiplying with a base kernel. 
+
+\section{Model selection}
+
+\section{Optimising the Hyperparameters}
+
+Subsampling the training data to optimize the process. 
+
+Discuss parallelisation. Maybe add a table of running times and numbers of restarts. 
+
+\section{Guiding the Structure Search}
+
+\subsection{Bayesian and Akaike Information Criteria}
+
+\subsection{The Number of Effective Hyperparameters}
+
+Outline BIC light, present it as middle ground between full BIC and AIC. 
+Insert the number of search steps figure that shows overfitting. 
+
+\subsection{Cross-validated training accuracy}
+
+
+
+%\chapter{Predictive Power, Interpretability and Visualisation}
+
+\section{Adapting the likelihood function}
+
+\subsection{Dealing with Outliers}
+
+paste the text I wrote after the discussion with Zoubin. 
+
+\section{Providing Interpretability}
+
+\subsection{Visualising the kernel decomposition}
+
+\section{Bayesian Model Averaging}
+
+\subsection{BMA for Model Selection}
+
+\subsection{BMA for Predictive Performance}
+
+
 
 \clearpage
+
+
 
 \chapter{Evaluation} 
 
-For any practical projects, you should almost certainly have
-some kind of evaluation, and it's often useful to separate 
-this out into its own chapter. 
+In this section, we consider the results achieved by the structure discovery procedure predented in the previous section. We first provide a proof of concept for the procedure by showing that it is able to extract correct kernel structure from synthetic data generated using squared
+exponential kernels. We then proceed to demonstrate that the performance of the procedure on real world data sets is on par with other state of the art methods such as additive Gaussian Processes and Random Forests. Finally, we present the kernel decompositions on the real
+world data sets which can be used to uncover and visualise the underlying data patterns which dictate class membership of the data points. 
+
+\section{Experiments with Synthetic Data}
+
+To prove that the greedy structure search procedure is able to extract structure from data, the algorithm was first applied to data drawn from a single \gp{} prior. If the BIC guiding criterion indeed picked the correct 
+model based on marginal likeluihood, the procedure should be able to recover the original kernel used to generate the data. The amount of data available to the procedure, as well as the signal-to-noise ratio in the data were varied across experiments. 
+As we decrease the noise levels and add more data points, the structure search should get closer to the underlying truth, that is the original kernel used to generate the data.
+
+
+\begin{table}[h]
+
+\label{tbl:synthetic}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+
+\small 
+\begin{tabular}{|c |  c |  c | c | }
+\hline 
+True Kernel & N & Kernel recovered (SNR = 1) &  Kernel recovered (SNR = 100) \\ \hline
+
+&\small100& \small $\SE_{1}$ &\small$\SE_{1}$ \\
+\small$\SE_{1} $ & \small300& \small$\SE_{1}$ &$\SE_{1}$ \\
+& 500& $\SE_{1}$ &$\SE_{1}$ \\ \hline
+% &100& $\SE_{2}$ &$\SE_{2}$ \\
+%$\SE_{2} \times \SE_{2} $ & 300& $\SE_{2}$ &$\SE_{2}$ \\
+%& 500& $\SE_{2}$ &$\SE_{2}$ \\ \hline
+%&100& $\SE_{2}$ &$\SE_{2}$ \\
+%$\SE_{2} + \SE_{2} $ & 300& $\SE_{2}$ &$\SE_{2}$ \\
+%& 500& $\SE_{2}$ &$\SE_{2}$ \\ \hline
+&100& $\SE_{2}$ &$\SE_{2}$ \\
+$\SE_{2} + \SE_{2} + \SE_{2} $& 300& $\SE_{2}$ &$\SE_{2}$ \\
+& 500& $\SE_{2}$ &$\SE_{2} + \SE_{2}$ \\ \hline
+ &100& $\SE_{2} \times \SE_{3}$ &$\SE_{2} + \SE_{3}$ \\
+$\SE_{2} \times \SE_{3} $& 300& $\SE_{2} \times \SE_{3}$ &$\SE_{2} \times \SE_{3}$ \\
+& 500& $\SE_{2} \times \SE_{3}$ &$\SE_{2} \times \SE_{3}$ \\ \hline
+&100& $\SE_{2}$ &$\SE{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
+$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ & 300& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
+& 500& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\ \hline
+&100& $\SE_{2} + \SE_{9}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
+$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ & 300& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
+& 500& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\ \hline
+$\SE_{1} + \SE_{2} \times \SE_{3} + \ldots$&100& $\SE_{3}$ &$\SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\
+$ + \SE_{4} + \SE_{5} \times \SE_{6} $ & 300& $\SE_{1} \times \SE_{4} + \SE_{2} + \SE_{3} + \SE_{5} \times \SE_{6}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\
+& 500& $\SE_{1} \times \SE_{4} + \SE_{2} \times \SE_{3} + \SE_{5} \times \SE_{6}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\ \hline
+ &100& $\SE_{3} \times \SE_{5} \times \SE_{7} $ & $\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
+$\SE_{3} \times \SE_{5} \times \SE_{7} $ & 300& $\SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
+& 500& $\SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\ \hline
+$\SE_{1} +  \SE_{10} $ &100& $\SE_{8}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
+$ + \SE_{3} \times \SE_{5} \times \SE_{7}  $ & 300& $\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
+& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{10}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\ \hline
+&100& $\SE_{1}$ &$\SE_{1} + \SE_{7} \times \SE_{9}$ \\
+$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9} $ & 300& $\SE_{3} \times \SE_{5} + \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
+& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\ \hline
+$ \SE_{1} + \SE_{10} + \ldots $&100& $\SE_{10}$ &$\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ \\
+$ \SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}  $  & 300& $\SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
+ & 500& $\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
+\hline
+\end{tabular}
+}     
+
+ \end{center}
+
+\end{table}
+
+
+Lalalal
+
+
+\subsection{Adding Salt and Pepper Noise}
+
+We validated our method's ability to recover known structure on a set of synthetic datasets.
+For several composite kernel expressions, we constructed synthetic data by first sampling 100, 300 and 500 points uniformly at random, then sampling function values at those points from a \gp{} prior.
+We then added \iid Gaussian noise to the functions, at various signal-to-noise ratios (SNR), as well as different amounts of salt and pepper noise (random outliers in the data set). 
+
+Table \ref{tbl:synthetic1}  lists the true kernels we used to generate the data.  Subscripts indicate which dimension each kernel was applied to.  Subsequent columns show the dimensionality $D$ of the input space, and the kernels chosen by our search for different SNRs and different amounts of added salt and pepper noise. 
+We also show the kernel optimal rates (the accuracy the kernel used to generate the data achieves on the noisy test set) and the function optimal rates (the rate a classifier which knew the \emph{exact} funtion used to generate the data achieves on the noisy test data set). 
+
+
+
+\begin{table}[h]
+
+\caption{{ True kernel: $ \SE_1 + \SE_2 + \SE_3$, $D$ = 3.           }}
+
+\label{tbl:synthetic1}
+
+
+\begin{center}
+{\small
+\makebox[\textwidth]{
+
+
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+
+\hline
+100& 100& 0\% & $\SE_{1} + \SE_{1} \times \SE_{3} + \SE_{2}$ &87.0\% & 91.0\% & 97.4\%   \\ 
+300& 100& 0\% & $\SE_{1} + \SE_{2} + \SE_{3}$ &94.0\% & 95.7\% & 97.4\%    \\
+500& 100& 0\% & $\SE_{1} + \SE_{2} + \SE_{3}$ &95.8\% & 95.4\% & 97.4\%  \\  \hline
+100& 100& 5\% & $\SE_{1} + \SE_{2} + \SE_{3}$ &77.0\% & 80.0\% & 91.6\%    \\
+300& 100& 5\% & $\SE_{1} \times \SE_{3} + \SE_{2}$ &87.0\% & 85.7\% & 91.6\%  \\    
+500& 100& 5\% & $\SE_{1} \times \SE_{2} \times \SE_{3}$ &89.8\% & 89.8\% & 91.6\%   \\  \hline
+100& 100& 20\% & $\SE_{1} \times \SE_{3}$ &69.0\% & 69.0\% & 82.0\%    \\
+300& 100& 20\% & $\SE_{1} \times \SE_{3} + \SE_{2}$ &75.3\% & 73.0\% & 82.0\%    \\
+500& 100& 20\% & $\SE_{1} \times \SE_{3} + \SE_{2}$ &77.6\% & 74.0\% & 82.0\%   \\ \hline
+100& 1& 0\% & $\SE_{1} + \SE_{3}$ &64.0\% & 72.0\% & 77.4\%    \\
+300& 1& 0\% & $\SE_{1} + \SE_{3}$ &74.3\% & 75.0\% & 77.4\%    \\
+500& 1& 0\% & $\SE_{1} + \SE_{3}$ &75.6\% & 76.6\% & 77.4\%  \\  \hline
+100& 1& 5\% & $\SE_{1} + \SE_{3}$ &63.0\% & 63.0\% & 74.4\%    \\
+300& 1& 5\% & $\SE_{1} \times \SE_{3}$ &70.7\% & 68.3\% &  74.4\%    \\
+500& 1& 5\% & $\SE_{1} \times \SE_{3}$ &72.6\% & 72.6\% & 74.4\%  \\  \hline
+100& 1& 20\% & $\SE_{1} \times \SE_{3}$ &53.0\% & 60.0\% & 68.8\%    \\
+300& 1& 20\% & $\SE_{1} \times \SE_{3}$ &65.3\% & 65.3\% & 68.8\%    \\
+500& 1& 20\% & $\SE_{1} \times \SE_{3}$ &66.2\% & 67.8\% & 68.8\%   \\
+\hline
+
+\end{tabular}
+} }
+\end{center}
+
+
+\end{table}
+
+
+
+
+\begin{table*}[h]
+\caption{{ True kernel: $ \SE_1 + \SE_2 \times \SE_3 + \SE_4$,  $D$ = 4.           }}
+ 
+
+\label{tbl:synthetic2}
+\begin{center}
+{\small
+\makebox[\textwidth]{
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+
+\hline
+100& 100& 0\% & $\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ &87.0\% & 92.0\% & 97.4\%    \\
+300& 100& 0\% & $\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ &94.0\% & 94.7\% & 97.4\%    \\
+500& 100& 0\% & $\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ &95.6\% & 96.2\% & 97.4\%    \\  \hline
+100& 100& 5\% & $\SE_{1} + \SE_{2}$ &81.0\% & 76.0\% & 92.0\%    \\
+300& 100& 5\% & $\SE_{1} + \SE_{2} + \SE_{3} \times \SE_{4}$ &85.7\% & 84.0\% & 92.0\%     \\
+500& 100& 5\% & $\SE_{1} \times \SE_{4} + \SE_{2} \times \SE_{3} + \SE_{3}$ &87.6\% & 88.6\% & 92.0\%  \\  \hline
+100& 100& 20\% & $\SE_{2} \times \SE_{4}$ &67.0\% & 67.0\% & 82.0\%    \\
+300& 100& 20\% & $\SE_{2} \times \SE_{3} + \SE_{4}$ &76.0\% & 73.7\% & 82.0\%    \\
+500& 100& 20\% & $\SE_{2} + \SE_{3} \times \SE_{4}$ &77.0\% & 79.8\% & 82.0\%   \\ \hline
+100& 1& 0\% & $\SE_{2}$ &68.0\% & 67.0\% & 76.0\%    \\
+300& 1& 0\% & $\SE_{1} + \SE_{2} \times \SE_{3}$ &72.3\% & 70.3\% & 76.0\%    \\
+500& 1& 0\% & $\SE_{1} + \SE_{2} \times \SE_{3}$ &72.2\% & 73.2\% & 76.0\%  \\  \hline
+100& 1& 5\% & $\SE_{2}$ &67.0\% & 58.0\% & 72.2\%    \\
+300& 1& 5\% & $\SE_{1} \times \SE_{2}$ &71.0\% & 64.3\% & 72.2\%    \\
+500& 1& 5\% & $\SE_{1} \times \SE_{2} \times \SE_{3}$ &70.6\% & 68.0\% & 72.2\%  \\  \hline
+100& 1& 20\% & $\SE_{2}$ &59.0\% & 61.0\% & 69.0\%    \\
+300& 1& 20\% & $\SE_{2} \times \SE_{3} \times \SE_{4}$ &65.3\% & 62.3\% & 69.0\%    \\
+500& 1& 20\% & $\SE_{2} \times \SE_{3} \times \SE_{4}$ &64.8\% & 64.8\% & 69.0\%    \\
+
+\hline
+\end{tabular}
+} }
+\end{center}
+\end{table*}
+
+
+\begin{table*}[h]
+\caption{{True kernel: $ \SE_1 + \SE_3 \times \SE_7 + \SE_{10}$,  $D$ = 10.  }} 
+
+\label{tbl:synthetic3}
+\begin{center}
+{\small
+
+\makebox[\textwidth]{
+
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+
+\hline
+100& 100& 0\% & $\SE_{1} \times \SE_{9} + \SE_{10}$ &61.0\% & 88.0\% & 96.0\%    \\
+300& 100& 0\% & $\SE_{1} + \SE_{1} \times \SE_{10} + \SE_{3} \times \SE_{7}$ &92.0\% & 92.7\% & 96.0\%    \\
+500& 100& 0\% & $\SE_{1} + \SE_{1} \times \SE_{3} \times \SE_{7} \times \SE_{10} + \SE_{10}$ &94.2\% & 94.6\% & 96.0\%   \\ \hline
+100& 100& 5\% & $\SE_{1} \times \SE_{9} + \SE_{10}$ &53.0\% & 71.0\% & 91.8\%    \\
+300& 100& 5\% & $\SE_{1} + \SE_{3} \times \SE_{7} + \SE_{6} \times \SE_{10}$ &82.0\% & 81.3\% & 91.8\%    \\
+500& 100& 5\% & $\SE_{1} \times \SE_{3} \times \SE_{7} \times \SE_{10} + \SE_{10}$ &85.0\% & 86.2\% & 91.8\%   \\ \hline
+100& 100& 20\% & $\SE_{1}$ &49.0\% & 64.0\% & 79.8\%    \\
+300& 100& 20\% & $\SE_{1} + \SE_{10}$ &60.0\% & 70.0\% & 79.8\%    \\
+500& 100& 20\% & $\SE_{1} \times \SE_{3} \times \SE_{7} \times \SE_{10}$ &74.2\% & 75.2\% & 79.8\%   \\ \hline
+100& 1& 0\% & $\SE_{10}$ &59.0\% & 70.0\% & 74.4\%    \\
+300& 1& 0\% & $\SE_{1} \times \SE_{3} \times \SE_{7} \times \SE_{10} + \SE_{10}$ &71.3\% & 72.7\% & 74.4\%    \\
+500& 1& 0\% & $\SE_{1} \times \SE_{10} + \SE_{3} \times \SE_{7} + \SE_{9}$ & 72.0\% & 71.4\% & 74.4\%   \\ \hline
+100& 1& 5\% & $\SE_{10}$ &55.0\% & 66.0\% & 71.4\%    \\
+300& 1& 5\% & $\SE_{1} \times \SE_{10}$ &58.7\% & 68.7\% & 71.4\%    \\
+500& 1& 5\% & $\SE_{1} + \SE_{10}$ &60.6\% & 69.4\% & 71.4\%  \\  \hline
+100& 1& 20\% & $\SE_{3}$ &55.0\% & 56.0\% & 65.4\%    \\
+300& 1& 20\% & $\SE_{10}$ &58.0\% & 61.7\% & 65.4\%    \\
+500& 1& 20\% & $\SE_{1} \times \SE_{10}$ &58.2\% & 62.0\% & 65.4\%    \\
+ 
+
+\hline
+\end{tabular}
+} }
+\end{center}
+\end{table*}
+
+
+
+
+ 
+ 
+ \begin{table*}[h]
+\caption{{ True kernel: $\SE_1 + \SE_3 \times \SE_5 \times \SE_7 + \SE_{9}$,  $D$ = 10. }} 
+
+\label{tbl:synthetic4}
+\begin{center}
+{\small
+
+\makebox[\textwidth]{%
+
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+\hline
+
+
+100& 100& 0\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &85.0\% & 86.0\% & 97.0\%    \\
+300& 100& 0\% & $\SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{9}$ &93.7\% & 93.0\% & 97.0\%    \\
+500& 100& 0\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &91.4\% & 92.2\% & 97.0\%   \\ \hline
+100& 100& 5\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &78.0\% & 76.0\% & 91.6\%    \\
+300& 100& 5\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &84.0\% & 83.7\% & 91.6\%    \\
+500& 100& 5\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &86.2\% & 83.6\% & 91.6\%   \\ \hline
+100& 100& 20\% & $\SE_{8}$ &49.0\% & 59.0\% & 82.0\%    \\
+300& 100& 20\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &68.3\% & 66.0\% & 82.0\%    \\
+500& 100& 20\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &72.2\% & 66.0\% & 82.0\%  \\  \hline
+100& 1& 0\% & $\SE_{1} \times \SE_{3} \times \SE_{4} \times \SE_{5} + \SE_{7}$ &59.0\% & 66.0\% & 74.2\%    \\
+300& 1& 0\% & $\SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{9}$ &71.7\% & 72.7\% & 74.2\%    \\
+500& 1& 0\% & $\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ &73.0\% & 70.6\% & 74.2\% \\   \hline
+100& 1& 5\% & $\SE_{1} \times \SE_{3} \times \SE_{4} \times \SE_{5} + \SE_{7}$ &55.0\% & 62.0\% & 70.8\%    \\
+300& 1& 5\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &64.3\% & 68.7\% & 70.8\%    \\
+500& 1& 5\% & $\SE_{3} \times \SE_{5} \times \SE_{7}$ &70.4\% & 67.4\% & 70.8\%   \\ \hline
+100& 1& 20\% & $\SE_{3} \times \SE_{5} \times \SE_{9}$ &52.0\% & 64.0\% & 66.4\%    \\
+300& 1& 20\% & $\SE_{3} \times \SE_{7} \times \SE_{8}$ &55.7\% & 61.7\% & 66.4\%    \\
+500& 1& 20\% & $\SE_{3} \times \SE_{7}$ &56.4\% & 62.6\% & 66.4\%    \\
+
+
+\hline
+\end{tabular}
+} }
+\end{center}
+\end{table*}
+ 
+
+
+ \clearpage
+
+
+
+\section{Experiments on Real World Data Sets}
+
+In this section, we compare the performance of models constructed using our algorithm with related methods and show that the performance of our structurally simpler models is on par with more complicated models such as additive \gp{}s \cite{duvenaud2011additive11} and Hierarchical Kernel Learning. 
+We also compare the performance of structure search using different information criteria (BIC, AIC, BIClight), as well as the search guided by cross-validated test accuracy. We also show the performance of the kernel using a likelihood mixture to account for outliers. 
+
+The table below contains the mean classication error across 10 train-test splits between different methods. The best performing model is shown in bold, together with all other models that were not significantly different from it, according to the paired t-test for statistical significance. In
+addition to the structure search, we show the performance of the random forest method, which constructs 1000 decision trees using the training data and then uses the mode of the classifications produced by these trees to label the test set data. This method was intended to be a \emph{ceiling}
+performance for our methods, as its focus is just predictive performance: it does not contribute to interpretability or our understanding of the data set considered. 
+
+
+\begin{table}[h!]
+\caption{{\small
+Classification Percent Error
+}}
+\label{tbl:Classification Percent Error}
+\begin{center}
+\begin{tabular}{| l | r r r r | }
+
+\hline Method & \rotatebox{0}{ breast }  & \rotatebox{0}{ pima }  & \rotatebox{0}{ liver }  & \rotatebox{0}{ heart }  \\ \hline
+Logistic Regression & $7.611$ & $24.392$  & $45.060$ & \emph{ \textbf{{16.082}}} \\
+GP GAM & \emph{\textbf{5.189}} & \emph{\textbf{22.419}}  & \emph{ \textbf{29.842}} & \emph{\textbf{16.839}} \\
+HKL & \emph{ \textbf{5.377}} & $24.261$  & \emph{ \textbf{27.270}} & \emph{ \textbf{18.975}} \\
+GP Squared-exp & \emph{ \textbf{4.734}} & \emph{ \textbf{23.722}}  & \emph{ \textbf{31.237}} & \emph{ \textbf{20.642}} \\
+GP Additive & \emph{ \textbf{5.566}} & \emph{ \textbf{23.076}}  & \emph{ \textbf{30.060}} & \emph{ \textbf{18.496}} \\ \hline \hline
+GPSS (AIC) & ${ 6.430 }$ & $\mathbf{22.529}$  & $ {28.924}$ & $ 19.860 $ \\
+GPSS (BIC) & $ { 5.980 }$ & ${23.440}$  & $ {37.010}$ & $ \mathbf{18.150} $ \\
+GPSS (BIC light) & $ { 6.430 }$ & $\mathbf{ 22.270 }$  & $ \mathbf{27.500} $ & $ \mathbf{17.820} $ \\
+GPSS (likMix) & $ \mathbf{ 11.240 }$ & $\mathbf{ 23.180 }$  & $ \mathbf{28.370} $ & $ \mathbf{16.460} $ \\
+GPSS (crossValGuide) & $ \mathbf{ 5.090 }$ & ${ 23.700  }$  &  -  & $ \mathbf{17.160} $ \\ \hline
+Random Forest & $ \mathbf{4.220} $ &  $ \mathbf{23.440} $ & $ \mathbf{24.030} $ &  $ \mathbf{17.130} $ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\section{Visualisation}
+
+
 
 \clearpage
 
 \chapter{Summary and Conclusions} 
 
-As you might imagine: summarizes the dissertation, and draws 
-any conclusions. Depending on the length of your work, and 
-how well you write, you may not need a summary here. 
+%As you might imagine: summarizes the dissertation, and draws any conclusions. Depending on the length of your work, and how well you write, you may not need a summary here. 
+%You will generally want to draw some conclusions, and point to potential future work. 
 
-You will generally want to draw some conclusions, and point
-to potential future work. 
+\section{Further Work}
 
 \clearpage
 
@@ -185,6 +550,6 @@ to potential future work.
 \singlespacing
 
 \bibliographystyle{unsrt} 
-%\bibliography{dissertation} 
+\bibliography{refs} 
 
 \end{document}

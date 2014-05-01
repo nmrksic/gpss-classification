@@ -54,7 +54,7 @@ end
     
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, numFolds); % numFolds-fold cross validation data sets
     
-
+    
     
     dim = size(X, 2); % dimensionality of the data - used to determine number of runs. For now, set to a low multiple (say 2, max 3)
     
