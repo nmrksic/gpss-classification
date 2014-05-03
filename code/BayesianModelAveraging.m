@@ -1,59 +1,60 @@
-function [cvAccuracy1, cvAccuracy2, testAccuracies1, testAccuracies2] = BayesianModelAveraging(expName)
+function [] = BayesianModelAveraging(expName, runParallel)
+
+    if nargin < 2
+        runParallel = 0;
+    end
 
     load(['../Data/classification/', expName, '.mat']);
+    
+    covFunctions = cell(10, 1);
+    Scores = cell(10, 1);
+    Hypers = cell(10, 1);
 
     seed = 0;
     InitialiseRand(seed); % random seed initialised here. 
 
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, 10); % numFolds-fold cross validation data sets
 
-    filepath = 'results/Archive/runs/crossvalidationruns/';
-
-    dims = size(X, 2);
+    filepath = 'results/Archive/runs/BIClightruns/';
     
-    testAccuracies1 = zeros(10, 1);
-    testAccuracies2 = zeros(10, 1); 
-    
-    for folds = 1:10
+   
+    for folds = 1:10 
         
-        cummulativeProbs  = zeros(size(tstY{folds})); 
-        cummulativeLabels = zeros(size(tstY{folds}));
+        disp(['evaluating fold ', num2str(folds)]);
         
         filePathNew = [filepath, expName, '/fold', num2str(folds), '/searchStats.mat'];
         
         load(filePathNew); 
-    
+        
         BicValsList(BicValsList==0) = [];
-
-        weights = exp(-BicValsList); 
-        
-        norm = sum(weights); 
-
-        weights = weights ./ norm; % this determines the importance of each classifier
-
-        numEl = numel(BicValsList); 
-
-        for covId = 1:numEl 
-
-            covF = encodeKernel(squeeze(allEncoderMatrices{covId} ), dims );
-
-            [~,~,~,~,lp] = gp(hyperList{covId}, @infLaplace, @meanConst, covF, @likErf, trnX{folds}, trnY{folds}, tstX{folds}, ones(size(tstY{folds})));
-
-            cummulativeProbs = cummulativeProbs + weights(covId) * lp;
-
-            predictions = pullClasses(exp(lp), 0.5); 
             
-            cummulativeLabels = cummulativeLabels + weights(covId) * predictions' ;
-                                   
-        end
-                
+        [~, id] = min(BicValsList); % finds the index of the best kernel
         
-        testAccuracies1(folds) = calculateAcc(cummulativeProbs, tstX{folds}, tstY{folds});
-        testAccuracies2(folds) = calculateAcc(cummulativeLabels, tstX{folds}, tstY{folds});
+        % we now expand the previous one and this one to get all values. 
+
+        [~, ~, ~, allCovFuns1, allScores1, allHypers1] = nextKernel(trnX{folds}, trnY{folds}, squeeze( allEncoderMatrices(id-1, :, :)), hyperList{id-1}, 1, runParallel, @infLaplace, @likErf, 0);
+                disp('tag1')
+
+        [~, ~, ~, allCovFuns2, allScores2, allHypers2] = nextKernel(trnX{folds}, trnY{folds}, squeeze( allEncoderMatrices(id, :, :)), hyperList{id}, 1, runParallel, @infLaplace, @likErf, 0);
+                disp('tag2')
+
+        [~, ~, ~, allCovFuns3, allScores3, allHypers3] = nextKernel(trnX{folds}, trnY{folds}, squeeze( allEncoderMatrices(id-2, :, :)), hyperList{id-2}, 1, runParallel, @infLaplace, @likErf, 0);
+                disp('tag3')
+
+
+        allCovFuns = [allCovFuns1; allCovFuns2; allCovFuns3];
+        
+        allScores = [allScores1; allScores2; allScores3];
+        
+        allHypers = [allHypers1; allHypers2; allHypers3];
+        
+        covFunctions{folds} = allCovFuns;
+        Scores{folds} = allScores;
+        Hypers{folds} = allHypers;
         
     end
           
-    cvAccuracy1 = (1 - sum(testAccuracies1) / 10) * 100;
-    cvAccuracy2 = (1 - sum(testAccuracies2) / 10) * 100;
+   
+    save(['results/BMA/', expName], 'covFunctions', 'Scores', 'Hypers'); 
     
 end

@@ -1,4 +1,4 @@
-function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, kernelMatrix, kernelHypers, numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, selectFeatures)
+function [bestKernelEncoder, bestScoreVal, bestKernelHyper, allCovFuns, allScores, allHypers] = nextKernel( X, y, kernelMatrix, kernelHypers, numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, selectFeatures)
 %
 % This function expands the provided matrix representation of a covariance
 % function by trying to add another base function or by multiplying any product 
@@ -9,6 +9,7 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
 %   April 2014
 %
 
+
     fileID = fopen('randomRestartScript.m', 'r');
     scriptCode = fscanf(fileID, '%s');
     fclose(fileID);
@@ -17,7 +18,7 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
     dataSize = size(X, 1);
     dataDim = size(X, 2);
 
-    if (nargin < 8)
+    if (nargin < 10)
         
         selectFeatures = zeros(dataDim, 1); % expand all dimensions if no feature selection is done.
         for i = 1:dataDim
@@ -25,7 +26,11 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
         end
     end
 
-    if (nargin < 7)
+    if (nargin < 9)
+        searchCriterion = 0;
+    end
+    
+    if (nargin < 8)
         likelihoodFunction = @likErf;
     end
 
@@ -254,7 +259,7 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
      system('rm outputs/*');
 
       elseif ( runParallel == 0)
-
+        
           for i = 1:(kernelCount)
               for j = 1 : numRestarts
 
@@ -311,8 +316,7 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
     elseif searchCriterion == 1
         bestScoreList = crossValidatedAccuracies;
     end
-    
-    
+
     [bestScoreVal, bestId] = min(bestScoreList);
 
     trueIdx = int32(floor((bestId - 0.0001) / numRestarts) + 1);
@@ -320,7 +324,21 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper] = nextKernel( X, y, 
     bestKernelEncoder = encoderMatrices{trueIdx};
 
     bestKernelHyper = hyperParameters{bestId};
+    
+    % now return all the produced functions:
+
+    allCovFuns = cell(kernelCount * numRestarts, 1);
+    
+    for i = 1:(kernelCount)
+        for j = 1 : numRestarts
+                  idx = (i-1)*numRestarts + j;
+                  allCovFuns{idx} = encodeKernel( encoderMatrices{i},  dataDim );
+        end
+    end
+    
+    allHypers = hyperParameters';
  
+    allScores = bestScoreList;
  
 end
  

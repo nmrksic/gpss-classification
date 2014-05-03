@@ -32,6 +32,7 @@
 \usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{bm}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 %\usepackage{adjustbox}
@@ -59,6 +60,10 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{question}[theorem]{Question}
+
+\newcommand{\exedout}{%
+  \rule{0.8\textwidth}{0.5\textwidth}%
+}
 
 \hypersetup{
     colorlinks=false,
@@ -134,11 +139,15 @@
 
 \section{The Role of Kernels for Gaussian Processes}
 
+Describe different types of kernels. 
+
 \section{Gaussian Process Classification}
 
-\subsection{Laplace}
+Explain why it is harder, non-Gaussian likelihood...
 
-\subsection{EP}
+\subsection{The Laplace Approximation to Marginal Likelihood}
+
+\subsection{Expectation Propagation}
 
 \subsection{Variational Bayes}
 
@@ -148,19 +157,19 @@
 
 \section{Kernel learning}
 
+General review of work done, with different models.
+
+\section{Kernel structure discovery for regression}
+
+Unsupervised structure discovery - mention that paper, maybe initially, as a similar type of work... 1 paragraph? 
+
 Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
 
-%This chapter covers relevant (and typically, recent) research 
-%which you build upon (or improve upon). There are two complementary 
-%goals for this chapter: 
-%\begin{enumerate} 
-%  \item to show that you know and understand the state of the art; and 
-%  \item to put your work in context
-%\end{enumerate} 
 
-% Ideally you can tackle both together by providing a critique of
-% related work, and describing what is insufficient (and how you do
-% better!)
+%This chapter covers relevant (and typically, recent) research which you build upon (or improve upon). There are two complementary goals for this chapter: 
+%\begin{enumerate}  %  \item to show that you know and understand the state of the art; and  %  \item to put your work in context   %\end{enumerate} 
+
+% Ideally you can tackle both together by providing a critique of related work, and describing what is insufficient (and how you do better!)
 
 %The related work chapter should usually come either near the front or
 %near the back of the dissertation. The advantage of the former is that
@@ -170,11 +179,12 @@ Talk about the fact that these methods fix the structure of the kernel beforehan
 %much. The correct choice will depend on what you're writing up, and
 %your own personal preference.
 
-\section{Unsupervised structure discovery}
+As a critique, discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
+
+Write an intro to doing this for classification, why it is harder (less information than regression, harder interpretability, non-Gaussian likelihoods and the need to resort to nlml approximations). 
+
 
 \section{Additive Gaussian Processes}
-
-\section{Kernel structure discovery for regression}
 
 Find other relevant work - Dave mentioned some of these. Read through all the papers' relevant work sections. 
 
@@ -201,6 +211,10 @@ Subsampling the training data to optimize the process.
 
 Discuss parallelisation. Maybe add a table of running times and numbers of restarts. 
 
+\subsection{Overfitting}
+
+Dealing with very small and very large hyperparameters. 
+
 \section{Guiding the Structure Search}
 
 \subsection{Bayesian and Akaike Information Criteria}
@@ -209,6 +223,9 @@ Discuss parallelisation. Maybe add a table of running times and numbers of resta
 
 Outline BIC light, present it as middle ground between full BIC and AIC. 
 Insert the number of search steps figure that shows overfitting. 
+
+
+\includegraphics[scale=0.37]{figures/measureoverfit.png}
 
 \subsection{Cross-validated training accuracy}
 
@@ -220,22 +237,67 @@ Insert the number of search steps figure that shows overfitting.
 
 \subsection{Dealing with Outliers}
 
-paste the text I wrote after the discussion with Zoubin. 
+a problem with classification and BIC is that estimating the number of effective hyperparameters is hard: not all of them affect the classification boundary equally. The only thing important for classification is the zero-crossings of the function (where it is greater, and where it is smaller than 0, for the purposes of prediction). Hence, smaller length-scales are the most important factor (as they determine the predictive mean and where the crossings exactly are). Larger lengthscales equate to multiplication with a constant function, so less beneficial. Signal variances are useful for computing the predictive variances, but we only care about the predictive means for determining the target label. Not counting signal frequencies might add a quick boost to quality of BIC as a model discriminator (i.e. not number of product terms, but 0 - won’t decrease by 2, but might help our choice-making). 
+
+The reason that GPs out of the box are easily outperformed by classification specific schemes such as SVMs is that “soft-margin” SVMs are less certain of their predictions, and hence are less certain about points far away from the high density regions of the data. SVMs are never more certain than the estimated level of pepper noise (outliers in the sense of noise in the target labels of the data) whereas GPs would be very certain about points close to one of the clusters...
+
+As a potential solution, we might want to use a @likMix which adds the “pepper noise” into the likelihood function, determining the level of the outliers and thus having the likelihood (i.e. sigmoid) which doesn’t range from 0 to 1, but from $\alpha$ to $(1 - \alpha)$, where $\alpha$ is the level of pepper noise, which is, again, to be learnt from the data? This can be implemented in GPML using @likMix, and is something we can first evaluate w.r.t. synthetic data we previously generated. The only difference is that now we add additional salt and pepper noise (random outliers) into the data and we compare performance (on this dataset) of likMix vs likErf on its own.
+
 
 \section{Providing Interpretability}
+
+\subsection{Pima}
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/age.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/glucose.png}
+}
+\end{center}
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/bmi.png}%
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/ageglucose.png}
+}
+\end{center}
+\begin{center}
+
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreebmi.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreeglucose.png}
+}
+\end{center}
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pregnantage.png}%
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pressureage.png}
+}
+\end{center}
+
+\subsection{Liver}
+
+\subsection{Heart}
+
 
 \subsection{Visualising the kernel decomposition}
 
 \section{Bayesian Model Averaging}
 
-\subsection{BMA for Model Selection}
-
 \subsection{BMA for Predictive Performance}
 
+Averaging assigned labels or probabilities converges to the same thing when many models are used. 
+
+Discuss assigning different alphas, make a plot showing how the accuracy changes. 
+
+\subsection{BMA for Model Selection}
 
 
 \clearpage
-
 
 
 \chapter{Evaluation} 
@@ -261,44 +323,57 @@ As we decrease the noise levels and add more data points, the structure search s
 \small 
 \begin{tabular}{|c |  c |  c | c | }
 \hline 
-True Kernel & N & Kernel recovered (SNR = 1) &  Kernel recovered (SNR = 100) \\ \hline
+{True Kernel} & { N } & { Kernel recovered (SNR = 1) } &  { Kernel recovered (SNR = 100) }  \\ \hline
 
-&\small100& \small $\SE_{1}$ &\small$\SE_{1}$ \\
-\small$\SE_{1} $ & \small300& \small$\SE_{1}$ &$\SE_{1}$ \\
-& 500& $\SE_{1}$ &$\SE_{1}$ \\ \hline
-% &100& $\SE_{2}$ &$\SE_{2}$ \\
-%$\SE_{2} \times \SE_{2} $ & 300& $\SE_{2}$ &$\SE_{2}$ \\
-%& 500& $\SE_{2}$ &$\SE_{2}$ \\ \hline
-%&100& $\SE_{2}$ &$\SE_{2}$ \\
-%$\SE_{2} + \SE_{2} $ & 300& $\SE_{2}$ &$\SE_{2}$ \\
-%& 500& $\SE_{2}$ &$\SE_{2}$ \\ \hline
-&100& $\SE_{2}$ &$\SE_{2}$ \\
-$\SE_{2} + \SE_{2} + \SE_{2} $& 300& $\SE_{2}$ &$\SE_{2}$ \\
-& 500& $\SE_{2}$ &$\SE_{2} + \SE_{2}$ \\ \hline
- &100& $\SE_{2} \times \SE_{3}$ &$\SE_{2} + \SE_{3}$ \\
-$\SE_{2} \times \SE_{3} $& 300& $\SE_{2} \times \SE_{3}$ &$\SE_{2} \times \SE_{3}$ \\
-& 500& $\SE_{2} \times \SE_{3}$ &$\SE_{2} \times \SE_{3}$ \\ \hline
-&100& $\SE_{2}$ &$\SE{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ & 300& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-& 500& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\ \hline
-&100& $\SE_{2} + \SE_{9}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ & 300& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-& 500& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\ \hline
-$\SE_{1} + \SE_{2} \times \SE_{3} + \ldots$&100& $\SE_{3}$ &$\SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\
-$ + \SE_{4} + \SE_{5} \times \SE_{6} $ & 300& $\SE_{1} \times \SE_{4} + \SE_{2} + \SE_{3} + \SE_{5} \times \SE_{6}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\
-& 500& $\SE_{1} \times \SE_{4} + \SE_{2} \times \SE_{3} + \SE_{5} \times \SE_{6}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\ \hline
- &100& $\SE_{3} \times \SE_{5} \times \SE_{7} $ & $\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-$\SE_{3} \times \SE_{5} \times \SE_{7} $ & 300& $\SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\ \hline
-$\SE_{1} +  \SE_{10} $ &100& $\SE_{8}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-$ + \SE_{3} \times \SE_{5} \times \SE_{7}  $ & 300& $\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{10}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\ \hline
-&100& $\SE_{1}$ &$\SE_{1} + \SE_{7} \times \SE_{9}$ \\
-$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9} $ & 300& $\SE_{3} \times \SE_{5} + \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\ \hline
-$ \SE_{1} + \SE_{10} + \ldots $&100& $\SE_{10}$ &$\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-$ \SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}  $  & 300& $\SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
- & 500& $\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
+&100&  $\bm{[1]}$ &$\bm{[1]}$ \\
+$\bm{[1]} $ & 300& $\bm{[1]}$ &$\bm{[1]}$ \\
+\emph{3 dimensions}& 500& $\bm{[1]}$ &$\bm{[1]}$ \\ \hline
+
+
+&100& ${[2]}$ &${[2]}$ \\
+$\bm{{[2]} + {[2]} + {[2]}} $& 300& ${[2]}$ &${[2]}$ \\
+\emph{3 dimensions}& 500& ${[2]}$ &${[2]} + {[2]}$ \\ \hline
+
+
+ &100& $\bm{[2\times 3]} $ &${[2]} + {[3]}$ \\
+$\bm{[2\times 3]} $& 300& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\
+\emph{3 dimensions}& 500& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\ \hline
+
+
+&100& ${[4]}$ &$\bm{ {[1]} + {[2\times 3]} + {[4]} }$ \\
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300& ${[2\times 3]}  + {[4]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{4 dimensions}& 500& $\bm{ {[1]} + {[2\times 3]} + {[4]} }$ &$ \bm{ {[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+
+
+&100& ${[1]} + {[4]}$ &${[1]} + {[2]}  + {[4]}$ \\
+$\bm{{[1]} + {[2\times 3]} + {[4]} }$ & 300& ${[1\times 4]} + {[2\times 3]} $  &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{10 dimensions}& 500& ${[1\times 4]} + {[2\times 3]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+
+
+ &100& ${[4]} + {[5]}$ &$ {[1\times 9]} + {[4]} $ \\
+$\bm{{[1]} + {[2\times 3]} + {[5\times 6]} + {[4]} } $ & 300& ${[1]} + {[2]} + {[4]} + {[5\times 6\times 7]} $  & ${[1]} + {[1\times5\times6]}  + {[2\times3]} + {[4]}$  \\
+\emph{10 dimensions}& 500& ${[1]} + {[1\times 4]} + {[2\times 3]} + {[5\times 6]} $  &${[1]} + {[1\times4\times5\times6]} + {[2\times3]} + {[4]}$  \\ \hline
+
+
+&100& $\bm{{[3\times5\times7]}} $ & $\bm{{[3\times5\times7]}}$ \\
+$\bm{{[3\times5\times7]}} $ & 300& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
+\emph{10 dimensions}& 500& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
+
+
+ &100& ${[1\times3]} + {[10]}$  &${[1\times10]} $ \\
+$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300& ${[1]} + {[10]} $ &${[1\times10]} + {[3\times5\times7]} + {[10]}$  \\
+\emph{10 dimensions}& 500& ${[1]} + {[10]}$ &$\bm{{[1]} + {[3\times5\times7]} + {[10]}}$  \\ \hline
+
+
+&100& ${[1]}$ &${[1]} + {[7\times9]}$ \\
+$\bm{{[3\times5\times7\times9]}} $ & 300& ${[3\times5]} + {[7\times9]}$ &$\bm{{[3\times5\times7\times9]}}$ \\
+\emph{10 dimensions}& 500& $\bm{{[3\times5\times7\times9]}}$ &$\bm{{[3\times5\times7\times9]}}$ \\ \hline
+
+
+ &100& ${[10]}$ &${[1]} + {[3\times5\times7]}$ \\
+$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}$  &${[3\times5\times7\times9]}$ \\
+\emph{10 dimensions} & 500& ${[1]} + {[3\times5\times9]} + {[10]}$  & $\bm{{[1]} + {[3\times5\times7\times9]} + {[10]}}$  \\
+ 
 \hline
 \end{tabular}
 }     
@@ -308,7 +383,10 @@ $ \SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}  $  & 300& $\SE_{7} \time
 \end{table}
 
 
-Lalalal
+Kernel optimal rates give a bound on the performance of the structure search: on average, the search is (by design) unable to construct kernels that are better than the one used to generate the data. 
+The Bayes optimal rates give a theoretical limit on what any model could achieve, as they compare the actual function (y values before adding noise) to the data after the noise is added. Kernel rate should always be below the Bayes rate...
+
+TODO: Include the same table as above with test accuracy, kernel rate, Bayes Optimal rate instead of kernel name. 
 
 
 \subsection{Adding Salt and Pepper Noise}
@@ -531,6 +609,10 @@ Random Forest & $ \mathbf{4.220} $ &  $ \mathbf{23.440} $ & $ \mathbf{24.030} $ 
 \end{table}
 
 \section{Visualisation}
+
+Describe what is being plotted and at what stage. 
+
+Pima example: 
 
 
 

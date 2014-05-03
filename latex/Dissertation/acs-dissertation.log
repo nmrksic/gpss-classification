@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  1 MAY 2014 18:54
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  2 MAY 2014 22:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -278,6 +278,14 @@ Package: booktabs 2005/04/14 v1.61803 publication quality tables
 (/usr/share/texmf-texlive/tex/latex/multirow/multirow.sty
 \bigstrutjot=\dimen131
 )
+(/usr/share/texmf-texlive/tex/latex/tools/bm.sty
+Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
+\symboldoperators=\mathgroup6
+\symboldletters=\mathgroup7
+\symboldsymbols=\mathgroup8
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
+LaTeX Info: Redefining \bm on input line 204.
+)
 (/usr/share/texmf-texlive/tex/latex/algorithmicx/algpseudocode.sty
 Package: algpseudocode 
 
@@ -527,14 +535,6 @@ Package: suffix 2006/07/15 1.5 Variant command support
 )
 \AC@clearlist=\toks35
 )
-(/usr/share/texmf-texlive/tex/latex/tools/bm.sty
-Package: bm 2004/02/26 v1.1c Bold Symbol Support (DPC/FMi)
-\symboldoperators=\mathgroup6
-\symboldletters=\mathgroup7
-\symboldsymbols=\mathgroup8
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 138.
-LaTeX Info: Redefining \bm on input line 204.
-)
 (/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box31
@@ -571,32 +571,32 @@ LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 )
 \c@theorem=\count138
-Package hyperref Info: Option `colorlinks' set `false' on input line 66.
+Package hyperref Info: Option `colorlinks' set `false' on input line 71.
 
 (./acs-dissertation.aux)
 \openout1 = `acs-dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 70.
-LaTeX Font Info:    ... okay on input line 70.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 70.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 70.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 75.
+LaTeX Font Info:    ... okay on input line 75.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 75.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 75.
  (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 70.
-Package hyperref Info: Link coloring OFF on input line 70.
+LaTeX Font Info:    ... okay on input line 75.
+Package hyperref Info: Link coloring OFF on input line 75.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -606,8 +606,8 @@ Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
 \c@section@level=\count139
 )
-LaTeX Info: Redefining \ref on input line 70.
-LaTeX Info: Redefining \pageref on input line 70.
+LaTeX Info: Redefining \ref on input line 75.
+LaTeX Info: Redefining \pageref on input line 75.
 
 (./acs-dissertation.out) (./acs-dissertation.out)
 \@outlinefile=\write3
@@ -627,7 +627,7 @@ LaTeX Info: Redefining \pageref on input line 70.
 \MPscratchDim=\dimen145
 \MPnumerator=\count144
 \everyMPtoPDFconversion=\toks37
-) (./titlepage.tex <CUni3.pdf, id=151, 174.6525pt x 36.135pt>
+) (./titlepage.tex <CUni3.pdf, id=163, 174.6525pt x 36.135pt>
 File: CUni3.pdf Graphic file (type pdf)
  <use CUni3.pdf>
 [1
@@ -665,7 +665,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.123 \clearpage
+l.128 \clearpage
                  [1
 
 
@@ -675,7 +675,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.145 \clearpage
+l.154 \clearpage
                  [2
 
 
@@ -685,31 +685,103 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.182 \clearpage
+l.192 \clearpage
                  [3
 
 
-]
-Chapter 4.
-pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
-been already used, duplicate ignored
-<to be read again> 
-                   \relax 
-l.203 
-       [4
-
-
-]pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has
+]pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.237 \clearpage
-                 [5] [6]
+l.192 \clearpage
+                 [4]
+Chapter 4.
+pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
+been already used, duplicate ignored
+<to be read again> 
+                   \relax 
+l.213 
+       [5
+
+
+] <figures/measureoverfit.png, id=269, 1056.94875pt x 669.50125pt>
+File: figures/measureoverfit.png Graphic file (type png)
+
+<use figures/measureoverfit.png>
+Overfull \hbox (1.06491pt too wide) in paragraph at lines 228--229
+[][] 
+ []
+
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+[6 <./figures/measureoverfit.png (PNG copy)>]
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ú in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ù in font cmr12!
+Missing character: There is no ‚ in font cmr12!
+Missing character: There is no Ä in font cmr12!
+Missing character: There is no ô in font cmr12!
+ [7]
+<figures/pima/age.png, id=280, 1036.673pt x 571.736pt>
+File: figures/pima/age.png Graphic file (type png)
+
+<use figures/pima/age.png>
+<figures/pima/glucose.png, id=281, 1036.673pt x 571.736pt>
+File: figures/pima/glucose.png Graphic file (type png)
+
+<use figures/pima/glucose.png>
+<figures/pima/bmi.png, id=282, 1036.673pt x 571.736pt>
+File: figures/pima/bmi.png Graphic file (type png)
+
+<use figures/pima/bmi.png>
+<figures/pima/ageglucose.png, id=283, 1036.673pt x 571.736pt>
+File: figures/pima/ageglucose.png Graphic file (type png)
+
+<use figures/pima/ageglucose.png>
+<figures/pima/pedigreebmi.png, id=284, 1036.673pt x 571.736pt>
+File: figures/pima/pedigreebmi.png Graphic file (type png)
+
+<use figures/pima/pedigreebmi.png>
+<figures/pima/pedigreeglucose.png, id=285, 1036.673pt x 571.736pt>
+File: figures/pima/pedigreeglucose.png Graphic file (type png)
+
+<use figures/pima/pedigreeglucose.png> [8 <./figures/pima/age.png (PNG copy)> <
+./figures/pima/glucose.png (PNG copy)> <./figures/pima/bmi.png (PNG copy)> <./f
+igures/pima/ageglucose.png (PNG copy)>]
+<figures/pima/pregnantage.png, id=290, 1036.673pt x 571.736pt>
+File: figures/pima/pregnantage.png Graphic file (type png)
+
+<use figures/pima/pregnantage.png>
+<figures/pima/pressureage.png, id=291, 1036.673pt x 571.736pt>
+File: figures/pima/pressureage.png Graphic file (type png)
+
+<use figures/pima/pressureage.png> [9 <./figures/pima/pedigreebmi.png (PNG copy
+)> <./figures/pima/pedigreeglucose.png (PNG copy)> <./figures/pima/pregnantage.
+png (PNG copy)> <./figures/pima/pressureage.png (PNG copy)>] [10]
 Chapter 5.
-[7
+[11
 
 
-] [8]
+]
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 379.
+
+
+LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 379.
+
+[12]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -719,73 +791,72 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[9] [10pdfTeX warning (ext4): destination with the same identifier (name{table.
-5.1}) has been already used, duplicate ignored
+[13pdfTeX warning (ext4): destination with the same identifier (name{table.5.1}
+) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.495  \clearpage
+l.569  \clearpage
+                 ] [14pdfTeX warning (ext4): destination with the same identifi
+er (name{table.5.2}) has been already used, duplicate ignored
+
+\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
+                                                  \fi \fi 
+l.569  \clearpage
                  pdfTeX warning (ext4): destination with the same identifier (n
-ame{table.5.2}) has been already used, duplicate ignored
+ame{table.5.3}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.495  \clearpage
-                 ] [11pdfTeX warning (ext4): destination with the same identifi
-er (name{table.5.3}) has been already used, duplicate ignored
+l.569  \clearpage
+                 ] [15pdfTeX warning (ext4): destination with the same identifi
+er (name{table.5.4}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.495  \clearpage
-                 pdfTeX warning (ext4): destination with the same identifier (n
-ame{table.5.4}) has been already used, duplicate ignored
-
-\AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
-                                                  \fi \fi 
-l.495  \clearpage
-                 ] [12
+l.569  \clearpage
+                 ] [16
 
 pdfTeX warning (ext4): destination with the same identifier (name{table.5.5}) h
 as been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.537 \clearpage
-                ] [13]
+l.611 P
+       ima example:] [17]
 Chapter 6.
-[14
+[18
 
 
-] (./acs-dissertation.bbl) [15
+] (./acs-dissertation.bbl) [19
 
 
 ] (./acs-dissertation.aux) ) 
 Here is how much of TeX's memory you used:
- 8491 strings out of 493848
- 118066 string characters out of 1152822
- 236704 words of memory out of 3000000
- 11483 multiletter control sequences out of 15000+50000
- 18788 words of font info for 68 fonts, out of 3000000 for 9000
+ 8556 strings out of 493848
+ 119533 string characters out of 1152822
+ 231775 words of memory out of 3000000
+ 11527 multiletter control sequences out of 15000+50000
+ 19348 words of font info for 70 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,13n,38p,556b,360s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,38p,931b,391s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super
--ts1.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></
-usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-tex
-live/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-texlive/fonts/
-type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/publi
-c/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/t
-exmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texliv
-e/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/publi
-c/cm-super/sfrm1200.pfb>
-Output written on acs-dissertation.pdf (23 pages, 254660 bytes).
+-ts1.enc}</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><
+/usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/
+texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-texlive/fonts/type1/publ
+ic/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pf
+b></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/shar
+e/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texmf-texli
+ve/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texmf-texlive/fonts/ty
+pe1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.p
+fb>
+Output written on acs-dissertation.pdf (27 pages, 538826 bytes).
 PDF statistics:
- 365 PDF objects out of 1000 (max. 8388607)
- 62 named destinations out of 1000 (max. 500000)
- 302 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 415 PDF objects out of 1000 (max. 8388607)
+ 69 named destinations out of 1000 (max. 500000)
+ 371 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -32,6 +32,7 @@
 \usepackage{amsthm}
 \usepackage{booktabs}
 \usepackage{multirow}
+\usepackage{bm}
 \usepackage{algpseudocode}
 \usepackage{algorithm}
 %\usepackage{adjustbox}
@@ -59,6 +60,10 @@
 \newtheorem{example}[theorem]{Example}
 \newtheorem{conjecture}[theorem]{Conjecture}
 \newtheorem{question}[theorem]{Question}
+
+\newcommand{\exedout}{%
+  \rule{0.8\textwidth}{0.5\textwidth}%
+}
 
 \hypersetup{
     colorlinks=false,
@@ -106,6 +111,9 @@
 \pagenumbering{arabic} 
 \setcounter{page}{1} 
 
+\section{Bayesian Machine Learning in the context of Data Science}
+
+
 %This is the introduction where you should introduce your work.  In general the thing to aim for here is to describe a little bit of the
 %context for your work --- why did you do it (motivation), what was the hoped-for outcome (aims) --- as well as trying to give a brief
 %overview of what you actually did.
@@ -114,15 +122,12 @@
 
 %It's also traditional to give an outline of the rest of the document, although without care this can appear formulaic and tedious. Your call. 
 
-
-\section{Bayesian Machine Learning in the context of Data Science}
-
-\section{Model selection}
+\section{Contribution}
 
 
 \clearpage
 
-\chapter{Background} 
+%\chapter{Background} 
 
 % A more extensive coverage of what's required to understand your work. In general you should assume the reader has a good undergraduate degree in computer science, but is not necessarily an expert in 
 % the particular area you've been working on. Hence this chapter may need to summarize some ``text book'' material. 
@@ -130,24 +135,41 @@
 % This is not something you'd normally require in an academic paper, and it may not be appropriate for your particular circumstances. Indeed, in some cases it's possible to cover all of the ``background'' 
 %material either in the introduction or at appropriate places in the rest of the dissertation. 
 
-\section{Gaussian Processes}
+\chapter{Gaussian Processes}
 
+\section{The Role of Kernels for Gaussian Processes}
+
+Describe different types of kernels. 
+
+\section{Gaussian Process Classification}
+
+Explain why it is harder, non-Gaussian likelihood...
+
+\subsection{The Laplace Approximation to Marginal Likelihood}
+
+\subsection{Expectation Propagation}
+
+\subsection{Variational Bayes}
 
 \clearpage
 
 \chapter{Related Work} 
 
-%This chapter covers relevant (and typically, recent) research 
-%which you build upon (or improve upon). There are two complementary 
-%goals for this chapter: 
-%\begin{enumerate} 
-%  \item to show that you know and understand the state of the art; and 
-%  \item to put your work in context
-%\end{enumerate} 
+\section{Kernel learning}
 
-% Ideally you can tackle both together by providing a critique of
-% related work, and describing what is insufficient (and how you do
-% better!)
+General review of work done, with different models.
+
+\section{Kernel structure discovery for regression}
+
+Unsupervised structure discovery - mention that paper, maybe initially, as a similar type of work... 1 paragraph? 
+
+Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
+
+
+%This chapter covers relevant (and typically, recent) research which you build upon (or improve upon). There are two complementary goals for this chapter: 
+%\begin{enumerate}  %  \item to show that you know and understand the state of the art; and  %  \item to put your work in context   %\end{enumerate} 
+
+% Ideally you can tackle both together by providing a critique of related work, and describing what is insufficient (and how you do better!)
 
 %The related work chapter should usually come either near the front or
 %near the back of the dissertation. The advantage of the former is that
@@ -157,28 +179,105 @@
 %much. The correct choice will depend on what you're writing up, and
 %your own personal preference.
 
-\section{Unsupervised structure discovery}
+As a critique, discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
+
+Write an intro to doing this for classification, why it is harder (less information than regression, harder interpretability, non-Gaussian likelihoods and the need to resort to nlml approximations). 
+
 
 \section{Additive Gaussian Processes}
-
-\section{Kernel structure discovery for regression}
 
 Find other relevant work - Dave mentioned some of these. Read through all the papers' relevant work sections. 
 
 
 \clearpage
 
-\chapter{Kernel Structure Discovery for Gaussian Process Classification} 
+\chapter{Kernel Structure Discovery for GP Classification} 
 
 \section{Defining the Kernel Grammar}
 
+Draw the basic kernels, describe additive and product kernels. 
 
+Present challenges for classification, difference from regression, lack of clear component interpretability, as opposed to i.e. time-series data. 
+
+\subsection{The Search Operators}
+
+Adding or multiplying with a base kernel. 
+
+\section{Model selection}
+
+\section{Optimising the Hyperparameters}
+
+Subsampling the training data to optimize the process. 
+
+Discuss parallelisation. Maybe add a table of running times and numbers of restarts. 
+
+\subsection{Overfitting}
+
+Dealing with very small and very large hyperparameters. 
+
+\section{Guiding the Structure Search}
+
+\subsection{Bayesian and Akaike Information Criteria}
+
+\subsection{The Number of Effective Hyperparameters}
+
+Outline BIC light, present it as middle ground between full BIC and AIC. 
+Insert the number of search steps figure that shows overfitting. 
+
+
+\includegraphics[scale=0.37]{figures/measureoverfit.png}
+
+\subsection{Cross-validated training accuracy}
+
+
+
+%\chapter{Predictive Power, Interpretability and Visualisation}
+
+\section{Adapting the likelihood function}
+
+\subsection{Dealing with Outliers}
+
+paste the text I wrote after the discussion with Zoubin. 
 
 \section{Providing Interpretability}
 
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[width=0.75\textwidth]{figures/pima/age.png}%
+\includegraphics[width=0.75\textwidth]{figures/pima/glucose.png}
+}
+\end{center}
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[width=0.75\textwidth]{figures/pima/bmi.png}%
+\includegraphics[width=0.75\textwidth]{figures/pima/glucose.png}
+}
+\end{center}
+
+\includegraphics[width=\textwidth]{figures/pima/age.png}
+
+
+
+\includegraphics[width=\textwidth]{figures/pima/bmi.png}
+
 \subsection{Visualising the kernel decomposition}
 
+\section{Bayesian Model Averaging}
+
+\subsection{BMA for Predictive Performance}
+
+Averaging assigned labels or probabilities converges to the same thing when many models are used. 
+
+Discuss assigning different alphas, make a plot showing how the accuracy changes. 
+
+\subsection{BMA for Model Selection}
+
+
 \clearpage
+
 
 \chapter{Evaluation} 
 
@@ -186,7 +285,7 @@ In this section, we consider the results achieved by the structure discovery pro
 exponential kernels. We then proceed to demonstrate that the performance of the procedure on real world data sets is on par with other state of the art methods such as additive Gaussian Processes and Random Forests. Finally, we present the kernel decompositions on the real
 world data sets which can be used to uncover and visualise the underlying data patterns which dictate class membership of the data points. 
 
-\section{Experiments on Synthetic Data}
+\section{Experiments with Synthetic Data}
 
 To prove that the greedy structure search procedure is able to extract structure from data, the algorithm was first applied to data drawn from a single \gp{} prior. If the BIC guiding criterion indeed picked the correct 
 model based on marginal likeluihood, the procedure should be able to recover the original kernel used to generate the data. The amount of data available to the procedure, as well as the signal-to-noise ratio in the data were varied across experiments. 
@@ -198,49 +297,62 @@ As we decrease the noise levels and add more data points, the structure search s
 \label{tbl:synthetic}
 \begin{center}
 
-\makebox[\textwidth]{
+\makebox[(\textwidth) ]{
 
 \small 
 \begin{tabular}{|c |  c |  c | c | }
 \hline 
-True Kernel & N & Kernel recovered (SNR = 1) &  Kernel recovered (SNR = 100) \\ \hline
+{True Kernel} & { N } & { Kernel recovered (SNR = 1) } &  { Kernel recovered (SNR = 100) }  \\ \hline
 
-&100& $\SE_{1}$ &$\SE_{1}$ \\
-$\SE_{1} $ & 300& $\SE_{1}$ &$\SE_{1}$ \\
-& 500& $\SE_{1}$ &$\SE_{1}$ \\ \hline
- &100& $\SE_{2}$ &$\SE_{2}$ \\
-$\SE_{2} \times \SE_{2} $ & 300& $\SE_{2}$ &$\SE_{2}$ \\
-& 500& $\SE_{2}$ &$\SE_{2}$ \\ \hline
-&100& $\SE_{2}$ &$\SE_{2}$ \\
-$\SE_{2} + \SE_{2} $ & 300& $\SE_{2}$ &$\SE_{2}$ \\
-& 500& $\SE_{2}$ &$\SE_{2}$ \\ \hline
-&100& $\SE_{2}$ &$\SE_{2}$ \\
-$\SE_{2} + \SE_{2} + \SE_{2} $& 300& $\SE_{2}$ &$\SE_{2}$ \\
-& 500& $\SE_{2}$ &$\SE_{2} + \SE_{2}$ \\ \hline
- &100& $\SE_{2} \times \SE_{3}$ &$\SE_{2} + \SE_{3}$ \\
-$\SE_{2} \times \SE_{3} $& 300& $\SE_{2} \times \SE_{3}$ &$\SE_{2} \times \SE_{3}$ \\
-& 500& $\SE_{2} \times \SE_{3}$ &$\SE_{2} \times \SE_{3}$ \\ \hline
-&100& $\SE_{2}$ &$\SE{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ & 300& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-& 500& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\ \hline
-&100& $\SE_{2} + \SE_{9}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} $ & 300& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\
-& 500& $\SE_{1} + \SE_{2} \times \SE_{3}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4}$ \\ \hline
-&100& $\SE_{3}$ &$\SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\
-$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6} $ & 300& $\SE_{1} \times \SE_{4} + \SE_{2} + \SE_{3} + \SE_{5} \times \SE_{6}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\
-& 500& $\SE_{1} \times \SE_{4} + \SE_{2} \times \SE_{3} + \SE_{5} \times \SE_{6}$ &$\SE_{1} + \SE_{2} \times \SE_{3} + \SE_{4} + \SE_{5} \times \SE_{6}$ \\ \hline
- &100& $\SE_{3} \times \SE_{5} \times \SE_{7} $ & $\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-$\SE_{3} \times \SE_{5} \times \SE_{7} $ & 300& $\SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\ \hline
- &100& $\SE_{8}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-$\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{10} $ & 300& $\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} + \SE_{10}$ &$\SE_{3} \times \SE_{5} \times \SE_{7}$ \\ \hline
-&100& $\SE_{1}$ &$\SE_{1} + \SE_{7} \times \SE_{9}$ \\
-$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9} $ & 300& $\SE_{3} \times \SE_{5} + \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\ \hline
-&100& $\SE_{10}$ &$\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7}$ \\
-$\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9} + \SE_{10} $ & 300& $\SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
-& 500& $\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ &$\SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9}$ \\
+&100&  $\bm{[1]}$ &$\bm{[1]}$ \\
+$\bm{[1]} $ & 300& $\bm{[1]}$ &$\bm{[1]}$ \\
+\emph{3 dimensions}& 500& $\bm{[1]}$ &$\bm{[1]}$ \\ \hline
+
+
+&100& ${[2]}$ &${[2]}$ \\
+$\bm{{[2]} + {[2]} + {[2]}} $& 300& ${[2]}$ &${[2]}$ \\
+\emph{3 dimensions}& 500& ${[2]}$ &${[2]} + {[2]}$ \\ \hline
+
+
+ &100& $\bm{[2\times 3]} $ &${[2]} + {[3]}$ \\
+$\bm{[2\times 3]} $& 300& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\
+\emph{3 dimensions}& 500& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\ \hline
+
+
+&100& ${[4]}$ &$\bm{ {[1]} + {[2\times 3]} + {[4]} }$ \\
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300& ${[2\times 3]}  + {[4]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{4 dimensions}& 500& $\bm{ {[1]} + {[2\times 3]} + {[4]} }$ &$ \bm{ {[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+
+
+&100& ${[1]} + {[4]}$ &${[1]} + {[2]}  + {[4]}$ \\
+$\bm{{[1]} + {[2\times 3]} + {[4]} }$ & 300& ${[1\times 4]} + {[2\times 3]} $  &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{10 dimensions}& 500& ${[1\times 4]} + {[2\times 3]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+
+
+ &100& ${[4]} + {[5]}$ &$ {[1\times 9]} + {[4]} $ \\
+$\bm{{[1]} + {[2\times 3]} + {[5\times 6]} + {[4]} } $ & 300& ${[1]} + {[2]} + {[4]} + {[5\times 6\times 7]} $  & ${[1]} + {[1\times5\times6]}  + {[2\times3]} + {[4]}$  \\
+\emph{10 dimensions}& 500& ${[1]} + {[1\times 4]} + {[2\times 3]} + {[5\times 6]} $  &${[1]} + {[1\times4\times5\times6]} + {[2\times3]} + {[4]}$  \\ \hline
+
+
+&100& $\bm{{[3\times5\times7]}} $ & $\bm{{[3\times5\times7]}}$ \\
+$\bm{{[3\times5\times7]}} $ & 300& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
+\emph{10 dimensions}& 500& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
+
+
+ &100& ${[1\times3]} + {[10]}$  &${[1\times10]} $ \\
+$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300& ${[1]} + {[10]} $ &${[1\times10]} + {[3\times5\times7]} + {[10]}$  \\
+\emph{10 dimensions}& 500& ${[1]} + {[10]}$ &$\bm{{[1]} + {[3\times5\times7]} + {[10]}}$  \\ \hline
+
+
+&100& ${[1]}$ &${[1]} + {[7\times9]}$ \\
+$\bm{{[3\times5\times7\times9]}} $ & 300& ${[3\times5]} + {[7\times9]}$ &$\bm{{[3\times5\times7\times9]}}$ \\
+\emph{10 dimensions}& 500& $\bm{{[3\times5\times7\times9]}}$ &$\bm{{[3\times5\times7\times9]}}$ \\ \hline
+
+
+ &100& ${[10]}$ &${[1]} + {[3\times5\times7]}$ \\
+$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}$  &${[3\times5\times7\times9]}$ \\
+\emph{10 dimensions} & 500& ${[1]} + {[3\times5\times9]} + {[10]}$  & $\bm{{[1]} + {[3\times5\times7\times9]} + {[10]}}$  \\
+ 
 \hline
 \end{tabular}
 }     
@@ -250,7 +362,6 @@ $\SE_{1} + \SE_{3} \times \SE_{5} \times \SE_{7} \times \SE_{9} + \SE_{10} $ & 3
 \end{table}
 
 
-Lalalal
 
 
 \subsection{Adding Salt and Pepper Noise}
@@ -473,6 +584,10 @@ Random Forest & $ \mathbf{4.220} $ &  $ \mathbf{23.440} $ & $ \mathbf{24.030} $ 
 \end{table}
 
 \section{Visualisation}
+
+Describe what is being plotted and at what stage. 
+
+Pima example: 
 
 
 
