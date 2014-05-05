@@ -24,6 +24,7 @@
 
 
 %\usepackage{a4}
+\usepackage{caption}
 \usepackage{verbatim}
 \usepackage{amsmath} 
 \usepackage{amssymb,amsfonts}
@@ -69,6 +70,8 @@
     colorlinks=false,
     pdfborder={0 0 0},
 }
+
+\captionsetup{skip=0pt}
 
 
 %% START OF DOCUMENT
@@ -237,33 +240,105 @@ Insert the number of search steps figure that shows overfitting.
 
 \subsection{Dealing with Outliers}
 
-paste the text I wrote after the discussion with Zoubin. 
+a problem with classification and BIC is that estimating the number of effective hyperparameters is hard: not all of them affect the classification boundary equally. The only thing important for classification is the zero-crossings of the function (where it is greater, and where it is smaller than 0, for the purposes of prediction). Hence, smaller length-scales are the most important factor (as they determine the predictive mean and where the crossings exactly are). Larger lengthscales equate to multiplication with a constant function, so less beneficial. Signal variances are useful for computing the predictive variances, but we only care about the predictive means for determining the target label. Not counting signal frequencies might add a quick boost to quality of BIC as a model discriminator (i.e. not number of product terms, but 0 - won’t decrease by 2, but might help our choice-making). 
+
+The reason that GPs out of the box are easily outperformed by classification specific schemes such as SVMs is that “soft-margin” SVMs are less certain of their predictions, and hence are less certain about points far away from the high density regions of the data. SVMs are never more certain than the estimated level of pepper noise (outliers in the sense of noise in the target labels of the data) whereas GPs would be very certain about points close to one of the clusters...
+
+As a potential solution, we might want to use a @likMix which adds the “pepper noise” into the likelihood function, determining the level of the outliers and thus having the likelihood (i.e. sigmoid) which doesn’t range from 0 to 1, but from $\alpha$ to $(1 - \alpha)$, where $\alpha$ is the level of pepper noise, which is, again, to be learnt from the data? This can be implemented in GPML using @likMix, and is something we can first evaluate w.r.t. synthetic data we previously generated. The only difference is that now we add additional salt and pepper noise (random outliers) into the data and we compare performance (on this dataset) of likMix vs likErf on its own.
+
 
 \section{Providing Interpretability}
 
+\subsection{Pima}
+
+The Pima Indian Diabetes dataset contains medical measurements of 768 individuals, together with an indicator of whether they later developed diabetes or not. There are 8 attributes in total, 4 of which feature in the kernel structures returned by the kernel discovery procedure. 
+These are dimensions 2, 6, 7 and 8: plasma glucose concentration, body mass index (BMI), diabetes pedigree function and the age of the patient. The remaining four attributes seem to carry less information regarding the likelihood of developing diabetes, at least 
+in a dataset of this size and using this search procedure. These four features are the number of pregnancies, diastolic blood pressure, triceps skin fold thickness and 2-hour serum insulin measures. The structure returned most often (4 times using 10-fold cross validation 
+for computing classification accuracy) was $[2\times7] + [6] + [8]$, closely followed by $[2]+[8]+[6 \times 7]$, which occured for 3 folds. The four posterior plots indicating the class boundaries determined with respect to these dimensions are shown below. 
+
 \begin{center}
 
 \makebox[(\textwidth) ]{
-\includegraphics[width=0.75\textwidth]{figures/pima/age.png}%
-\includegraphics[width=0.75\textwidth]{figures/pima/glucose.png}
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/age.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/bmi.png}
 }
 \end{center}
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreebmi.png}%
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreeglucose.png}
+}
+\end{center}
+
+In addition to these additive components, the remaining three folds' structures contained occurances of $[2]$, $[2 \times 3 \times 7]$ and $ [ 2\times 3 \times7]$. Showing the three-way dependencies in 2D is not straightforward. Below, we show the posterior plots for 
+$[2]$, $[2\times8]$ and $[3\times8]$, showing that interactions of these dimensions produce points well separated by the classifiers produced (with the possible exception of the interaction between age and diastolic blood pressure). The two way interaction between the number of pregnancies and age is also shown: this dependency was found during various 
+stages of the search but discarded, even though the classifier seems to observe the general pattern present in the data set. 
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/glucose.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/ageglucose.png}
+}
+\end{center}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pressureage.png}
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pregnantage.png}%
+}
+\end{center}
+
+\subsection{Breast} 
+
+Wisconsin Diagnostic Breast Cancer Dataset is a 9-dimensional dataset which contains measured attributes of 449 individuals, together with an indicator of whether or not they later developed breast cancer. Across the 10 folds generated, there were nine different kernel structures
+that the procedure returned, with seven out of the nine attributes utilised in these structures. The dimensions most frequently found were 1, 2, 4, 6 and 8. Most kernels returned represent some combination of these five base kernels. Dimension 5 features once, and dimension 7 
+three times. Interestingly, whenever $\SE_7$ was introduced, the accuracy increased far above the levels attained in the other kernels (ranging from 97\% to 100\%), but it was part of the final kernel in only three out of the ten folds evaluated. 
+
+Below, we show those components of the 10 final structures which represent 1 or 2-way interactions. $[1 \times 2 \times 6]$ features in three folds, as do some other high dimensional interactions, but we are still unable to visualise those. 
+
+The first row shows dimensions 1 and 5 
+with a single $\SE$ kernel in the respective dimension. The remaining six plots show individual components of the final kernel structures obtained using structure search (not necessarily across the same fold). 
 
 \begin{center}
 
 \makebox[(\textwidth) ]{
-\includegraphics[width=0.75\textwidth]{figures/pima/bmi.png}%
-\includegraphics[width=0.75\textwidth]{figures/pima/glucose.png}
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clump.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/cellsize.png}
+}
+\end{center}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/adhesion.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleicellsize.png}
 }
 \end{center}
 
-\includegraphics[width=\textwidth]{figures/pima/age.png}
+
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/chromatin.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleoli.png}
+}
+\end{center}
+\begin{center}
+
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpbland.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpadhesion.png}
+}
+\end{center}
 
 
 
-\includegraphics[width=\textwidth]{figures/pima/bmi.png}
+\subsection{Heart and Liver}
 
-\subsection{Visualising the kernel decomposition}
+These two data sets require dealing with representation of discretised data. Plots don't make much sense (yet). Adding jitter might alleviate these issues.  
+
+
+
 
 \section{Bayesian Model Averaging}
 
@@ -273,7 +348,190 @@ Averaging assigned labels or probabilities converges to the same thing when many
 
 Discuss assigning different alphas, make a plot showing how the accuracy changes. 
 
-\subsection{BMA for Model Selection}
+Currently averaging class labels across different models, and $\alpha$ shows the BIC values scaling factor used to assign the weight factors to different classes. 
+
+From the set of models in the layers above, in and below the current model, we use their BIC values $b_1, b_2, \ldots $ to assign each model a weight:
+
+\begin{equation*} w_i = \frac{e^{- \alpha b_i}}{ \sum_{j}{ e^{- \alpha b_j} } }  \end{equation*}
+
+\begin{table}[h]
+
+\caption{{ Bayesian Model Averaging, classification errors across folds.  }}
+
+\label{tbl:BMAliver}
+
+\begin{minipage}{0.55\textwidth}
+      \centering
+      \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Liver}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+      23.53\% & \textbf{20.59\%} & \textbf{20.59\% } \\ 
+      20.00\%	& 22.86\% &20.00\% \\ 
+      37.14\%	& 37.14\% &37.14\%\\ 
+      40.00\%	& \textbf{31.43\%} & \textbf{34.29\%}  \\ 
+      28.57\%	& 31.43\% & 28.57\% \\ 
+      26.47\%	& \textbf{23.53\%} & 26.47\% \\ 
+      23.53\%	& \textbf{20.59\%} &26.47\%\\ 
+      26.47\%	& \textbf{23.53\%} &26.47\%\\ 
+      25.71\%	& 28.57\% &28.57\% \\ 
+      23.53\%	& \textbf{17.65\%} & \textbf{17.65\%} \\ \hline \hline
+       \textbf{27.50\%}	&  \textbf{25.73\%} &  \textbf{26.62\%} \\ 
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+\begin{minipage}{0.55\textwidth}
+      \centering
+          \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Pima}  \\
+      \hline
+      Best model & $ \alpha = 0.1 $ & $ \alpha = 1 $ \\  \hline
+      21.05\% & 	{22.37\%} & 	{21.05\%}   \\
+      23.38\% & 	{23.38\%} & 	{24.68\%}  \\
+      15.58\% & 	{19.48\%} & 	{16.88\%}  \\
+      18.18\% & 	{19.48\%} & 	{18.18\%}  \\
+      19.48\% & 	{20.78\%} & 	{22.08\%}  \\
+      29.87\% & 	\textbf{28.57\%} & 	\textbf{28.57\%}  \\
+      29.87\% & 	{29.87\%} & 	{36.36\%}  \\
+      19.48\% & 	\textbf{16.88\%} & 	\textbf{14.29\%}  \\
+      25.00\% & 	\textbf{19.74\%} & 	\textbf{23.68\%}  \\
+      20.78\% & 	\textbf{19.48\%} & 	\textbf{19.48\%}  \\ \hline \hline
+       \textbf{22.27\%} & 	 \textbf{22.00\%} & 	 {22.53\%} \\
+
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+
+\end{table}
+
+
+\begin{table}[h]
+
+
+\begin{minipage}{0.55\textwidth}
+      \centering
+           \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Heart}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+	17.24\% & 	20.69\% & 	17.24\% \\ 
+	13.33\% & 	53.33\% & 	53.33\% \\ 
+	20.69\% & 	20.69\% & 	24.14\% \\ 
+	6.90\% & 	\textbf{3.45\% } &   \textbf{3.45\%}  \\ 
+	16.67\% & 	\textbf{10.00\%}  & 	\textbf{10.00\%} \\ 
+	26.67\% & 	26.67\% & 	30.00\% \\ 
+	30.00\% & 	53.33\% & 	53.33\% \\ 
+	20.00\% & 	23.33\% & 	23.33\% \\ 
+	16.67\% & 	20.00\% & 	20.00\% \\ 
+	10.00\% & 	16.67\% & 	16.67\% \\ \hline \hline
+	 17.82\% & 	 24.82\% & 	 25.15\% \\
+  
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+\begin{minipage}{0.55\textwidth}
+      \centering
+           \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Breast}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+2.27\% & 	2.27\% & 	2.27\% \\
+4.55\% & 	4.55\% & 	4.55\% \\
+11.11\% & 	\textbf{8.89\% } & 	\textbf{8.89\%} \\ 
+15.56\% & 	\textbf{11.11\% } & 	\textbf{11.11\%} \\ 
+2.27\% & 	2.27\% & 	2.27\% \\ 
+10.87\% & 	\textbf{6.52\% } & 	\textbf{6.52\%} \\ 
+0.00\% & 	0.00\% & 	0.00\% \\ 
+2.22\% & 	2.22\% & 	2.22\% \\ 
+4.35\% & 	4.35\% & 	4.35\% \\ 
+11.11\% & 	\textbf{8.89\%} & 	11.11\% \\  \hline  \hline
+ 6.43\%	&  \textbf{5.11\%}	&  \textbf{5.33\%} \\
+       \hline 
+ 
+ \end{tabular}
+
+\end{minipage}%
+
+
+
+\end{table}
+
+
+
+
+
+
+\clearpage
+
+\subsection{BMA/Cross-validated model for Model Selection}
+
+Choosing the most frequently occuring model structure, then optimising hyperparametees on each training fold and evaluating on the respective test fold gets the following figures:
+
+\subsection{Liver}
+
+Kernel chosen for this data set is: $ \SE_1 + \SE_3 \times \SE_4 \times \SE_5 + \SE_6 $, and the testing errors on the ten folds are: 
+
+\begin{table}[h]
+
+  \begin{tabular}{|c | c  | }
+      \hline
+      \multicolumn{2}{|c|}{Liver}  \\
+      \hline
+      Per-fold models & `Best' model \\  \hline
+23.53\%	& 23.53\% \\ 
+20.00\%	& 20.00\% \\
+37.14\%	& 37.14\% \\
+40.00\%	& \textbf{34.29\%} \\
+28.57\%	& 34.29\% \\
+26.47\%	& \textbf{23.53\%} \\
+23.53\%	& 26.47\% \\
+26.47\%	& 26.47\% \\
+25.71\%	& 25.71\% \\
+23.53\%	& \textbf{14.71\%} \\ \hline \hline
+27.50\%	& \textbf{26.61\%} \\
+
+      \hline 
+      \end{tabular}
+\end{table}
+
+
+For breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following performance, yielding an improvement of $0.9\%$ over the standard BIC light version. 
+
+\begin{table}[h]
+
+  \begin{tabular}{|c | }
+      \hline
+      \multicolumn{1}{|c|}{Breast}  \\
+      \hline
+       `Best' model \\  \hline
+2.27\% \\
+4.55\%\\
+11.11\%\\
+11.11\%\\
+2.27\%\\
+10.87\%\\
+0.00\%\\
+2.22\%\\
+4.35\%\\
+6.67\%\\
+
+      \hline 
+      \end{tabular}
+\end{table}
+
+
+
+   
+   The average error is $26.61 \%$, which improves on the previous value of $27.5\%$, but falls short of using weighted model averaging. 
+
+   \includegraphics[trim=8cm 5cm 8cm 6cm, width=\textwidth]{figures/alphaBMA.png}%
 
 
 \clearpage
@@ -310,18 +568,18 @@ $\bm{[1]} $ & 300& $\bm{[1]}$ &$\bm{[1]}$ \\
 
 
 &100& ${[2]}$ &${[2]}$ \\
-$\bm{{[2]} + {[2]} + {[2]}} $& 300& ${[2]}$ &${[2]}$ \\
+$\bm{{[2]} + {[2]} + {[2]}} $& 300& ${[2]}$ &${[2] + [2]}$ \\
 \emph{3 dimensions}& 500& ${[2]}$ &${[2]} + {[2]}$ \\ \hline
 
 
- &100& $\bm{[2\times 3]} $ &${[2]} + {[3]}$ \\
+ &100& $\bm{[2\times 3]} $ &$\bm{[2 \times 3]}$ \\
 $\bm{[2\times 3]} $& 300& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\
 \emph{3 dimensions}& 500& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\ \hline
 
 
-&100& ${[4]}$ &$\bm{ {[1]} + {[2\times 3]} + {[4]} }$ \\
-$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300& ${[2\times 3]}  + {[4]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
-\emph{4 dimensions}& 500& $\bm{ {[1]} + {[2\times 3]} + {[4]} }$ &$ \bm{ {[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+&100& ${[1] + [4]}$ &$ { {[1]} + {[2]} + {[4]} }$ \\
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300& $ {[1 \times 4]} +  {[2\times 3]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{4 dimensions}& 500& ${ {[1 \times 4]} + {[2\times 3]} }$ &$ \bm{ {[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
 
 
 &100& ${[1]} + {[4]}$ &${[1]} + {[2]}  + {[4]}$ \\
@@ -330,27 +588,27 @@ $\bm{{[1]} + {[2\times 3]} + {[4]} }$ & 300& ${[1\times 4]} + {[2\times 3]} $  &
 
 
  &100& ${[4]} + {[5]}$ &$ {[1\times 9]} + {[4]} $ \\
-$\bm{{[1]} + {[2\times 3]} + {[5\times 6]} + {[4]} } $ & 300& ${[1]} + {[2]} + {[4]} + {[5\times 6\times 7]} $  & ${[1]} + {[1\times5\times6]}  + {[2\times3]} + {[4]}$  \\
+$\bm{{[1]} + {[2\times 3]}  + {[4]} + {[5\times 6]} } $ & 300& ${[1]} + {[2]} + {[4]} + {[5\times 6\times 7]} $  & ${[1]} + {[1\times5\times6]}  + {[2\times3]} + {[4]}$  \\
 \emph{10 dimensions}& 500& ${[1]} + {[1\times 4]} + {[2\times 3]} + {[5\times 6]} $  &${[1]} + {[1\times4\times5\times6]} + {[2\times3]} + {[4]}$  \\ \hline
 
 
-&100& $\bm{{[3\times5\times7]}} $ & $\bm{{[3\times5\times7]}}$ \\
+&100& $\bm{{[3\times5\times7]}} $ & ${{[7]}}$ \\
 $\bm{{[3\times5\times7]}} $ & 300& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
 \emph{10 dimensions}& 500& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
 
 
  &100& ${[1\times3]} + {[10]}$  &${[1\times10]} $ \\
-$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300& ${[1]} + {[10]} $ &${[1\times10]} + {[3\times5\times7]} + {[10]}$  \\
+$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300& ${[1]} + {[10]} $ &${[1]} + {[1\times10]} + {[3\times5\times7]}$  \\
 \emph{10 dimensions}& 500& ${[1]} + {[10]}$ &$\bm{{[1]} + {[3\times5\times7]} + {[10]}}$  \\ \hline
 
 
-&100& ${[1]}$ &${[1]} + {[7\times9]}$ \\
-$\bm{{[3\times5\times7\times9]}} $ & 300& ${[3\times5]} + {[7\times9]}$ &$\bm{{[3\times5\times7\times9]}}$ \\
+&100& ${[3 \times 7]}$ &${[1]} + {[7\times9]}$ \\
+$\bm{{[3\times5\times7\times9]}} $ & 300& ${[7\times9]}$ &$\bm{{[3\times5\times7\times9]}}$ \\
 \emph{10 dimensions}& 500& $\bm{{[3\times5\times7\times9]}}$ &$\bm{{[3\times5\times7\times9]}}$ \\ \hline
 
 
- &100& ${[10]}$ &${[1]} + {[3\times5\times7]}$ \\
-$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}$  &${[3\times5\times7\times9]}$ \\
+ &100& ${[9 + 10]}$ &${[10]} $ \\
+$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}$  &${[1 \times 5] + [7] + [10]}$ \\
 \emph{10 dimensions} & 500& ${[1]} + {[3\times5\times9]} + {[10]}$  & $\bm{{[1]} + {[3\times5\times7\times9]} + {[10]}}$  \\
  
 \hline
@@ -361,7 +619,80 @@ $\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}
 
 \end{table}
 
+Kernel optimal rates give a bound on the performance of the structure search: on average, the search is (by design) unable to construct kernels that are better than the one used to generate the data. 
+The Bayes optimal rates give a theoretical limit on what any model could achieve, as they compare the actual function (y values before adding noise) to the data after the noise is added. Kernel rate should always be below the Bayes rate...
 
+\begin{table}[h]
+
+\label{tbl:synthetic2}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+
+\small 
+\begin{tabular}{|c |  c | c | r c  | c | c c | }
+\hline
+\multicolumn{2}{|c|}{  } & \multicolumn{3}{c|}{ SNR = 1 }  &  \multicolumn{3}{c|}{ SNR = 100 }   \\ \hline
+{True Kernel} & { N } & Test Accuracy & Kernel &  Function & Test Accuracy & Kernel & Function \\ \hline
+
+&100& \textbf{81.0\%} &  80.0\% & & \textbf{98.0}\% & 97.0\% &  \\
+ $\bm{[1]} $ & 300& \textbf{82.7}\% & 82.0\% & 83.6\%  & \textbf{99.3\%} & 98.7\%  &  99.0\%   \\
+\emph{3 dimensions}& 500 &   83.6\% & 83.8\% &  &  \textbf{98.4\%} & 98.4\% & \\ \hline
+
+
+&100&   74.0\% & 	75.0\% & & 	\textbf{98.0\%} & 	98.0\% & \\ 
+$\bm{{[2]} + {[2]} + {[2]}} $ & 300 &   \textbf{77.3\%} & 	77.0\% & 78.2\%	  &	\textbf{98.7\%} &  {98.7\%} & 98.8 \% \\
+\emph{3 dimensions}& 500 &  \textbf{78.2\%} & 	78.2\% & &	\textbf{98.6\%} & 	98.6\% & \\   \hline
+
+
+ &100 & 67.0\% & 68.0\% & 	& \textbf{89.0\%}  & 89.0\% & \\ 
+$\bm{[2\times 3]} $& 300 & 69.7\% & 70.3\% & 74.8\%	& \textbf{94.7\%}  & 91.3\% & 98.0 \% \\ 
+\emph{3 dimensions}& 500 & 71.4\% & 72.6\% & 	& \textbf{95.8\%}  & 93.4\% & \\  \hline
+
+
+&100&  71.0\% & 80.0\% & & 82.0\% & 87.0\% & \\ 
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300 & 73.0\% & 76.3\% & 76.4\% & \textbf{94.7\%} & 91.7\% & 97.4\% \\ 
+\emph{3 dimensions}& 500 & 73.4\% & 74.8\% & & \textbf{94.2\%} & 91.8\% & \\  \hline
+
+&100&  71.0\% & 80.0\% & & 82.0\% & 87.0\% & \\ 
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300 & 73.0\% & 76.3\% & 76.4\% & \textbf{94.7\%} & 91.7\% & 97.4\% \\ 
+\emph{10 dimensions}& 500 & 73.4\% & 74.8\% & & \textbf{94.2\%} & 91.8\% & \\  \hline
+
+
+ &100 & \textbf{61.0\%} & 	60.0\% & 	 &  70.0\% & 	84.0\% & \\ 
+$\bm{{[1]} + {[2\times 3]} + {[4]} + {[5\times 6]}  } $ & 300 & 67.7\% & 	70.7\% &  76.6\% &  91.0\% & 	92.3\% & 97.2\% \\ 
+\emph{10 dimensions}& 500 & \textbf{73.4\%} & 	73.0\% & 	 &  \textbf{94.0\%} & 	92.0\% &  \\  \hline
+
+
+%&100 & 68.0\% & 67.0\% & 79.0\% & 84.0\% \\ 
+%$\bm{{[3\times5\times7]}} $ & 300 & 66.0\% & 	67.7\% & 89.0\% & 89.7\% \\ 
+%\emph{10 dimensions}& 500 & 71.8\% & 69.4\%  & 91.4\% & 91.0\% \\  \hline
+&100 &  67.0\% & 70.0\% & & 55.0\% & 83.0\% &  \\ 
+$\bm{{[3\times5\times7]}} $ & 300 & 65.3\% & 65.7\% & 73.8\% & \textbf{91.3\%} & 87.3\% & 97.2\%  \\ 
+\emph{10 dimensions}& 500 & \textbf{70.8\%} & 70.2\% & & \textbf{91.8\%} & 89.8\% &  \\    \hline
+
+
+ &100 & \textbf{71.0\%}  & 70.0\% & 	& 87.0\% & 92.0\% & \\  
+$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300 & \textbf{73.0\%}  & 71.3\% & 75.0\% & \textbf{94.3\%} & 94.3\% & 97.6\% \\ 
+\emph{10 dimensions}& 500 &  70.0\%  & 72.2\% & 	& \textbf{93.8\%} & 92.8\% & \\ \hline
+
+
+&100 & 57.0\% & 59.0\% &  &	65.0\% & 77.0\% & \\ 
+$\bm{{[3\times5\times7\times9]}} $ & 300 & 59.3\% & 70.3\% & 77.0\% &    \textbf{83.7\%} & 82.7\% & 97.0 \% \\ 
+\emph{10 dimensions}& 500 & \textbf{71.0\%} & 	69.0\% & & \textbf{85.6\%} & 82.6\% & \\   \hline
+
+
+ &100 & 68.0\% & 74.0\% &  & 77.0\% & 	81.0\% &  \\ 
+$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300 & 70.7\% & 73.3\% & 78.2\% & 81.7\% & 89.0\% &  96.8\% \\ 
+\emph{10 dimensions} & 500 & 72.0\% & 72.4\% &  & \textbf{90.6\%} & 	89.8\% &  \\ 
+ 
+\hline
+\end{tabular}
+}     
+
+ \end{center}
+
+\end{table}
 
 
 \subsection{Adding Salt and Pepper Noise}
@@ -582,13 +913,6 @@ Random Forest & $ \mathbf{4.220} $ &  $ \mathbf{23.440} $ & $ \mathbf{24.030} $ 
 \end{tabular}
 \end{center}
 \end{table}
-
-\section{Visualisation}
-
-Describe what is being plotted and at what stage. 
-
-Pima example: 
-
 
 
 \clearpage

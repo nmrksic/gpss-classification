@@ -25,16 +25,15 @@
 \BOOKMARK [2][-]{subsection.4.5.1}{Dealing with Outliers}{section.4.5}
 \BOOKMARK [1][-]{section.4.6}{Providing Interpretability}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.6.1}{Pima}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.2}{Liver}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.3}{Heart}{section.4.6}
-\BOOKMARK [2][-]{subsection.4.6.4}{Visualising the kernel decomposition}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.2}{Breast}{section.4.6}
+\BOOKMARK [2][-]{subsection.4.6.3}{Heart and Liver}{section.4.6}
 \BOOKMARK [1][-]{section.4.7}{Bayesian Model Averaging}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.7.1}{BMA for Predictive Performance}{section.4.7}
-\BOOKMARK [2][-]{subsection.4.7.2}{BMA for Model Selection}{section.4.7}
+\BOOKMARK [2][-]{subsection.4.7.2}{BMA/Cross-validated model for Model Selection}{section.4.7}
+\BOOKMARK [2][-]{subsection.4.7.3}{Liver}{section.4.7}
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}
 \BOOKMARK [1][-]{section.5.1}{Experiments with Synthetic Data}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.1.1}{Adding Salt and Pepper Noise}{section.5.1}
 \BOOKMARK [1][-]{section.5.2}{Experiments on Real World Data Sets}{chapter.5}
-\BOOKMARK [1][-]{section.5.3}{Visualisation}{chapter.5}
 \BOOKMARK [0][-]{chapter.6}{Summary and Conclusions}{}
 \BOOKMARK [1][-]{section.6.1}{Further Work}{chapter.6}
