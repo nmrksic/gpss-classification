@@ -1,39 +1,39 @@
 \contentsline {chapter}{\numberline {1}Introduction}{1}{chapter.1}
-\contentsline {section}{\numberline {1.1}Bayesian Machine Learning in the context of Data Science}{1}{section.1.1}
+\contentsline {section}{\numberline {1.1}Building an Automated Statistician}{1}{section.1.1}
 \contentsline {section}{\numberline {1.2}Contribution}{1}{section.1.2}
 \contentsline {chapter}{\numberline {2}Gaussian Processes}{2}{chapter.2}
 \contentsline {section}{\numberline {2.1}The Role of Kernels for Gaussian Processes}{2}{section.2.1}
 \contentsline {section}{\numberline {2.2}Gaussian Process Classification}{2}{section.2.2}
-\contentsline {subsection}{\numberline {2.2.1}The Laplace Approximation to Marginal Likelihood}{2}{subsection.2.2.1}
-\contentsline {subsection}{\numberline {2.2.2}Expectation Propagation}{2}{subsection.2.2.2}
-\contentsline {subsection}{\numberline {2.2.3}Variational Bayes}{2}{subsection.2.2.3}
-\contentsline {chapter}{\numberline {3}Related Work}{3}{chapter.3}
-\contentsline {section}{\numberline {3.1}Kernel learning}{3}{section.3.1}
-\contentsline {section}{\numberline {3.2}Kernel structure discovery for regression}{3}{section.3.2}
-\contentsline {section}{\numberline {3.3}Additive Gaussian Processes}{4}{section.3.3}
-\contentsline {chapter}{\numberline {4}Kernel Structure Discovery for GP Classification}{5}{chapter.4}
-\contentsline {section}{\numberline {4.1}Defining the Kernel Grammar}{5}{section.4.1}
-\contentsline {subsection}{\numberline {4.1.1}The Search Operators}{5}{subsection.4.1.1}
-\contentsline {section}{\numberline {4.2}Model selection}{5}{section.4.2}
-\contentsline {section}{\numberline {4.3}Optimising the Hyperparameters}{5}{section.4.3}
-\contentsline {subsection}{\numberline {4.3.1}Overfitting}{6}{subsection.4.3.1}
-\contentsline {section}{\numberline {4.4}Guiding the Structure Search}{6}{section.4.4}
-\contentsline {subsection}{\numberline {4.4.1}Bayesian and Akaike Information Criteria}{6}{subsection.4.4.1}
-\contentsline {subsection}{\numberline {4.4.2}The Number of Effective Hyperparameters}{6}{subsection.4.4.2}
-\contentsline {subsection}{\numberline {4.4.3}Cross-validated training accuracy}{7}{subsection.4.4.3}
-\contentsline {section}{\numberline {4.5}Adapting the likelihood function}{7}{section.4.5}
-\contentsline {subsection}{\numberline {4.5.1}Dealing with Outliers}{7}{subsection.4.5.1}
-\contentsline {section}{\numberline {4.6}Providing Interpretability}{8}{section.4.6}
-\contentsline {subsection}{\numberline {4.6.1}Pima}{8}{subsection.4.6.1}
-\contentsline {subsection}{\numberline {4.6.2}Breast}{10}{subsection.4.6.2}
-\contentsline {subsection}{\numberline {4.6.3}Heart and Liver}{12}{subsection.4.6.3}
-\contentsline {section}{\numberline {4.7}Bayesian Model Averaging}{12}{section.4.7}
-\contentsline {subsection}{\numberline {4.7.1}BMA for Predictive Performance}{12}{subsection.4.7.1}
-\contentsline {subsection}{\numberline {4.7.2}BMA/Cross-validated model for Model Selection}{14}{subsection.4.7.2}
-\contentsline {subsection}{\numberline {4.7.3}Liver}{14}{subsection.4.7.3}
-\contentsline {chapter}{\numberline {5}Evaluation}{16}{chapter.5}
-\contentsline {section}{\numberline {5.1}Experiments with Synthetic Data}{16}{section.5.1}
-\contentsline {subsection}{\numberline {5.1.1}Adding Salt and Pepper Noise}{18}{subsection.5.1.1}
-\contentsline {section}{\numberline {5.2}Experiments on Real World Data Sets}{22}{section.5.2}
-\contentsline {chapter}{\numberline {6}Summary and Conclusions}{23}{chapter.6}
-\contentsline {section}{\numberline {6.1}Further Work}{23}{section.6.1}
+\contentsline {subsection}{\numberline {2.2.1}The Laplace Approximation to Marginal Likelihood}{3}{subsection.2.2.1}
+\contentsline {subsection}{\numberline {2.2.2}Expectation Propagation}{3}{subsection.2.2.2}
+\contentsline {subsection}{\numberline {2.2.3}Variational Bayes}{3}{subsection.2.2.3}
+\contentsline {chapter}{\numberline {3}Related Work}{4}{chapter.3}
+\contentsline {section}{\numberline {3.1}Kernel learning}{4}{section.3.1}
+\contentsline {section}{\numberline {3.2}Kernel structure discovery for regression}{4}{section.3.2}
+\contentsline {section}{\numberline {3.3}Additive Gaussian Processes}{5}{section.3.3}
+\contentsline {chapter}{\numberline {4}Kernel Structure Discovery for GP Classification}{6}{chapter.4}
+\contentsline {section}{\numberline {4.1}Defining the Kernel Grammar}{6}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}The Search Operators}{6}{subsection.4.1.1}
+\contentsline {section}{\numberline {4.2}Model selection}{6}{section.4.2}
+\contentsline {section}{\numberline {4.3}Optimising the Hyperparameters}{6}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Overfitting}{7}{subsection.4.3.1}
+\contentsline {section}{\numberline {4.4}Guiding the Structure Search}{7}{section.4.4}
+\contentsline {subsection}{\numberline {4.4.1}Bayesian and Akaike Information Criteria}{7}{subsection.4.4.1}
+\contentsline {subsection}{\numberline {4.4.2}The Number of Effective Hyperparameters}{7}{subsection.4.4.2}
+\contentsline {subsection}{\numberline {4.4.3}Cross-validated training accuracy}{8}{subsection.4.4.3}
+\contentsline {section}{\numberline {4.5}Adapting the likelihood function}{8}{section.4.5}
+\contentsline {subsection}{\numberline {4.5.1}Dealing with Outliers}{8}{subsection.4.5.1}
+\contentsline {section}{\numberline {4.6}Providing Interpretability}{9}{section.4.6}
+\contentsline {subsection}{\numberline {4.6.1}Pima}{9}{subsection.4.6.1}
+\contentsline {subsection}{\numberline {4.6.2}Breast}{11}{subsection.4.6.2}
+\contentsline {subsection}{\numberline {4.6.3}Heart and Liver}{13}{subsection.4.6.3}
+\contentsline {section}{\numberline {4.7}Bayesian Model Averaging}{13}{section.4.7}
+\contentsline {subsection}{\numberline {4.7.1}BMA for Predictive Performance}{13}{subsection.4.7.1}
+\contentsline {subsection}{\numberline {4.7.2}BMA/Cross-validated model for Model Selection}{15}{subsection.4.7.2}
+\contentsline {subsection}{\numberline {4.7.3}Liver}{15}{subsection.4.7.3}
+\contentsline {chapter}{\numberline {5}Evaluation}{17}{chapter.5}
+\contentsline {section}{\numberline {5.1}Experiments with Synthetic Data}{17}{section.5.1}
+\contentsline {subsection}{\numberline {5.1.1}Adding Salt and Pepper Noise}{19}{subsection.5.1.1}
+\contentsline {section}{\numberline {5.2}Experiments on Real World Data Sets}{23}{section.5.2}
+\contentsline {chapter}{\numberline {6}Summary and Conclusions}{24}{chapter.6}
+\contentsline {section}{\numberline {6.1}Further Work}{24}{section.6.1}

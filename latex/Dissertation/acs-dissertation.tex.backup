@@ -296,16 +296,9 @@ three times. Interestingly, whenever $\SE_7$ was introduced, the accuracy increa
 
 Below, we show those components of the 10 final structures which represent 1 or 2-way interactions. $[1 \times 2 \times 6]$ features in three folds, as do some other high dimensional interactions, but we are still unable to visualise those. 
 
-The first row shows dimensions 1 and 5 
-with a single $\SE$ kernel in the respective dimension. The remaining six plots show individual components of the final kernel structures obtained using structure search (not necessarily across the same fold). 
+The first six plots show individual components of the final kernel structures obtained using the structure search (not necessarily across the same fold). The final row shows dimensions 1 and 5 using a single $\SE$ kernel in the respective dimension. 
 
-\begin{center}
 
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clump.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/cellsize.png}
-}
-\end{center}
 \begin{center}
 
 \makebox[(\textwidth) ]{
@@ -330,7 +323,13 @@ with a single $\SE$ kernel in the respective dimension. The remaining six plots 
 \includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpadhesion.png}
 }
 \end{center}
+\begin{center}
 
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clump.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/cellsize.png}
+}
+\end{center}
 
 
 \subsection{Heart and Liver}

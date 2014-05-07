@@ -114,7 +114,7 @@
 \pagenumbering{arabic} 
 \setcounter{page}{1} 
 
-\section{Bayesian Machine Learning in the context of Data Science}
+\section{Building an Automated Statistician}
 
 
 %This is the introduction where you should introduce your work.  In general the thing to aim for here is to describe a little bit of the
@@ -126,6 +126,8 @@
 %It's also traditional to give an outline of the rest of the document, although without care this can appear formulaic and tedious. Your call. 
 
 \section{Contribution}
+
+Built a system for automatic kernel discovery for Gaussian Process classification...
 
 
 \clearpage
@@ -139,6 +141,16 @@
 %material either in the introduction or at appropriate places in the rest of the dissertation. 
 
 \chapter{Gaussian Processes}
+
+0. Describe Bayesian paradigm and Bayes rule, and how this leads into wanting to have a prior over functions...
+
+1. Define GPs, explain how it is fully specified by the mean and covariance function... Discuss covariance functions. Talk about function as infinite vector to generalize from multinomial Gaussian to this. 
+
+2. GP as a prior on function, show some function draws from the prior...
+
+3. Marginal likelihood as criterion for model selection and fitting the hyperparameters. write out nlml formula and discuss that the first term penalises poor fit, second model complexity, third is normalization. Say this is type II ML.
+
+
 
 \section{The Role of Kernels for Gaussian Processes}
 
@@ -591,9 +603,9 @@ $\bm{{[1]} + {[2\times 3]}  + {[4]} + {[5\times 6]} } $ & 300& ${[1]} + {[2]} + 
 \emph{10 dimensions}& 500& ${[1]} + {[1\times 4]} + {[2\times 3]} + {[5\times 6]} $  &${[1]} + {[1\times4\times5\times6]} + {[2\times3]} + {[4]}$  \\ \hline
 
 
-&100& $\bm{{[3\times5\times7]}} $ & ${{[7]}}$ \\
-$\bm{{[3\times5\times7]}} $ & 300& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
-\emph{10 dimensions}& 500& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
+&100& ${{[4\times7]}} $ & $\bm{{[3 \times 5 \times 7]}}$ \\
+$\bm{{[3\times5\times7]}} $ & 300& ${{[2 \times  3 \times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
+\emph{10 dimensions}& 500& ${{[2 \times 3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
 
 
  &100& ${[1\times3]} + {[10]}$  &${[1\times10]} $ \\
@@ -666,9 +678,9 @@ $\bm{{[1]} + {[2\times 3]} + {[4]} + {[5\times 6]}  } $ & 300 & 67.7\% & 	70.7\%
 %&100 & 68.0\% & 67.0\% & 79.0\% & 84.0\% \\ 
 %$\bm{{[3\times5\times7]}} $ & 300 & 66.0\% & 	67.7\% & 89.0\% & 89.7\% \\ 
 %\emph{10 dimensions}& 500 & 71.8\% & 69.4\%  & 91.4\% & 91.0\% \\  \hline
-&100 &  67.0\% & 70.0\% & & 55.0\% & 83.0\% &  \\ 
-$\bm{{[3\times5\times7]}} $ & 300 & 65.3\% & 65.7\% & 73.8\% & \textbf{91.3\%} & 87.3\% & 97.2\%  \\ 
-\emph{10 dimensions}& 500 & \textbf{70.8\%} & 70.2\% & & \textbf{91.8\%} & 89.8\% &  \\    \hline
+&100 &  53.0\% & 64.0\% & & \textbf{87.0\%} & 83.0\% &  \\ 
+$\bm{{[3\times5\times7]}} $ & 300 & 69.3\% & 71.0\% & 79.0\% & \textbf{92.7\%} & 89.0\% & 98.4\%  \\ 
+\emph{10 dimensions}& 500 & {73.2\%} & 73.6\% & & \textbf{93.6\%} & 91.6\% &  \\    \hline
 
 
  &100 & \textbf{71.0\%}  & 70.0\% & 	& 87.0\% & 92.0\% & \\  

@@ -1,6 +1,6 @@
 function evaluateSyntheticNoSP ( numRestarts, runParallel)
 
-    seed = 0;
+    seed = 10;
     InitialiseRand(seed);
 
     if nargin < 1
