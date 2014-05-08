@@ -114,7 +114,7 @@
 \pagenumbering{arabic} 
 \setcounter{page}{1} 
 
-\section{Bayesian Machine Learning in the context of Data Science}
+\section{Building an Automated Statistician}
 
 
 %This is the introduction where you should introduce your work.  In general the thing to aim for here is to describe a little bit of the
@@ -126,6 +126,8 @@
 %It's also traditional to give an outline of the rest of the document, although without care this can appear formulaic and tedious. Your call. 
 
 \section{Contribution}
+
+Built a system for automatic kernel discovery for Gaussian Process classification...
 
 
 \clearpage
@@ -140,7 +142,17 @@
 
 \chapter{Gaussian Processes}
 
-\section{The Role of Kernels for Gaussian Processes}
+0. Describe Bayesian paradigm and Bayes rule, and how this leads into wanting to have a prior over functions... 
+
+1. Define GPs, explain how it is fully specified by the mean and covariance function... Discuss covariance functions. Talk about function as infinite vector to generalize from multinomial Gaussian to this. 
+
+2. GP as a prior on function, show some function draws from the prior...
+
+3. Marginal likelihood as criterion for model selection and fitting the hyperparameters. write out nlml formula and discuss that the first term penalises poor fit, second model complexity, third is normalization. Say this is type II ML.
+
+
+
+\section{Kernels for Gaussian Processes}
 
 Describe different types of kernels. 
 
@@ -160,19 +172,22 @@ Explain why it is harder, non-Gaussian likelihood...
 
 \section{Kernel learning}
 
-General review of work done, with different models.
+General review of work done in this area, with different models.
 
 \section{Kernel structure discovery for regression}
 
-Unsupervised structure discovery - mention that paper, maybe initially, as a similar type of work... 1 paragraph? 
+Unsupervised structure discovery - mention that paper, maybe initially, as similar work... 
 
-Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
+Additive GPs....
+
+%Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
 
 
 %This chapter covers relevant (and typically, recent) research which you build upon (or improve upon). There are two complementary goals for this chapter: 
 %\begin{enumerate}  %  \item to show that you know and understand the state of the art; and  %  \item to put your work in context   %\end{enumerate} 
 
-% Ideally you can tackle both together by providing a critique of related work, and describing what is insufficient (and how you do better!)
+% Ideally you can tackle both together by providiFor breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following performance, yielding an improvement of $0.9\%$ over the standard BIC light version. 
+ng a critique of related work, and describing what is insufficient (and how you do better!)
 
 %The related work chapter should usually come either near the front or
 %near the back of the dissertation. The advantage of the former is that
@@ -182,60 +197,79 @@ Talk about the fact that these methods fix the structure of the kernel beforehan
 %much. The correct choice will depend on what you're writing up, and
 %your own personal preference.
 
-As a critique, discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
-
-Write an intro to doing this for classification, why it is harder (less information than regression, harder interpretability, non-Gaussian likelihoods and the need to resort to nlml approximations). 
-
-
-\section{Additive Gaussian Processes}
-
-Find other relevant work - Dave mentioned some of these. Read through all the papers' relevant work sections. 
+%critique:
+Discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
 
 
 \clearpage
 
 \chapter{Kernel Structure Discovery for GP Classification} 
 
+Write an intro to doing this for classification, why it is harder apart from the non-Gaussian likelihoods (less information than regression, harder interpretability). 
+
 \section{Defining the Kernel Grammar}
 
-Draw the basic kernels, describe additive and product kernels. 
+Draw the basic kernels, describe additive and product kernels. Compare with the regression case, explain why the RQ and Periodic kernel make less sense. 
 
 Present challenges for classification, difference from regression, lack of clear component interpretability, as opposed to i.e. time-series data. 
 
 \subsection{The Search Operators}
 
-Adding or multiplying with a base kernel. 
+Adding or multiplying with a base kernel. Discuss what adding two kernels or multiplying them accomplishes. 
 
 \section{Model selection}
 
+Discuss the use of marginal likelihood as the criterion for model selsection. Explain that the hyperparameters are found using conjugate descent, in order to minimise marginal likelihood. Bayesian Occam's razor. 
+
+\clearpage
+
 \section{Optimising the Hyperparameters}
 
-Subsampling the training data to optimize the process. 
+\subsection{Conjugate descent}
 
-Discuss parallelisation. Maybe add a table of running times and numbers of restarts. 
+Subsampling the training data to make the hyperparameter fitting faster: perform 300 iterations (a good rough guideline is the number of hyperparameters * 50) with 250 points randomly sampled from the data set, then perform an additional 50 iterations with the full data set. 
+Due to the smoothness of the $\SE$ kernels, this algorithm always converges to the same hyperparameters as the minimization that uses the entire data set for the whole process. 
+
+Discuss parallelisation and the use of the cluster. Discuss and add a table of running times and numbers of restarts performed. 
 
 \subsection{Overfitting}
 
-Dealing with very small and very large hyperparameters. 
+Dealing with very small and very large hyperparameters. Discuss what large ones mean (inconsequential for classification boundary) and what small ones do (overfitting). Explain how we set the minimal allowed lengthscale for each dimension and how discretised data presents a challenge. 
+
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/liversmalllengthscale.png}
+
+Overfitting with large lengthscales is to be expected, so we plot the histogram of accuracies for training and testing data when doing ten fold cross validation (with many different splits, i.e. seeds). From the plots below, we see that testing accuracy is expected to vary
+when doing ten-fold cross validation with this amount of data. With 100 different splits (that is 1000 different data points), the training accuracy ranges from $59\%$ to $66\%$, while the test accuracy varies from $40\%$ to $90\%$, showing that the overfitting (or surprisingly 
+good performance we encounter on some folds) is a something to be expected. 
+
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/overfitwithlargelength.png}
+
+ \clearpage
 
 \section{Guiding the Structure Search}
 
+Discuss the greedy search and backtracking, as well as potential feature reduction. To be tested on ionosphere (32 dimensional). Perhaps compare performance with and without using feature selection?
+
 \subsection{Bayesian and Akaike Information Criteria}
+
+Definitions and examples of successful applications. 
 
 \subsection{The Number of Effective Hyperparameters}
 
-Outline BIC light, present it as middle ground between full BIC and AIC. 
-Insert the number of search steps figure that shows overfitting. 
+Outline BIC light, present it as middle ground between full BIC and AIC. Discuss the (lack of) significance of signal variance to the classification boundary. 
 
+The number of search steps figure that shows overfitting across the three metrics is shown below: 
 
 \includegraphics[scale=0.37]{figures/measureoverfit.png}
 
 \subsection{Cross-validated training accuracy}
 
-
+Discuss the use of cross-validated train accuracy - how it may be expected to provide us with the ceiling performance, but in the end it doesn't improve much on BIC light and likMix models. 
 
 %\chapter{Predictive Power, Interpretability and Visualisation}
 
+
+\clearpage
 \section{Adapting the likelihood function}
 
 \subsection{Dealing with Outliers}
@@ -247,107 +281,15 @@ The reason that GPs out of the box are easily outperformed by classification spe
 As a potential solution, we might want to use a @likMix which adds the “pepper noise” into the likelihood function, determining the level of the outliers and thus having the likelihood (i.e. sigmoid) which doesn’t range from 0 to 1, but from $\alpha$ to $(1 - \alpha)$, where $\alpha$ is the level of pepper noise, which is, again, to be learnt from the data? This can be implemented in GPML using @likMix, and is something we can first evaluate w.r.t. synthetic data we previously generated. The only difference is that now we add additional salt and pepper noise (random outliers) into the data and we compare performance (on this dataset) of likMix vs likErf on its own.
 
 
-\section{Providing Interpretability}
-
-\subsection{Pima}
-
-The Pima Indian Diabetes dataset contains medical measurements of 768 individuals, together with an indicator of whether they later developed diabetes or not. There are 8 attributes in total, 4 of which feature in the kernel structures returned by the kernel discovery procedure. 
-These are dimensions 2, 6, 7 and 8: plasma glucose concentration, body mass index (BMI), diabetes pedigree function and the age of the patient. The remaining four attributes seem to carry less information regarding the likelihood of developing diabetes, at least 
-in a dataset of this size and using this search procedure. These four features are the number of pregnancies, diastolic blood pressure, triceps skin fold thickness and 2-hour serum insulin measures. The structure returned most often (4 times using 10-fold cross validation 
-for computing classification accuracy) was $[2\times7] + [6] + [8]$, closely followed by $[2]+[8]+[6 \times 7]$, which occured for 3 folds. The four posterior plots indicating the class boundaries determined with respect to these dimensions are shown below. 
-
-\begin{center}
-
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/age.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/bmi.png}
-}
-\end{center}
-\begin{center}
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreebmi.png}%
-\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreeglucose.png}
-}
-\end{center}
-
-In addition to these additive components, the remaining three folds' structures contained occurances of $[2]$, $[2 \times 3 \times 7]$ and $ [ 2\times 3 \times7]$. Showing the three-way dependencies in 2D is not straightforward. Below, we show the posterior plots for 
-$[2]$, $[2\times8]$ and $[3\times8]$, showing that interactions of these dimensions produce points well separated by the classifiers produced (with the possible exception of the interaction between age and diastolic blood pressure). The two way interaction between the number of pregnancies and age is also shown: this dependency was found during various 
-stages of the search but discarded, even though the classifier seems to observe the general pattern present in the data set. 
-
-\begin{center}
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/glucose.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/ageglucose.png}
-}
-\end{center}
-\begin{center}
-
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pressureage.png}
-\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pregnantage.png}%
-}
-\end{center}
-
-\subsection{Breast} 
-
-Wisconsin Diagnostic Breast Cancer Dataset is a 9-dimensional dataset which contains measured attributes of 449 individuals, together with an indicator of whether or not they later developed breast cancer. Across the 10 folds generated, there were nine different kernel structures
-that the procedure returned, with seven out of the nine attributes utilised in these structures. The dimensions most frequently found were 1, 2, 4, 6 and 8. Most kernels returned represent some combination of these five base kernels. Dimension 5 features once, and dimension 7 
-three times. Interestingly, whenever $\SE_7$ was introduced, the accuracy increased far above the levels attained in the other kernels (ranging from 97\% to 100\%), but it was part of the final kernel in only three out of the ten folds evaluated. 
-
-Below, we show those components of the 10 final structures which represent 1 or 2-way interactions. $[1 \times 2 \times 6]$ features in three folds, as do some other high dimensional interactions, but we are still unable to visualise those. 
-
-The first six plots show individual components of the final kernel structures obtained using the structure search (not necessarily across the same fold). The final row shows dimensions 1 and 5 using a single $\SE$ kernel in the respective dimension. 
-
-
-\begin{center}
-
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/adhesion.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleicellsize.png}
-}
-\end{center}
-
-
-
-\begin{center}
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/chromatin.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleoli.png}
-}
-\end{center}
-\begin{center}
-
-
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpbland.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpadhesion.png}
-}
-\end{center}
-\begin{center}
-
-\makebox[(\textwidth) ]{
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clump.png}%
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/cellsize.png}
-}
-\end{center}
-
-
-\subsection{Heart and Liver}
-
-These two data sets require dealing with representation of discretised data. Plots don't make much sense (yet). Adding jitter might alleviate these issues.  
-
-
-
+\clearpage
 
 \section{Bayesian Model Averaging}
 
-\subsection{BMA for Predictive Performance}
-
 Averaging assigned labels or probabilities converges to the same thing when many models are used. 
 
-Discuss assigning different alphas, make a plot showing how the accuracy changes. 
+A plot showing how the accuracy changes with different $\alpha$ coefficients. 
 
-Currently averaging class labels across different models, and $\alpha$ shows the BIC values scaling factor used to assign the weight factors to different classes. 
+The current implementation averages class labels across different models, and $\alpha$ shows the BIC values scaling factor used to assign the weight factors to different classes. 
 
 From the set of models in the layers above, in and below the current model, we use their BIC values $b_1, b_2, \ldots $ to assign each model a weight:
 
@@ -462,12 +404,108 @@ From the set of models in the layers above, in and below the current model, we u
 
 \end{table}
 
-
-
-
+\includegraphics[trim=8cm 5cm 8cm 6cm, width=\textwidth]{figures/alphaBMA.png}%
 
 
 \clearpage
+
+\section{Providing Interpretability}
+
+\subsection{Pima}
+
+The Pima Indian Diabetes dataset contains medical measurements of 768 individuals, together with an indicator of whether they later developed diabetes or not. There are 8 attributes in total, 4 of which feature in the kernel structures returned by the kernel discovery procedure. 
+These are dimensions 2, 6, 7 and 8: plasma glucose concentration, body mass index (BMI), diabetes pedigree function and the age of the patient. The remaining four attributes seem to carry less information regarding the likelihood of developing diabetes, at least 
+in a dataset of this size and using this search procedure. These four features are the number of pregnancies, diastolic blood pressure, triceps skin fold thickness and 2-hour serum insulin measures. The structure returned most often (4 times using 10-fold cross validation 
+for computing classification accuracy) was $[2\times7] + [6] + [8]$, closely followed by $[2]+[8]+[6 \times 7]$, which occured for 3 folds. The four posterior plots indicating the class boundaries determined with respect to these dimensions are shown below. 
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/age.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/bmi.png}
+}
+\end{center}
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreebmi.png}%
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreeglucose.png}
+}
+\end{center}
+
+In addition to these additive components, the remaining three folds' structures contained occurances of $[2]$, $[2 \times 3 \times 7]$ and $ [ 2\times 3 \times7]$. Showing the three-way dependencies in 2D is not straightforward. Below, we show the posterior plots for 
+$[2]$, $[2\times8]$ and $[3\times8]$, showing that interactions of these dimensions produce points well separated by the classifiers produced (with the possible exception of the interaction between age and diastolic blood pressure). The two way interaction between the number of pregnancies and age is also shown: this dependency was found during various 
+stages of the search but discarded, even though the classifier seems to observe the general pattern present in the data set. 
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/glucose.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/ageglucose.png}
+}
+\end{center}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pressureage.png}
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pregnantage.png}%
+}
+\end{center}
+
+\subsection{Breast} 
+
+Wisconsin Diagnostic Breast Cancer Dataset is a 9-dimensional dataset which contains measured attributes of 449 individuals, together with an indicator of whether or not they later developed breast cancer. Across the 10 folds generated, there were nine different kernel structures
+that the procedure returned, with seven out of the nine attributes utilised in these structures. The dimensions most frequently found were 1, 2, 4, 6 and 8. Most kernels returned represent some combination of these five base kernels. Dimension 5 features once, and dimension 7 
+three times. Interestingly, whenever $\SE_7$ was introduced, the accuracy increased far above the levels attained in the other kernels (ranging from 97\% to 100\%), but it was part of the final kernel in only three out of the ten folds evaluated. 
+
+Below, we show those components of the 10 final structures which represent 1 or 2-way interactions. $[1 \times 2 \times 6]$ features in three folds, as do some other high dimensional interactions, but we are still unable to visualise those. 
+
+The first six plots show individual components of the final kernel structures obtained using the structure search (not necessarily across the same fold). The final row shows dimensions 1 and 5 using a single $\SE$ kernel in the respective dimension. 
+
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/adhesion.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleicellsize.png}
+}
+\end{center}
+
+
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/chromatin.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleoli.png}
+}
+\end{center}
+\begin{center}
+
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpbland.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpadhesion.png}
+}
+\end{center}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clump.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/cellsize.png}
+}
+\end{center}
+
+
+\subsection{Heart and Liver}
+
+These two data sets require dealing with representation of discretised data. Plots don't make much sense (yet). Adding jitter might alleviate these issues.  
+
+
+\clearpage
+
+\section{Automatic Report Synthesis}
+
+
+
+\begin{comment}
 
 \subsection{BMA/Cross-validated model for Model Selection}
 
@@ -500,6 +538,7 @@ Kernel chosen for this data set is: $ \SE_1 + \SE_3 \times \SE_4 \times \SE_5 + 
       \end{tabular}
 \end{table}
 
+   The average error is $26.61 \%$, which improves on the previous value of $27.5\%$, but falls short of using weighted model averaging. 
 
 For breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following performance, yielding an improvement of $0.9\%$ over the standard BIC light version. 
 
@@ -525,12 +564,11 @@ For breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following perfo
       \end{tabular}
 \end{table}
 
+\end{comment}
 
 
    
-   The average error is $26.61 \%$, which improves on the previous value of $27.5\%$, but falls short of using weighted model averaging. 
 
-   \includegraphics[trim=8cm 5cm 8cm 6cm, width=\textwidth]{figures/alphaBMA.png}%
 
 
 \clearpage
@@ -591,9 +629,9 @@ $\bm{{[1]} + {[2\times 3]}  + {[4]} + {[5\times 6]} } $ & 300& ${[1]} + {[2]} + 
 \emph{10 dimensions}& 500& ${[1]} + {[1\times 4]} + {[2\times 3]} + {[5\times 6]} $  &${[1]} + {[1\times4\times5\times6]} + {[2\times3]} + {[4]}$  \\ \hline
 
 
-&100& $\bm{{[3\times5\times7]}} $ & ${{[7]}}$ \\
-$\bm{{[3\times5\times7]}} $ & 300& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
-\emph{10 dimensions}& 500& $\bm{{[3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
+&100& ${{[4\times7]}} $ & $\bm{{[3 \times 5 \times 7]}}$ \\
+$\bm{{[3\times5\times7]}} $ & 300& ${{[2 \times  3 \times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
+\emph{10 dimensions}& 500& ${{[2 \times 3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
 
 
  &100& ${[1\times3]} + {[10]}$  &${[1\times10]} $ \\
@@ -666,9 +704,9 @@ $\bm{{[1]} + {[2\times 3]} + {[4]} + {[5\times 6]}  } $ & 300 & 67.7\% & 	70.7\%
 %&100 & 68.0\% & 67.0\% & 79.0\% & 84.0\% \\ 
 %$\bm{{[3\times5\times7]}} $ & 300 & 66.0\% & 	67.7\% & 89.0\% & 89.7\% \\ 
 %\emph{10 dimensions}& 500 & 71.8\% & 69.4\%  & 91.4\% & 91.0\% \\  \hline
-&100 &  67.0\% & 70.0\% & & 55.0\% & 83.0\% &  \\ 
-$\bm{{[3\times5\times7]}} $ & 300 & 65.3\% & 65.7\% & 73.8\% & \textbf{91.3\%} & 87.3\% & 97.2\%  \\ 
-\emph{10 dimensions}& 500 & \textbf{70.8\%} & 70.2\% & & \textbf{91.8\%} & 89.8\% &  \\    \hline
+&100 &  53.0\% & 64.0\% & & \textbf{87.0\%} & 83.0\% &  \\ 
+$\bm{{[3\times5\times7]}} $ & 300 & 69.3\% & 71.0\% & 79.0\% & \textbf{92.7\%} & 89.0\% & 98.4\%  \\ 
+\emph{10 dimensions}& 500 & {73.2\%} & 73.6\% & & \textbf{93.6\%} & 91.6\% &  \\    \hline
 
 
  &100 & \textbf{71.0\%}  & 70.0\% & 	& 87.0\% & 92.0\% & \\  
@@ -873,7 +911,14 @@ We also show the kernel optimal rates (the accuracy the kernel used to generate 
 \end{center}
 \end{table*}
  
-
+ 
+ \subsection{Saturating Likelihood Function Performance}
+ 
+ In the previous chapter, we discussed the use of a mixture of likelihoods that would be better equipped to handle outliers in the data, modelled in this case as the \emph{salt and pepper} noise. In this section, we analyse the performance of the mixture of the 
+ error function and the uniform likelihood function on synthetic data. 
+ 
+ The use of this likelihood function introduces one new hyperparameter, hyp.lik, which gives us the rates of the two likelihood functions in the mixture. As there are only two likelihood function, we've in fact introduced only one new effective hyperparameter. 
+ 
 
  \clearpage
 

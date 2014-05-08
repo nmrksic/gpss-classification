@@ -173,7 +173,7 @@ function evaluateSyntheticData ( numRestarts, seed, runParallel, likelihoodMod)
                     if likelihoodMod == 1
                         
                         likhyper = finalHyperParam.lik;
-                        ratio = exp( likhyper(1) - likhyper(2) ); % get it as percent 
+                        ratio = exp( likhyper(1) ) / ( exp(likhyper(1)) + exp(likhyper(2)) ); % get it as percent 
                         results{currentLine, 8} = [' &  ', num2str( round( ratio * 10000 ) /  100), '\%  \\ '];
                     
                     else
