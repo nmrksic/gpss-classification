@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  8 MAY 2014 17:45
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  10 MAY 2014 00:02
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -592,6 +592,18 @@ Package hyperref Info: Option `colorlinks' set `false' on input line 72.
 
 LaTeX Warning: Label `tbl:synthetic2' multiply defined.
 
+
+LaTeX Warning: Label `tbl:synthetic1' multiply defined.
+
+
+LaTeX Warning: Label `tbl:synthetic1' multiply defined.
+
+
+LaTeX Warning: Label `tbl:synthetic1' multiply defined.
+
+
+LaTeX Warning: Label `tbl:synthetic1' multiply defined.
+
 )
 \openout1 = `acs-dissertation.aux'.
 
@@ -739,18 +751,18 @@ File: figures/liversmalllengthscale.png Graphic file (type png)
 File: figures/overfitwithlargelength.png Graphic file (type png)
 
 <use figures/overfitwithlargelength.png> [8 <./figures/liversmalllengthscale.pn
-g (PNG copy)>] [9 <./figures/overfitwithlargelength.png (PNG copy)>]
-<figures/measureoverfit.png, id=277, 1056.94875pt x 669.50125pt>
+g (PNG copy)>] [9 <./figures/overfitwithlargelength.png (PNG copy)>] [10
+
+]
+<figures/measureoverfit.png, id=283, 1056.94875pt x 669.50125pt>
 File: figures/measureoverfit.png Graphic file (type png)
 
 <use figures/measureoverfit.png>
-Overfull \hbox (1.06491pt too wide) in paragraph at lines 263--264
+Overfull \hbox (1.06491pt too wide) in paragraph at lines 274--275
 [][] 
  []
 
-[10
-
- <./figures/measureoverfit.png (PNG copy)>] [11]
+[11 <./figures/measureoverfit.png (PNG copy)>]
 Missing character: There is no â in font cmr12!
 Missing character: There is no € in font cmr12!
 Missing character: There is no ™ in font cmr12!
@@ -772,12 +784,12 @@ Missing character: There is no ™ in font cmr12!
  [12
 
 ]
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 304--349
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 315--360
 []$[]$$[]$ 
  []
 
 
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 356--402
+Overfull \hbox (39.00238pt too wide) in paragraph at lines 367--413
 []$[]$$[]$ 
  []
 
@@ -873,11 +885,11 @@ Chapter 5.
 ]
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 653.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 664.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 653.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 664.
 
 [22] [23]
 
@@ -890,19 +902,31 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [24]
-Overfull \hbox (6.68893pt too wide) in paragraph at lines 920--922
+Overfull \hbox (6.68893pt too wide) in paragraph at lines 931--933
 []\OT1/cmr/m/n/12 The use of this like-li-hood func-tion in-tro-duces one new h
 y-per-pa-ram-e-ter, hyp.lik,
  []
 
-[25] [26] [27
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[25] [26] [27] [28] [29
 
 ]
 Chapter 6.
-[28
+[30
 
 
-] (./acs-dissertation.bbl) [29
+] (./acs-dissertation.bbl) [31
 
 
 ] (./acs-dissertation.aux)
@@ -911,11 +935,11 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9494 strings out of 493848
- 137204 string characters out of 1152822
- 254309 words of memory out of 3000000
- 12435 multiletter control sequences out of 15000+50000
- 19348 words of font info for 70 fonts, out of 3000000 for 9000
+ 9499 strings out of 493848
+ 137264 string characters out of 1152822
+ 272309 words of memory out of 3000000
+ 12434 multiletter control sequences out of 15000+50000
+ 19047 words of font info for 69 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
  38i,16n,38p,931b,393s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf
@@ -935,9 +959,9 @@ f-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/p
 ublic/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
 1200.pfb>
-Output written on acs-dissertation.pdf (37 pages, 849424 bytes).
+Output written on acs-dissertation.pdf (39 pages, 860652 bytes).
 PDF statistics:
- 483 PDF objects out of 1000 (max. 8388607)
- 81 named destinations out of 1000 (max. 500000)
+ 496 PDF objects out of 1000 (max. 8388607)
+ 87 named destinations out of 1000 (max. 500000)
  410 words of extra memory for PDF output out of 10000 (max. 10000000)
 
