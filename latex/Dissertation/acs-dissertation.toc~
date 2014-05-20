@@ -9,7 +9,7 @@
 \contentsline {section}{\numberline {2.4}Gaussian Process Regression}{8}{section.2.4}
 \contentsline {subsection}{\numberline {2.4.1}Learning the Hyperparameters}{9}{subsection.2.4.1}
 \contentsline {section}{\numberline {2.5}Gaussian Process Classification}{10}{section.2.5}
-\contentsline {subsection}{\numberline {2.5.1}Approximative Inference for {{GP}} Classification}{12}{subsection.2.5.1}
+\contentsline {subsection}{\numberline {2.5.1}Approximative Inference for {\mathcal {GP}} Classification}{12}{subsection.2.5.1}
 \contentsline {subsection}{\numberline {2.5.2}The Laplace Approximation}{12}{subsection.2.5.2}
 \contentsline {subsection}{\numberline {2.5.3}Expectation Propagation}{13}{subsection.2.5.3}
 \contentsline {chapter}{\numberline {3}Related Work}{14}{chapter.3}
@@ -30,9 +30,9 @@
 \contentsline {section}{\numberline {4.6}The Alternative Likelihood Function}{25}{section.4.6}
 \contentsline {subsection}{\numberline {4.6.1}Dealing with Outliers}{25}{subsection.4.6.1}
 \contentsline {section}{\numberline {4.7}Bayesian Model Averaging}{26}{section.4.7}
-\contentsline {section}{\numberline {4.8}Providing Interpretability: move to Eval?}{28}{section.4.8}
+\contentsline {section}{\numberline {4.8}Providing Interpretability}{28}{section.4.8}
 \contentsline {subsection}{\numberline {4.8.1}Pima}{28}{subsection.4.8.1}
-\contentsline {subsection}{\numberline {4.8.2}Breast}{29}{subsection.4.8.2}
+\contentsline {subsection}{\numberline {4.8.2}Breast}{30}{subsection.4.8.2}
 \contentsline {subsection}{\numberline {4.8.3}Heart and Liver}{31}{subsection.4.8.3}
 \contentsline {section}{\numberline {4.9}Automatic Report Generation}{32}{section.4.9}
 \contentsline {chapter}{\numberline {5}Evaluation}{33}{chapter.5}

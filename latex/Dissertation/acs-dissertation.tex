@@ -11,7 +11,6 @@
 
 \documentclass[a4paper,12pt ]{report}
 
-
 %%
 %% EDIT THE BELOW TO CUSTOMIZE
 %%
@@ -19,8 +18,8 @@
 \def\authorname{Nikola Mrk\v{s}i\'c\xspace}
 \def\authorcollege{Trinity College\xspace}
 \def\authoremail{nm480@cam.ac.uk}
-\def\dissertationtitle{{The Automated Statistician for Gaussian Process Classification}}
-\def\wordcount{0}
+\def\dissertationtitle{{The Automated Statistician for ~~ Gaussian Process Classification}}
+\def\wordcount{\approx 8000}
 
 
 %\usepackage{a4}
@@ -39,6 +38,7 @@
 %\usepackage{adjustbox}
 \usepackage{tocloft}
   %\usepackage[framed,numbered,autolinebreaks,useliterate]
+\usepackage[margin=1.2in, bottom = 1.0in]{geometry}
 
   \usepackage{epsfig, epstopdf, graphicx,parskip,setspace,tabularx,xspace} 
 
@@ -65,6 +65,13 @@
 \newcommand{\exedout}{%
   \rule{0.8\textwidth}{0.5\textwidth}%
 }
+
+%\newcommand{\cov}{\mathop{\mathrm{cov}}\nolimits}
+\newcommand{\ex}{\mathbb{E}}
+\newcommand*{\Scale}[2][4]{\scalebox{#1}{$#2$}}%
+\newcommand{\f}{\mathbf{f}}
+
+\renewcommand{\GP}{{GP}}
 
 \hypersetup{
     colorlinks=false,
@@ -127,7 +134,7 @@
 
 \section{Contribution}
 
-Built a system for automatic kernel discovery for Gaussian Process classification...
+% Built a system for automatic kernel discovery for Gaussian Process classification...
 
 
 \clearpage
@@ -140,117 +147,355 @@ Built a system for automatic kernel discovery for Gaussian Process classificatio
 % This is not something you'd normally require in an academic paper, and it may not be appropriate for your particular circumstances. Indeed, in some cases it's possible to cover all of the ``background'' 
 %material either in the introduction or at appropriate places in the rest of the dissertation. 
 
-\chapter{Gaussian Processes}
+\chapter{Background}
 
-0. Describe Bayesian paradigm and Bayes rule, and how this leads into wanting to have a prior over functions... 
+In this chapter, I will present the main ideas behind Bayesian inference, nonparametric Bayesian models and Gaussian Processes. I will present the main kernel families used for Gaussian Processes and outline the challenges encountered when performing classification using these models. 
 
-1. Define GPs, explain how it is fully specified by the mean and covariance function... Discuss covariance functions. Talk about function as infinite vector to generalize from multinomial Gaussian to this. 
+\section{Bayesian Inference}
 
-2. GP as a prior on function, show some function draws from the prior...
+In classical probability theory, the probability of an event represents the relative frequency of its occurrence observed after $n$ repetitions of a well-defined random experiment. In such random experiments, an event has only two outcomes: it can either occur or not occur. The sample space $\omega$ represents all possible outcomes of the experiment, and an event is described as a subset of this space $\omega_e \subseteq \omega$. If $n_e$ is the number of event occurrences in $n$ trials, the probability of the event is defined as the limit of its relative frequency $\frac{n_e}{n}$ as $n$ tends to infinity. For example, when flipping a coin, the probability of a head outcome corresponds to the number of head outcomes divided by the total number of coin flips performed. % as $n \rightarrow \infty$. 
 
-3. Marginal likelihood as criterion for model selection and fitting the hyperparameters. write out nlml formula and discuss that the first term penalises poor fit, second model complexity, third is normalization. Say this is type II ML.
+%\emph{The probability of an event is the ratio of the number of cases favourable to it, to the number of all cases possible when nothing leads us to expect that any one of these cases should occur more than any other, which renders them, for us, equally possible. }
+
+This interpretation, known as the frequentist one, limits us to making observations and drawing conclusions only about those events we can repeat. Events such as `the world ends tomorrow' make no sense, as there can't be multiple samples of either positive or negative outcomes for this event: it happens only once. 
+
+The Bayesian paradigm is more flexible, choosing to regard probabilities as \emph{subjective degrees of belief}. In Bayesian statistics, all types of uncertainty, including our own ignorance, are expressed using the formalism of probability theory \cite{gha12}.
+
+When tackling a problem as a Bayesian, we first choose the likelihood model $ \Pr(D \mid \theta, M)$ which we believe can explain the data $D$ in the domain we want to model using some probabilistic model $M$. We also choose the prior distribution $\Pr(\theta)$ over the unknown parameters $ \theta $ of the likelihood model chosen. This model and its prior distribution subsume our subjective beliefs about the problem before we have observed any actual data, also known as the evidence. After observing some evidence, we modify our assumptions about the model parameters using Bayes' rule:
+
+\begin{equation*} \Pr ( \theta \mid D, M) = \frac{ \Pr ( D \mid \theta, M) \Pr ( \theta \mid M) }{\Pr( D \mid M)} \end{equation*} 
 
 
+Bayes' rule lies at the core of Bayesian inference. It provides a mathematically rigorous method for adapting our prior assumptions in light of new evidence, allowing us to move from our prior distribution $\Pr( \theta \mid M)$ to the updated posterior distribution $\Pr ( \theta \mid D, M) $. If more data becomes available, the posterior can be updated again: the current posterior becomes the prior and is updated using the new evidence $D'$ to arrive at the updated posterior distribution $\Pr ( \theta \mid D \cup D', M )$.
 
-\section{Kernels for Gaussian Processes}
+The likelihood function $\Pr(D \mid H, M)$ indicates how likely the data $D$ is to be observed assuming the probabilistic model $M$ with parameters $\theta$ for our data. Together with the prior $\Pr(\theta \mid M)$, the likelihood model describes the model used. The denominator $\Pr (D \mid M)$ is known as the \emph{marginal likelihood}. It is independent of the parameters $\theta$ so it does not affect the posterior distribution $\Pr (\theta \mid D, M)$. This means that the posterior is proportional to the likelihood times the prior. 
 
-Describe different types of kernels. 
+The intuition behind regarding the parameters as random variables lies in the Bayesian understanding of probability. Even though these values are not random, we model our uncertainty about their `true' values by assigning some probability mass to all of their potential values. Subsequently, when making predictions for some new instance $x$, we are in a position to consider all the available evidence by making decisions based on the weighted contributions of all realistic hypotheses $\theta$ to our prediction. The weights assigned to different hypotheses come directly from the posterior $\Pr(\theta \mid D, M)$ and are combined with the likelihood model $\Pr (x \mid \theta, M)$:
+
+\begin{equation*}  \Pr(x \mid D, M) = \int_{\theta}{ \Pr(x \mid \theta, M) } \Pr ( \theta \mid D, M) d\theta  \end{equation*}
+
+This is in direct opposition to the frequentist paradigm, which interprets the data as random samples drawn from some unknown underlying distribution. While a useful assumption to make, it is not actually true. Data is certain, and everything else in our inference procedure is uncertain: the prior, the likelihood model and the probabilistic model $M$ itself.  
+
+The prior on the parameters is the result of our subjective judgement. This is not a weakness, but a strength of the Bayesian paradigm. All models have some assumptions built into them, allowing them to make predictions on the basis of the observed evidence. In the Bayesian paradigm, we are forced to make all of these assumptions explicit. Hence, if our model proves inadequate, it is not the fault of the inference mechanism, but of the flawed assumptions built into it \cite{gha12}. 
+
+Another convenient property of Bayesian inference is that the effect of the prior decreases as more data becomes available, with the posterior mostly determined by the new evidence, assuming that the initial prior does not regard the observed evidence as entirely impossible. 
+
+The value of marginal likelihood represents the probability of the evidence observed when the model parameters are integrated out, leaving just the dependency of the marginal likelihood on the probabilistic model $M$ used:
+
+\begin{equation*} L ~=~ \Pr (D \mid M) = \int_{\theta}{\Pr(D \mid \theta, M) \Pr (\theta \mid M)} d\theta \end{equation*}
+
+Very flexible models can not assign much probability to any data set observed, as they spread their probability mass to a wide array of possible observations. Conversely, overly rigid models are penalised for not being able to assign much probability mass to the evidence across the different parametrisations used. In both cases, this makes the marginal likelihood of these models lower than the marginal likelihood of models well suited to explaining the evidence. Hence, marginal likelihood can be used as the criterion for model ranking: the higher $L$ is, the better the model $M$ is at explaining the evidence $D$. 
+
+The reason for this is that the marginal likelihood criterion subsumes an implicit Occam's razor for achieving a trade-off between the fit quality and model complexity \cite{zoubinoccam, rasmussen06}. Since model complexity determines the generalisation ability of the model, Bayesian models are less likely to overfit, that is include the noise in the data as part of the underlying signal, leading to poor performance on new observations. 
+
+A fully Bayesian approach would introduce a prior over all possible models $M$ instead of picking one of them. However, choosing the set of all sensible models for a specific dataset is non trivial, and averaging their predictions may be difficult or even intractable. Bayesian nonparametric models are an efficient way to perform this averaging using families of very flexible probabilistic models. 
+ %Bayesian methods do not fit parameters to the data in the same way that frequentist models do, so there can be no overfitting in the same sense.
+
+% Is this what the Bayesian does, or should one also intergrate out the model?
+% Likelihood as noise model??
+
+\section{Bayesian nonparametric models}
+
+In statistics, parametric models represent collections of probability distributions which can be described using a finite number of parameters. Given the observed evidence $E$, one chooses (trains) the model parameters $\mathbf{\theta}$, which then contain information extracted from $E$ to be used for subsequent inference. In other words, having trained the parameters, subsequent predictions are independent of the evidence observed \cite{gha12}: 
+\begin{equation*}	\Pr ( x \mid \mathbf{\theta}, E ) = 	\Pr ( x \mid \mathbf{\theta} )	\end{equation*}
+For modelling complicated datasets with complex relationships between its features, one has to use increasingly sophisticated models. In general, the larger the number of parameters is, the more flexible the model built becomes. 
+
+Nonparametric models reject the notion of using a finite set of parameters to describe the distribution of the data: the larger the data sample is, the more parameters we need to describe it. This idea contradicts the standard Bayesian formulation, where the prior and posterior distributions are defined over a fixed parameter space. 
+
+Using a fixed number of parameters limits the complexity of our model and prevents us from capturing all the structure available in large and complicated data sets. Bayesian nonparametric (BNP) models overcome this limitation by transitioning to an infinite-dimensional parameter space, capable of dealing with data sets of arbitrary sizes. In general, the number of parameters utilised grows with the size of the data set available. This means that BNP models are defined over an infinite parameter space but can be evaluated using a finite subset of these to explain any given data sample \cite{orbanzteh}. Inference is performed by marginalising out the surplus dimensions over the prior, leaving only those dimensions which carry information relevant to explaining the data. 
+
+The \emph{nonparametric} attribute in BNP models is somewhat misleading, as not only are these models not without parameters, but they have an infinite number of them. The infinite set of parameters is usually represented using a function or a probability measure \cite{orbanzteh}, where the function . Defining a prior over these requires the use of distributions on functions, measures and other infinite-dimensional objects. These distributions are known as stochastic processes, and many of the resulting BNP models, such as the Dirichlet, Beta and Gaussian processes bear the name of the underlying stochastic process. One can arrive at many of the standard BNP models, including the Gaussian process, by letting the number of parameters tend to infinity in standard parametric models such as the multivariate normal distribution. 
+
+Computing the posteriors of the stochastic processes embedded in BNP models is non trivial, due to their infinite number of parameters. However, most BNP models have analytically tractable posteriors. This means that the unused parameters can be integrated out efficiently, leaving us with a finite number of parameters to handle using standard techniques such as Markov chain Monte Carlo, variational inference or message passing algorithms \cite{orbanzteh}. The techniques chosen to handle inference using these models generally follow the same trade-offs between speed and accuracy as their parametric counterparts. 
+
+The theoretical properties of BNP models are harder to express and reason with. Proving convergence and consistency is more difficult, and properties such as the \emph{exchangeability} of the observations must be established. While the theory behind BNP models is more sophisticated and demanding than for the analogous parametric cases, the resulting models are far more flexible and provide an alternative to model selection from a parametrised family of models. Many of the machine learning techniques widely used today are non-parametric: kernel methods, SVMs, Gaussian processes, etc. %Deep neural networks also come close to being non-parametric, having a huge number of units, usually exceeding the number of parameters in BNP models such as Gaussian processes. 
+
+\section{Gaussian Processes} 
+
+\textbf{Definition} A collection of random variables $\{ X_t, t \in T \}$ is a Gaussian process if any finite dimensional subset of these random variables has a consistent joint Gaussian distribution \cite{rasmussenGPs}.
+
+The simplest way of thinking about the Gaussian process is as of an infinite-dimensional generalisation of the multivariate Gaussian distribution. The Gaussian distribution is fully specified by its mean vector $\mu$ and covariance matrix $\Sigma$. For the sake of building intuition, one may regard any function $\mathbf{f}$ as an infinitely long vector, indexed by the elements of the index set $T$. Then, for any choice of distinct values $\{t_1 \ldots t_k\} \subset T$, the \emph{random vector} $ \mathbf{f} = (f_{t_1}, \ldots, f_{t_k})^\top $ has a multivariate distribution with mean $\ex(\mathbf{f}) = \mu $ and covariance matrix $\cov(\mathbf{f}, \mathbf{f}) = \Sigma$, that is: 
+
+\begin{equation*} \mathbf{f} ~ = ~ (f_{t_1}, \ldots, f_{t_k} )^\top ~ \sim ~ \mathcal{N}(\mu, \Sigma) \end{equation*}
+
+Letting the length of this vector tend to infinity, we arrive at the Gaussian process: the finite random vector $\mathbf{f}$ becomes a function and the mean vector and the covariance matrix become functions $m(x)$ and $K(x_1, x_2)$. We will denote draws from the resulting stochastic process as:
+
+\begin{equation*} \mathbf{f} ~ \sim ~ \GP(m, K) \end{equation*}
+
+where the values ${f(t_1), \ldots, f(t_k)}$ are now joint Gaussian random variables for any finite subset of $T$. A common assumption is that these random variables have mean zero, which simplifies calculations without loss of generality. This assumption allows the properties of the Gaussian process to be fully specified by the covariance function $K$. In practice, this can be implemented by centring the examples in the data set during the pre-processing stages. 
+
+Given $\GP(m, K)$ and a finite set of $N$ observations $ \mathbf{f} = \{f_1, \ldots, f_N\} $, the mean vector and the covariance (Gram) matrix of the joint Gaussian distribution of these observations are given by:
+
+\begin{equation*}  \mu_i = m(f_i) ~,~  \Sigma_{i,j} = K(f_i, f_j)  \end{equation*}
+
+\subsection{Kernels for Gaussian Processes}
+
+Gaussian processes specify distributions over functions. This means they can be used as Bayesian priors to express our beliefs about the functions we modelling. A {\GP} is fully specified by its covariance function (\emph{kernel}). The choice of the kernel thus determines the properties of functions described by our prior \cite{rasmussen06}.  
+Covariance functions characterise correlations between different random variables in the stochastic process. To act as a kernel, a function $K$ must be \emph{positive definite}, meaning that for any finite index set $\{ x_1, \ldots, x_n \}$ , the resulting $n \times n$ Gram matrix $\mathbf{\Sigma}$ satisfies $ v^\top \mathbf{\Sigma} v \geq 0$ for all non-zero vectors $v$ of length $n$. 
+
+One such kernel is the \emph{squared exponential} (\SE) covariance function:
+
+\begin{equation*} K(\mathbf{x}, \mathbf{x'}) ~=~ \sigma_0^2  \exp \left(  ~- \frac{(\mathbf{x}-\mathbf{x'})^2}{{2 {\lambda^2}}} \right) \end{equation*} 
+
+This kernel makes the (random) values of points close in the input space correlate strongly, whereas distant points are not correlated at all. It serves to represent a family of very smooth, infinitely differentiable functions. The \emph{signal variance} $\sigma_0$ and the \emph{characteristic lengthscale} $\lambda$ are hyperparameters of the covariance function. Figure 2.1 shows five functions drawn from {\GP} priors with {\SE} kernels: the lengthscales determine the length of the trends kernels are able to capture. 
+
+Other classes of kernels frequently used are the Mat\'ern, Linear, Periodic, Rational Quadratic, change-point and many others \cite{rasmussen06, duvenaud13}. We will focus mainly on the {\SE} kernels, which are used as the building blocks of our structure discovery algorithm. 
+
+Hyperparameters are `parameters' of the {\GP} prior itself. They can be learnt from the data by maximising the value of the marginal likelihood. The \emph{hierarchical} nature of the kernel allows one to specify vague information about the prior \cite{rasmussenGPs}. For example, we may believe that an {\SE} kernel is appropriate for a given dataset, but have no idea about the right lengthscale or signal variance to use. Thus, these unknown parameters specify a family of models to chose one from. As explained in Section 2.1, the marginal likelihood of these models can be used to discriminate between them, relying on the implicit Bayesian Occam's razor \cite{zoubinoccam}. The dataset-specific hyperparameters maximising this value can be inferred from the data using techniques such as conjugate gradients or gradient descent. Details of this procedure will be examined in subsequent sections. 
+
+
+\begin{figure}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=0cm 0cm 0cm 0cm, width=0.5\textwidth]{figures/plot1.png}%
+\includegraphics[trim=0cm 0cm 0cm 0cm, width=0.5\textwidth]{figures/plot2.png}
+}
+{\caption{\small{Functions drawn from {\GP} priors with {\SE} covariance functions. Lengthscales of 1.0 (left) and 3.0 (right) reflect the length of the trends the kernel is able to capture.  }}}
+\end{figure}
+
+
+\section{Gaussian Process Regression}
+
+In the case of regression, we are modelling some function ${\f}$ given a set of $n$ noisy observations $ ({X}, \bm{y})$. Assume additive white noise, such that ${\mathbf{y}} = {\f} + \epsilon$, where $\epsilon \sim \mathcal{N}(0, \sigma_n^2)$. The likelihood, also known as the \emph{noise model}, becomes: 
+\begin{equation*} \Pr ( \bm{y} \mid \f) =  \mathcal{N}( \f, \sigma_n^2 I) \end{equation*}
+This likelihood function, together with the {\GP} prior, makes the task of predicting function values $\mathbf{f_T}$ for a set of test locations $X_t$ computationally feasible. The observations $(X, \bm{y})$ and the values of the function at test data locations have a joint Gaussian distribution \cite{rasmussen06}:
+\begin{equation*} \Scale[0.95] { \left[ \begin{array}{c} \bm{y} \\ \bm{f_{*}} \end{array} \right] ~ \sim ~
+ \mathcal{N} \left( \bm{0},  \left[ \begin{array}{cc} K(X, X) + \sigma_{n}^2 I & K(X, X_{*}) \\ K(X_{*}, X) & K(X_{*}, X_{*}) \end{array} \right] \right) ~ \triangleq ~
+ \mathcal{N} \left( \bm{0},  \left[ \begin{array}{cc} K + \sigma_{n}^2 I & K_{*}  \\ K_{*}^\top & K_{T} \end{array} \right] \right) 
+ }
+\end{equation*}
+
+For notational convenience, replace the covariances $K(X, X)$ and $K(X_{*}, X_{*})$ with $K$ and $K_{T}$, respectively. We also abbreviate the cross-covariance $K(X, X_{*})$ to $K_{*}$. By applying the standard formula for conditioning a joint Gaussian distribution \cite{rasmussenGPs}, we obtain the expression for the predictive distribution \cite{rasmussen06}: 
+
+\begin{equation*} \mathbf{f_{*}} \mid X, \mathbf{y}, X_{*}  ~ \sim ~ \mathcal{N}\left( ~ K_{*}^{\top} ( K + \sigma_n^2I)^{-1} \mathbf{y} ~,~ K_{T} - K_{*}^{\top}( K + \sigma_n^2I)^{-1} K_{*}   ~ \right) \end{equation*}
+
+The equation above shows the noise-free predictive mean and variance of the {\GP} at the test points $X_{*}$. To obtain the predictive distribution for $\mathbf{y_{*}}$, we just need to add $\sigma_n^2$ to the predictive variance in the equation above. $ K_{T} = K(X_{*}, X_{*}) $ is the prior covariance, from which we subtract the strictly positive term $K_{*}^{\top}( K + \sigma_n^2I)^{-1} K_{*}$ to obtain the covariance of the posterior distribution. This reduction in variance reflects the fact that conditioning on the data gave us additional information which reduced our uncertainty about the underlying function \cite{rasmussen06}. 
+
+The complexity of the algorithm computing these values is $O(n^3)$: it is dominated by the inversion of $ K + \sigma_n^2I$. The Cholesky decomposition is typically used instead of inverting the matrix directly, as it has lower overhead and provides better numerical stability. Having computed the inverse, the costs of predicting the mean and the variance for a single test point $x_{*}$ are $O(n)$ and $O(n^2)$, respectively.  
+
+\subsection{Learning the Hyperparameters}
+
+The choice of adequate kernel hyperparameters is essential for adapting the covariance function to the data set provided. Popular machine learning models such as support vector machines or splines use cross-validation to learn hyperparameters. An advantage of Gaussian processes is that the higher values of the marginal likelihood reflect better models \cite{zoubinoccam, rasmussen06, rasmussenGPs}. Therefore, the `best' hyperparameters are those which maximise the marginal likelihood (also known as \emph{evidence}). 
+
+In the regression setting, we can use the fact that $\bm{f} \mid X \sim \mathcal{N}(\bm{0}, K)$ and that $ \bm{y} \mid \bm{f} \sim \mathcal{N}(\bm{f},\sigma_n^2 I ) $ to conclude that $ \bm{y} \sim \mathcal{N}(\bm{0}, K + \sigma_n^2 I) $. Using this result, the (log) marginal likelihood can be expressed as:
+
+\begin{equation*} L ~=~ \log \Pr ( \bm{y} \mid X)  ~=~  - \frac{1}{2} \bm{y}^{\top} (K + \sigma_n^2 I)^{-1} \bm{y} - \frac{1}{2} \log \left| K + \sigma_n^2 I \right| - \frac{n}{2} \log 2\pi \end{equation*} 
+The first term in the equation above is a negative quadratic measuring how well the kernel fits the target values $\bm{y}$. The second term penalises overly complex models, ensuring that the marginal likelihood includes an automatic Occam's razor effect for achieving a trade-off between the quality of fit and predictive power on new data. This is important because the function learned could get arbitrarily close to the evidence by setting the signal variance $\sigma_n$ to $0$. That function would model the noise as part of the underlying signal, leading to poor predictive performance. The third term is a normalising constant which does not affect model selection. 
+
+The automatic Occam's razor effect greatly simplifies the training process, as there are no parameters balancing model fit and model complexity to be set manually. Training a {\GP} reduces to finding the values of model hyperparameters which maximise the marginal likelihood given the observed data. Since we can find partial derivatives of the marginal likelihood with respect to the hyperparameters, we can use standard gradient based optimisation procedures such as conjugate descent \cite{rasmussenGPs}. As described in subsequent Chapters, this is usually a non-convex optimisation problem: different optima correspond to different interpretations of the data.  This means that the optimisation procedure should be re-run with different starting hyperparameters to avoid particularly bad local optima. 
+
+%Prediction: http://mlg.eng.cam.ac.uk/tutorials/06/es.pdf around page 13
+
+%Discuss the role of the covariance function... And show the difference between a lengthscale of 0.05 and 0.5, i.e. http://www.cs.toronto.edu/~hinton/csc2515/notes/gp_slides_fall08.pdf page 25. Page 34 of this tutorial also to be mentioned. 
+
 
 \section{Gaussian Process Classification}
 
-Explain why it is harder, non-Gaussian likelihood...
+In binary classification, examples have two different labels: $y_i \in \{ -1, 1 \} $. There is no underlying real-valued function $\mathbf{f}$ to model. In order to tackle this problem using Gaussian processes, we will assume the existence of a \emph{latent function} $\mathbf{f}$ which governs the class membership of the data. To obtain the prior class distribution at test point $\mathbf{x_{*}}$, we convert the value of $\mathbf{f}$ at that point into a valid `{class 1}' probability using the \emph{response function} $\sigma$:
 
-\subsection{The Laplace Approximation to Marginal Likelihood}
+\begin{equation*} \pi(\mathbf{x_{*}}) \triangleq \Pr(y_{*} = +1 \mid \mathbf{x_{*}}) = \sigma(\mathbf{f}(\mathbf{x_{*}})) \end{equation*} %~~~ \mbox{and} ~~~  \Pr(y_{*} = -1 \mid {\bm{x_{*}}) = 1 - \sigma(\mathbf{f}(\bm{x_{*}}))  \end{equation*}
+
+
+As the sigmoid function $\sigma$, we could use the logistic sigmoid $\sigma(x) = 1 / (1 + e^{-x})$ or the cumulative Gaussian distribution $\Phi(x)$. These functions `squash' their arguments, which can be arbitrary real numbers, to values between $0$ and $1$. As the output of $\mathbf{f(x)}$ can be an arbitrary real number, this step is required to give a valid probabilistic interpretation to the values given by the prior class distribution $\pi$. 
+
+$\pi(\mathbf{x})$ represents our subjective belief that the example at $\mathbf{x}$ belongs to class 1. For binary classification, the probability of the other class is simply $1 - \pi(\mathbf{x})$. If we let $f_i = \mathbf{f}(x_i)$, we can concisely represent the likelihood (for a single example) as:
+\begin{equation*} \Pr(y_i \mid x_i, \mathbf{f}) = \Pr(y_i \mid \mathbf{f}(x_i) )  = \sigma(y_i \mathbf{f}(x_i)) \triangleq \sigma (y_i f_i) \end{equation*} 
+The multi-class version is harder, as the \emph{softmax function} replaces the sigmoid \cite{rasmussen06}. 
+
+We are not particularly interested in the actual values of $\mathbf{f}(x_{*})$: we care only about the class membership of points at $x_{*}$. The latent function is there to act as the Gaussian prior to be integrated out when performing inference. The difficulty lies in the fact that the likelihood model is no longer Gaussian. If there are $n$ observed examples $\{ X, \mathbf{y} \} = \{ (\mathbf{x_i}, y_i), i \in 1, \ldots, n \} $, and we adopt the notation that $y_{i} = i$ for $i = \pm 1$, we can express the joint likelihood $\Pr(\mathbf{y}\mid\mathbf{f})$ as:
+\begin{equation*} \displaystyle  \Pr(\mathbf{y}\mid\mathbf{f}) ~~=~~ \prod_{i = 1}^{n}{\Pr(y_i\mid{f_i})} ~~=~~ \prod_{i=1}^{n}{\sigma(y_i f_i)} \end{equation*}
+If we assume a zero-mean $\GP(0, K)$ over the latent function $\mathbf{f}$ and let $\bm{\Sigma} = K(X, X)$, the posterior distribution of the latent function can be expressed as:
+\begin{equation*}  \displaystyle  \Pr( \mathbf{f}  \mid X, \mathbf{y} ) = \frac{ \Pr(\mathbf{f} \mid X)  \Pr( \mathbf{y} \mid \mathbf{f}) }{\Pr(\mathbf{y} \mid X)}  =  
+ \frac{ \mathcal{N}( \mathbf{f} \mid 0, \bm{\Sigma} ) }{ \Pr(\mathbf{y} \mid X) } \prod_{i=1}^{n}{\sigma(y_i f_i)}   \end{equation*}
+This expression contains the marginal likelihood $\Pr(\mathbf{y} \mid X)$, which becomes: 
+\begin{equation*} \displaystyle \Pr( \mathbf{y} \mid X  ) = \int{ \Pr ( \mathbf{y} \mid \mathbf{f} ) ~ \Pr( \mathbf{f} \mid X ) ~ \mathrm{d}\mathbf{f}  =  \int{  \left( \prod_{i=1}^{n}{\sigma(y_i f_i)} \right) \mathcal{N}( \mathbf{f} \mid 0, \bm{\Sigma} )  ~ \mathrm{d}\mathbf{f}  }}  \end{equation*}
+The posterior and the marginal likelihood involve a product of a Gaussian with a product of sigmoid functions, which makes both of these expressions analytically intractable. The predictive distribution $ \Pr( \mathbf{y_{*}} = 1 \mid X, \mathbf{y}, x_{*})$ and the gradients of the marginal likelihood required to fit the model hyperparameters during the training process become intractable as well \cite{rasmussen06, gpcapprox, gpcinference}. 
+
+This means one has to resort to approximations in order to perform classification using Gaussian Processes. Most of the known approaches revolve either around Markov chain Monte Carlo sampling or Gaussian approximations to the posterior distribution, such as Laplace's method or Expectation Propagation \cite{gpcinference}. % 
+
+% http://papers.nips.cc/paper/2903-assessing-approximations-for-gaussian-process-classification.pdf IMPORTATNT
+% http://mlg.eng.cam.ac.uk/tutorials/06/es.pdf slide 24
+% http://people.ee.duke.edu/~lcarin/David1.27.06.pdf  rasmussen NIPS 2005 compares EP and Laplace. 
+% http://homepages.inf.ed.ac.uk/ckiw/talks/nips06.pdf
+
+\subsection{Approximative Inference for {\GP} Classification}
+
+Markov chain Monte Carlo sampling methods can be used to obtain exact estimates of the required distributions. However, these estimates require very long running times to converge \cite{gpcapprox}. As such, they are less applicable in practice, but they provide a gold standard to compare the analytic approximations against. 
+
+The analytic approximations such as Laplace's method or Expectation Propagation compute Gaussian approximations to the posterior $\mathbf{q}(\mathbf{f_{*}} \mid X, \mathbf{y}) = \mathcal{N}( \mathbf{f} \mid \mathbf{m}, \mathbf{A})$. The distribution of the latent function $\mathbf{f}_{*}$ at test point $x_{*}$ becomes:
+
+\begin{equation*} \Pr(\mathbf{f_{*}} \mid X, y, x_{*}) \approx \mathbf{q}(\mathbf{f_{*}} \mid \mathbf{m}, \mathbf{A}) = \mathcal{N}(\mu_{*}, \sigma_{*}^{2})  \end{equation*}
+\begin{equation*} \mu{*} = \mathbf{k_{*}^{\top} \mathbf{K^{-1}} \mathbf{m} ~~~ \mbox{and} ~~~ 
+\sigma_{*}^{2} = k(x_{*}, k_{*}) - \mathbf{k_{*}^{\top}(\mathbf{K^{-1}} - \mathbf{K^{-1}AK^{-1}})\mathbf{k_{*}} } } \end{equation*}
+
+$\mathbf{k_{*}}$ denotes the vector of prior covariances between the training data $X$ and $x_{*}$. $\mathbf{m}$ and $\mathbf{A}$ are parameters of the approximate posterior $\mathbf{q}$ to be learned using Laplace's method or Expectation Propagation \cite{gpcinference}. If we use the cumulative Gaussian distribution $\Phi$ as the sigmoid function, we can obtain an analytic expression for the predictive distribution as well:
+
+\begin{equation*}  \displaystyle \mathbf{q}(y_{*} = 1 \mid X, \mathbf{y}, \mathbf{x_{*}} ) ~=~ \int{ \Phi(\mathbf{f_{*}}) ~ \mathcal{N}(\mathbf{ f_{*} } \mid \mu_{*}, \sigma_{*}^{2}) \mathrm{d}\mathbf{f_{*}}  ~=~ \Phi \left(\frac{\mu_{*}}{\sqrt{1+\sigma_{*}^{2}}}\right)   }    \end{equation*} 
+
+\subsection{The Laplace Approximation}
+
+Laplace's method finds the approximate value of the unnormalised log posterior by performing a second-order Taylor expansion around the mode of this distribution. The approximate log posterior at the test points can be expressed as:
+\begin{equation*} \log \mathbf{q}(\mathbf{f} \mid X, \mathbf{y} ) \approx \log \mathbf{q}(\mathbf{m}) - \frac{1}{2} ( \mathbf{m} - \mathbf{f} )^{\top} \mathbf{A^{-1}} ( \mathbf{m} - \mathbf{f} ) \end{equation*}
+\begin{equation*} \mbox{where~~} \displaystyle \mathbf{m} = \argmax_{f \in \mathbf{R^n}}{ \log{\mathbf{q}(\mathbf{f} \mid X, \mathbf{y})} }. \end{equation*} 
+
+The likelihood and the prior are both log-concave and unimodal functions, which means $\mathbf{m}$ can be approximated using the iterative Newton-Raphson method:  
+\begin{equation*} \mathbf{f} ~\gets~ \mathbf{f} ~-~ (~ \nabla \nabla_{\mathbf{f}} \log \mathbf{q}(\mathbf{f})~)^{-1} ~ \nabla_{\mathbf{f}} \log \mathbf{q}(\mathbf{f}))  )  \end{equation*}
+This procedure usually converges to the mode within a few iterations. The covariance matrix of the approximate posterior distribution can be expressed as $ \mathbf{A} ~=~ \mathbf{\nabla \nabla_{\mathbf{f}} (\log \mathbf{q}(\mathbf{m}))^{-1}}$ \cite{gpcinference}. The closed-form expression for $ \mathbf{q}(\mathbf{f} \mid X, \mathbf{y} )$ can be used to obtain a closed-form approximation to the log marginal likelihood $\log \Pr(\mathbf{y} \mid X)$: 
+
+\begin{equation*} \log \Pr(\mathbf{y} \mid X) ~\approx~ \log \mathbf{q}(\mathbf{y}\mid X) ~=~ \int{ \Pr(\mathbf{y} \mid \mathbf{f}) ~ \mathbf{q}(\mathbf{f} \mid X) ~ \mathrm{d}\mathbf{f} } ~ = \end{equation*}
+\begin{equation*}  ~~~~~~~~~ = ~ \log \mathbf{q}(\mathbf{m}) ~+~ \frac{n}{2}\log(2\pi) ~+~ \frac{1}{2}\log |\mathbf{A}|  \end{equation*} 
+
+The derivatives of the marginal likelihood with respect to the $\GP$ hyperparameters (omitted from all the expressions above) have closed-form solutions, so they can be used for hyperparameter optimisation \cite{gpcapprox}. 
 
 \subsection{Expectation Propagation}
 
-\subsection{Variational Bayes}
+Expectation Propagation goes further than Laplace's method: the approximate posterior distribution constructed tries to match the first two moments of the actual distribution. The fundamental problem with Laplace's approximation is that the posterior mode becomes less representative of the posterior mean as the number of dimensions increases \cite{gpcapprox, gpcinference}. 
+
+The probability mass is concentrated in a thin shell (far) away from the mode: the posterior mean moves towards this high density region, but the posterior mode stays closer to the origin. This means that Laplace's method produces overly cautious predictive distributions which are often inaccurate even near the training locations. As shown in previous work by Kuss and Rasmussen, EP tends to outperform Laplace's method on real-world data sets \cite{gpcapprox, gpcinference}. 
+
+
+The two methods have the same asymptotic complexity, dominated by several iterations of matrix inversions which take $O(n^3)$ time. However, the computational overhead for Expectation Propagation is substantially higher, making Laplace's method {much} faster in practice. The difference in speed and performance between these two methods will be analysed in subsequent Chapters. 
 
 \clearpage
 
+
 \chapter{Related Work} 
+
+In this chapter, I will present recent research on kernel learning and outline the ideas behind Additive Gaussian Processes and the work on kernel structure discovery for {\GP} regression, which was the main inspiration for this Research Project.  
 
 \section{Kernel learning}
 
-General review of work done in this area, with different models.
+Nonparametric models can learn arbitrarily smooth functions from the training data. As the number of dimensions $D$ increases, the basic versions of these algorithms need to use very large data sets to extract the underlying structure. Even if such data sets are available, their size makes inference using nonparametric methods such as {\GP}s computationally infeasible. This means that \emph{additional constraints} on the structure of the models need to be imposed to make inference with high dimensional data sets possible. 
 
-\section{Kernel structure discovery for regression}
+Generalised additive models (GAM) assume that the response function $y$ is a transformed sum of functions defined on individual dimensions. If $g$ is the \emph{link function} and $\mathrm{f_i}$ potentially different functions operating on different input dimensions, then:
+\begin{equation*} g( y ) ~=~ \mathrm{f_{1}}(x_1) + \ldots + \mathrm{f_{D}}(x_D)  \end{equation*}
+Even though this is a very strict constraint on the model structures permitted, the models constructed often perform well and are able to provide interpretability by directly showing the response function's dependence on each of the dimensions.  
 
-Unsupervised structure discovery - mention that paper, maybe initially, as similar work... 
+The problem of constructing kernels using weighted sums of base kernels has been studied extensively \cite{christoudias2009bayesian}. Most of these algorithms find the optimal solution in polynomial time by specifying the component kernels and hyperparameters beforehand.  
+Kernel methods, on the other hand, allow the response function to depend on all the input dimensions simultaneously: \begin{equation*} y ~=~ \mathrm{f}(x_1, \ldots, x_d)\end{equation*}
+Examples of such methods include Gaussian Processes with Squared Exponential kernels. More specifically, the {\SE} Automatic Relevance Determination (ARD) kernel allows the input dimensions to vary across different dimensions, as opposed to the previously defined isotropic kernel. The {\SE} ARD kernel function is:
 
-Additive GPs....
+\begin{equation*} K(\mathbf{x}, \mathbf{x'}) ~=~ \sigma_0^2  \exp \left(  - \frac{1}{2} \sum_{i=1}^{d}\frac{({x_i}-{x_{i}'})^2}{{ {\lambda_{i}^2}}} \right) ~ \end{equation*} 
 
-%Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
+Other popular approaches learn kernel embeddings into low-dimensional spaces and use fixed kernel structures in those spaces \cite{lawrence2005probabilistic}. Deep neural networks have also been applied to learning embeddings \cite{salakhutdinov2008using}. Even though deep networks are not formally nonparametric models, they can express very flexible functions, as the number of units in their layers often exceeds the number of (hyper)parameters in traditional BNP models. The success of these approaches relies on inferring structure from the density $\Pr(x)$, so is most naturally applied to unsupervised learning problems. 
+
+The work presented in this Dissertation builds on and extends previous research on automatic kernel construction for the purposes of classification. In this context, most of the interesting structure to be captured lies in $\mathrm{f(\mathbf{x})}$, making the methods geared towards unsupervised learning less relevant.
+
+\section{Additive Gaussian Processes}
+
+Duvenaud et al. (2011) generalise GAM and the {\GP}  {\SE} kernel models by constructing a {\GP} kernel which implicitly sums over \emph{all possible products} of one-dimensional base {\SE} kernels \cite{duvenaud2011additive11}. The \emph{additive kernels} which sum over all one-dimensional base kernels and over \emph{all products} of $n$ distinct base kernels are given by:
+\begin{equation*} k_{1}(\mathbf{x, x'}) = \sigma_{1}^2  \sum_{i=1}^{D}{k_{i}(x_{i}, x_{i}')}  \mbox{~~~~and~~~~}  k_{n}(\mathbf{x, x'}) = \sigma_{n}^2  \sum_{1 \leq i_1 < \ldots i_n \leq D}{ \left[ \prod_{d=1}^{n}{k_{i,d}(x_{i_d}, x_{i_d}')} \right] }  \end{equation*}
+
+The $n$th additive kernel $k_{n}$ represents the sum of all possible $n$-way interactions of the input dimensions. $\sigma_n$ represents the variance hyperparameter of each order of interaction. Unlike other approaches to kernel learning which require manual specification of the kernel structure, Additive {\GP}s only have to fix the $n$ functions $\mathrm{f_1 \ldots f_n}$ to be used as the basis functions for each of the dimensions. 
+
+Each $k_n$ term contains $ {D \choose n} $ different product terms. The full additive {\GP} is defined as the sum of kernels for all possible orders of interaction: 
+\begin{equation*} k_{\mathrm{full}}(\mathbf{x, x'}) = \sum_{i = 1}^{D}{ k_{i}(\mathbf{x, x'}) }  \end{equation*}
+
+The full additive kernel includes any potential interaction between any number of basis functions. The model is very general: the $k_1$ summation represents the GAM model and the $k_{D}$ summation represents the {\GP} {\SE} ARD kernel. Its hyperparameters consist of the additive kernel variances $\sigma_1 \ldots \sigma_{D}$ and the hyperparameters of each of the $n$ basis functions (lengthscales, signal variances, etc). These can be learned by optimising the marginal likelihood of the training data \cite{duvenaud2011additive11}. 
+
+The $\sigma_1 \ldots \sigma_n$ hyperparameters are very informative: they show what proportion of the target function's variance comes from each order of interaction. Low order interactions between different dimensions can be represented visually. First-order terms represent individual basis functions which we can plot after learning the hyperparameters. For two-way interactions, we can plot the posterior means of the individual second-order terms. For higher level terms, plotting the functions learned is not straightforward, and interpreting the higher level interactions between features becomes increasingly hard.  
 
 
-%This chapter covers relevant (and typically, recent) research which you build upon (or improve upon). There are two complementary goals for this chapter: 
-%\begin{enumerate}  %  \item to show that you know and understand the state of the art; and  %  \item to put your work in context   %\end{enumerate} 
+If we consider all interactions of order up to $n$, the Additive {\GP} contains $O(2^n)$ terms. For $n \coloneqq D$ the summation would be intractable if approached naively. It is possible to reduce the time complexity to $O(D^2)$ using the Newton-Girard formulae for computing \emph{elementary symmetric polynomials}. This makes the procedure for training and using additive {\GP}s tractable. Low-level interactions prove to be the most relevant for modelling and providing interpretability. This means one can trade small loses in predictive accuracy for substantial improvements in speed while retaining the interpretable components of the additive kernel \cite{duvenaud2011additive11}. 
 
-% Ideally you can tackle both together by providiFor breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following performance, yielding an improvement of $0.9\%$ over the standard BIC light version. 
-ng a critique of related work, and describing what is insufficient (and how you do better!)
+Additive GPs are applicable to both classification and regression problems. Standard {\SE} and GAM kernels fail to capture structure which involves patterns longer than the lengthscales of the kernels they use. Additive {\GP}s are able to capture non-local structure using the higher-order interactions and use this information for  extrapolation to distant parts of the input space \cite{duvenaud2011additive11}. 
 
-%The related work chapter should usually come either near the front or
-%near the back of the dissertation. The advantage of the former is that
-%you get to build the argument for why your work is important before
-%presenting your solution(s) in later chapters; the advantage of the
-%latter is that don't have to forward reference to your solution too
-%much. The correct choice will depend on what you're writing up, and
-%your own personal preference.
+Additive {\GP}s have been compared to GAM models, {\GP} {\SE} models, Linear and Logistic regression, as well as to other state of the art methods such as Hierarchical Kernel Learning (HKL). In the cases when the data was explained mostly by low-order interactions, Additive {\GP}s outperformed the other methods. When the higher levels of interactions were more dominant, the performance of Additive {\GP}s resembled that of the {\GP} {\SE} model, which makes sense since these kernels represent a subset of the kernels included in the full Additive {\GP} model. 
 
-%critique:
-Discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
+
+\section{Kernel structure discovery for GP regression}
+
+In spite of the growing popularity of nonparametric Bayesian methods, the choice of kernels is still left to the individual user. This is a major obstacle to making these models easily accessible to non-practitioners without a machine learning background. Additive {\GP}s remove the need for the users to specify the exact kernel structure or its hyperparameters. This model requires manual specification of the basis kernels to make the full kernel construction automatic. Setting these functions requires expert knowledge, so the next step in automatizing kernel construction is to eliminate the need for users to choose the basis kernels themselves. 
+
+Duvenaud, Lloyd et al. (2013) tackle this problem by defining a \emph{grammar} over the kernel structures \cite{duvenaud13}. The base kernels of this grammar are one-dimensional kernels defined on each of the input dimensions, such as $\SE_1$, $\RQ_2$, $\Per_3$, where the subscript indicates the dimension the given base kernel applies to. In the original work, four kernel families are considered: $\SE$, $\RQ$, $\Lin$ and $\Per$. Subsequent work includes the changepoint kernel as well \cite{lloyd14}. Any algebraic expression which combines these kernels using the $+$ and $\times$ operators defines a valid kernel structure. 
+
+This grammar includes all models which can be expressed using Additive {\GP}s, GAM and {\SE} models. It can also express other models such as $ \SE_1  \times (\SE_3 + \SE_4)$. This kernel is not equivalent to $\SE_1 \times \SE_3 + \SE_1 \times \SE_4$: the first model has three, and the second model has four lengthscale hyperparameters.  
+
+Next, we need to define the procedure which explores this grammar to find the best composite kernel for the given data set. The search procedure starts by evaluating all one-dimensional base kernels and assigning them a \emph{score value}. 
+
+Marginal likelihood is used as the model selection criterion. Since we are comparing kernel families defined by composite kernels, we need to integrate out the model hyperparameters. This integral is intractable and is approximated by the Bayesian Information Criterion, which penalises models that overfit by introducing too many hyperparameters, in this case corresponding to large numbers of kernels \cite{schwarz1978estimating}.  
+
+Once the kernel structure (corresponding to some expression $\mathcal{A}$) with the best BIC value is identified, the search expands this structure by trying to add or multiply each of its subexpressions $\mathcal{S}$ with all base kernels $\mathcal{B'}$. The procedure also tries to replace any base kernel $\mathcal{B}$ in $\mathcal{A}$ with any other base kernel $\mathcal{B'}$. Of all the kernel structures constructed, the one with the best BIC value is chosen as the next kernel to expand. This process is repeated until the search can no longer improve on the best BIC value by using a more sophisticated kernel structure. 
+
+% The specification of these functions still requires that the user possesses some expert knowledge. 
+The Additive {\GP} model implicitly sums over an enormous number of kernels. In most cases, few kernels (often low-order interactions) account for most of the contribution to the latent function. This means that a much `lighter' model can often be used in place of the Additive {\GP} model. Indeed, {\GP} Structure Search is able to outperform the {\GP} Additive model using much smaller kernels which at the same decompose into easily interpretable components \cite{duvenaud13, lloyd14}. %, especially if all the base function interactions found are first or second-order, making them easy to visualise. 
+
+{\GP} Structure Search provides a data-driven method to choose the kernel structure for any specific problem. The space of kernels that the search can construct is extremely rich, and there is no manual parameter tuning on the side of the user. In spite of the very general kernel grammar, the use of the BIC approximation for model selection raises important questions about the validity of this procedure. Devising a well-founded guiding criterion would be a major step in dispelling the existing skepticism about the potential of this automatic kernel discovery procedure. 
+
+%Moreover, the complexity of the search is exponential, as the number of potential kernels to evaluate grows exponentially as the search depth increases. 
+
+{\GP} Structure Search for regression achieved formidable results, and the subsequent work on automatic report generation has attracted a lot of interest in the research community. The main goal of my Research Project was to investigate whether automatic kernel construction could be achieved for classification problems as well. 
+
+In the classification setting, the likelihood functions become non-Gaussian and the binary data labels decrease the information content of the data sets. Finding interpretable components and patterns in the data becomes much harder than in the case of the time series data sets considered in the existing work on regression. Finally, the use of the Bayesian Information Criterion as a model selection criterion becomes even more problematic, as the number of effective hyperparameters becomes harder to estimate in the classification setting. --move to next chapter? 
+
+% Make all of the above much shorter - and introduce some formulas/equations to break the monotony. 
+
+% 4D is ugly, rephrase... lots of rephrasing to do tomorrow. 
+ 
+% Unsupervised structure discovery - mention that paper, maybe initially, as similar work... 
+
+
+%- define a grammar, write out a couple of kernel expressions one is able to construct using this search. 
+%- data-driven approach to choosing kernel structures automatically can help make nonparametric regression and classication methods accessible to non-experts
+%- shows how the composite kernel structure relates to the underlying patterns in the data, thus providing interpretability. 
+
+%- greedy search over the defined kernel space. At each stage, picks the highest scoring kernel and expands it by applying all possible operators.
+
+%Previous work on learning composite kernels for SVMs and relevance vector machines used genetic search algorithms. The work on {\GP} Regression Structure Discovery used the Bayesian search criterion. While an interesting approximation, this criterion fails to .... LIST DRAWBACKS ... Potential improvements and alternatives to this criterion are one of the main points of research done during my Research Project.  
+
+
+
+%Make regression and classification available to non-practitioners. Regression up to automatic report generation has been achieved, and this Research Project extends this framework to handle classification and show how, somewhat counter-intuitively, one may obtain interpretability for classification using a similar search. 
 
 
 \clearpage
 
 \chapter{Kernel Structure Discovery for GP Classification} 
 
-Write an intro to doing this for classification, why it is harder apart from the non-Gaussian likelihoods (less information than regression, harder interpretability). 
+A general introduction to doing structure search for {\GP} classification: why it is harder apart from the non-Gaussian likelihoods. Less information available than for regression, lack of clear component interpretability, as opposed to i.e. time-series data.
 
 \section{Defining the Kernel Grammar}
 
-Draw the basic kernels, describe additive and product kernels. Compare with the regression case, explain why the RQ and Periodic kernel make less sense. 
-
-Present challenges for classification, difference from regression, lack of clear component interpretability, as opposed to i.e. time-series data. 
+Discuss basic kernels, describe additive and product kernels. Compare with the regression case, explain why the RQ and Periodic kernel make less sense, and justify why a pure {\SE} grammar was used (together with a constant mean function to deal with class inbalance in the data sets).  
 
 \subsection{The Search Operators}
 
+Discuss sum of products vs grammar which can express everything. The grammar corresponds to an Additive {\GP} with all base functions set to {\SE}s.
+
 Adding or multiplying with a base kernel. Discuss what adding two kernels or multiplying them accomplishes. 
 
-\section{Model selection}
+\section{Building the Models}
 
-Discuss the use of marginal likelihood as the criterion for model selsection. Explain that the hyperparameters are found using conjugate descent, in order to minimise marginal likelihood. Bayesian Occam's razor. 
+Should I include (and how much) implementation details: languages used, parallelisation on fear, details of GPML and the infrastructure of the system built...
 
-\clearpage
+\subsection{Approximating the Posterior}
 
-\section{Optimising the Hyperparameters}
+EP vs Laplace vs VB in GPML. EP much slower than Laplace, difference in performance non-existant in all experiments: pure {\SE} grammar makes hyperparameter fitting much easier than was the case in previous work on regression. 
 
-\subsection{Conjugate descent}
+Discuss the use of marginal likelihood as the criterion for model selsection. Explain that the hyperparameters are found using conjugate descent, in order to minimise marginal likelihood. 
+
+Suited to use of small training sets, as the training complexity is $O(n^3)$. With larger data sets, we can still fit the hyperparameters faster using subsampling, and this will be heavily exploited in subsequent work, but the final fitting steps take $O(n^3)$ and as such prevent usage of very large data sets available today. 
+
+\subsection{Learning the Hyperparameters}
+
+Type II ML optimisation for model selection and choosing the best values of the hyperparameters. 
 
 Subsampling the training data to make the hyperparameter fitting faster: perform 300 iterations (a good rough guideline is the number of hyperparameters * 50) with 250 points randomly sampled from the data set, then perform an additional 50 iterations with the full data set. 
 Due to the smoothness of the $\SE$ kernels, this algorithm always converges to the same hyperparameters as the minimization that uses the entire data set for the whole process. 
 
 Discuss parallelisation and the use of the cluster. Discuss and add a table of running times and numbers of restarts performed. 
 
-\subsection{Overfitting}
+\section{Choosing the Model}
 
-Dealing with very small and very large hyperparameters. Discuss what large ones mean (inconsequential for classification boundary) and what small ones do (overfitting). Explain how we set the minimal allowed lengthscale for each dimension and how discretised data presents a challenge. 
+Discuss the greedy search and backtracking, as well as potential feature reduction. 
 
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/liversmalllengthscale.png}
-
-Overfitting with large lengthscales is to be expected, so we plot the histogram of accuracies for training and testing data when doing ten fold cross validation (with many different splits, i.e. seeds). From the plots below, we see that testing accuracy is expected to vary
-when doing ten-fold cross validation with this amount of data. With 100 different splits (that is 1000 different data points), the training accuracy ranges from $59\%$ to $66\%$, while the test accuracy varies from $40\%$ to $90\%$, showing that the overfitting (or surprisingly 
-good performance we encounter on some folds) is a something to be expected. 
-
-\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/overfitwithlargelength.png}
-
- \clearpage
-
-\section{Guiding the Structure Search}
-
-Discuss the greedy search and backtracking, as well as potential feature reduction. To be tested on ionosphere (32 dimensional). Perhaps compare performance with and without using feature selection?
+%To be tested on ionosphere (32 dimensional). Perhaps compare performance with and without using feature selection?
 
 \subsection{Bayesian and Akaike Information Criteria}
+
+%critique: Discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
+
+% Why do we need this if there already exists a complexity term in the marginal likelihood expression. To differentiate between more complicated kernels of the same family vs between more and less complicated kernel families?
 
 For high values of the number of data points $n$, the Bayesian Information Criterion can be appriximated with the following expression:
 
@@ -264,33 +509,67 @@ The Akaike Information Criterion (AIC) penalises the number of parameters less t
 \begin{equation*} AIC = - 2 \ ln L + 2 k \end{equation*}
 
 
-
 \subsection{The Number of Effective Hyperparameters}
 
-Outline BIC light, present it as middle ground between full BIC and AIC. Discuss the (lack of) significance of signal variance to the classification boundary. 
+
+A major problem for applying BIC to classification is that estimating the number of effective hyperparameters is hard: not all of them affect the classification boundary equally. The only thing important for classification is the zero-crossings of the function (where it is greater, and where it is smaller than 0, for the purposes of prediction). Hence, smaller lengthscales are the most important factor, as they determine where the predictive mean's zero-crossings exactly are. Very large lengthscales equate to multiplication with constant functions, so they have less impact on the classification boundary. Signal variances are useful for computing the predictive variances and determining the relative contribution of each term, but only the predictive means matter for determining the target label. Not counting signal frequencies adds a quick boost to the quality of BIC as a model discriminator: we will refer to this `modified' criterion as BIC light. 
+
 
 The number of search steps figure that shows overfitting across the three metrics is shown below: 
 
 \includegraphics[scale=0.37]{figures/measureoverfit.png}
 
-\subsection{Cross-validated training accuracy}
+
+
+\section{Overfitting}
+
+Dealing with very small and very large hyperparameters. Discuss what large ones mean (inconsequential for classification boundary) and what small ones do (overfitting). Explain how we set the minimal allowed lengthscale for each dimension and how discretised data presents a challenge. 
+
+
+Overfitting with large lengthscales is to be expected, so we plot the histogram of accuracies for training and testing data when doing ten fold cross validation (with many different splits, i.e. seeds). From the plots below, we see that testing accuracy is expected to vary
+when doing ten-fold cross validation with this amount of data. With 100 different splits (that is 1000 different data points), the training accuracy ranges from $59\%$ to $66\%$, while the test accuracy varies from $40\%$ to $90\%$, showing that the overfitting (or surprisingly 
+good performance we encounter on some folds) is a something to be expected. 
+
+\includegraphics[trim=2cm 0cm 1cm 0cm, width=1\textwidth] {figures/liversmalllengthscale.png}
+
+
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/overfitwithlargelength.png}
+
+%Rasmussen paper explanataion of marginal likelihood GP behaviour:
+
+
+ \clearpage
+
+
+\section{Cross-validated Training Accuracy}
 
 Discuss the use of cross-validated train accuracy - how it may be expected to provide us with the ceiling performance, but in the end it doesn't improve much on BIC light and likMix models. 
 
+Include algorithmic package pseudo code to explain the process. 
+
+Show traces of the search, showing how it can build more and more complex models by achieving minimal gains in the marginal likelihood, oscillating around the same levels of performance and requiring many steps of the search to halt as there is no penalisation term for large composite models. Discuss stopping criteria (change in BIC smaller than some threshold). 
+
+Explain that the reason that it can improve marginal likelihood by adding these irrelevant components is that multiplying by these allows the optimisation procedure to move out of the region where its stuck. Also, numerical instability due to use of approximations to the posterior may contribute to this behaviour.
+
 %\chapter{Predictive Power, Interpretability and Visualisation}
 
-
 \clearpage
-\section{Adapting the likelihood function}
+
+\section{The Alternative Likelihood Function}
 
 \subsection{Dealing with Outliers}
 
-a problem with classification and BIC is that estimating the number of effective hyperparameters is hard: not all of them affect the classification boundary equally. The only thing important for classification is the zero-crossings of the function (where it is greater, and where it is smaller than 0, for the purposes of prediction). Hence, smaller length-scales are the most important factor (as they determine the predictive mean and where the crossings exactly are). Larger lengthscales equate to multiplication with a constant function, so less beneficial. Signal variances are useful for computing the predictive variances, but we only care about the predictive means for determining the target label. Not counting signal frequencies might add a quick boost to quality of BIC as a model discriminator (i.e. not number of product terms, but 0 - won’t decrease by 2, but might help our choice-making). 
+The reason that GPs out of the box are easily outperformed by classification specific schemes such as SVMs is that soft-margin SVMs are less certain of their predictions, and hence are less certain about points far away from the high density regions of the data. SVMs are never more certain than the estimated level of pepper noise (outliers in the sense of noise in the target labels of the data) whereas GPs would be very certain about points relatively close to the high density clusters of one of the classes.
 
-The reason that GPs out of the box are easily outperformed by classification specific schemes such as SVMs is that “soft-margin” SVMs are less certain of their predictions, and hence are less certain about points far away from the high density regions of the data. SVMs are never more certain than the estimated level of pepper noise (outliers in the sense of noise in the target labels of the data) whereas GPs would be very certain about points close to one of the clusters...
+As a potential solution, we might want to use an alternative noise model: a mixture of likelihood functions which incorporate the presence of complete outliers into the likelihood function. The `salt and pepper' noise level $\alpha$ which determines the proportion of the outliers must be learned by again maximising marginal likelihood. The probabilistic predictions of the likelihood function learned no longer range from 0 to 1, but from $\alpha$ to $(1 - \alpha)$, $\alpha$. 
 
-As a potential solution, we might want to use a @likMix which adds the “pepper noise” into the likelihood function, determining the level of the outliers and thus having the likelihood (i.e. sigmoid) which doesn’t range from 0 to 1, but from $\alpha$ to $(1 - \alpha)$, where $\alpha$ is the level of pepper noise, which is, again, to be learnt from the data? This can be implemented in GPML using @likMix, and is something we can first evaluate w.r.t. synthetic data we previously generated. The only difference is that now we add additional salt and pepper noise (random outliers) into the data and we compare performance (on this dataset) of likMix vs likErf on its own.
+Likelihood mixtures have been implemented in GPML. To determine whether this idea has potential, we can evaluate the search using the synthetic data used to evaluate the models which (so far) used the cumulative Gaussian likelihood function. The only difference is that we must add additional salt and pepper noise (random outliers) into the synthetic data to determine whether the mixture models estimate the noise levels correctly, and to determine how much (and if) the mixture models improve performance on these datasets compared to the models which use the standard cumulative Gaussian noise model.
 
+Include the plot of the saturating likelihood function.
+
+Do we want to discuss results and differences achieved here, or do we leave this for the Evaluation Chapter? 
+
+What would be a good way to summarize the results, given that we currently have 8 different tables for 4 different kernels with BIC light and likMix?
 
 \clearpage
 
@@ -300,11 +579,13 @@ Averaging assigned labels or probabilities converges to the same thing when many
 
 A plot showing how the accuracy changes with different $\alpha$ coefficients. 
 
-The current implementation averages class labels across different models, and $\alpha$ shows the BIC values scaling factor used to assign the weight factors to different classes. 
+Our implementation averages class labels across different models, and $\alpha$ shows the BIC values scaling factor used to assign the weight factors to different classes. 
 
 From the set of models in the layers above, in and below the current model, we use their BIC values $b_1, b_2, \ldots $ to assign each model a weight:
 
 \begin{equation*} w_i = \frac{e^{- \alpha b_i}}{ \sum_{j}{ e^{- \alpha b_j} } }  \end{equation*}
+
+And we then average the predictions of all of these models to determine the class label of each test point. The differences in performance across all folds for the four real-world data sets evaluated are shown in the tables below:
 
 \begin{table}[h]
 
@@ -360,7 +641,6 @@ From the set of models in the layers above, in and below the current model, we u
 
 \end{table}
 
-
 \begin{table}[h]
 
 
@@ -411,16 +691,19 @@ From the set of models in the layers above, in and below the current model, we u
 
 \end{minipage}%
 
-
-
 \end{table}
 
-\includegraphics[trim=8cm 5cm 8cm 4cm, width=\textwidth]{figures/alphaBMA.png}%
+
+
+Estimating a good value for the scaling factor $\alpha$ is not straightforward, but its values are not as important for subsequent test performance as one might expect. The dependence of the cross-validated test error on its value is shown in the figure below: 
+
+\includegraphics[trim=8cm 5cm 8cm 0cm, width=\textwidth]{figures/alphaBMA.png}%
 
 
 \clearpage
 
-\section{Providing Interpretability}
+\section{Providing Interpretability: move to Eval?}
+
 
 \subsection{Pima}
 
@@ -512,7 +795,7 @@ These two data sets require dealing with representation of discretised data. Plo
 
 \clearpage
 
-\section{Automatic Report Synthesis}
+\section{Automatic Report Generation}
 
 
 
@@ -587,9 +870,7 @@ For breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following perfo
 
 \chapter{Evaluation} 
 
-In this section, we consider the results achieved by the structure discovery procedure predented in the previous section. We first provide a proof of concept for the procedure by showing that it is able to extract correct kernel structure from synthetic data generated using squared
-exponential kernels. We then proceed to demonstrate that the performance of the procedure on real world data sets is on par with other state of the art methods such as additive Gaussian Processes and Random Forests. Finally, we present the kernel decompositions on the real
-world data sets which can be used to uncover and visualise the underlying data patterns which dictate class membership of the data points. 
+In this section, we consider the results achieved by the structure discovery procedure presented in the previous section. We first provide a proof of concept for the structure search procedure based on the BIC light search criterion: we will  show that it is able to extract correct kernel structure from synthetic data drawn from {\GP} priors with {\SE} kernels. then proceed to demonstrate that the performance of the procedure on real world data sets is on par with other state of the art methods such as additive Gaussian Processes and Random Forests. % Finally, we present the kernel decompositions on the real world data sets which can be used to uncover and visualise the underlying data patterns which dictate class membership of the data points. 
 
 \section{Experiments with Synthetic Data}
 
@@ -667,8 +948,7 @@ $\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}
 
 \end{table}
 
-Kernel optimal rates give a bound on the performance of the structure search: on average, the search is (by design) unable to construct kernels that are better than the one used to generate the data. 
-The Bayes optimal rates give a theoretical limit on what any model could achieve, as they compare the actual function (y values before adding noise) to the data after the noise is added. Kernel rate should always be below the Bayes rate...
+Kernel optimal rates give a bound on the performance of the structure search: on average, the search is (by design) unable to construct kernels that are better than the one used to generate the data. The function optimal rates give a theoretical limit on what any model could achieve, as they compare the actual function (its values before adding noise) to the data after the noise is added. As a result, kernel rates are always below the function rates. The models constructed can achieve higher accuracy by chance, but are on average inferior to both the kernel and the function optimal rates. 
 
 \begin{table}[h]
 
@@ -928,13 +1208,9 @@ We also show the kernel optimal rates (the accuracy the kernel used to generate 
  In the previous chapter, we discussed the use of a mixture of likelihoods that would be better equipped to handle outliers in the data, modelled in this case as the \emph{salt and pepper} noise. In this section, we analyse the performance of the mixture of the 
  error function and the uniform likelihood function on synthetic data. 
  
- The use of this likelihood function introduces one new hyperparameter, hyp.lik, which gives us the rates of the two likelihood functions in the mixture. As there are only two likelihood function, we've in fact introduced only one new effective hyperparameter. If the structure
- search using this likelihood function has potential with helping us deal with outliers, it should be able to estimate the levels of the salt and pepper noise in the synthetic data sets.
- 
- TODO: insert tables which represent the performance of the likMix model.
- 
+ The use of this likelihood function introduces two new hyperparameters which set the rates of the two likelihood functions in the mixture. As there are only two likelihood functions in the mixture, we have introduced only one new effective hyperparameter, the ratio of the two likelihood functions' contributions. If the structure
+ search which biolds models using this likelihood function has the potential to deal with the outliers more effectively, it should be able to estimate the levels of the salt and pepper noise introduced in the synthetic data sets.
 
- 
 
 \begin{table}[h]
 
@@ -1118,26 +1394,26 @@ We also show the kernel optimal rates (the accuracy the kernel used to generate 
 
 \end{table}
 
-
-
-
+The ratios inferred sometimes estimate the level of noise correctly, but usually fail to acknowledge any noise or completely exaggerate the noise levels. This might indicate a bug in GPML or a more fundamental problem/ lack of thought put into this idea.
 
 
  
- 
- \clearpage
+\clearpage
 
 
 
 \section{Experiments on Real World Data Sets}
 
-In this section, we compare the performance of models constructed using our algorithm with related methods and show that the performance of our structurally simpler models is on par with more complicated models such as additive \gp{}s \cite{duvenaud2011additive11} and Hierarchical Kernel Learning. 
-We also compare the performance of structure search using different information criteria (BIC, AIC, BIClight), as well as the search guided by cross-validated test accuracy. We also show the performance of the kernel using a likelihood mixture to account for outliers. 
+In this section, we compare the performance of models constructed using our algorithm with related methods and show that the performance of our structurally simpler models is on par with more complicated models such as Additive {\GP}s \cite{duvenaud2011additive11} and Hierarchical Kernel Learning. 
 
-The table below contains the mean classication error across 10 train-test splits between different methods. The best performing model is shown in bold, together with all other models that were not significantly different from it, according to the paired t-test for statistical significance. In
-addition to the structure search, we show the performance of the random forest method, which constructs 1000 decision trees using the training data and then uses the mode of the classifications produced by these trees to label the test set data. This method was intended to be a \emph{ceiling}
+We also compare the performance of structure search using different information criteria (BIC, AIC, BIClight), as well as the search guided by cross-validated training accuracy. We also show the performance of the model constructed using the alternative likelihood function. 
+
+
+In addition to the structure search, we show the performance of the random forest method, which constructs 1000 decision trees using the training data and then uses the mode of the classifications produced by these trees to label the test set data. This method was intended to be a \emph{ceiling}
 performance for our methods, as its focus is just predictive performance: it does not contribute to interpretability or our understanding of the data set considered. 
 
+
+The table below contains the mean classication error across 10 train-test splits between different methods. The model with the best performance is shown in bold, together with all the other models whose predictions were not significantly different from those made by the best model. Statistical significance was determined using the \emph{paired t-test}. 
 
 \begin{table}[h!]
 \caption{{\small
@@ -1162,6 +1438,8 @@ Random Forest & $ \mathbf{4.220} $ &  $ \mathbf{23.440} $ & $ \mathbf{24.030} $ 
 \end{tabular}
 \end{center}
 \end{table}
+
+The paired t-test is tolerant of complete outliers: if a model is on par with the best model on 9 out of 10 folds and then completely breaks down on the 10th fold, this test still considers the models' predictions to be similar to those made by the best model. This is the reason why the likelihood mixture model, which is clearly inferior to all other models on the breast data set, is still deemed to be on par with Random Forest and the CrossVal guided algorithm. Similarly, this is why the crossVal algorithm is deemed worse than BIC on Pima even though they have the same average error: BIC is worse than BIC light on all folds, whereas Random Forest outperforms BIC light on some folds and ruins performance on others. 
 
 
 \clearpage

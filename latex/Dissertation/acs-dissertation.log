@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  10 MAY 2014 00:02
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  20 MAY 2014 14:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -380,7 +380,19 @@ Package tocloft Note: The document has chapter divisions.
 \cftbeforetabskip=\skip86
 \cfttabindent=\skip87
 \cfttabnumwidth=\skip88
-) (/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
+) (/usr/share/texmf-texlive/tex/latex/geometry/geometry.sty
+Package: geometry 2008/12/21 v4.2 Page Geometry
+\Gm@cnth=\count127
+\Gm@cntv=\count128
+\c@Gm@tempcnt=\count129
+\Gm@bindingoffset=\dimen138
+\Gm@wd@mp=\dimen139
+\Gm@odd@mp=\dimen140
+\Gm@even@mp=\dimen141
+\Gm@dimlist=\toks32
+
+(/usr/share/texmf-texlive/tex/xelatex/xetexconfig/geometry.cfg))
+(/usr/share/texmf-texlive/tex/latex/graphics/epsfig.sty
 Package: epsfig 1999/02/16 v1.7a (e)psfig emulation (SPQR)
 
 (/usr/share/texmf-texlive/tex/latex/graphics/graphicx.sty
@@ -399,13 +411,13 @@ Package graphics Info: Driver file: pdftex.def on input line 91.
 
 (/usr/share/texmf-texlive/tex/latex/pdftex-def/pdftex.def
 File: pdftex.def 2010/03/12 v0.04p Graphics/color for pdfTeX
-\Gread@gobject=\count127
+\Gread@gobject=\count130
 ))
-\Gin@req@height=\dimen138
-\Gin@req@width=\dimen139
+\Gin@req@height=\dimen142
+\Gin@req@width=\dimen143
 )
-\epsfxsize=\dimen140
-\epsfysize=\dimen141
+\epsfxsize=\dimen144
+\epsfysize=\dimen145
 )
 (/usr/share/texmf-texlive/tex/latex/oberdiek/epstopdf.sty
 Package: epstopdf 2009/10/17 v2.4 Conversion with epstopdf on the fly (HO)
@@ -436,19 +448,19 @@ Package: tabularx 1999/01/07 v2.07 `tabularx' package (DPC)
 
 (/usr/share/texmf-texlive/tex/latex/tools/array.sty
 Package: array 2008/09/09 v2.4c Tabular extension package (FMi)
-\col@sep=\dimen142
-\extrarowheight=\dimen143
-\NC@list=\toks32
+\col@sep=\dimen146
+\extrarowheight=\dimen147
+\NC@list=\toks33
 \extratabsurround=\skip89
 \backup@length=\skip90
 )
-\TX@col@width=\dimen144
-\TX@old@table=\dimen145
-\TX@old@col=\dimen146
-\TX@target=\dimen147
-\TX@delta=\dimen148
-\TX@cols=\count128
-\TX@ftn=\toks33
+\TX@col@width=\dimen148
+\TX@old@table=\dimen149
+\TX@old@col=\dimen150
+\TX@target=\dimen151
+\TX@delta=\dimen152
+\TX@cols=\count131
+\TX@ftn=\toks34
 )
 (/usr/share/texmf-texlive/tex/latex/tools/xspace.sty
 Package: xspace 2006/05/08 v1.12 Space after command names (DPC,MH)
@@ -533,11 +545,11 @@ Package: nicefrac 1998/08/04 v0.9b Nice fractions
 )
 (/usr/share/texmf-texlive/tex/latex/rotating/rotating.sty
 Package: rotating 2009/03/28 v2.16a rotated objects in LaTeX
-\c@r@tfl@t=\count129
+\c@r@tfl@t=\count132
 \rotFPtop=\skip94
 \rotFPbot=\skip95
 \rot@float@box=\box30
-\rot@mess@toks=\toks34
+\rot@mess@toks=\toks35
 )
 (/usr/share/texmf-texlive/tex/generic/genmisc/nth.sty
 Package: nth 2002/02/27
@@ -548,28 +560,28 @@ Package: acronym 2009/01/25 v1.34 Support for acronyms (Tobias Oetiker)
 (/usr/share/texmf-texlive/tex/latex/bigfoot/suffix.sty
 Package: suffix 2006/07/15 1.5 Variant command support
 )
-\AC@clearlist=\toks35
+\AC@clearlist=\toks36
 )
 (/usr/share/texmf-texlive/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
 \fn@notes=\box31
-\fn@width=\dimen149
+\fn@width=\dimen153
 )
-\c@prop=\count130
-\c@cor=\count131
-\c@lem=\count132
-\c@thm=\count133
-\c@conj=\count134
-\c@exmp=\count135
-\c@note=\count136
-\c@case=\count137
+\c@prop=\count133
+\c@cor=\count134
+\c@lem=\count135
+\c@thm=\count136
+\c@conj=\count137
+\c@exmp=\count138
+\c@note=\count139
+\c@case=\count140
 )
 (/usr/share/texmf-texlive/tex/latex/natbib/natbib.sty
 Package: natbib 2009/07/16 8.31 (PWD, AO)
 \bibhang=\skip96
 \bibsep=\skip97
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count138
+\c@NAT@ctr=\count141
 )
 (/usr/share/texmf-texlive/tex/latex/graphics/color.sty
 Package: color 2005/11/14 v1.0j Standard LaTeX Color (DPC)
@@ -585,8 +597,8 @@ Package: wasysym 2003/10/30 v2.0 Wasy-2 symbol support package
 LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 )
-\c@theorem=\count139
-Package hyperref Info: Option `colorlinks' set `false' on input line 72.
+\c@theorem=\count142
+Package hyperref Info: Option `colorlinks' set `false' on input line 79.
 
 (./acs-dissertation.aux
 
@@ -607,32 +619,32 @@ LaTeX Warning: Label `tbl:synthetic1' multiply defined.
 )
 \openout1 = `acs-dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 78.
-LaTeX Font Info:    ... okay on input line 78.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 78.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 78.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 85.
+LaTeX Font Info:    ... okay on input line 85.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 85.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 85.
  (/usr/share/texmf-texlive/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 78.
+LaTeX Font Info:    ... okay on input line 85.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
-Package hyperref Info: Link coloring OFF on input line 78.
+Package hyperref Info: Link coloring OFF on input line 85.
 
 (/usr/share/texmf-texlive/tex/latex/hyperref/nameref.sty
 Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
@@ -640,10 +652,10 @@ Package: nameref 2007/05/29 v2.31 Cross-referencing by name of section
 (/usr/share/texmf-texlive/tex/latex/oberdiek/refcount.sty
 Package: refcount 2008/08/11 v3.1 Data extraction from references (HO)
 )
-\c@section@level=\count140
+\c@section@level=\count143
 )
-LaTeX Info: Redefining \ref on input line 78.
-LaTeX Info: Redefining \pageref on input line 78.
+LaTeX Info: Redefining \ref on input line 85.
+LaTeX Info: Redefining \pageref on input line 85.
 
 (./acs-dissertation.out) (./acs-dissertation.out)
 \@outlinefile=\write3
@@ -651,19 +663,60 @@ LaTeX Info: Redefining \pageref on input line 78.
 
 \AtBeginShipoutBox=\box32
 
+*geometry auto-detecting driver*
+*geometry detected driver: pdftex*
+-------------------- Geometry parameters
+paper: a4paper
+landscape: --
+twocolumn: --
+twoside: --
+asymmetric: --
+h-parts: 86.72377pt, 424.06033pt, 86.72377pt
+v-parts: 86.72377pt, 686.05309pt, 72.26999pt
+hmarginratio: --
+vmarginratio: --
+lines: --
+heightrounded: --
+bindingoffset: 0.0pt
+truedimen: --
+includehead: --
+includefoot: --
+includemp: --
+driver: pdftex
+-------------------- Page layout dimensions and switches
+\paperwidth  597.50787pt
+\paperheight 845.04684pt
+\textwidth  424.06033pt
+\textheight 686.05309pt
+\oddsidemargin  14.45378pt
+\evensidemargin 14.45378pt
+\topmargin  -22.54622pt
+\headheight 12.0pt
+\headsep    25.0pt
+\footskip   30.0pt
+\marginparwidth 35.0pt
+\marginparsep   10.0pt
+\columnsep  10.0pt
+\skip\footins  10.8pt plus 4.0pt minus 2.0pt
+\hoffset 0.0pt
+\voffset 0.0pt
+\mag 1000
+
+(1in=72.27pt, 1cm=28.45pt)
+-----------------------
 (/usr/share/texmf-texlive/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count141
-\scratchdimen=\dimen150
+\scratchcounter=\count144
+\scratchdimen=\dimen154
 \scratchbox=\box33
-\nofMPsegments=\count142
-\nofMParguments=\count143
-\everyMPshowfont=\toks36
-\MPscratchCnt=\count144
-\MPscratchDim=\dimen151
-\MPnumerator=\count145
-\everyMPtoPDFconversion=\toks37
-) (./titlepage.tex <CUni3.pdf, id=155, 174.6525pt x 36.135pt>
+\nofMPsegments=\count145
+\nofMParguments=\count146
+\everyMPshowfont=\toks37
+\MPscratchCnt=\count147
+\MPscratchDim=\dimen155
+\MPnumerator=\count148
+\everyMPtoPDFconversion=\toks38
+) (./titlepage.tex <CUni3.pdf, id=179, 174.6525pt x 36.135pt>
 File: CUni3.pdf Graphic file (type pdf)
  <use CUni3.pdf>
 [1
@@ -674,22 +727,22 @@ name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1 \newpage
-             [1] [2]) (./abstract.tex [3] [4]) [5] (./acs-dissertation.toc
-LaTeX Font Info:    Try loading font information for U+msa on input line 1.
-
-(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+             [1]
+LaTeX Font Info:    Try loading font information for U+msa on input line 14.
+ (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 1.
+LaTeX Font Info:    Try loading font information for U+msb on input line 14.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 1.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 14.
 
 (/usr/share/texmf-texlive/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
-) [0
+) [2]) (./abstract.tex
+[3] [4]) [5] (./acs-dissertation.toc [0
 
 ])
 \tf@toc=\write4
@@ -701,7 +754,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.133 \clearpage
+l.140 \clearpage
                  [1
 
 
@@ -711,257 +764,275 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.2}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.163 \subsection
-                 {The Laplace Approximation to Marginal Likelihood} [2
+l.165 
+       [2
 
 
 ]pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.169 \clearpage
-                 [3]
-Chapter 3.
-pdfTeX warning (ext4): destination with the same identifier (name{page.4}) has 
-been already used, duplicate ignored
+l.178 
+       [3]pdfTeX warning (ext4): destination with the same identifier (name{pag
+e.4}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.204 \clearpage
-                 [4
-
-
-]
-Chapter 4.
-pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
-been already used, duplicate ignored
+l.200 \begin{equation*}
+                       	\Pr ( x \mid \mathbf{\theta}, E ) = 	\Pr ( x \mid \m...
+[4]pdfTeX warning (ext4): destination with the same identifier (name{page.5}) h
+as been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.223 
-       [5
+l.210 
+       [5] [6] [7] <figures/plot1.png, id=325, 578.6418pt x 434.1018pt>
+File: figures/plot1.png Graphic file (type png)
 
+<use figures/plot1.png> <figures/plot2.png, id=326, 578.6418pt x 434.1018pt>
+File: figures/plot2.png Graphic file (type png)
 
-] [6]
-<figures/liversmalllengthscale.png, id=263, 819.863pt x 572.539pt>
-File: figures/liversmalllengthscale.png Graphic file (type png)
-
-<use figures/liversmalllengthscale.png> [7
-
-]
-<figures/overfitwithlargelength.png, id=268, 1217.348pt x 572.539pt>
-File: figures/overfitwithlargelength.png Graphic file (type png)
-
-<use figures/overfitwithlargelength.png> [8 <./figures/liversmalllengthscale.pn
-g (PNG copy)>] [9 <./figures/overfitwithlargelength.png (PNG copy)>] [10
-
-]
-<figures/measureoverfit.png, id=283, 1056.94875pt x 669.50125pt>
-File: figures/measureoverfit.png Graphic file (type png)
-
-<use figures/measureoverfit.png>
-Overfull \hbox (1.06491pt too wide) in paragraph at lines 274--275
-[][] 
- []
-
-[11 <./figures/measureoverfit.png (PNG copy)>]
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ú in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ù in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ú in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ù in font cmr12!
-Missing character: There is no ‚ in font cmr12!
-Missing character: There is no Ä in font cmr12!
-Missing character: There is no ô in font cmr12!
- [12
-
-]
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 315--360
-[]$[]$$[]$ 
- []
-
-
-Overfull \hbox (39.00238pt too wide) in paragraph at lines 367--413
-[]$[]$$[]$ 
- []
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<figures/alphaBMA.png, id=293, 1672.649pt x 699.413pt>
-File: figures/alphaBMA.png Graphic file (type png)
-
-<use figures/alphaBMA.png> [13
-
-] [14 <./figures/alphaBMA.png (PNG copy)>]
-<figures/pima/age.png, id=309, 1036.673pt x 571.736pt>
-File: figures/pima/age.png Graphic file (type png)
-
-<use figures/pima/age.png>
-<figures/pima/bmi.png, id=310, 1036.673pt x 571.736pt>
-File: figures/pima/bmi.png Graphic file (type png)
-
-<use figures/pima/bmi.png>
-<figures/pima/pedigreebmi.png, id=311, 1036.673pt x 571.736pt>
-File: figures/pima/pedigreebmi.png Graphic file (type png)
-
-<use figures/pima/pedigreebmi.png>
-<figures/pima/pedigreeglucose.png, id=312, 1036.673pt x 571.736pt>
-File: figures/pima/pedigreeglucose.png Graphic file (type png)
-
-<use figures/pima/pedigreeglucose.png> [15
-
- <./figures/pima/age.png (PNG copy)> <./figures/pima/bmi.png (PNG copy)>]
-<figures/pima/glucose.png, id=317, 1036.673pt x 571.736pt>
-File: figures/pima/glucose.png Graphic file (type png)
-
-<use figures/pima/glucose.png>
-<figures/pima/ageglucose.png, id=318, 1036.673pt x 571.736pt>
-File: figures/pima/ageglucose.png Graphic file (type png)
-
-<use figures/pima/ageglucose.png>
-<figures/pima/pressureage.png, id=319, 1036.673pt x 571.736pt>
-File: figures/pima/pressureage.png Graphic file (type png)
-
-<use figures/pima/pressureage.png>
-<figures/pima/pregnantage.png, id=320, 1036.673pt x 571.736pt>
-File: figures/pima/pregnantage.png Graphic file (type png)
-
-<use figures/pima/pregnantage.png> [16 <./figures/pima/pedigreebmi.png (PNG cop
-y)> <./figures/pima/pedigreeglucose.png (PNG copy)> <./figures/pima/glucose.png
- (PNG copy)> <./figures/pima/ageglucose.png (PNG copy)>]
-<figures/breast/adhesion.png, id=325, 1036.673pt x 571.736pt>
-File: figures/breast/adhesion.png Graphic file (type png)
-
-<use figures/breast/adhesion.png>
-<figures/breast/nucleicellsize.png, id=326, 1036.673pt x 571.736pt>
-File: figures/breast/nucleicellsize.png Graphic file (type png)
-
-<use figures/breast/nucleicellsize.png> [17 <./figures/pima/pressureage.png (PN
-G copy)> <./figures/pima/pregnantage.png (PNG copy)>]
-<figures/breast/chromatin.png, id=332, 1036.673pt x 571.736pt>
-File: figures/breast/chromatin.png Graphic file (type png)
-
-<use figures/breast/chromatin.png>
-<figures/breast/nucleoli.png, id=333, 1036.673pt x 571.736pt>
-File: figures/breast/nucleoli.png Graphic file (type png)
-
-<use figures/breast/nucleoli.png>
-<figures/breast/clumpbland.png, id=334, 1036.673pt x 571.736pt>
-File: figures/breast/clumpbland.png Graphic file (type png)
-
-<use figures/breast/clumpbland.png>
-<figures/breast/clumpadhesion.png, id=335, 1036.673pt x 571.736pt>
-File: figures/breast/clumpadhesion.png Graphic file (type png)
-
-<use figures/breast/clumpadhesion.png>
-<figures/breast/clump.png, id=336, 1028.643pt x 571.736pt>
-File: figures/breast/clump.png Graphic file (type png)
-
-<use figures/breast/clump.png>
-<figures/breast/cellsize.png, id=337, 1028.643pt x 571.736pt>
-File: figures/breast/cellsize.png Graphic file (type png)
-
-<use figures/breast/cellsize.png> [18 <./figures/breast/adhesion.png (PNG copy)
-> <./figures/breast/nucleicellsize.png (PNG copy)> <./figures/breast/chromatin.
-png (PNG copy)> <./figures/breast/nucleoli.png (PNG copy)> <./figures/breast/cl
-umpbland.png (PNG copy)> <./figures/breast/clumpadhesion.png (PNG copy)>]
-[19 <./figures/breast/clump.png (PNG copy)> <./figures/breast/cellsize.png (PNG
- copy)>] [20
-
-]
-Chapter 5.
-[21
-
-
-]
+<use figures/plot2.png>
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 664.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 265.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 664.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 265.
 
-[22] [23]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+[8 <./figures/plot1.png (PNG copy)> <./figures/plot2.png (PNG copy)>] [9]
+[10] [11] [12] [13]
+Chapter 3.
+[14
 
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+] [15]
 
-[24]
-Overfull \hbox (6.68893pt too wide) in paragraph at lines 931--933
-[]\OT1/cmr/m/n/12 The use of this like-li-hood func-tion in-tro-duces one new h
-y-per-pa-ram-e-ter, hyp.lik,
+Package amsmath Warning: Foreign command \atopwithdelims;
+(amsmath)                \frac or \genfrac should be used instead
+(amsmath)                 on input line 391.
+
+[16]
+
+Package natbib Warning: Citation `lloyd14' on page 17 undefined on input line 4
+10.
+
+[17]
+
+Package natbib Warning: Citation `lloyd14' on page 18 undefined on input line 4
+21.
+
+[18]
+Chapter 4.
+[19
+
+
+] [20] <figures/measureoverfit.png, id=427, 1056.94875pt x 669.50125pt>
+File: figures/measureoverfit.png Graphic file (type png)
+
+<use figures/measureoverfit.png> [21]
+<figures/liversmalllengthscale.png, id=432, 819.863pt x 572.539pt>
+File: figures/liversmalllengthscale.png Graphic file (type png)
+
+<use figures/liversmalllengthscale.png>
+<figures/overfitwithlargelength.png, id=433, 1217.348pt x 572.539pt> [22 <./fig
+ures/measureoverfit.png (PNG copy)>]
+File: figures/overfitwithlargelength.png Graphic file (type png)
+ <use figures/overfitwithlargelength.png>
+[23 <./figures/liversmalllengthscale.png (PNG copy)> <./figures/overfitwithlarg
+elength.png (PNG copy)>] [24
+
+] [25
+
+]
+Overfull \hbox (42.4086pt too wide) in paragraph at lines 596--641
+[]$[]$$[]$ 
+ []
+
+
+Overfull \hbox (42.4086pt too wide) in paragraph at lines 647--693
+[]$[]$$[]$ 
  []
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
+<figures/alphaBMA.png, id=451, 1672.649pt x 699.413pt>
+File: figures/alphaBMA.png Graphic file (type png)
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<use figures/alphaBMA.png> [26
 
+] [27 <./figures/alphaBMA.png (PNG copy)>]
+<figures/pima/age.png, id=462, 1036.673pt x 571.736pt>
+File: figures/pima/age.png Graphic file (type png)
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<use figures/pima/age.png>
+<figures/pima/bmi.png, id=463, 1036.673pt x 571.736pt>
+File: figures/pima/bmi.png Graphic file (type png)
 
+<use figures/pima/bmi.png>
+<figures/pima/pedigreebmi.png, id=464, 1036.673pt x 571.736pt>
+File: figures/pima/pedigreebmi.png Graphic file (type png)
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<use figures/pima/pedigreebmi.png>
+<figures/pima/pedigreeglucose.png, id=465, 1036.673pt x 571.736pt>
+File: figures/pima/pedigreeglucose.png Graphic file (type png)
 
-[25] [26] [27] [28] [29
+<use figures/pima/pedigreeglucose.png> [28
+
+ <./figures/pima/age.png (PNG copy)> <./figures/pima/bmi.png (PNG copy)> <./fig
+ures/pima/pedigreebmi.png (PNG copy)> <./figures/pima/pedigreeglucose.png (PNG 
+copy)>]
+<figures/pima/glucose.png, id=470, 1036.673pt x 571.736pt>
+File: figures/pima/glucose.png Graphic file (type png)
+
+<use figures/pima/glucose.png>
+<figures/pima/ageglucose.png, id=471, 1036.673pt x 571.736pt>
+File: figures/pima/ageglucose.png Graphic file (type png)
+
+<use figures/pima/ageglucose.png>
+<figures/pima/pressureage.png, id=472, 1036.673pt x 571.736pt>
+File: figures/pima/pressureage.png Graphic file (type png)
+
+<use figures/pima/pressureage.png>
+<figures/pima/pregnantage.png, id=473, 1036.673pt x 571.736pt>
+File: figures/pima/pregnantage.png Graphic file (type png)
+
+<use figures/pima/pregnantage.png> [29 <./figures/pima/glucose.png (PNG copy)> 
+<./figures/pima/ageglucose.png (PNG copy)> <./figures/pima/pressureage.png (PNG
+ copy)> <./figures/pima/pregnantage.png (PNG copy)>]
+<figures/breast/adhesion.png, id=479, 1036.673pt x 571.736pt>
+File: figures/breast/adhesion.png Graphic file (type png)
+
+<use figures/breast/adhesion.png>
+<figures/breast/nucleicellsize.png, id=480, 1036.673pt x 571.736pt>
+File: figures/breast/nucleicellsize.png Graphic file (type png)
+
+<use figures/breast/nucleicellsize.png>
+<figures/breast/chromatin.png, id=481, 1036.673pt x 571.736pt>
+File: figures/breast/chromatin.png Graphic file (type png)
+
+<use figures/breast/chromatin.png>
+<figures/breast/nucleoli.png, id=482, 1036.673pt x 571.736pt>
+File: figures/breast/nucleoli.png Graphic file (type png)
+
+<use figures/breast/nucleoli.png>
+<figures/breast/clumpbland.png, id=483, 1036.673pt x 571.736pt>
+File: figures/breast/clumpbland.png Graphic file (type png)
+
+<use figures/breast/clumpbland.png>
+<figures/breast/clumpadhesion.png, id=484, 1036.673pt x 571.736pt>
+File: figures/breast/clumpadhesion.png Graphic file (type png)
+
+<use figures/breast/clumpadhesion.png> [30 <./figures/breast/adhesion.png (PNG 
+copy)> <./figures/breast/nucleicellsize.png (PNG copy)> <./figures/breast/chrom
+atin.png (PNG copy)> <./figures/breast/nucleoli.png (PNG copy)>]
+<figures/breast/clump.png, id=489, 1028.643pt x 571.736pt>
+File: figures/breast/clump.png Graphic file (type png)
+
+<use figures/breast/clump.png>
+<figures/breast/cellsize.png, id=490, 1028.643pt x 571.736pt>
+File: figures/breast/cellsize.png Graphic file (type png)
+
+<use figures/breast/cellsize.png> [31 <./figures/breast/clumpbland.png (PNG cop
+y)> <./figures/breast/clumpadhesion.png (PNG copy)> <./figures/breast/clump.png
+ (PNG copy)> <./figures/breast/cellsize.png (PNG copy)>] [32
 
 ]
+Chapter 5.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[33
+
+
+]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[34]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[35]
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[36] [37] [38] [39] [40] [41
+
+] [42]
 Chapter 6.
-[30
+[43
 
 
-] (./acs-dissertation.bbl) [31
+] (./acs-dissertation.bbl [44
 
 
-] (./acs-dissertation.aux)
+]) [45]
+
+Package natbib Warning: There were undefined citations.
+
+(./acs-dissertation.aux
+
+Package natbib Warning: Citation(s) may have changed.
+(natbib)                Rerun to get citations correct.
+
+)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9499 strings out of 493848
- 137264 string characters out of 1152822
- 272309 words of memory out of 3000000
- 12434 multiletter control sequences out of 15000+50000
- 19047 words of font info for 69 fonts, out of 3000000 for 9000
+ 9941 strings out of 493848
+ 144104 string characters out of 1152822
+ 289826 words of memory out of 3000000
+ 12833 multiletter control sequences out of 15000+50000
+ 19562 words of font info for 71 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,16n,38p,931b,393s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,38p,985b,479s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf
 -texlive/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texmf-texlive/f
-onts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/
-public/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsf
-onts/cm/cmbxti10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
-mcsc10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmex10.pfb>
-</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi12.pfb></usr/share
-/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texli
-ve/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/typ
-e1/public/amsfonts/cm/cmr10.pfb></usr/share/texmf-texlive/fonts/type1/public/am
-sfonts/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cm
-r17.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr
-/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texm
-f-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texmf-texlive/fo
-nts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texmf-texlive/fonts/type1/p
-ublic/amsfonts/cm/cmti12.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm
-1200.pfb>
-Output written on acs-dissertation.pdf (39 pages, 860652 bytes).
+onts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texmf-texlive/fonts/t
+ype1/public/amsfonts/cm/cmbx10.pfb></usr/share/texmf-texlive/fonts/type1/public
+/amsfonts/cm/cmbx12.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/c
+m/cmbx6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbx8.pfb>
+</usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmbxti10.pfb></usr/sha
+re/texmf-texlive/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texmf-t
+exlive/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/pub
+lic/amsfonts/cm/cmmi6.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts
+/cm/cmmi8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmmib10.
+pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/sh
+are/texmf-texlive/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texmf-te
+xlive/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/
+type1/public/amsfonts/cm/cmr6.pfb></usr/share/texmf-texlive/fonts/type1/public/
+amsfonts/cm/cmr8.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/c
+msy10.pfb></usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
+usr/share/texmf-texlive/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/t
+exmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texliv
+e/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-texlive/font
+s/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public
+/cm-super/sfrm1200.pfb>
+Output written on acs-dissertation.pdf (53 pages, 1038874 bytes).
 PDF statistics:
- 496 PDF objects out of 1000 (max. 8388607)
- 87 named destinations out of 1000 (max. 500000)
- 410 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 680 PDF objects out of 1000 (max. 8388607)
+ 121 named destinations out of 1000 (max. 500000)
+ 468 words of extra memory for PDF output out of 10000 (max. 10000000)
 

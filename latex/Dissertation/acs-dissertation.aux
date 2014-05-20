@@ -17,76 +17,134 @@
 \@writefile{lot}{\addvspace {10\p@ }}
 \@writefile{toc}{\contentsline {section}{\numberline {1.1}Building an Automated Statistician}{1}{section.1.1}}
 \@writefile{toc}{\contentsline {section}{\numberline {1.2}Contribution}{1}{section.1.2}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {2}Gaussian Processes}{2}{chapter.2}}
+\citation{gha12}
+\@writefile{toc}{\contentsline {chapter}{\numberline {2}Background}{2}{chapter.2}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {2.1}Kernels for Gaussian Processes}{2}{section.2.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {2.2}Gaussian Process Classification}{3}{section.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.1}The Laplace Approximation to Marginal Likelihood}{3}{subsection.2.2.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.2}Expectation Propagation}{3}{subsection.2.2.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {2.2.3}Variational Bayes}{3}{subsection.2.2.3}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {3}Related Work}{4}{chapter.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.1}Bayesian Inference}{2}{section.2.1}}
+\citation{gha12}
+\citation{zoubinoccam,rasmussen06}
+\citation{gha12}
+\citation{orbanzteh}
+\citation{orbanzteh}
+\citation{orbanzteh}
+\@writefile{toc}{\contentsline {section}{\numberline {2.2}Bayesian nonparametric models}{5}{section.2.2}}
+\citation{rasmussenGPs}
+\@writefile{toc}{\contentsline {section}{\numberline {2.3}Gaussian Processes}{6}{section.2.3}}
+\citation{rasmussen06}
+\citation{rasmussen06,duvenaud13}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.3.1}Kernels for Gaussian Processes}{7}{subsection.2.3.1}}
+\citation{rasmussenGPs}
+\citation{zoubinoccam}
+\citation{rasmussen06}
+\@writefile{lof}{\contentsline {figure}{\numberline {2.1}{\ignorespaces \relax \fontsize  {10.95}{13.6}\selectfont  \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini \topsep \z@ \parsep \parskip \itemsep \z@ {\leftmargin \leftmargini \topsep 9\p@ plus3\p@ minus5\p@ \parsep 4.5\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip {Functions drawn from {{GP}} priors with {\textsc  {SE}} covariance functions. Lengthscales of 1.0 (left) and 3.0 (right) reflect the length of the trends the kernel is able to capture. }\relax }}{8}{figure.caption.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {2.4}Gaussian Process Regression}{8}{section.2.4}}
+\citation{rasmussenGPs}
+\citation{rasmussen06}
+\citation{rasmussen06}
+\citation{zoubinoccam,rasmussen06,rasmussenGPs}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.4.1}Learning the Hyperparameters}{9}{subsection.2.4.1}}
+\citation{rasmussenGPs}
+\@writefile{toc}{\contentsline {section}{\numberline {2.5}Gaussian Process Classification}{10}{section.2.5}}
+\citation{rasmussen06}
+\citation{rasmussen06,gpcapprox,gpcinference}
+\citation{gpcinference}
+\citation{gpcapprox}
+\citation{gpcinference}
+\citation{gpcinference}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.1}Approximative Inference for {{GP}} Classification}{12}{subsection.2.5.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.2}The Laplace Approximation}{12}{subsection.2.5.2}}
+\citation{gpcapprox}
+\citation{gpcapprox,gpcinference}
+\citation{gpcapprox,gpcinference}
+\@writefile{toc}{\contentsline {subsection}{\numberline {2.5.3}Expectation Propagation}{13}{subsection.2.5.3}}
+\citation{christoudias2009bayesian}
+\@writefile{toc}{\contentsline {chapter}{\numberline {3}Related Work}{14}{chapter.3}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {3.1}Kernel learning}{4}{section.3.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {3.2}Kernel structure discovery for regression}{4}{section.3.2}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {4}Kernel Structure Discovery for GP Classification}{5}{chapter.4}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {4.1}Defining the Kernel Grammar}{5}{section.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}The Search Operators}{5}{subsection.4.1.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.2}Model selection}{6}{section.4.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.3}Optimising the Hyperparameters}{7}{section.4.3}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Conjugate descent}{7}{subsection.4.3.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}Overfitting}{7}{subsection.4.3.2}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.4}Guiding the Structure Search}{10}{section.4.4}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.1}Bayesian and Akaike Information Criteria}{10}{subsection.4.4.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.2}The Number of Effective Hyperparameters}{10}{subsection.4.4.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.4.3}Cross-validated training accuracy}{11}{subsection.4.4.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.5}Adapting the likelihood function}{12}{section.4.5}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.5.1}Dealing with Outliers}{12}{subsection.4.5.1}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.6}Bayesian Model Averaging}{13}{section.4.6}}
-\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces { Bayesian Model Averaging, classification errors across folds. }\relax }}{13}{table.caption.1}}
-\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
-\newlabel{tbl:BMAliver}{{4.1}{13}{{ Bayesian Model Averaging, classification errors across folds. }\relax \relax }{table.caption.1}{}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.7}Providing Interpretability}{15}{section.4.7}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.1}Pima}{15}{subsection.4.7.1}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.2}Breast}{17}{subsection.4.7.2}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {4.7.3}Heart and Liver}{19}{subsection.4.7.3}}
-\@writefile{toc}{\contentsline {section}{\numberline {4.8}Automatic Report Synthesis}{20}{section.4.8}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {5}Evaluation}{21}{chapter.5}}
-\@writefile{lof}{\addvspace {10\p@ }}
-\@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {5.1}Experiments with Synthetic Data}{21}{section.5.1}}
-\newlabel{tbl:synthetic}{{\caption@xref {tbl:synthetic}{ on input line 603}}{22}{Experiments with Synthetic Data\relax }{table.caption.3}{}}
-\newlabel{tbl:synthetic2}{{\caption@xref {tbl:synthetic2}{ on input line 675}}{23}{Experiments with Synthetic Data\relax }{table.caption.4}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Adding Salt and Pepper Noise}{23}{subsection.5.1.1}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 + \textsc  {SE}_3$, $D$ = 3. }\relax }}{24}{table.caption.5}}
-\newlabel{tbl:synthetic1}{{5.1}{24}{{ True kernel: $ \SE _1 + \SE _2 + \SE _3$, $D$ = 3. }\relax \relax }{table.caption.5}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 \times \textsc  {SE}_3 + \textsc  {SE}_4$, $D$ = 4. }\relax }}{25}{table.caption.6}}
-\newlabel{tbl:synthetic2}{{5.2}{25}{{ True kernel: $ \SE _1 + \SE _2 \times \SE _3 + \SE _4$, $D$ = 4. }\relax \relax }{table.caption.6}{}}
-\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Saturating Likelihood Function Performance}{25}{subsection.5.1.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces {True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_7 + \textsc  {SE}_{10}$, $D$ = 10. }\relax }}{26}{table.caption.7}}
-\newlabel{tbl:synthetic3}{{5.3}{26}{{True kernel: $ \SE _1 + \SE _3 \times \SE _7 + \SE _{10}$, $D$ = 10. }\relax \relax }{table.caption.7}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces { True kernel: $\textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_5 \times \textsc  {SE}_7 + \textsc  {SE}_{9}$, $D$ = 10. }\relax }}{26}{table.caption.8}}
-\newlabel{tbl:synthetic4}{{5.4}{26}{{ True kernel: $\SE _1 + \SE _3 \times \SE _5 \times \SE _7 + \SE _{9}$, $D$ = 10. }\relax \relax }{table.caption.8}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 + \textsc  {SE}_3$, $D$ = 3. }\relax }}{27}{table.caption.9}}
-\newlabel{tbl:synthetic1}{{5.5}{27}{{ True kernel: $ \SE _1 + \SE _2 + \SE _3$, $D$ = 3. }\relax \relax }{table.caption.9}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 \times \textsc  {SE}_3 + \textsc  {SE}_4$, $D$ = 4. }\relax }}{27}{table.caption.10}}
-\newlabel{tbl:synthetic1}{{5.6}{27}{{ True kernel: $ \SE _1 + \SE _2 \times \SE _3 + \SE _4$, $D$ = 4. }\relax \relax }{table.caption.10}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_7 + \textsc  {SE}_{10}$, $D$ = 10. }\relax }}{28}{table.caption.11}}
-\newlabel{tbl:synthetic1}{{5.7}{28}{{ True kernel: $ \SE _1 + \SE _3 \times \SE _7 + \SE _{10}$, $D$ = 10. }\relax \relax }{table.caption.11}{}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces { True kernel: $\textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_5 \times \textsc  {SE}_7 + \textsc  {SE}_{9}$, $D$ = 10. }\relax }}{28}{table.caption.12}}
-\newlabel{tbl:synthetic1}{{5.8}{28}{{ True kernel: $\SE _1 + \SE _3 \times \SE _5 \times \SE _7 + \SE _{9}$, $D$ = 10. }\relax \relax }{table.caption.12}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.1}Kernel learning}{14}{section.3.1}}
+\citation{lawrence2005probabilistic}
+\citation{salakhutdinov2008using}
 \citation{duvenaud2011additive11}
-\@writefile{toc}{\contentsline {section}{\numberline {5.2}Experiments on Real World Data Sets}{29}{section.5.2}}
-\@writefile{lot}{\contentsline {table}{\numberline {5.9}{\ignorespaces {\relax \fontsize  {10.95}{13.6}\selectfont  \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini \topsep \z@ \parsep \parskip \itemsep \z@ {\leftmargin \leftmargini \topsep 9\p@ plus3\p@ minus5\p@ \parsep 4.5\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip Classification Percent Error }\relax }}{29}{table.caption.13}}
-\newlabel{tbl:Classification Percent Error}{{5.9}{29}{{\small Classification Percent Error }\relax \relax }{table.caption.13}{}}
-\@writefile{toc}{\contentsline {chapter}{\numberline {6}Summary and Conclusions}{30}{chapter.6}}
+\@writefile{toc}{\contentsline {section}{\numberline {3.2}Additive Gaussian Processes}{15}{section.3.2}}
+\citation{duvenaud2011additive11}
+\citation{duvenaud2011additive11}
+\citation{duvenaud2011additive11}
+\citation{duvenaud13}
+\citation{lloyd14}
+\citation{schwarz1978estimating}
+\@writefile{toc}{\contentsline {section}{\numberline {3.3}Kernel structure discovery for GP regression}{17}{section.3.3}}
+\citation{duvenaud13,lloyd14}
+\@writefile{toc}{\contentsline {chapter}{\numberline {4}Kernel Structure Discovery for GP Classification}{19}{chapter.4}}
 \@writefile{lof}{\addvspace {10\p@ }}
 \@writefile{lot}{\addvspace {10\p@ }}
-\@writefile{toc}{\contentsline {section}{\numberline {6.1}Further Work}{30}{section.6.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.1}Defining the Kernel Grammar}{19}{section.4.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1.1}The Search Operators}{19}{subsection.4.1.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.2}Building the Models}{20}{section.4.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.1}Approximating the Posterior}{20}{subsection.4.2.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2.2}Learning the Hyperparameters}{20}{subsection.4.2.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.3}Choosing the Model}{20}{section.4.3}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.1}Bayesian and Akaike Information Criteria}{21}{subsection.4.3.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.3.2}The Number of Effective Hyperparameters}{21}{subsection.4.3.2}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.4}Overfitting}{22}{section.4.4}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.5}Cross-validated Training Accuracy}{24}{section.4.5}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.6}The Alternative Likelihood Function}{25}{section.4.6}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.6.1}Dealing with Outliers}{25}{subsection.4.6.1}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.7}Bayesian Model Averaging}{26}{section.4.7}}
+\@writefile{lot}{\contentsline {table}{\numberline {4.1}{\ignorespaces { Bayesian Model Averaging, classification errors across folds. }\relax }}{26}{table.caption.2}}
+\providecommand*\caption@xref[2]{\@setref\relax\@undefined{#1}}
+\newlabel{tbl:BMAliver}{{4.1}{26}{{ Bayesian Model Averaging, classification errors across folds. }\relax \relax }{table.caption.2}{}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.8}Providing Interpretability: move to Eval?}{28}{section.4.8}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.1}Pima}{28}{subsection.4.8.1}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.2}Breast}{29}{subsection.4.8.2}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.8.3}Heart and Liver}{31}{subsection.4.8.3}}
+\@writefile{toc}{\contentsline {section}{\numberline {4.9}Automatic Report Generation}{32}{section.4.9}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {5}Evaluation}{33}{chapter.5}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {5.1}Experiments with Synthetic Data}{33}{section.5.1}}
+\newlabel{tbl:synthetic}{{\caption@xref {tbl:synthetic}{ on input line 884}}{34}{Experiments with Synthetic Data\relax }{table.caption.4}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.1}Adding Salt and Pepper Noise}{34}{subsection.5.1.1}}
+\newlabel{tbl:synthetic2}{{\caption@xref {tbl:synthetic2}{ on input line 955}}{35}{Experiments with Synthetic Data\relax }{table.caption.5}{}}
+\@writefile{toc}{\contentsline {subsection}{\numberline {5.1.2}Saturating Likelihood Function Performance}{35}{subsection.5.1.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.1}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 + \textsc  {SE}_3$, $D$ = 3. }\relax }}{36}{table.caption.6}}
+\newlabel{tbl:synthetic1}{{5.1}{36}{{ True kernel: $ \SE _1 + \SE _2 + \SE _3$, $D$ = 3. }\relax \relax }{table.caption.6}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.2}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 \times \textsc  {SE}_3 + \textsc  {SE}_4$, $D$ = 4. }\relax }}{37}{table.caption.7}}
+\newlabel{tbl:synthetic2}{{5.2}{37}{{ True kernel: $ \SE _1 + \SE _2 \times \SE _3 + \SE _4$, $D$ = 4. }\relax \relax }{table.caption.7}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.3}{\ignorespaces {True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_7 + \textsc  {SE}_{10}$, $D$ = 10. }\relax }}{37}{table.caption.8}}
+\newlabel{tbl:synthetic3}{{5.3}{37}{{True kernel: $ \SE _1 + \SE _3 \times \SE _7 + \SE _{10}$, $D$ = 10. }\relax \relax }{table.caption.8}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.4}{\ignorespaces { True kernel: $\textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_5 \times \textsc  {SE}_7 + \textsc  {SE}_{9}$, $D$ = 10. }\relax }}{38}{table.caption.9}}
+\newlabel{tbl:synthetic4}{{5.4}{38}{{ True kernel: $\SE _1 + \SE _3 \times \SE _5 \times \SE _7 + \SE _{9}$, $D$ = 10. }\relax \relax }{table.caption.9}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.5}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 + \textsc  {SE}_3$, $D$ = 3. }\relax }}{38}{table.caption.10}}
+\newlabel{tbl:synthetic1}{{5.5}{38}{{ True kernel: $ \SE _1 + \SE _2 + \SE _3$, $D$ = 3. }\relax \relax }{table.caption.10}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.6}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_2 \times \textsc  {SE}_3 + \textsc  {SE}_4$, $D$ = 4. }\relax }}{39}{table.caption.11}}
+\newlabel{tbl:synthetic1}{{5.6}{39}{{ True kernel: $ \SE _1 + \SE _2 \times \SE _3 + \SE _4$, $D$ = 4. }\relax \relax }{table.caption.11}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.7}{\ignorespaces { True kernel: $ \textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_7 + \textsc  {SE}_{10}$, $D$ = 10. }\relax }}{39}{table.caption.12}}
+\newlabel{tbl:synthetic1}{{5.7}{39}{{ True kernel: $ \SE _1 + \SE _3 \times \SE _7 + \SE _{10}$, $D$ = 10. }\relax \relax }{table.caption.12}{}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.8}{\ignorespaces { True kernel: $\textsc  {SE}_1 + \textsc  {SE}_3 \times \textsc  {SE}_5 \times \textsc  {SE}_7 + \textsc  {SE}_{9}$, $D$ = 10. }\relax }}{40}{table.caption.13}}
+\newlabel{tbl:synthetic1}{{5.8}{40}{{ True kernel: $\SE _1 + \SE _3 \times \SE _5 \times \SE _7 + \SE _{9}$, $D$ = 10. }\relax \relax }{table.caption.13}{}}
+\citation{duvenaud2011additive11}
+\@writefile{toc}{\contentsline {section}{\numberline {5.2}Experiments on Real World Data Sets}{41}{section.5.2}}
+\@writefile{lot}{\contentsline {table}{\numberline {5.9}{\ignorespaces {\relax \fontsize  {10.95}{13.6}\selectfont  \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini \topsep \z@ \parsep \parskip \itemsep \z@ {\leftmargin \leftmargini \topsep 9\p@ plus3\p@ minus5\p@ \parsep 4.5\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip Classification Percent Error }\relax }}{41}{table.caption.14}}
+\newlabel{tbl:Classification Percent Error}{{5.9}{41}{{\small Classification Percent Error }\relax \relax }{table.caption.14}{}}
+\@writefile{toc}{\contentsline {chapter}{\numberline {6}Summary and Conclusions}{43}{chapter.6}}
+\@writefile{lof}{\addvspace {10\p@ }}
+\@writefile{lot}{\addvspace {10\p@ }}
+\@writefile{toc}{\contentsline {section}{\numberline {6.1}Further Work}{43}{section.6.1}}
 \bibstyle{unsrt}
 \bibdata{refs}
-\bibcite{duvenaud2011additive11}{{1}{}{{}}{{}}}
+\bibcite{gha12}{{1}{}{{}}{{}}}
+\bibcite{zoubinoccam}{{2}{}{{}}{{}}}
+\bibcite{rasmussen06}{{3}{}{{}}{{}}}
+\bibcite{orbanzteh}{{4}{}{{}}{{}}}
+\bibcite{rasmussenGPs}{{5}{}{{}}{{}}}
+\bibcite{duvenaud13}{{6}{}{{}}{{}}}
+\bibcite{gpcapprox}{{7}{}{{}}{{}}}
+\bibcite{gpcinference}{{8}{}{{}}{{}}}
+\bibcite{christoudias2009bayesian}{{9}{}{{}}{{}}}
+\bibcite{lawrence2005probabilistic}{{10}{}{{}}{{}}}
+\bibcite{salakhutdinov2008using}{{11}{}{{}}{{}}}
+\bibcite{duvenaud2011additive11}{{12}{}{{}}{{}}}
+\bibcite{lloyd14}{{13}{}{{}}{{}}}
+\bibcite{schwarz1978estimating}{{14}{}{{}}{{}}}
 \providecommand\NAT@force@numbers{}\NAT@force@numbers

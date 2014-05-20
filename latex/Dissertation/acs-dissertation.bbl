@@ -1,8 +1,85 @@
-\begin{thebibliography}{1}
+\begin{thebibliography}{10}
+
+\bibitem{gha12}
+Zoubin Ghahramani.
+\newblock Bayesian nonparametrics and the probabilistic approach to modelling.
+\newblock {\em Philosophical Transactions of the Royal Society}, 2012.
+
+\bibitem{zoubinoccam}
+Carl~Edward Rasmussen and Zoubin Ghahramani.
+\newblock Occam's razor.
+\newblock {\em Advances in Neural Information Processing Systems 13}, 2001.
+
+\bibitem{rasmussen06}
+C.E. Rasmussen and C.K.I. Williams.
+\newblock {\em {Gaussian Processes for Machine Learning}}.
+\newblock The MIT Press, Cambridge, MA, USA, 2006.
+
+\bibitem{orbanzteh}
+Peter Orbanz and Yee~Whye Teh.
+\newblock Bayesian nonparametric models.
+\newblock {\em Encyclopedia of Machine Learning}, 2010.
+
+\bibitem{rasmussenGPs}
+Carl~Edward Rasmussen.
+\newblock Gaussian processes in machine learning.
+\newblock {\em Lecture Notes in Computer Science (LNCS), volume 3176, pages
+  63-71}, 2004.
+
+\bibitem{duvenaud13}
+David Duvenaud, James~Robert Lloyd, Roger Grosse, Joshua~B. Tenenbaum, and
+  Zoubin Ghahramani.
+\newblock Structure discovery in nonparametric regression through compositional
+  kernel search.
+\newblock pages 1166--1174, June 2013.
+
+\bibitem{gpcapprox}
+Malte Kuss and Carl~Edward Rasmussen.
+\newblock Assessing approximations for gaussian process classification.
+\newblock {\em Advances in Neural Information Processing Systems 18, pages
+  699-706}, April 2006.
+
+\bibitem{gpcinference}
+Malte Kuss and Carl~Edward Rasmussen.
+\newblock Assessing approximate inference for binary gaussian process
+  classification.
+\newblock {\em Journal of Machine Learning Research}, 2005.
+
+\bibitem{christoudias2009bayesian}
+M.~Christoudias, R.~Urtasun, and T.~Darrell.
+\newblock {Bayesian localized multiple kernel learning}.
+\newblock {\em Technical report, EECS Department, University of California,
+  Berkeley}, 2009.
+
+\bibitem{lawrence2005probabilistic}
+N.~Lawrence.
+\newblock Probabilistic non-linear principal component analysis with gaussian
+  process latent variable models.
+\newblock {\em The Journal of Machine Learning Research}, 6:1783--1816, 2005.
+
+\bibitem{salakhutdinov2008using}
+R.~Salakhutdinov and G.~Hinton.
+\newblock Using deep belief nets to learn covariance kernels for {G}aussian
+  processes.
+\newblock {\em Advances in Neural information processing systems},
+  20:1249--1256, 2008.
 
 \bibitem{duvenaud2011additive11}
 D.~Duvenaud, H.~Nickisch, and C.E. Rasmussen.
 \newblock Additive {G}aussian processes.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2011.
+
+\bibitem{lloyd14}
+James~Robert Lloyd, David Duvenaud, Roger Grosse, Joshua~B. Tenenbaum, and
+  Zoubin Ghahramani.
+\newblock Automatic construction and natural-language description of
+  nonparametric regression models.
+\newblock {\em Association for the Advancement of Artificial Intelligence
+  (AAAI) Conference}, 2014.
+
+\bibitem{schwarz1978estimating}
+G.~Schwarz.
+\newblock Estimating the dimension of a model.
+\newblock {\em The Annals of Statistics}, 6(2):461--464, 1978.
 
 \end{thebibliography}

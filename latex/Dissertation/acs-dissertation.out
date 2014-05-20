@@ -1,34 +1,40 @@
 \BOOKMARK [0][-]{chapter.1}{Introduction}{}
 \BOOKMARK [1][-]{section.1.1}{Building an Automated Statistician}{chapter.1}
 \BOOKMARK [1][-]{section.1.2}{Contribution}{chapter.1}
-\BOOKMARK [0][-]{chapter.2}{Gaussian Processes}{}
-\BOOKMARK [1][-]{section.2.1}{Kernels for Gaussian Processes}{chapter.2}
-\BOOKMARK [1][-]{section.2.2}{Gaussian Process Classification}{chapter.2}
-\BOOKMARK [2][-]{subsection.2.2.1}{The Laplace Approximation to Marginal Likelihood}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.2}{Expectation Propagation}{section.2.2}
-\BOOKMARK [2][-]{subsection.2.2.3}{Variational Bayes}{section.2.2}
+\BOOKMARK [0][-]{chapter.2}{Background}{}
+\BOOKMARK [1][-]{section.2.1}{Bayesian Inference}{chapter.2}
+\BOOKMARK [1][-]{section.2.2}{Bayesian nonparametric models}{chapter.2}
+\BOOKMARK [1][-]{section.2.3}{Gaussian Processes}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.3.1}{Kernels for Gaussian Processes}{section.2.3}
+\BOOKMARK [1][-]{section.2.4}{Gaussian Process Regression}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.4.1}{Learning the Hyperparameters}{section.2.4}
+\BOOKMARK [1][-]{section.2.5}{Gaussian Process Classification}{chapter.2}
+\BOOKMARK [2][-]{subsection.2.5.1}{Approximative Inference for GP Classification}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.2}{The Laplace Approximation}{section.2.5}
+\BOOKMARK [2][-]{subsection.2.5.3}{Expectation Propagation}{section.2.5}
 \BOOKMARK [0][-]{chapter.3}{Related Work}{}
 \BOOKMARK [1][-]{section.3.1}{Kernel learning}{chapter.3}
-\BOOKMARK [1][-]{section.3.2}{Kernel structure discovery for regression}{chapter.3}
+\BOOKMARK [1][-]{section.3.2}{Additive Gaussian Processes}{chapter.3}
+\BOOKMARK [1][-]{section.3.3}{Kernel structure discovery for GP regression}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{Kernel Structure Discovery for GP Classification}{}
 \BOOKMARK [1][-]{section.4.1}{Defining the Kernel Grammar}{chapter.4}
 \BOOKMARK [2][-]{subsection.4.1.1}{The Search Operators}{section.4.1}
-\BOOKMARK [1][-]{section.4.2}{Model selection}{chapter.4}
-\BOOKMARK [1][-]{section.4.3}{Optimising the Hyperparameters}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.3.1}{Conjugate descent}{section.4.3}
-\BOOKMARK [2][-]{subsection.4.3.2}{Overfitting}{section.4.3}
-\BOOKMARK [1][-]{section.4.4}{Guiding the Structure Search}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.4.1}{Bayesian and Akaike Information Criteria}{section.4.4}
-\BOOKMARK [2][-]{subsection.4.4.2}{The Number of Effective Hyperparameters}{section.4.4}
-\BOOKMARK [2][-]{subsection.4.4.3}{Cross-validated training accuracy}{section.4.4}
-\BOOKMARK [1][-]{section.4.5}{Adapting the likelihood function}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.5.1}{Dealing with Outliers}{section.4.5}
-\BOOKMARK [1][-]{section.4.6}{Bayesian Model Averaging}{chapter.4}
-\BOOKMARK [1][-]{section.4.7}{Providing Interpretability}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.7.1}{Pima}{section.4.7}
-\BOOKMARK [2][-]{subsection.4.7.2}{Breast}{section.4.7}
-\BOOKMARK [2][-]{subsection.4.7.3}{Heart and Liver}{section.4.7}
-\BOOKMARK [1][-]{section.4.8}{Automatic Report Synthesis}{chapter.4}
+\BOOKMARK [1][-]{section.4.2}{Building the Models}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.2.1}{Approximating the Posterior}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.2}{Learning the Hyperparameters}{section.4.2}
+\BOOKMARK [1][-]{section.4.3}{Choosing the Model}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.3.1}{Bayesian and Akaike Information Criteria}{section.4.3}
+\BOOKMARK [2][-]{subsection.4.3.2}{The Number of Effective Hyperparameters}{section.4.3}
+\BOOKMARK [1][-]{section.4.4}{Overfitting}{chapter.4}
+\BOOKMARK [1][-]{section.4.5}{Cross-validated Training Accuracy}{chapter.4}
+\BOOKMARK [1][-]{section.4.6}{The Alternative Likelihood Function}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.6.1}{Dealing with Outliers}{section.4.6}
+\BOOKMARK [1][-]{section.4.7}{Bayesian Model Averaging}{chapter.4}
+\BOOKMARK [1][-]{section.4.8}{Providing Interpretability: move to Eval?}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.8.1}{Pima}{section.4.8}
+\BOOKMARK [2][-]{subsection.4.8.2}{Breast}{section.4.8}
+\BOOKMARK [2][-]{subsection.4.8.3}{Heart and Liver}{section.4.8}
+\BOOKMARK [1][-]{section.4.9}{Automatic Report Generation}{chapter.4}
 \BOOKMARK [0][-]{chapter.5}{Evaluation}{}
 \BOOKMARK [1][-]{section.5.1}{Experiments with Synthetic Data}{chapter.5}
 \BOOKMARK [2][-]{subsection.5.1.1}{Adding Salt and Pepper Noise}{section.5.1}

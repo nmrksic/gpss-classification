@@ -117,7 +117,7 @@ address = "Cambridge, MA, USA"
 }
 
 
-@book{rasmussen38gaussian,
+@book{rasmussen06,
   title={{Gaussian Processes for Machine Learning}},
   author={Rasmussen, C.E. and Williams, C.K.I.},
   publisher={The MIT Press, Cambridge, MA, USA},
@@ -439,4 +439,46 @@ address = "Cambridge, MA, USA"
   number =	 {arXiv:1302.4245 [stat.ML]},
   year={2013},
   month={February}
+}
+
+@article{gha12,
+  title={Bayesian nonparametrics and the probabilistic approach to modelling},
+  author={Zoubin Ghahramani},
+  journal={Philosophical Transactions of the Royal Society},
+  year={2012},
+}
+
+ @article{zoubinoccam,
+  title={Occam's razor},
+  author={Carl Edward Rasmussen and Zoubin Ghahramani},
+  journal={Advances in Neural Information Processing Systems 13},
+  year={2001},
+}
+
+ @article{orbanzteh,
+  title={Bayesian Nonparametric Models},
+  author={Peter Orbanz and Yee Whye Teh},
+  journal={Encyclopedia of Machine Learning},
+  year={2010},
+}
+
+ @article{RasmussenGPs,
+  title={Gaussian processes in machine learning},
+  author={Carl Edward Rasmussen},
+  journal={ Lecture Notes in Computer Science (LNCS), volume 3176, pages 63-71},
+  year={2004},
+}
+
+ @article{gpcapprox,
+  title={Assessing approximations for Gaussian process classification},
+  author={Malte Kuss and Carl Edward Rasmussen},
+  journal={ Advances in Neural Information Processing Systems 18, pages 699-706},
+  year={April 2006},
+}
+
+ @article{gpcinference,
+  title={Assessing approximate inference for binary Gaussian process classification},
+  author={Malte Kuss and Carl Edward Rasmussen},
+  journal={ Journal of Machine Learning Research},
+  year={2005},
 }
