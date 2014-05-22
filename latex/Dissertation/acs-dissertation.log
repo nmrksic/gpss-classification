@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  20 MAY 2014 14:21
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=pdflatex 2012.10.30)  21 MAY 2014 15:25
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -602,19 +602,7 @@ Package hyperref Info: Option `colorlinks' set `false' on input line 79.
 
 (./acs-dissertation.aux
 
-LaTeX Warning: Label `tbl:synthetic2' multiply defined.
-
-
-LaTeX Warning: Label `tbl:synthetic1' multiply defined.
-
-
-LaTeX Warning: Label `tbl:synthetic1' multiply defined.
-
-
-LaTeX Warning: Label `tbl:synthetic1' multiply defined.
-
-
-LaTeX Warning: Label `tbl:synthetic1' multiply defined.
+LaTeX Warning: Label `tbl:Classification Percent Error' multiply defined.
 
 )
 \openout1 = `acs-dissertation.aux'.
@@ -716,7 +704,7 @@ driver: pdftex
 \MPscratchDim=\dimen155
 \MPnumerator=\count148
 \everyMPtoPDFconversion=\toks38
-) (./titlepage.tex <CUni3.pdf, id=179, 174.6525pt x 36.135pt>
+) (./titlepage.tex <CUni3.pdf, id=167, 174.6525pt x 36.135pt>
 File: CUni3.pdf Graphic file (type pdf)
  <use CUni3.pdf>
 [1
@@ -727,22 +715,22 @@ name{page.1}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.1 \newpage
-             [1]
-LaTeX Font Info:    Try loading font information for U+msa on input line 14.
- (/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
+             [1] [2]) (./abstract.tex [3] [4]) [5] (./acs-dissertation.toc
+LaTeX Font Info:    Try loading font information for U+msa on input line 1.
+
+(/usr/share/texmf-texlive/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2009/06/22 v3.00 AMS symbols A
 )
-LaTeX Font Info:    Try loading font information for U+msb on input line 14.
+LaTeX Font Info:    Try loading font information for U+msb on input line 1.
 
 (/usr/share/texmf-texlive/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2009/06/22 v3.00 AMS symbols B
 )
-LaTeX Font Info:    Try loading font information for U+wasy on input line 14.
+LaTeX Font Info:    Try loading font information for U+wasy on input line 1.
 
 (/usr/share/texmf-texlive/tex/latex/wasysym/uwasy.fd
 File: uwasy.fd 2003/10/30 v2.0 Wasy-2 symbol font definitions
-) [2]) (./abstract.tex
-[3] [4]) [5] (./acs-dissertation.toc [0
+) [0
 
 ])
 \tf@toc=\write4
@@ -784,23 +772,23 @@ as been already used, duplicate ignored
 <to be read again> 
                    \relax 
 l.210 
-       [5] [6] [7] <figures/plot1.png, id=325, 578.6418pt x 434.1018pt>
+       [5] [6] [7] <figures/plot1.png, id=310, 578.6418pt x 434.1018pt>
 File: figures/plot1.png Graphic file (type png)
 
-<use figures/plot1.png> <figures/plot2.png, id=326, 578.6418pt x 434.1018pt>
+<use figures/plot1.png> <figures/plot2.png, id=311, 578.6418pt x 434.1018pt>
 File: figures/plot2.png Graphic file (type png)
 
-<use figures/plot2.png>
+<use figures/plot2.png> [8 <./figures/plot1.png (PNG copy)> <./figures/plot2.pn
+g (PNG copy)>]
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 265.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 264.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 265.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 264.
 
-[8 <./figures/plot1.png (PNG copy)> <./figures/plot2.png (PNG copy)>] [9]
-[10] [11] [12] [13]
+[9] [10] [11] [12] [13]
 Chapter 3.
 [14
 
@@ -809,204 +797,183 @@ Chapter 3.
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 391.
+(amsmath)                 on input line 392.
 
-[16]
-
-Package natbib Warning: Citation `lloyd14' on page 17 undefined on input line 4
-10.
-
-[17]
-
-Package natbib Warning: Citation `lloyd14' on page 18 undefined on input line 4
-21.
-
-[18]
+[16] [17] [18]
 Chapter 4.
 [19
 
 
-] [20] <figures/measureoverfit.png, id=427, 1056.94875pt x 669.50125pt>
-File: figures/measureoverfit.png Graphic file (type png)
+] [20] [21] [22] [23
 
-<use figures/measureoverfit.png> [21]
-<figures/liversmalllengthscale.png, id=432, 819.863pt x 572.539pt>
+] [24]
+<figures/liversmalllengthscale.png, id=438, 819.863pt x 572.539pt>
 File: figures/liversmalllengthscale.png Graphic file (type png)
 
 <use figures/liversmalllengthscale.png>
-<figures/overfitwithlargelength.png, id=433, 1217.348pt x 572.539pt> [22 <./fig
-ures/measureoverfit.png (PNG copy)>]
+<figures/overfitwithlargelength.png, id=439, 1217.348pt x 572.539pt>
 File: figures/overfitwithlargelength.png Graphic file (type png)
- <use figures/overfitwithlargelength.png>
-[23 <./figures/liversmalllengthscale.png (PNG copy)> <./figures/overfitwithlarg
-elength.png (PNG copy)>] [24
 
-] [25
+<use figures/overfitwithlargelength.png> [25
 
-]
-Overfull \hbox (42.4086pt too wide) in paragraph at lines 596--641
-[]$[]$$[]$ 
+ <./figures/liversmalllengthscale.png (PNG copy)>]
+Underfull \hbox (badness 10000) in paragraph at lines 694--695
+
  []
 
+<figures/measureoverfit.png, id=444, 1056.94875pt x 669.50125pt>
+File: figures/measureoverfit.png Graphic file (type png)
 
-Overfull \hbox (42.4086pt too wide) in paragraph at lines 647--693
-[]$[]$$[]$ 
- []
+<use figures/measureoverfit.png> [26 <./figures/overfitwithlargelength.png (PNG
+ copy)> <./figures/measureoverfit.png (PNG copy)>] [27
+
+] [28]
+Chapter 5.
+[29
+
+] (./likMixTables.tex
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<figures/alphaBMA.png, id=451, 1672.649pt x 699.413pt>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+) [30] [31] [32] [33] [34] [35
+
+]
+Overfull \hbox (42.4086pt too wide) in paragraph at lines 833--878
+[]$[]$$[]$ 
+ []
+
+
+Overfull \hbox (42.4086pt too wide) in paragraph at lines 884--930
+[]$[]$$[]$ 
+ []
+
+[36
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 936--937
+
+ []
+
+<figures/alphaBMA.png, id=505, 1672.649pt x 699.413pt>
 File: figures/alphaBMA.png Graphic file (type png)
 
-<use figures/alphaBMA.png> [26
+<use figures/alphaBMA.png> [37
 
-] [27 <./figures/alphaBMA.png (PNG copy)>]
-<figures/pima/age.png, id=462, 1036.673pt x 571.736pt>
+ <./figures/alphaBMA.png (PNG copy)>]
+<figures/pima/age.png, id=510, 1036.673pt x 571.736pt>
 File: figures/pima/age.png Graphic file (type png)
 
 <use figures/pima/age.png>
-<figures/pima/bmi.png, id=463, 1036.673pt x 571.736pt>
+<figures/pima/bmi.png, id=511, 1036.673pt x 571.736pt>
 File: figures/pima/bmi.png Graphic file (type png)
 
 <use figures/pima/bmi.png>
-<figures/pima/pedigreebmi.png, id=464, 1036.673pt x 571.736pt>
+<figures/pima/pedigreebmi.png, id=512, 1036.673pt x 571.736pt>
 File: figures/pima/pedigreebmi.png Graphic file (type png)
 
 <use figures/pima/pedigreebmi.png>
-<figures/pima/pedigreeglucose.png, id=465, 1036.673pt x 571.736pt>
+<figures/pima/pedigreeglucose.png, id=513, 1036.673pt x 571.736pt>
 File: figures/pima/pedigreeglucose.png Graphic file (type png)
 
-<use figures/pima/pedigreeglucose.png> [28
+<use figures/pima/pedigreeglucose.png> [38
 
  <./figures/pima/age.png (PNG copy)> <./figures/pima/bmi.png (PNG copy)> <./fig
 ures/pima/pedigreebmi.png (PNG copy)> <./figures/pima/pedigreeglucose.png (PNG 
 copy)>]
-<figures/pima/glucose.png, id=470, 1036.673pt x 571.736pt>
+<figures/pima/glucose.png, id=518, 1036.673pt x 571.736pt>
 File: figures/pima/glucose.png Graphic file (type png)
 
 <use figures/pima/glucose.png>
-<figures/pima/ageglucose.png, id=471, 1036.673pt x 571.736pt>
+<figures/pima/ageglucose.png, id=519, 1036.673pt x 571.736pt>
 File: figures/pima/ageglucose.png Graphic file (type png)
 
 <use figures/pima/ageglucose.png>
-<figures/pima/pressureage.png, id=472, 1036.673pt x 571.736pt>
+<figures/pima/pressureage.png, id=520, 1036.673pt x 571.736pt>
 File: figures/pima/pressureage.png Graphic file (type png)
 
 <use figures/pima/pressureage.png>
-<figures/pima/pregnantage.png, id=473, 1036.673pt x 571.736pt>
+<figures/pima/pregnantage.png, id=521, 1036.673pt x 571.736pt>
 File: figures/pima/pregnantage.png Graphic file (type png)
 
-<use figures/pima/pregnantage.png> [29 <./figures/pima/glucose.png (PNG copy)> 
+<use figures/pima/pregnantage.png> [39 <./figures/pima/glucose.png (PNG copy)> 
 <./figures/pima/ageglucose.png (PNG copy)> <./figures/pima/pressureage.png (PNG
  copy)> <./figures/pima/pregnantage.png (PNG copy)>]
-<figures/breast/adhesion.png, id=479, 1036.673pt x 571.736pt>
+<figures/breast/adhesion.png, id=526, 1036.673pt x 571.736pt>
 File: figures/breast/adhesion.png Graphic file (type png)
 
 <use figures/breast/adhesion.png>
-<figures/breast/nucleicellsize.png, id=480, 1036.673pt x 571.736pt>
+<figures/breast/nucleicellsize.png, id=527, 1036.673pt x 571.736pt>
 File: figures/breast/nucleicellsize.png Graphic file (type png)
 
 <use figures/breast/nucleicellsize.png>
-<figures/breast/chromatin.png, id=481, 1036.673pt x 571.736pt>
+<figures/breast/chromatin.png, id=528, 1036.673pt x 571.736pt>
 File: figures/breast/chromatin.png Graphic file (type png)
 
 <use figures/breast/chromatin.png>
-<figures/breast/nucleoli.png, id=482, 1036.673pt x 571.736pt>
+<figures/breast/nucleoli.png, id=529, 1036.673pt x 571.736pt>
 File: figures/breast/nucleoli.png Graphic file (type png)
 
 <use figures/breast/nucleoli.png>
-<figures/breast/clumpbland.png, id=483, 1036.673pt x 571.736pt>
+<figures/breast/clumpbland.png, id=530, 1036.673pt x 571.736pt>
 File: figures/breast/clumpbland.png Graphic file (type png)
 
 <use figures/breast/clumpbland.png>
-<figures/breast/clumpadhesion.png, id=484, 1036.673pt x 571.736pt>
+<figures/breast/clumpadhesion.png, id=531, 1036.673pt x 571.736pt>
 File: figures/breast/clumpadhesion.png Graphic file (type png)
 
-<use figures/breast/clumpadhesion.png> [30 <./figures/breast/adhesion.png (PNG 
+<use figures/breast/clumpadhesion.png> [40 <./figures/breast/adhesion.png (PNG 
 copy)> <./figures/breast/nucleicellsize.png (PNG copy)> <./figures/breast/chrom
 atin.png (PNG copy)> <./figures/breast/nucleoli.png (PNG copy)>]
-<figures/breast/clump.png, id=489, 1028.643pt x 571.736pt>
+<figures/breast/clump.png, id=536, 1028.643pt x 571.736pt>
 File: figures/breast/clump.png Graphic file (type png)
 
 <use figures/breast/clump.png>
-<figures/breast/cellsize.png, id=490, 1028.643pt x 571.736pt>
+<figures/breast/cellsize.png, id=537, 1028.643pt x 571.736pt>
 File: figures/breast/cellsize.png Graphic file (type png)
 
-<use figures/breast/cellsize.png> [31 <./figures/breast/clumpbland.png (PNG cop
+<use figures/breast/cellsize.png> [41 <./figures/breast/clumpbland.png (PNG cop
 y)> <./figures/breast/clumpadhesion.png (PNG copy)> <./figures/breast/clump.png
- (PNG copy)> <./figures/breast/cellsize.png (PNG copy)>] [32
-
-]
-Chapter 5.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[33
-
-
-]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[34]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[35]
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-[36] [37] [38] [39] [40] [41
-
-] [42]
+ (PNG copy)> <./figures/breast/cellsize.png (PNG copy)>]
 Chapter 6.
-[43
+[42
+
+] (./acs-dissertation.bbl [43
 
 
-] (./acs-dissertation.bbl [44
-
-
-]) [45]
-
-Package natbib Warning: There were undefined citations.
-
-(./acs-dissertation.aux
-
-Package natbib Warning: Citation(s) may have changed.
-(natbib)                Rerun to get citations correct.
-
-)
+]) [44] (./acs-dissertation.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 9941 strings out of 493848
- 144104 string characters out of 1152822
- 289826 words of memory out of 3000000
- 12833 multiletter control sequences out of 15000+50000
+ 9949 strings out of 493848
+ 144310 string characters out of 1152822
+ 293826 words of memory out of 3000000
+ 12840 multiletter control sequences out of 15000+50000
  19562 words of font info for 71 fonts, out of 3000000 for 9000
  714 hyphenation exceptions out of 8191
- 38i,16n,38p,985b,479s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 38i,16n,38p,1007b,480s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc}</usr/share/texmf
 -texlive/fonts/type1/public/amsfonts/cm/cmbsy10.pfb></usr/share/texmf-texlive/f
 onts/type1/public/amsfonts/cmextra/cmbsy8.pfb></usr/share/texmf-texlive/fonts/t
@@ -1030,9 +997,9 @@ exmf-texlive/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/share/texmf-texliv
 e/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/texmf-texlive/font
 s/type1/public/amsfonts/symbols/msbm10.pfb></usr/share/texmf/fonts/type1/public
 /cm-super/sfrm1200.pfb>
-Output written on acs-dissertation.pdf (53 pages, 1038874 bytes).
+Output written on acs-dissertation.pdf (52 pages, 1032735 bytes).
 PDF statistics:
- 680 PDF objects out of 1000 (max. 8388607)
- 121 named destinations out of 1000 (max. 500000)
- 468 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 663 PDF objects out of 1000 (max. 8388607)
+ 119 named destinations out of 1000 (max. 500000)
+ 444 words of extra memory for PDF output out of 10000 (max. 10000000)
 

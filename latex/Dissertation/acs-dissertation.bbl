@@ -27,11 +27,12 @@ Carl~Edward Rasmussen.
   63-71}, 2004.
 
 \bibitem{duvenaud13}
-David Duvenaud, James~Robert Lloyd, Roger Grosse, Joshua~B. Tenenbaum, and
-  Zoubin Ghahramani.
+Roger Grosse Joshua B.~Tenenbaum David~Duvenaud, James Robert~Lloyd and Zoubin
+  Ghahramani.
 \newblock Structure discovery in nonparametric regression through compositional
   kernel search.
-\newblock pages 1166--1174, June 2013.
+\newblock {\em 30th International Conference on Machine Learning, Atlanta,
+  Georgia, USA}, June 2013.
 
 \bibitem{gpcapprox}
 Malte Kuss and Carl~Edward Rasmussen.
@@ -70,12 +71,12 @@ D.~Duvenaud, H.~Nickisch, and C.E. Rasmussen.
 \newblock In {\em Advances in Neural Information Processing Systems}, 2011.
 
 \bibitem{lloyd14}
-James~Robert Lloyd, David Duvenaud, Roger Grosse, Joshua~B. Tenenbaum, and
-  Zoubin Ghahramani.
+Roger Grosse Joshua B.~Tenenbaum James Robert~Lloyd, David~Duvenaud and Zoubin
+  Ghahramani.
 \newblock Automatic construction and natural-language description of
   nonparametric regression models.
 \newblock {\em Association for the Advancement of Artificial Intelligence
-  (AAAI) Conference}, 2014.
+  (AAAI)}, July 2014.
 
 \bibitem{schwarz1978estimating}
 G.~Schwarz.

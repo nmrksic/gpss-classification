@@ -1,0 +1,96 @@
+Evaluating the base SE kernels, number of experiments is: 12.
+BIC values of base kernels: 423.2865      424.3685      423.9325       427.388      421.9285      414.6435
+ Train accuracies:           0.58065     0.58065     0.58387     0.58065         0.6     0.60323
+ Test accurracies:           0.57143     0.57143     0.51429     0.57143     0.57143     0.54286
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5.
+
+startingHyperparameters = 
+
+    mean: 0.2932
+     cov: [3.0577 -1.2751]
+
+Best kernel constructed at this stage of the search is: SE5 + SE3.
+BIC value: 406.1957; Training accuracy: 0.72258; Test accurracy: 0.71429.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5 + SE3.
+
+startingHyperparameters = 
+
+    mean: 0.5622
+     cov: [3.4293 -0.2496 2.7825 -0.2753]
+
+Best kernel constructed at this stage of the search is: SE5 + SE3xSE4.
+BIC value: 398.1035; Training accuracy: 0.72581; Test accurracy: 0.71429.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5 + SE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 2.4247
+     cov: [3.3198 -0.3036 4.3243 -0.2065 4.2924 1.4243]
+
+Best kernel constructed at this stage of the search is: SE5xSE6 + SE3xSE4.
+BIC value: 391.0347; Training accuracy: 0.80323; Test accurracy: 0.6.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE6 + SE3xSE4.
+
+startingHyperparameters = 
+
+    mean: 1.3472
+     cov: [3.4285 -1.0465 -0.1548 1.0141 3.7536 -0.4238 3.7280 1.2070]
+
+Best kernel constructed at this stage of the search is: SE5xSE6 + SE3xSE4 + SE6.
+BIC value: 395.6579; Training accuracy: 0.79677; Test accurracy: 0.62857.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE6 + SE3xSE4 + SE6.
+
+startingHyperparameters = 
+
+    mean: 1.5686
+     cov: [1x10 double]
+
+Best kernel constructed at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6.
+BIC value: 399.9324; Training accuracy: 0.79032; Test accurracy: 0.6.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6.
+
+startingHyperparameters = 
+
+    mean: 1.7420
+     cov: [1x12 double]
+
+Best kernel constructed at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6 + SE2.
+BIC value: 398.8194; Training accuracy: 0.80968; Test accurracy: 0.65714.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6 + SE2.
+
+startingHyperparameters = 
+
+    mean: 1.8418
+     cov: [1x14 double]
+
+Best kernel constructed at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6xSE5 + SE2.
+BIC value: 402.0447; Training accuracy: 0.8; Test accurracy: 0.65714.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6xSE5 + SE2.
+
+startingHyperparameters = 
+
+    mean: 1.5550
+     cov: [1x16 double]
+
+Best kernel constructed at this stage of the search is: SE5xSE6 + SE3xSE4xSE5 + SE6xSE5xSE3 + SE2.
+BIC value: 402.1997; Training accuracy: 0.81935; Test accurracy: 0.6.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+

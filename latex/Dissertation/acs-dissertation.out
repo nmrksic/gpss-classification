@@ -17,28 +17,25 @@
 \BOOKMARK [1][-]{section.3.2}{Additive Gaussian Processes}{chapter.3}
 \BOOKMARK [1][-]{section.3.3}{Kernel structure discovery for GP regression}{chapter.3}
 \BOOKMARK [0][-]{chapter.4}{Kernel Structure Discovery for GP Classification}{}
-\BOOKMARK [1][-]{section.4.1}{Defining the Kernel Grammar}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.1.1}{The Search Operators}{section.4.1}
-\BOOKMARK [1][-]{section.4.2}{Building the Models}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.2.1}{Approximating the Posterior}{section.4.2}
-\BOOKMARK [2][-]{subsection.4.2.2}{Learning the Hyperparameters}{section.4.2}
-\BOOKMARK [1][-]{section.4.3}{Choosing the Model}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.3.1}{Bayesian and Akaike Information Criteria}{section.4.3}
-\BOOKMARK [2][-]{subsection.4.3.2}{The Number of Effective Hyperparameters}{section.4.3}
-\BOOKMARK [1][-]{section.4.4}{Overfitting}{chapter.4}
-\BOOKMARK [1][-]{section.4.5}{Cross-validated Training Accuracy}{chapter.4}
-\BOOKMARK [1][-]{section.4.6}{The Alternative Likelihood Function}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.6.1}{Dealing with Outliers}{section.4.6}
-\BOOKMARK [1][-]{section.4.7}{Bayesian Model Averaging}{chapter.4}
-\BOOKMARK [1][-]{section.4.8}{Providing Interpretability: move to Eval?}{chapter.4}
-\BOOKMARK [2][-]{subsection.4.8.1}{Pima}{section.4.8}
-\BOOKMARK [2][-]{subsection.4.8.2}{Breast}{section.4.8}
-\BOOKMARK [2][-]{subsection.4.8.3}{Heart and Liver}{section.4.8}
-\BOOKMARK [1][-]{section.4.9}{Automatic Report Generation}{chapter.4}
-\BOOKMARK [0][-]{chapter.5}{Evaluation}{}
-\BOOKMARK [1][-]{section.5.1}{Experiments with Synthetic Data}{chapter.5}
-\BOOKMARK [2][-]{subsection.5.1.1}{Adding Salt and Pepper Noise}{section.5.1}
-\BOOKMARK [2][-]{subsection.5.1.2}{Saturating Likelihood Function Performance}{section.5.1}
-\BOOKMARK [1][-]{section.5.2}{Experiments on Real World Data Sets}{chapter.5}
+\BOOKMARK [1][-]{section.4.1}{Building the Models}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.1.1}{Defining the Kernel Grammar}{section.4.1}
+\BOOKMARK [2][-]{subsection.4.1.2}{Approximative Inference}{section.4.1}
+\BOOKMARK [1][-]{section.4.2}{Searching for the Model}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.2.1}{Bayesian and Akaike Information Criteria}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.2}{The Number of Effective Hyperparameters}{section.4.2}
+\BOOKMARK [2][-]{subsection.4.2.3}{Cross-validated Training Accuracy}{section.4.2}
+\BOOKMARK [1][-]{section.4.3}{Experiments with Synthetic Data}{chapter.4}
+\BOOKMARK [1][-]{section.4.4}{Structure Discovery for Real-world Data Sets}{chapter.4}
+\BOOKMARK [2][-]{subsection.4.4.1}{Overfitting}{section.4.4}
+\BOOKMARK [2][-]{subsection.4.4.2}{Predictive Performance}{section.4.4}
+\BOOKMARK [0][-]{chapter.5}{Advancing the Automated Statistician}{}
+\BOOKMARK [1][-]{section.5.1}{The Alternative Likelihood Function}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.1.1}{Dealing with Outliers}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.2}{Adding Salt and Pepper Noise}{section.5.1}
+\BOOKMARK [2][-]{subsection.5.1.3}{Likelihood Mixture Performance on Real World Data}{section.5.1}
+\BOOKMARK [1][-]{section.5.2}{Bayesian Model Averaging}{chapter.5}
+\BOOKMARK [1][-]{section.5.3}{Providing Interpretability}{chapter.5}
+\BOOKMARK [2][-]{subsection.5.3.1}{Pima}{section.5.3}
+\BOOKMARK [2][-]{subsection.5.3.2}{Breast}{section.5.3}
 \BOOKMARK [0][-]{chapter.6}{Summary and Conclusions}{}
 \BOOKMARK [1][-]{section.6.1}{Further Work}{chapter.6}

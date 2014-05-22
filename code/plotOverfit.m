@@ -11,9 +11,9 @@ expNames{4} = 'r_heart';
 
 filepaths = cell(3, 1); 
 
-filepaths{1} = 'results/BICruns/';
-filepaths{2} = 'results/BIClightruns/';
-filepaths{3} = 'results/AICruns/';
+filepaths{1} = 'results/Archive/runs/BICruns/';
+filepaths{2} = 'results/Archive/runs/BIClightruns/';
+filepaths{3} = 'results/Archive/runs/AICruns/';
 
 dimensions = [6, 9, 8, 13];
 
