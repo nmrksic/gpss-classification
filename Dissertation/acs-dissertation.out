@@ -1,0 +1,38 @@
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 1
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 2
+\BOOKMARK [1][-]{section.2.1}{Bayesian Nonparametric Models}{chapter.2}% 3
+\BOOKMARK [1][-]{section.2.2}{Gaussian Processes}{chapter.2}% 4
+\BOOKMARK [1][-]{section.2.3}{Gaussian Process Regression}{chapter.2}% 5
+\BOOKMARK [2][-]{subsection.2.3.1}{Learning the Hyperparameters}{section.2.3}% 6
+\BOOKMARK [1][-]{section.2.4}{Gaussian Process Classification}{chapter.2}% 7
+\BOOKMARK [2][-]{subsection.2.4.1}{Approximative Inference for GP Classification}{section.2.4}% 8
+\BOOKMARK [2][-]{subsection.2.4.2}{The Laplace Approximation}{section.2.4}% 9
+\BOOKMARK [2][-]{subsection.2.4.3}{Expectation Propagation}{section.2.4}% 10
+\BOOKMARK [0][-]{chapter.3}{Related Work}{}% 11
+\BOOKMARK [1][-]{section.3.1}{Kernel Learning}{chapter.3}% 12
+\BOOKMARK [1][-]{section.3.2}{Additive Gaussian Processes}{chapter.3}% 13
+\BOOKMARK [1][-]{section.3.3}{Kernel structure discovery for GP regression}{chapter.3}% 14
+\BOOKMARK [0][-]{chapter.4}{Kernel Structure Discovery for GP Classification}{}% 15
+\BOOKMARK [1][-]{section.4.1}{Building the Models}{chapter.4}% 16
+\BOOKMARK [2][-]{subsection.4.1.1}{Defining the Kernel Grammar}{section.4.1}% 17
+\BOOKMARK [2][-]{subsection.4.1.2}{Searching for the Model}{section.4.1}% 18
+\BOOKMARK [1][-]{section.4.2}{Choosing the Model}{chapter.4}% 19
+\BOOKMARK [2][-]{subsection.4.2.1}{Approximative Inference}{section.4.2}% 20
+\BOOKMARK [2][-]{subsection.4.2.2}{Bayesian and Akaike Information Criteria}{section.4.2}% 21
+\BOOKMARK [2][-]{subsection.4.2.3}{The Number of Effective Hyperparameters}{section.4.2}% 22
+\BOOKMARK [2][-]{subsection.4.2.4}{Cross-validated Training Accuracy}{section.4.2}% 23
+\BOOKMARK [1][-]{section.4.3}{Experiments with Synthetic Data}{chapter.4}% 24
+\BOOKMARK [1][-]{section.4.4}{Structure Discovery for Real-world Data Sets}{chapter.4}% 25
+\BOOKMARK [2][-]{subsection.4.4.1}{Overfitting}{section.4.4}% 26
+\BOOKMARK [1][-]{section.4.5}{Providing Interpretability}{chapter.4}% 27
+\BOOKMARK [2][-]{subsection.4.5.1}{Pima Indian Diabetes Dataset}{section.4.5}% 28
+\BOOKMARK [2][-]{subsection.4.5.2}{Wisconsin Diagnostic Breast Cancer Dataset}{section.4.5}% 29
+\BOOKMARK [0][-]{chapter.5}{Towards the Automated Statistician}{}% 30
+\BOOKMARK [1][-]{section.5.1}{Robust Gaussian Process Classification}{chapter.5}% 31
+\BOOKMARK [2][-]{subsection.5.1.1}{Modifying the Likelihood Function}{section.5.1}% 32
+\BOOKMARK [2][-]{subsection.5.1.2}{Evaluating the Likelihood Mixture Model}{section.5.1}% 33
+\BOOKMARK [1][-]{section.5.2}{Bayesian Model Averaging}{chapter.5}% 34
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 35
+\BOOKMARK [1][-]{section.6.1}{Further Work}{chapter.6}% 36
+\BOOKMARK [0][-]{appendix.A}{Bayesian Inference}{}% 37
+\BOOKMARK [0][-]{appendix.B}{The Performance of the Likelihood Mixture Model}{}% 38

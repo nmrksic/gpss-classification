@@ -1,0 +1,77 @@
+\begin{table} [!ht]
+
+\label{tbl:synthetic}
+\caption{{Kernel structures discovered by the BIC light guided search procedure. The kernel used to generate the data is shown on the left. Kernel structures discovered when the signal to noise ratios were 1:1 and 10:1 are shown on the right.} }
+
+
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+
+\small 
+\begin{tabular}{c   c |  c | c  }
+
+ \multirow{2}{*}{ N } & \multirow{2}{*}{True Kernel} & SNR = 1 & SNR = 100  \\ 
+& & { Kernel recovered } &  { Kernel recovered } \\ \hline
+			100		&				&		  $\bm{1}$ 		&		$\bm{1}$ \\
+300		&		$\bm{1} $ 		&		 $\bm{1}$ 		&		$\bm{1}$ \\
+500		&		\emph{3 dimensions}		&		 $\bm{1}$ 		&		$\bm{1}$ \\ \hline
+												
+												
+100		&				&		 ${2}$ 		&		${2}$ \\
+300		&		$\bm{{2} \kernplus {2} \kernplus {2}} $		&		 ${2}$ 		&		${2 \kernplus 2}$ \\
+500		&		\emph{3 dimensions}		&		 ${2}$ 		&		${2} \kernplus {2}$ \\ \hline
+												
+												
+100		&		 		&		 $\bm{2\kerntimes 3} $ 		&		$\bm{2 \kerntimes 3}$ \\
+300		&		$\bm{2\kerntimes 3} $		&		 $\bm{2\kerntimes 3} $ 		&		$\bm{2\kerntimes 3} $ \\
+500		&		\emph{3 dimensions}		&		 $\bm{2\kerntimes 3} $ 		&		$\bm{2\kerntimes 3} $ \\ \hline
+												
+												
+100		&				&		 ${1 \kernplus 4}$ 		&		$ { {1} \kernplus {2} \kernplus {4} }$ \\
+300		&		$ \bm { {1} \kernplus {2\kerntimes 3} \kernplus {4} } $ 		&		 $ {1 \kerntimes 4} \kernplus  {2\kerntimes 3} $ 		&		$\bm{{1} \kernplus {2\kerntimes 3} \kernplus {4}}$ \\
+500		&		\emph{4 dimensions}		&		 ${ {1 \kerntimes 4} \kernplus {2\kerntimes 3} }$ 		&		$ \bm{ {1} \kernplus {2\kerntimes 3} \kernplus {4}}$ \\ \hline
+												
+												
+100		&				&		 ${1} \kernplus {4}$ 		&		${1} \kernplus {2}  \kernplus {4}$ \\
+300		&		$\bm{{1} \kernplus {2\kerntimes 3} \kernplus {4} }$ 		&		 ${1\kerntimes 4} \kernplus {2\kerntimes 3} $  		&		$\bm{{1} \kernplus {2\kerntimes 3} \kernplus {4}}$ \\
+500		&		\emph{10 dimensions}		&		 ${1\kerntimes 4} \kernplus {2\kerntimes 3} $ 		&		$\bm{{1} \kernplus {2\kerntimes 3} \kernplus {4}}$ \\ \hline
+												
+												
+100		&		 		&		 ${4} \kernplus {5}$ 		&		$ {1\kerntimes 9} \kernplus {4} $ \\
+300		&		$\bm{{1} \kernplus {2\kerntimes 3}  \kernplus {4} \kernplus {5\kerntimes 6} } $ 		&		 ${1} \kernplus {2} \kernplus {4} \kernplus {5\kerntimes 6\kerntimes 7} $  		&		 ${1} \kernplus {1\kerntimes5\kerntimes6}  \kernplus {2\kerntimes3} \kernplus {4}$  \\
+500		&		\emph{10 dimensions}		&		 ${1} \kernplus {1\kerntimes 4} \kernplus {2\kerntimes 3} \kernplus {5\kerntimes 6} $  		&		${1} \kernplus {1\kerntimes4\kerntimes5\kerntimes6} \kernplus {2\kerntimes3} \kernplus {4}$  \\ \hline
+												
+												
+100		&				&		 ${{4\kerntimes7}} $ 		&		 $\bm{{3 \kerntimes 5 \kerntimes 7}}$ \\
+300		&		$\bm{{3\kerntimes5\kerntimes7}} $ 		&		 ${{2 \kerntimes  3 \kerntimes5\kerntimes7}}$ 		&		$\bm{{3\kerntimes5\kerntimes7}}$ \\
+500		&		\emph{10 dimensions}		&		 ${{2 \kerntimes 3\kerntimes5\kerntimes7}}$ 		&		$\bm{{3\kerntimes5\kerntimes7}}$ \\ \hline
+												
+												
+100		&		 		&		 ${1\kerntimes3} \kernplus {10}$  		&		${1\kerntimes10} $ \\
+300		&		$\bm{{1} \kernplus {3\kerntimes5\kerntimes7}  \kernplus  {10}} $ 		&		 ${1} \kernplus {10} $ 		&		${1} \kernplus {1\kerntimes10} \kernplus {3\kerntimes5\kerntimes7}$  \\
+500		&		\emph{10 dimensions}		&		 ${1} \kernplus {10}$ 		&		$\bm{{1} \kernplus {3\kerntimes5\kerntimes7} \kernplus {10}}$  \\ \hline
+												
+												
+100		&				&		 ${3 \kerntimes 7}$ 		&		${1} \kernplus {7\kerntimes9}$ \\
+300		&		$\bm{{3\kerntimes5\kerntimes7\kerntimes9}} $ 		&		 ${7\kerntimes9}$ 		&		$\bm{{3\kerntimes5\kerntimes7\kerntimes9}}$ \\
+500		&		\emph{10 dimensions}		&		 $\bm{{3\kerntimes5\kerntimes7\kerntimes9}}$ 		&		$\bm{{3\kerntimes5\kerntimes7\kerntimes9}}$ \\ \hline
+												
+												
+100		&		 		&		 ${9 \kernplus 10}$ 		&		${10} $ \\
+300		&		$\bm{ {1} \kernplus {3\kerntimes 5\kerntimes 7\kerntimes 9}  \kernplus {10} }$  		&		 ${1} \kernplus {10}$  		&		${1 \kerntimes 5 \kernplus 7 \kernplus 10}$ \\
+500		&		\emph{10 dimensions} 		&		 ${1} \kernplus {3\kerntimes5\kerntimes9} \kernplus {10}$  		&		 $\bm{{1} \kernplus {3\kerntimes5\kerntimes7\kerntimes9} \kernplus {10}}$  
+%\multicolumn{3}{c}
+
+\end{tabular}
+}     
+
+ \end{center}
+
+
+
+
+
+\end{table}
+

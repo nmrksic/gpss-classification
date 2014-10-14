@@ -1,0 +1,47 @@
+%\chapter{Bayesian Inference}
+
+In probability theory, the probability of an event represents the relative frequency of its occurrence observed after $n$ repetitions of a well-defined random experiment. In such random experiments, an event has only two outcomes: it can either occur or not occur. If $n_e$ is the number of event occurrences in $n$ trials, the probability of the event is defined as the limit of its relative frequency $\frac{n_e}{n}$ as $n$ tends to infinity. For example, when flipping a coin, the probability of a head outcome corresponds to the number of head outcomes divided by the total number of coin flips performed. % as $n \rightarrow \infty$. 
+
+%\emph{The probability of an event is the ratio of the number of cases favourable to it, to the number of all cases possible when nothing leads us to expect that any one of these cases should occur more than any other, which renders them, for us, equally possible. }
+
+This interpretation, known as the frequentist one, limits us to making observations and drawing conclusions only about those events we can repeat. Events such as `the world ends tomorrow' make no sense, as there can't be multiple samples of either positive or negative outcomes for this event: it happens only once. 
+
+In Bayesian statistics, all types of uncertainty, including our own ignorance, are expressed using the formalism of probability theory \citep{gha12}. In this paradigm, the calculus of probability theory is applied to our \emph{subjective degrees of belief}. 
+
+When tackling a problem as a Bayesian, we first choose the likelihood model $ \Pr(D \mid \theta, M)$ which we believe can explain the data $D$ in the domain we want to model using some probabilistic model $M$. We also choose the prior distribution $\Pr(\theta)$ over the unknown parameters $ \theta $ of the likelihood model chosen. This model and its prior distribution subsume our subjective beliefs about the problem before we have observed any actual data, also known as the evidence. After observing some evidence, we modify our assumptions about the model parameters using Bayes' rule:
+
+\begin{equation*} \Pr ( \theta \mid D, M) = \frac{ \Pr ( D \mid \theta, M) \Pr ( \theta \mid M) }{\Pr( D \mid M)} \end{equation*} 
+
+
+Bayes' rule lies at the core of Bayesian inference. It provides a mathematically rigorous method for adapting our prior assumptions in light of new evidence, allowing us to move from our prior distribution $\Pr( \theta \mid M)$ to the updated posterior distribution $\Pr ( \theta \mid D, M) $. If more data becomes available, the posterior can be updated again: the current posterior becomes the prior and is updated using the new evidence $D'$ to arrive at the updated posterior distribution $\Pr ( \theta \mid D \cup D', M )$.
+
+The likelihood function $\Pr(D \mid H, M)$ indicates how likely the data $D$ is to be observed assuming the probabilistic model $M$ with parameters $\theta$ for our data. Together with the prior $\Pr(\theta \mid M)$, the likelihood model describes the model used. The denominator $\Pr (D \mid M)$ is known as the \emph{marginal likelihood}. It is independent of the parameters $\theta$ so it does not affect the posterior distribution $\Pr (\theta \mid D, M)$. This means that the posterior is proportional to the likelihood times the prior. 
+
+\subsubsection*{Model Parameters as Random Variables}
+
+The intuition behind regarding the parameters as random variables lies in the Bayesian understanding of probability. Even though these values are not random, we model our uncertainty about their `true' values by assigning some probability mass to all of their potential values. Subsequently, when making predictions for some new instance $x$, we are in a position to consider all the available evidence by making decisions based on the weighted contributions of all realistic hypotheses $\theta$ to our prediction. The weights assigned to different hypotheses come directly from the posterior $\Pr(\theta \mid D, M)$ and are combined with the likelihood model $\Pr (x \mid \theta, M)$:
+
+\begin{equation*}  \Pr(x \mid D, M) = \int_{\theta}{ \Pr(x \mid \theta, M) } \Pr ( \theta \mid D, M) d\theta  \end{equation*}
+
+This is in direct opposition to the frequentist paradigm, which interprets the data as random samples drawn from some unknown underlying distribution. For a Bayesian, data is certain, and everything else in the inference procedure expresses our uncertainty: the prior, the likelihood model and the probabilistic model $M$ itself.  
+
+The prior on the parameters is the result of our subjective judgement. This is not a weakness, but a strength of the Bayesian paradigm. All models have some assumptions built into them, allowing them to make predictions on the basis of the observed evidence. In the Bayesian paradigm, we are forced to make all of these assumptions explicit. Hence, if our model proves inadequate, it is not the fault of the inference mechanism, but of the flawed assumptions built into it \cite{gha12}. 
+
+Another convenient property of Bayesian inference is that the effect of the prior decreases as more data becomes available, with the posterior mostly determined by the new evidence, assuming that the initial prior does not regard the observed evidence as entirely impossible. 
+
+
+\subsubsection*{Marginal Likelihood as the Model Selection Criterion}
+
+The value of marginal likelihood represents the probability of the evidence observed when the model parameters are integrated out, leaving just the dependency of the marginal likelihood on the probabilistic model $M$ used:
+
+\begin{equation*} L ~=~ \Pr (D \mid M) = \int_{\theta}{\Pr(D \mid \theta, M) \Pr (\theta \mid M)} d\theta \end{equation*}
+
+Very flexible models can not assign much probability to any data set observed, as they spread their probability mass to a wide array of possible observations. Conversely, overly rigid models are penalised for not being able to assign much probability mass to the evidence across the different parametrisations used. In both cases, this makes the marginal likelihood of these models lower than the marginal likelihood of models well suited to explaining the evidence. Hence, marginal likelihood can be used as the criterion for model ranking: the higher $L$ is, the better the model $M$ is at explaining the evidence $D$. 
+
+The reason for this is that the marginal likelihood criterion subsumes an implicit Occam's razor for achieving a trade-off between the fit quality and model complexity \citep{zoubinoccam, rasmussen06}. Since model complexity determines the generalisation ability of the model, Bayesian models are less likely to overfit, that is include the noise in the data as part of the underlying signal, leading to poor performance on new observations. 
+
+A fully Bayesian approach would introduce a prior over all possible models $M$ instead of picking one of them. However, choosing the set of all sensible models for a specific dataset is non trivial, and averaging their predictions may be difficult or even intractable. Bayesian nonparametric models are an efficient way to perform this averaging using families of very flexible probabilistic models. 
+ %Bayesian methods do not fit parameters to the data in the same way that frequentist models do, so there can be no overfitting in the same sense.
+
+% Is this what the Bayesian does, or should one also intergrate out the model?
+% Likelihood as noise model??

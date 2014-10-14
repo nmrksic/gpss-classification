@@ -1,0 +1,108 @@
+\begin{table} [!b]
+
+\caption{{ Bayesian Model Averaging improves predictive power on Breast and Liver.  }}
+
+\label{tbl:BMAliver}
+
+\begin{minipage}{0.5\textwidth}
+      \centering
+           \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Breast}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+2.27\% & 	2.27\% & 	2.27\% \\
+4.55\% & 	4.55\% & 	4.55\% \\
+11.11\% & 	\textbf{8.89\% } & 	\textbf{8.89\%} \\ 
+15.56\% & 	\textbf{11.11\% } & 	\textbf{11.11\%} \\ 
+2.27\% & 	2.27\% & 	2.27\% \\ 
+10.87\% & 	\textbf{6.52\% } & 	\textbf{6.52\%} \\ 
+0.00\% & 	0.00\% & 	0.00\% \\ 
+2.22\% & 	2.22\% & 	2.22\% \\ 
+4.35\% & 	4.35\% & 	4.35\% \\ 
+11.11\% & 	\textbf{8.89\%} & 	11.11\% \\  \hline  
+ 6.43\%	&  \textbf{5.11\%}	&  \textbf{5.33\%} \\
+       \hline 
+ 
+ \end{tabular}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+      \centering
+      \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Liver}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+      23.53\% & \textbf{20.59\%} & \textbf{20.59\% } \\ 
+      20.00\%	& 22.86\% &20.00\% \\ 
+      37.14\%	& 37.14\% &37.14\%\\ 
+      40.00\%	& \textbf{31.43\%} & \textbf{34.29\%}  \\ 
+      28.57\%	& 31.43\% & 28.57\% \\ 
+      26.47\%	& \textbf{23.53\%} & 26.47\% \\ 
+      23.53\%	& \textbf{20.59\%} &26.47\%\\ 
+      26.47\%	& \textbf{23.53\%} &26.47\%\\ 
+      25.71\%	& 28.57\% &28.57\% \\ 
+      23.53\%	& \textbf{17.65\%} & \textbf{17.65\%} \\ \hline 
+       \textbf{27.50\%}	&  \textbf{25.73\%} &  \textbf{26.62\%} \\ 
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+\end{table}
+
+
+
+\begin{table} [!t]
+\caption{BMA fails to improve on Pima and completely ruins the performance on Heart.}
+
+\begin{minipage}{0.5\textwidth}
+      \centering
+          \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Pima}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+      21.05\% & 	{22.37\%} & 	{21.05\%}   \\
+      23.38\% & 	{23.38\%} & 	{24.68\%}  \\
+      15.58\% & 	{19.48\%} & 	{16.88\%}  \\
+      18.18\% & 	{19.48\%} & 	{18.18\%}  \\
+      19.48\% & 	{20.78\%} & 	{22.08\%}  \\
+      29.87\% & 	\textbf{28.57\%} & 	\textbf{28.57\%}  \\
+      29.87\% & 	{29.87\%} & 	{36.36\%}  \\
+      19.48\% & 	\textbf{16.88\%} & 	\textbf{14.29\%}  \\
+      25.00\% & 	\textbf{19.74\%} & 	\textbf{23.68\%}  \\
+      20.78\% & 	\textbf{19.48\%} & 	\textbf{19.48\%}  \\ \hline 
+       \textbf{22.27\%} & 	 \textbf{22.00\%} & 	 {22.53\%} \\
+
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+\begin{minipage}{0.5\textwidth}
+      \centering
+           \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Heart}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+	17.24\% & 	20.69\% & 	17.24\% \\ 
+	13.33\% & 	53.33\% & 	53.33\% \\ 
+	20.69\% & 	20.69\% & 	24.14\% \\ 
+	6.90\% & 	\textbf{3.45\% } &   \textbf{3.45\%}  \\ 
+	16.67\% & 	\textbf{10.00\%}  & 	\textbf{10.00\%} \\ 
+	26.67\% & 	26.67\% & 	30.00\% \\ 
+	30.00\% & 	53.33\% & 	53.33\% \\ 
+	20.00\% & 	23.33\% & 	23.33\% \\ 
+	16.67\% & 	20.00\% & 	20.00\% \\ 
+	10.00\% & 	16.67\% & 	16.67\% \\ \hline 
+	 17.82\% & 	 24.82\% & 	 25.15\% \\
+  
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+
+\end{table}
+
+

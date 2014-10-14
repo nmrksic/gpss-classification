@@ -1,0 +1,50 @@
+This is BibTeX, Version 0.99d (TeX Live 2012/W32TeX)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: acs-dissertation.aux
+The style file: unsrt.bst
+Database file #1: refs.bib
+A bad cross reference---entry "rasmussenGPs"
+refers to entry "conf/ac/2003ml", which doesn't exist
+Warning--I didn't find a database entry for "conf/ac/2003ml"
+You've used 17 entries,
+            1791 wiz_defined-function locations,
+            546 strings with 6542 characters,
+and the built_in function-call counts, 3278 in all, are:
+= -- 279
+> -- 158
+< -- 2
++ -- 59
+- -- 42
+* -- 185
+:= -- 558
+add.period$ -- 53
+call.type$ -- 17
+change.case$ -- 16
+chr.to.int$ -- 0
+cite$ -- 17
+duplicate$ -- 160
+empty$ -- 323
+format.name$ -- 42
+if$ -- 726
+int.to.chr$ -- 0
+int.to.str$ -- 17
+missing$ -- 19
+newline$ -- 88
+num.names$ -- 19
+pop$ -- 52
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 65
+stack$ -- 0
+substring$ -- 122
+swap$ -- 28
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 0
+while$ -- 27
+width$ -- 19
+write$ -- 182
+(There was 1 error message)

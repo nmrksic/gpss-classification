@@ -1,0 +1,17 @@
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {4.1}{\ignorespaces { The search log of the cross-validation guided procedure on the Pima dataset. \nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {}\nobreakspace {} }\relax }}{28}{table.caption.9}
+\contentsline {table}{\numberline {4.2}{\ignorespaces {Kernel structures discovered by the BIC light guided search procedure. The kernel used to generate the data is shown on the left. Kernel structures discovered when the signal to noise ratios were 1:1 and 10:1 are shown on the right.} \relax }}{29}{table.caption.10}
+\contentsline {table}{\numberline {4.3}{\ignorespaces {Test accuracies of the kernels constructed by the search compared to the accuracies of the kernel and the function used to generate the synthetic data sets.} \relax }}{30}{table.caption.11}
+\contentsline {table}{\numberline {4.4}{\ignorespaces Data set sizes, numbers of dimensions and the average time that each flavour of the structure search took to determine the kernel structure to use for that data set.\relax }}{31}{table.caption.13}
+\contentsline {table}{\numberline {4.5}{\ignorespaces {Mean classification errors of the GP Structure Search (GPSS). }\relax }}{32}{table.caption.15}
+\addvspace {10\p@ }
+\contentsline {table}{\numberline {5.1}{\ignorespaces Comparison of the kernels discovered by the new (likMix) and the old (likErf) structure discovery procedures. The kernel structure used to generate the synthetic data set was $\textsc {SE}_1 \tmspace +\thinmuskip {.1667em} + \tmspace +\thinmuskip {.1667em}{\textsc {SE}_3 \tmspace -\thinmuskip {.1667em} \times \tmspace -\thinmuskip {.1667em}\textsc {SE}_5 \tmspace -\thinmuskip {.1667em} \times \tmspace -\thinmuskip {.1667em}\textsc {SE}_7} \tmspace +\thinmuskip {.1667em} + \tmspace +\thinmuskip {.1667em}{\textsc {SE}_9}$ (ten-dimensional data). \relax }}{44}{table.caption.27}
+\contentsline {table}{\numberline {5.2}{\ignorespaces {\relax \fontsize {10.95}{13.6}\selectfont \abovedisplayskip 11\p@ plus3\p@ minus6\p@ \abovedisplayshortskip \z@ plus3\p@ \belowdisplayshortskip 6.5\p@ plus3.5\p@ minus3\p@ \def \leftmargin \leftmargini \topsep \z@ \parsep \parskip \itemsep \z@ {\leftmargin \leftmargini \topsep 9\p@ plus3\p@ minus5\p@ \parsep 4.5\p@ plus2\p@ minus\p@ \itemsep \parsep }\belowdisplayskip \abovedisplayskip Comparison of the likMix models' performance to that of the previous models. }\relax }}{44}{table.caption.29}
+\contentsline {table}{\numberline {5.3}{\ignorespaces { Bayesian Model Averaging improves predictive power on Breast and Liver. }\relax }}{47}{table.caption.33}
+\contentsline {table}{\numberline {5.4}{\ignorespaces BMA fails to improve on Pima and completely ruins the performance on Heart.\relax }}{48}{table.caption.34}
+\addvspace {10\p@ }
+\addvspace {10\p@ }
+\addvspace {10\p@ }

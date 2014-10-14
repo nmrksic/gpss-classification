@@ -1,0 +1,21 @@
+\begin{table}
+\caption{{Mean classification errors of the GP Structure Search (GPSS). }}
+\label{tbl:ClassificationErr1}
+\begin{center}
+\begin{tabular}{ l | c c c c  }
+
+Method & \rotatebox{0}{ ~~Breast~ }  & \rotatebox{0}{ ~~~Pima~~ }  & \rotatebox{0}{ ~~~Liver~~~ }  & \rotatebox{0}{ ~~Heart~~ }  \\ \hline
+Logistic Regression & \emph{7.61} & \emph{24.39}  & \emph{45.06} & \emph{ \textbf{{16.08}}} \\
+GP GAM & \emph{\textbf{5.19}} & \emph{\textbf{22.42}}  & \emph{ \textbf{29.84}} & \emph{\textbf{16.84}} \\
+Hierarchical Kernel Learning & \emph{ \textbf{5.38}} & \emph{24.26}  & \emph{ \textbf{27.27}} & \emph{ \textbf{18.98}} \\
+GP Squared-exponential & \emph{ \textbf{4.73}} & \emph{ \textbf{23.72}}  & \emph{ \textbf{31.24}} & \emph{ \textbf{20.64}} \\
+GP Additive Model& \emph{ \textbf{5.57}} & \emph{ \textbf{23.08}}  & \emph{ \textbf{30.06}} & \emph{ \textbf{18.50}} \\ \hline \hline
+GPSS (AIC) & ${ 6.43 }$ & $\mathbf{22.53}$  & $ {28.92}$ & $ \mathbf{19.86} $ \\
+GPSS (BIC) & $ \mathbf{ 5.98 }$ & $\mathbf{23.44}$  & $ {37.01}$ & $ \mathbf{18.15} $ \\
+GPSS (BIC Light) & $ { 6.43 }$ & $\mathbf{ 22.27 }$  & $ \mathbf{27.50} $ & $ \mathbf{17.82} $ \\
+GPSS (Cross Validation) & $ \mathbf{ 5.09 }$ & $\mathbf{ 23.70  }$  &  30.08  & $ \mathbf{17.16} $ \\ \hline
+Random Forest & $ \mathbf{4.22} $ &  $ \mathbf{23.44} $ & $ \mathbf{24.03} $ &  $ \mathbf{17.13} $ \\ 
+\end{tabular}
+\end{center}
+\end{table}
+

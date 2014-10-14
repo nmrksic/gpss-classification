@@ -1,0 +1,39 @@
+\begin{table*}[!t]
+
+\caption{Comparison of the kernels discovered by the new (likMix) and the old (likErf) structure discovery procedures. The kernel structure used to generate the synthetic data set was $\SE_1 \kernplus {\SE_3 \kerntimes \SE_5 \kerntimes \SE_7} \kernplus {\SE_9}$ (ten-dimensional data). } 
+
+\label{tbl:syntheticlik7}
+\begin{center}
+{\small
+
+\makebox[\textwidth]{%
+
+\begin{tabular}{c c  c | c |  c | c  }
+Data size & SNR & SP noise &  Kernel chosen (likErf) & Kernel Chosen (likMix) & Noise Rate\\
+\hline
+
+
+100	&	100	&	 0\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7}$ &	  0.0\%  \\ 	
+300	&	100	&	 0\% 	&	 ${3} \kerntimes {5} \kerntimes {7} \kernplus {9}$ 	&	 	${3} \kerntimes {5} \kerntimes {7} \kernplus {9}$ 	&  0.0\%  \\ 	
+500	&	100	&	 0\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7} \kernplus {5}$ 	 & 0.0\%  \\  \hline	
+100	&	100	&	 5\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7}$ 	&  0.0\%  \\ 	
+300	&	100	&	 5\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7}$ 	&  0.0\%  \\ 	
+500	&	100	&	 5\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7} \kernplus {5} \kernplus {10}$ &	  6.2\%  \\  \hline	
+100	&	100	&	 20\% 	&	 ${8}$ 	&	 	${9}$ &	  0.0\%  \\ 	
+300	&	100	&	 20\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${6}$ &	  77.2\%  \\ 	
+500	&	100	&	 20\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7}$ 	&  0.0\%  \\  \hline	
+100	&	1	&	 0\% 	&	 ${1} \kerntimes {3} \kerntimes {4} \kerntimes {5} \kernplus {7}$ 	&	 	${1} \kerntimes {3} \kerntimes {4} \kerntimes {5} \kernplus {7}$ &	  0.0\%  \\ 	
+300	&	1	&	 0\% 	&	 ${3} \kerntimes {5} \kerntimes {7} \kernplus {9}$ 	&	 	${1} \kernplus {10}$ 	&  93.8\%  \\ 	
+500	&	1	&	 0\% 	&	 ${1} \kernplus {3} \kerntimes {5} \kerntimes {7}$ 	&	 	${3} \kerntimes {5} \kerntimes {7}$ 	&  0.0\%  \\ \hline	
+100	&	1	&	 5\% 	&	 ${1} \kerntimes {3} \kerntimes {4} \kerntimes {5} \kernplus {7}$ 	&	 	${1} \kerntimes {3} \kerntimes {4} \kerntimes {5} \kernplus {7}$ &	  0.0\%  \\ 	
+300	&	1	&	 5\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${4}$ 	&  98.4\%  \\ 	
+500	&	1	&	 5\% 	&	 ${3} \kerntimes {5} \kerntimes {7}$ 	&	 	${2}$ 	 & 84.5\%  \\ \hline	
+100	&	1	&	 20\% 	&	 ${3} \kerntimes {5} \kerntimes {9}$ 	&	 	${2} \kerntimes {3} \kerntimes {5}$ &	  0.0\%  \\ 	
+300	&	1	&	 20\% 	&	 ${3} \kerntimes {7} \kerntimes {8}$ 	&	 	${3} \kerntimes {7} \kerntimes {8}$ &	  0.0\%  \\ 	
+500	&	1	&	 20\% 	&	 ${3} \kerntimes {7}$ 	&	 	${7}$ 	 & 0.0\%  \\ 	
+
+\end{tabular}
+} }
+
+\end{center}
+\end{table*}

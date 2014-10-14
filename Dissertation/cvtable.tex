@@ -1,0 +1,40 @@
+\begin{table} [!ht]
+
+\caption{{ The search log of the cross-validation guided procedure on the Pima dataset. ~~~~~~~~~~~~
+% training accuracy  %on the eight dimensional `pima' data set. The lack of an adequate stopping criterion allows the search to build very complex models.  
+}}
+
+
+\label{tbl:crossval1}
+
+\begin{center} 
+
+\makebox[(\textwidth) ]{
+
+
+
+\begin{tabular}{c  c  c  c  c}
+
+
+{Search } & \multirow{2}{*}{Kernel Chosen} & Cross-validated & {BIC} & {Test }\\
+Step & & Training Accuracy & value & Accuracy \\ \hline
+
+1	&	$2$	&	74.56	&	739.87	&	75.00	\\
+2	&	$2  \kernplus  8$	&	76.30	&	701.71	&	75.00	\\
+$\bm{3}$	&	$\bm{2  \kernplus  8 \kerntimes 6}$	&	$\bm{78.03}$	&	$\bm{688.04}$	&	$\bm{80.26}$	\\
+4	&	$2  \kernplus  8 \kerntimes 6 \kerntimes 3$	&	78.17	&	691.59	&	80.26	\\
+5	&	$2 \kerntimes 7  \kernplus  8 \kerntimes 6 \kerntimes 3$	&	78.32	&	690.18	&	78.95	\\
+6	&	$2 \kerntimes 7 \kerntimes 6  \kernplus  8 \kerntimes 6 \kerntimes 3$	&	78.61	&	693.39	&	78.95	\\
+7	&	$2 \kerntimes 7 \kerntimes 6 \kerntimes 6  \kernplus  8 \kerntimes 6 \kerntimes 3$	&	78.89	&	700.34	&	78.95	\\
+8	&	$2 \kerntimes 7 \kerntimes 6 \kerntimes 6  \kernplus  8 \kerntimes 6 \kerntimes 3  \kernplus  4$	&	79.04	&	706.92	&	78.95	\\
+9	&	$2 \kerntimes 7 \kerntimes 6 \kerntimes 6  \kernplus  8 \kerntimes 6 \kerntimes 3  \kernplus  4 \kerntimes 6$	&	79.33	&	712.21	&	77.63	\\
+%& & & & \\
+
+\end{tabular}
+}     
+\end{center}
+
+
+ 
+\end{table}
+

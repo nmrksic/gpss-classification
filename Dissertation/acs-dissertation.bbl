@@ -1,0 +1,104 @@
+\begin{thebibliography}{10}
+
+\bibitem{duvenaud13}
+David Duvenaud, James~Robert Lloyd, Roger Grosse, Joshua~B. Tenenbaum, and
+  Zoubin Ghahramani.
+\newblock Structure discovery in nonparametric regression through compositional
+  kernel search.
+\newblock {\em Proceedings of the 30th International Conference on Machine
+  Learning}, June 2013.
+
+\bibitem{lloyd14}
+J.R. Lloyd, D.~Duvenaud, R.~Grosse, J.B. Tenenbaum, and Zoubin Ghahramani.
+\newblock Automatic construction and natural-language description of
+  nonparametric regression models.
+\newblock {\em Association for the Advancement of Artificial Intelligence
+  (AAAI)}, July 2014.
+
+\bibitem{gha12}
+Zoubin Ghahramani.
+\newblock Bayesian nonparametrics and the probabilistic approach to modelling.
+\newblock {\em Philosophical Transactions of the Royal Society}, 2012.
+
+\bibitem{orbanzteh}
+Peter Orbanz and Yee~Whye Teh.
+\newblock Bayesian nonparametric models.
+\newblock {\em Encyclopedia of Machine Learning}, 2010.
+
+\bibitem{rasmussenGPs}
+Carl~Edward Rasmussen.
+\newblock Gaussian processes in machine learning.
+\newblock In Olivier Bousquet, Ulrike von Luxburg, and Gunnar Rätsch, editors,
+  {\em Advanced Lectures on Machine Learning}, volume 3176 of {\em Lecture
+  Notes in Computer Science}, pages 63--71. Springer, 2003.
+
+\bibitem{rasmussen06}
+CE~Rasmussen and CKI Williams.
+\newblock {\em Gaussian Processes for Machine Learning}.
+\newblock Adaptive Computation and Machine Learning. MIT Press, Cambridge, MA,
+  USA, 2006.
+
+\bibitem{zoubinoccam}
+Carl~Edward Rasmussen and Zoubin Ghahramani.
+\newblock Occam's razor.
+\newblock {\em Advances in Neural Information Processing Systems 13}, 2001.
+
+\bibitem{gpcapprox}
+Malte Kuss and Carl~Edward Rasmussen.
+\newblock Assessing approximations for gaussian process classification.
+\newblock {\em Advances in Neural Information Processing Systems 18, pages
+  699-706}, April 2006.
+
+\bibitem{gpcinference}
+Malte Kuss and Carl~Edward Rasmussen.
+\newblock Assessing approximate inference for binary gaussian process
+  classification.
+\newblock {\em Journal of Machine Learning Research}, 2005.
+
+\bibitem{christoudias2009bayesian}
+M.~Christoudias, R.~Urtasun, and T.~Darrell.
+\newblock {Bayesian localized multiple kernel learning}.
+\newblock {\em Technical report, EECS Department, University of California,
+  Berkeley}, 2009.
+
+\bibitem{lawrence2005probabilistic}
+N.~Lawrence.
+\newblock Probabilistic non-linear principal component analysis with gaussian
+  process latent variable models.
+\newblock {\em The Journal of Machine Learning Research}, 6:1783--1816, 2005.
+
+\bibitem{salakhutdinov2008using}
+R.~Salakhutdinov and G.~Hinton.
+\newblock Using deep belief nets to learn covariance kernels for {G}aussian
+  processes.
+\newblock {\em Advances in Neural information processing systems},
+  20:1249--1256, 2008.
+
+\bibitem{duvenaud2011additive11}
+D.~Duvenaud, H.~Nickisch, and C.E. Rasmussen.
+\newblock Additive {G}aussian processes.
+\newblock In {\em Advances in Neural Information Processing Systems}, 2011.
+
+\bibitem{schwarz1978estimating}
+G.~Schwarz.
+\newblock Estimating the dimension of a model.
+\newblock {\em The Annals of Statistics}, 6(2):461--464, 1978.
+
+\bibitem{elementsofstatlearning}
+Trevor Hastie, Robert Tibshirani, and Jerome Friedman.
+\newblock {\em The elements of statistical learning: data mining, inference and
+  prediction}.
+\newblock Springer, 2 edition, 2009.
+
+\bibitem{randomforest}
+Andy Liaw and Matthew Wiener.
+\newblock Classification and regression by randomforest.
+\newblock {\em R News}, 2(3):18--22, 2002.
+
+\bibitem{kim08}
+H.~Kim and Zoubin Ghahramani.
+\newblock Outlier robust gaussian process classification.
+\newblock {\em Structural, Syntactic and Statistical Pattern Recognition,
+  volume 5342 of Lecture Notes in Computer Science (LNCS)}, December 2008.
+
+\end{thebibliography}

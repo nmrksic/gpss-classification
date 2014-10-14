@@ -1,0 +1,79 @@
+\begin{table} [!ht]
+
+\caption{{Test accuracies of the kernels constructed by the search compared to the accuracies of the kernel and the function used to generate the synthetic data sets.} }
+
+\label{tbl:synthetic2}
+
+\begin{center} 
+
+
+\makebox[\textwidth ]{
+\small
+
+\begin{tabular}{c  c | c  c c  | c  c c  }
+
+  &   & \multicolumn{3}{c|}{ SNR = 1 }  &  \multicolumn{3}{c}{ SNR = 100 }   \\ 
+\multirow{2}{*}{ N }	& \multirow{2}{*}{True Kernel} & Test  & Kernel &  Bayes & Test  & Kernel & Function \\  
+             & & Accuracy & Rate & Rate & Accuracy & Rate & Rate                 \\ \hline
+100	&		&	 \textbf{81.0} 	&	  80.0 	&	 	&	 \textbf{98.0} 	&	 97.0 	&	  \\
+300	&	 $\bm{1} $ 	&	 \textbf{82.7} 	&	 82.0 	&	 83.6  	&	 \textbf{99.3} 	&	 98.7  	&	  99.0   \\
+500	&	\emph{3 dimensions}	&	   83.6 	&	 83.8 	&	  	&	  \textbf{98.4} 	&	 98.4 	&	 \\ \hline
+														
+														
+100	&		&	   74.0 	&	 	75.0 	&	 	&	 	\textbf{98.0} 	&	 	98.0 	&	 \\ 
+300	&	$\bm{{2} \kernplus {2} \kernplus {2}} $ 	&	   \textbf{77.3} 	&	 	77.0 	&	 78.2	  	&		\textbf{98.7} 	&	  {98.7} 	&	 98.8  \\
+500	&	\emph{3 dimensions}	&	  \textbf{78.2} 	&	 	78.2 	&	 	&		\textbf{98.6} 	&	 	98.6 	&	 \\   \hline
+														
+														
+100	&	 	&	 67.0 	&	 68.0 	&	 		&	 \textbf{89.0}  	&	 89.0 	&	 \\ 
+300	&	$\bm{2\kerntimes 3} $	&	 69.7 	&	 70.3 	&	 74.8		&	 \textbf{94.7}  	&	 91.3 	&	 98.0  \\ 
+500	&	\emph{3 dimensions}	&	 71.4 	&	 72.6 	&	 		&	 \textbf{95.8}  	&	 93.4 	&	 \\  \hline
+														
+														
+100	&		&	  71.0 	&	 80.0 	&	 	&	 82.0 	&	 87.0 	&	 \\ 
+300	&	$ \bm { {1} \kernplus {2\kerntimes 3} \kernplus {4} } $ 	&	 73.0 	&	 76.3 	&	 76.4 	&	 \textbf{94.7} 	&	 91.7 	&	 97.4 \\ 
+500	&	\emph{3 dimensions}	&	 73.4 	&	 74.8 	&	 	&	 \textbf{94.2} 	&	 91.8 	&	 \\  \hline
+														
+100	&		&	  71.0 	&	 80.0 	&	 	&	 82.0 	&	 87.0 	&	 \\ 
+300	&	$ \bm { {1} \kernplus {2\kerntimes 3} \kernplus {4} } $ 	&	 73.0 	&	 76.3 	&	 76.4 	&	 \textbf{94.7} 	&	 91.7 	&	 97.4 \\ 
+500	&	\emph{10 dimensions}	&	 73.4 	&	 74.8 	&	 	&	 \textbf{94.2} 	&	 91.8 	&	 \\  \hline
+														
+														
+100	&	 	&	 \textbf{61.0} 	&	 	60.0 	&	 	 	&	  70.0 	&	 	84.0 	&	 \\ 
+300	&	$\bm{{1} \kernplus {2\kerntimes 3} \kernplus {4} \kernplus {5\kerntimes 6}  } $ 	&	 67.7 	&	 	70.7 	&	  76.6 	&	  91.0 	&	 	92.3 	&	 97.2 \\ 
+500	&	\emph{10 dimensions}	&	 \textbf{73.4} 	&	 	73.0 	&	 	 	&	  \textbf{94.0} 	&	 	92.0 	&	  \\  \hline
+														
+														
+														
+100	&		&	  53.0 	&	 64.0 	&	 	&	 \textbf{87.0} 	&	 83.0 	&	  \\ 
+300	&	$\bm{{3\kerntimes5\kerntimes7}} $ 	&	 69.3 	&	 71.0 	&	 79.0 	&	 \textbf{92.7} 	&	 89.0 	&	 98.4  \\ 
+500	&	\emph{10 dimensions}	&	 {73.2} 	&	 73.6 	&	 	&	 \textbf{93.6} 	&	 91.6 	&	  \\    \hline
+														
+														
+100	&	 	&	 \textbf{71.0}  	&	 70.0 	&	 		&	 87.0 	&	 92.0 	&	 \\  
+300	&	$\bm{{1} \kernplus {3\kerntimes5\kerntimes7}  \kernplus  {10}} $ 	&	 \textbf{73.0}  	&	 71.3 	&	 75.0 	&	 \textbf{94.3} 	&	 94.3 	&	 97.6 \\ 
+500	&	\emph{10 dimensions}	&	  70.0  	&	 72.2 	&	 		&	 \textbf{93.8} 	&	 92.8 	&	 \\ \hline
+														
+														
+100	&		&	 57.0 	&	 59.0 	&	  	&		65.0 	&	 77.0 	&	 \\ 
+300	&	$\bm{{3\kerntimes5\kerntimes7\kerntimes9}} $ 	&	 59.3 	&	 70.3 	&	 77.0 	&	    \textbf{83.7} 	&	 82.7 	&	 97.0  \\ 
+500	&	\emph{10 dimensions}	&	 \textbf{71.0} 	&	 	69.0 	&	 	&	 \textbf{85.6} 	&	 82.6 	&	 \\   \hline
+														
+														
+100	&	 	&	 68.0 	&	 74.0 	&	  	&	 77.0 	&	 	81.0 	&	  \\ 
+300	&	$\bm{ {1} \kernplus {3\kerntimes 5\kerntimes 7\kerntimes 9}  \kernplus {10} }$  	&	 70.7 	&	 73.3 	&	 78.2 	&	 81.7 	&	 89.0 	&	  96.8 \\ 
+500	&	\emph{10 dimensions} 	&	 72.0 	&	 72.4 	&	  	&	 \textbf{90.6} 	&	 	89.8 	&	  \\ 
+\multicolumn{8}{c}{} \\
+
+\end{tabular}
+}
+
+
+ \end{center}     
+
+
+
+
+
+\end{table}
+

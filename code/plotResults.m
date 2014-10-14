@@ -48,7 +48,7 @@ function [] = plotResults(expName, numFoldsToPlot, X, y)
             system ( ['mkdir -p ', filePrefixPlot]);
            
             % close all
-            plotPosteriors(trnX{i}, trnY{i}, squeeze( allEncoderMatrices(plott, :, :) ) , hyperList{plott}, filePrefixPlot, dimensionLabels);
+            plotPosteriors(trnX{i}, trnY{i}, squeeze( allEncoderMatrices{plott}  ) , hyperList{plott}, filePrefixPlot, dimensionLabels);
 
              %pause
             

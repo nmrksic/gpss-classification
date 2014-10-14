@@ -1,0 +1,1181 @@
+%% 
+%% ACS project dissertation template. 
+%% 
+%% Currently designed for printing two-sided, but if you prefer to 
+%% print single-sided just remove ",twoside,openright" from the 
+%% \documentclass[] line below. 
+%%
+%%
+%%   SMH, May 2010. 
+
+
+\documentclass[a4paper,12pt ]{report}
+
+
+%%
+%% EDIT THE BELOW TO CUSTOMIZE
+%%
+
+\def\authorname{Nikola Mrk\v{s}i\'c\xspace}
+\def\authorcollege{Trinity College\xspace}
+\def\authoremail{nm480@cam.ac.uk}
+\def\dissertationtitle{{The Automated Statistician for Gaussian Process Classification}}
+\def\wordcount{0}
+
+
+%\usepackage{a4}
+\usepackage{caption}
+\usepackage{verbatim}
+\usepackage{amsmath} 
+\usepackage{amssymb,amsfonts}
+\usepackage{hyperref}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{bm}
+\usepackage{algpseudocode}
+\usepackage{algorithm}
+%\usepackage{adjustbox}
+\usepackage{tocloft}
+  %\usepackage[framed,numbered,autolinebreaks,useliterate]
+
+  \usepackage{epsfig, epstopdf, graphicx,parskip,setspace,tabularx,xspace} 
+
+\usepackage{preamble}
+\usepackage{natbib}
+\usepackage{color}
+\usepackage{wasysym}
+%\usepackage{subfigure}
+\usepackage{bm}
+  
+  
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+%\newtheorem{definition}[theorem]{Definition}
+\newtheorem{examples}[theorem]{Examples}
+\newtheorem{remarks}[theorem]{Remarks}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{question}[theorem]{Question}
+
+\newcommand{\exedout}{%
+  \rule{0.8\textwidth}{0.5\textwidth}%
+}
+
+\hypersetup{
+    colorlinks=false,
+    pdfborder={0 0 0},
+}
+
+\captionsetup{skip=0pt}
+
+
+%% START OF DOCUMENT
+\begin{document}
+
+
+
+
+%% FRONTMATTER (TITLE PAGE, DECLARATION, ABSTRACT, ETC) 
+\pagestyle{empty}
+\singlespacing
+\input{titlepage}
+\onehalfspacing
+\input{declaration}
+\singlespacing
+\input{abstract}
+
+\clearpage
+
+\pagenumbering{roman}
+\setcounter{page}{0}
+\pagestyle{plain}
+\tableofcontents
+
+\clearpage
+
+%\listoffigures
+%\clearpage
+
+
+%\listoftables
+%\clearpage
+
+
+\onehalfspacing
+
+%% START OF MAIN TEXT 
+
+\chapter{Introduction}
+\pagenumbering{arabic} 
+\setcounter{page}{1} 
+
+\section{Building an Automated Statistician}
+
+
+%This is the introduction where you should introduce your work.  In general the thing to aim for here is to describe a little bit of the
+%context for your work --- why did you do it (motivation), what was the hoped-for outcome (aims) --- as well as trying to give a brief
+%overview of what you actually did.
+
+% It's often useful to bring forward some ``highlights'' into this chapter (e.g.\ some particularly compelling results, or a particularly interesting finding). 
+
+%It's also traditional to give an outline of the rest of the document, although without care this can appear formulaic and tedious. Your call. 
+
+\section{Contribution}
+
+Built a system for automatic kernel discovery for Gaussian Process classification...
+
+
+\clearpage
+
+%\chapter{Background} 
+
+% A more extensive coverage of what's required to understand your work. In general you should assume the reader has a good undergraduate degree in computer science, but is not necessarily an expert in 
+% the particular area you've been working on. Hence this chapter may need to summarize some ``text book'' material. 
+
+% This is not something you'd normally require in an academic paper, and it may not be appropriate for your particular circumstances. Indeed, in some cases it's possible to cover all of the ``background'' 
+%material either in the introduction or at appropriate places in the rest of the dissertation. 
+
+\chapter{Gaussian Processes}
+
+0. Describe Bayesian paradigm and Bayes rule, and how this leads into wanting to have a prior over functions... 
+
+1. Define GPs, explain how it is fully specified by the mean and covariance function... Discuss covariance functions. Talk about function as infinite vector to generalize from multinomial Gaussian to this. 
+
+2. GP as a prior on function, show some function draws from the prior...
+
+3. Marginal likelihood as criterion for model selection and fitting the hyperparameters. write out nlml formula and discuss that the first term penalises poor fit, second model complexity, third is normalization. Say this is type II ML.
+
+
+
+\section{Kernels for Gaussian Processes}
+
+Describe different types of kernels. 
+
+\section{Gaussian Process Classification}
+
+Explain why it is harder, non-Gaussian likelihood...
+
+\subsection{The Laplace Approximation to Marginal Likelihood}
+
+\subsection{Expectation Propagation}
+
+\subsection{Variational Bayes}
+
+\clearpage
+
+\chapter{Related Work} 
+
+\section{Kernel learning}
+
+General review of work done in this area, with different models.
+
+\section{Kernel structure discovery for regression}
+
+Unsupervised structure discovery - mention that paper, maybe initially, as similar work... 
+
+Additive GPs....
+
+%Talk about the fact that these methods fix the structure of the kernel beforehand. Do they? Or they lack interpretability.
+
+
+%This chapter covers relevant (and typically, recent) research which you build upon (or improve upon). There are two complementary goals for this chapter: 
+%\begin{enumerate}  %  \item to show that you know and understand the state of the art; and  %  \item to put your work in context   %\end{enumerate} 
+
+% Ideally you can tackle both together by providiFor breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following performance, yielding an improvement of $0.9\%$ over the standard BIC light version. 
+ng a critique of related work, and describing what is insufficient (and how you do better!)
+
+%The related work chapter should usually come either near the front or
+%near the back of the dissertation. The advantage of the former is that
+%you get to build the argument for why your work is important before
+%presenting your solution(s) in later chapters; the advantage of the
+%latter is that don't have to forward reference to your solution too
+%much. The correct choice will depend on what you're writing up, and
+%your own personal preference.
+
+%critique:
+Discuss different information criteria, i.e. the fact that RQs can be penalised more than an SE... preferring products to additive components, say that this is something we evaluate thoroughly and try to improve on. 
+
+
+\clearpage
+
+\chapter{Kernel Structure Discovery for GP Classification} 
+
+Write an intro to doing this for classification, why it is harder apart from the non-Gaussian likelihoods (less information than regression, harder interpretability). 
+
+\section{Defining the Kernel Grammar}
+
+Draw the basic kernels, describe additive and product kernels. Compare with the regression case, explain why the RQ and Periodic kernel make less sense. 
+
+Present challenges for classification, difference from regression, lack of clear component interpretability, as opposed to i.e. time-series data. 
+
+\subsection{The Search Operators}
+
+Adding or multiplying with a base kernel. Discuss what adding two kernels or multiplying them accomplishes. 
+
+\section{Model selection}
+
+Discuss the use of marginal likelihood as the criterion for model selsection. Explain that the hyperparameters are found using conjugate descent, in order to minimise marginal likelihood. Bayesian Occam's razor. 
+
+\clearpage
+
+\section{Optimising the Hyperparameters}
+
+\subsection{Conjugate descent}
+
+Subsampling the training data to make the hyperparameter fitting faster: perform 300 iterations (a good rough guideline is the number of hyperparameters * 50) with 250 points randomly sampled from the data set, then perform an additional 50 iterations with the full data set. 
+Due to the smoothness of the $\SE$ kernels, this algorithm always converges to the same hyperparameters as the minimization that uses the entire data set for the whole process. 
+
+Discuss parallelisation and the use of the cluster. Discuss and add a table of running times and numbers of restarts performed. 
+
+\subsection{Overfitting}
+
+Dealing with very small and very large hyperparameters. Discuss what large ones mean (inconsequential for classification boundary) and what small ones do (overfitting). Explain how we set the minimal allowed lengthscale for each dimension and how discretised data presents a challenge. 
+
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/liversmalllengthscale.png}
+
+Overfitting with large lengthscales is to be expected, so we plot the histogram of accuracies for training and testing data when doing ten fold cross validation (with many different splits, i.e. seeds). From the plots below, we see that testing accuracy is expected to vary
+when doing ten-fold cross validation with this amount of data. With 100 different splits (that is 1000 different data points), the training accuracy ranges from $59\%$ to $66\%$, while the test accuracy varies from $40\%$ to $90\%$, showing that the overfitting (or surprisingly 
+good performance we encounter on some folds) is a something to be expected. 
+
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=1\textwidth] {figures/overfitwithlargelength.png}
+
+ \clearpage
+
+\section{Guiding the Structure Search}
+
+Discuss the greedy search and backtracking, as well as potential feature reduction. To be tested on ionosphere (32 dimensional). Perhaps compare performance with and without using feature selection?
+
+\subsection{Bayesian and Akaike Information Criteria}
+
+For high values of the number of data points $n$, the 
+
+\begin{equation} BIC =  - 2 \ln L + k  \ln(n)  \end{equation}
+
+
+\begin{equation} \end{equation}
+
+
+
+\subsection{The Number of Effective Hyperparameters}
+
+Outline BIC light, present it as middle ground between full BIC and AIC. Discuss the (lack of) significance of signal variance to the classification boundary. 
+
+The number of search steps figure that shows overfitting across the three metrics is shown below: 
+
+\includegraphics[scale=0.37]{figures/measureoverfit.png}
+
+\subsection{Cross-validated training accuracy}
+
+Discuss the use of cross-validated train accuracy - how it may be expected to provide us with the ceiling performance, but in the end it doesn't improve much on BIC light and likMix models. 
+
+%\chapter{Predictive Power, Interpretability and Visualisation}
+
+
+\clearpage
+\section{Adapting the likelihood function}
+
+\subsection{Dealing with Outliers}
+
+a problem with classification and BIC is that estimating the number of effective hyperparameters is hard: not all of them affect the classification boundary equally. The only thing important for classification is the zero-crossings of the function (where it is greater, and where it is smaller than 0, for the purposes of prediction). Hence, smaller length-scales are the most important factor (as they determine the predictive mean and where the crossings exactly are). Larger lengthscales equate to multiplication with a constant function, so less beneficial. Signal variances are useful for computing the predictive variances, but we only care about the predictive means for determining the target label. Not counting signal frequencies might add a quick boost to quality of BIC as a model discriminator (i.e. not number of product terms, but 0 - won’t decrease by 2, but might help our choice-making). 
+
+The reason that GPs out of the box are easily outperformed by classification specific schemes such as SVMs is that “soft-margin” SVMs are less certain of their predictions, and hence are less certain about points far away from the high density regions of the data. SVMs are never more certain than the estimated level of pepper noise (outliers in the sense of noise in the target labels of the data) whereas GPs would be very certain about points close to one of the clusters...
+
+As a potential solution, we might want to use a @likMix which adds the “pepper noise” into the likelihood function, determining the level of the outliers and thus having the likelihood (i.e. sigmoid) which doesn’t range from 0 to 1, but from $\alpha$ to $(1 - \alpha)$, where $\alpha$ is the level of pepper noise, which is, again, to be learnt from the data? This can be implemented in GPML using @likMix, and is something we can first evaluate w.r.t. synthetic data we previously generated. The only difference is that now we add additional salt and pepper noise (random outliers) into the data and we compare performance (on this dataset) of likMix vs likErf on its own.
+
+
+\clearpage
+
+\section{Bayesian Model Averaging}
+
+Averaging assigned labels or probabilities converges to the same thing when many models are used. 
+
+A plot showing how the accuracy changes with different $\alpha$ coefficients. 
+
+The current implementation averages class labels across different models, and $\alpha$ shows the BIC values scaling factor used to assign the weight factors to different classes. 
+
+From the set of models in the layers above, in and below the current model, we use their BIC values $b_1, b_2, \ldots $ to assign each model a weight:
+
+\begin{equation*} w_i = \frac{e^{- \alpha b_i}}{ \sum_{j}{ e^{- \alpha b_j} } }  \end{equation*}
+
+\begin{table}[h]
+
+\caption{{ Bayesian Model Averaging, classification errors across folds.  }}
+
+\label{tbl:BMAliver}
+
+\begin{minipage}{0.55\textwidth}
+      \centering
+      \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Liver}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+      23.53\% & \textbf{20.59\%} & \textbf{20.59\% } \\ 
+      20.00\%	& 22.86\% &20.00\% \\ 
+      37.14\%	& 37.14\% &37.14\%\\ 
+      40.00\%	& \textbf{31.43\%} & \textbf{34.29\%}  \\ 
+      28.57\%	& 31.43\% & 28.57\% \\ 
+      26.47\%	& \textbf{23.53\%} & 26.47\% \\ 
+      23.53\%	& \textbf{20.59\%} &26.47\%\\ 
+      26.47\%	& \textbf{23.53\%} &26.47\%\\ 
+      25.71\%	& 28.57\% &28.57\% \\ 
+      23.53\%	& \textbf{17.65\%} & \textbf{17.65\%} \\ \hline \hline
+       \textbf{27.50\%}	&  \textbf{25.73\%} &  \textbf{26.62\%} \\ 
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+\begin{minipage}{0.55\textwidth}
+      \centering
+          \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Pima}  \\
+      \hline
+      Best model & $ \alpha = 0.1 $ & $ \alpha = 1 $ \\  \hline
+      21.05\% & 	{22.37\%} & 	{21.05\%}   \\
+      23.38\% & 	{23.38\%} & 	{24.68\%}  \\
+      15.58\% & 	{19.48\%} & 	{16.88\%}  \\
+      18.18\% & 	{19.48\%} & 	{18.18\%}  \\
+      19.48\% & 	{20.78\%} & 	{22.08\%}  \\
+      29.87\% & 	\textbf{28.57\%} & 	\textbf{28.57\%}  \\
+      29.87\% & 	{29.87\%} & 	{36.36\%}  \\
+      19.48\% & 	\textbf{16.88\%} & 	\textbf{14.29\%}  \\
+      25.00\% & 	\textbf{19.74\%} & 	\textbf{23.68\%}  \\
+      20.78\% & 	\textbf{19.48\%} & 	\textbf{19.48\%}  \\ \hline \hline
+       \textbf{22.27\%} & 	 \textbf{22.00\%} & 	 {22.53\%} \\
+
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+
+\end{table}
+
+
+\begin{table}[h]
+
+
+\begin{minipage}{0.55\textwidth}
+      \centering
+           \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Heart}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+	17.24\% & 	20.69\% & 	17.24\% \\ 
+	13.33\% & 	53.33\% & 	53.33\% \\ 
+	20.69\% & 	20.69\% & 	24.14\% \\ 
+	6.90\% & 	\textbf{3.45\% } &   \textbf{3.45\%}  \\ 
+	16.67\% & 	\textbf{10.00\%}  & 	\textbf{10.00\%} \\ 
+	26.67\% & 	26.67\% & 	30.00\% \\ 
+	30.00\% & 	53.33\% & 	53.33\% \\ 
+	20.00\% & 	23.33\% & 	23.33\% \\ 
+	16.67\% & 	20.00\% & 	20.00\% \\ 
+	10.00\% & 	16.67\% & 	16.67\% \\ \hline \hline
+	 17.82\% & 	 24.82\% & 	 25.15\% \\
+  
+      \hline 
+      \end{tabular}
+
+\end{minipage}%
+\begin{minipage}{0.55\textwidth}
+      \centering
+           \begin{tabular}{|c | c | c | }
+      \hline
+      \multicolumn{3}{|c|}{Breast}  \\
+      \hline
+      Best model & $ \alpha = 0.5 $ & $ \alpha = 1 $ \\  \hline
+2.27\% & 	2.27\% & 	2.27\% \\
+4.55\% & 	4.55\% & 	4.55\% \\
+11.11\% & 	\textbf{8.89\% } & 	\textbf{8.89\%} \\ 
+15.56\% & 	\textbf{11.11\% } & 	\textbf{11.11\%} \\ 
+2.27\% & 	2.27\% & 	2.27\% \\ 
+10.87\% & 	\textbf{6.52\% } & 	\textbf{6.52\%} \\ 
+0.00\% & 	0.00\% & 	0.00\% \\ 
+2.22\% & 	2.22\% & 	2.22\% \\ 
+4.35\% & 	4.35\% & 	4.35\% \\ 
+11.11\% & 	\textbf{8.89\%} & 	11.11\% \\  \hline  \hline
+ 6.43\%	&  \textbf{5.11\%}	&  \textbf{5.33\%} \\
+       \hline 
+ 
+ \end{tabular}
+
+\end{minipage}%
+
+
+
+\end{table}
+
+\includegraphics[trim=8cm 5cm 8cm 4cm, width=\textwidth]{figures/alphaBMA.png}%
+
+
+\clearpage
+
+\section{Providing Interpretability}
+
+\subsection{Pima}
+
+The Pima Indian Diabetes dataset contains medical measurements of 768 individuals, together with an indicator of whether they later developed diabetes or not. There are 8 attributes in total, 4 of which feature in the kernel structures returned by the kernel discovery procedure. 
+These are dimensions 2, 6, 7 and 8: plasma glucose concentration, body mass index (BMI), diabetes pedigree function and the age of the patient. The remaining four attributes seem to carry less information regarding the likelihood of developing diabetes, at least 
+in a dataset of this size and using this search procedure. These four features are the number of pregnancies, diastolic blood pressure, triceps skin fold thickness and 2-hour serum insulin measures. The structure returned most often (4 times using 10-fold cross validation 
+for computing classification accuracy) was $[2\times7] + [6] + [8]$, closely followed by $[2]+[8]+[6 \times 7]$, which occured for 3 folds. The four posterior plots indicating the class boundaries determined with respect to these dimensions are shown below. 
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/age.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/bmi.png}
+}
+\end{center}
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreebmi.png}%
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pedigreeglucose.png}
+}
+\end{center}
+
+In addition to these additive components, the remaining three folds' structures contained occurances of $[2]$, $[2 \times 3 \times 7]$ and $ [ 2\times 3 \times7]$. Showing the three-way dependencies in 2D is not straightforward. Below, we show the posterior plots for 
+$[2]$, $[2\times8]$ and $[3\times8]$, showing that interactions of these dimensions produce points well separated by the classifiers produced (with the possible exception of the interaction between age and diastolic blood pressure). The two way interaction between the number of pregnancies and age is also shown: this dependency was found during various 
+stages of the search but discarded, even though the classifier seems to observe the general pattern present in the data set. 
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/glucose.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/pima/ageglucose.png}
+}
+\end{center}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pressureage.png}
+\includegraphics[trim=2cm 1cm 1cm 1cm, width=0.7\textwidth]{figures/pima/pregnantage.png}%
+}
+\end{center}
+
+\subsection{Breast} 
+
+Wisconsin Diagnostic Breast Cancer Dataset is a 9-dimensional dataset which contains measured attributes of 449 individuals, together with an indicator of whether or not they later developed breast cancer. Across the 10 folds generated, there were nine different kernel structures
+that the procedure returned, with seven out of the nine attributes utilised in these structures. The dimensions most frequently found were 1, 2, 4, 6 and 8. Most kernels returned represent some combination of these five base kernels. Dimension 5 features once, and dimension 7 
+three times. Interestingly, whenever $\SE_7$ was introduced, the accuracy increased far above the levels attained in the other kernels (ranging from 97\% to 100\%), but it was part of the final kernel in only three out of the ten folds evaluated. 
+
+Below, we show those components of the 10 final structures which represent 1 or 2-way interactions. $[1 \times 2 \times 6]$ features in three folds, as do some other high dimensional interactions, but we are still unable to visualise those. 
+
+The first six plots show individual components of the final kernel structures obtained using the structure search (not necessarily across the same fold). The final row shows dimensions 1 and 5 using a single $\SE$ kernel in the respective dimension. 
+
+
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/adhesion.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleicellsize.png}
+}
+\end{center}
+
+
+
+\begin{center}
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/chromatin.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/nucleoli.png}
+}
+\end{center}
+\begin{center}
+
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpbland.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clumpadhesion.png}
+}
+\end{center}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/clump.png}%
+\includegraphics[trim=2cm 0cm 1cm 1cm, width=0.7\textwidth]{figures/breast/cellsize.png}
+}
+\end{center}
+
+
+\subsection{Heart and Liver}
+
+These two data sets require dealing with representation of discretised data. Plots don't make much sense (yet). Adding jitter might alleviate these issues.  
+
+
+\clearpage
+
+\section{Automatic Report Synthesis}
+
+
+
+\begin{comment}
+
+\subsection{BMA/Cross-validated model for Model Selection}
+
+Choosing the most frequently occuring model structure, then optimising hyperparametees on each training fold and evaluating on the respective test fold gets the following figures:
+
+\subsection{Liver}
+
+Kernel chosen for this data set is: $ \SE_1 + \SE_3 \times \SE_4 \times \SE_5 + \SE_6 $, and the testing errors on the ten folds are: 
+
+\begin{table}[h]
+
+  \begin{tabular}{|c | c  | }
+      \hline
+      \multicolumn{2}{|c|}{Liver}  \\
+      \hline
+      Per-fold models & `Best' model \\  \hline
+23.53\%	& 23.53\% \\ 
+20.00\%	& 20.00\% \\
+37.14\%	& 37.14\% \\
+40.00\%	& \textbf{34.29\%} \\
+28.57\%	& 34.29\% \\
+26.47\%	& \textbf{23.53\%} \\
+23.53\%	& 26.47\% \\
+26.47\%	& 26.47\% \\
+25.71\%	& 25.71\% \\
+23.53\%	& \textbf{14.71\%} \\ \hline \hline
+27.50\%	& \textbf{26.61\%} \\
+
+      \hline 
+      \end{tabular}
+\end{table}
+
+   The average error is $26.61 \%$, which improves on the previous value of $27.5\%$, but falls short of using weighted model averaging. 
+
+For breast, picking $ [ 1 \times 2 \times 6 + 7 ] $ leads to the following performance, yielding an improvement of $0.9\%$ over the standard BIC light version. 
+
+\begin{table}[h]
+
+  \begin{tabular}{|c | }
+      \hline
+      \multicolumn{1}{|c|}{Breast}  \\
+      \hline
+       `Best' model \\  \hline
+2.27\% \\
+4.55\%\\
+11.11\%\\
+11.11\%\\
+2.27\%\\
+10.87\%\\
+0.00\%\\
+2.22\%\\
+4.35\%\\
+6.67\%\\
+
+      \hline 
+      \end{tabular}
+\end{table}
+
+\end{comment}
+
+
+   
+
+
+
+\clearpage
+
+
+\chapter{Evaluation} 
+
+In this section, we consider the results achieved by the structure discovery procedure predented in the previous section. We first provide a proof of concept for the procedure by showing that it is able to extract correct kernel structure from synthetic data generated using squared
+exponential kernels. We then proceed to demonstrate that the performance of the procedure on real world data sets is on par with other state of the art methods such as additive Gaussian Processes and Random Forests. Finally, we present the kernel decompositions on the real
+world data sets which can be used to uncover and visualise the underlying data patterns which dictate class membership of the data points. 
+
+\section{Experiments with Synthetic Data}
+
+To prove that the greedy structure search procedure is able to extract structure from data, the algorithm was first applied to data drawn from a single \gp{} prior. If the BIC guiding criterion indeed picked the correct 
+model based on marginal likeluihood, the procedure should be able to recover the original kernel used to generate the data. The amount of data available to the procedure, as well as the signal-to-noise ratio in the data were varied across experiments. 
+As we decrease the noise levels and add more data points, the structure search should get closer to the underlying truth, that is the original kernel used to generate the data.
+
+
+\begin{table}[h]
+
+\label{tbl:synthetic}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+
+\small 
+\begin{tabular}{|c |  c |  c | c | }
+\hline 
+{True Kernel} & { N } & { Kernel recovered (SNR = 1) } &  { Kernel recovered (SNR = 100) }  \\ \hline
+
+&100&  $\bm{[1]}$ &$\bm{[1]}$ \\
+$\bm{[1]} $ & 300& $\bm{[1]}$ &$\bm{[1]}$ \\
+\emph{3 dimensions}& 500& $\bm{[1]}$ &$\bm{[1]}$ \\ \hline
+
+
+&100& ${[2]}$ &${[2]}$ \\
+$\bm{{[2]} + {[2]} + {[2]}} $& 300& ${[2]}$ &${[2] + [2]}$ \\
+\emph{3 dimensions}& 500& ${[2]}$ &${[2]} + {[2]}$ \\ \hline
+
+
+ &100& $\bm{[2\times 3]} $ &$\bm{[2 \times 3]}$ \\
+$\bm{[2\times 3]} $& 300& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\
+\emph{3 dimensions}& 500& $\bm{[2\times 3]} $ &$\bm{[2\times 3]} $ \\ \hline
+
+
+&100& ${[1] + [4]}$ &$ { {[1]} + {[2]} + {[4]} }$ \\
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300& $ {[1 \times 4]} +  {[2\times 3]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{4 dimensions}& 500& ${ {[1 \times 4]} + {[2\times 3]} }$ &$ \bm{ {[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+
+
+&100& ${[1]} + {[4]}$ &${[1]} + {[2]}  + {[4]}$ \\
+$\bm{{[1]} + {[2\times 3]} + {[4]} }$ & 300& ${[1\times 4]} + {[2\times 3]} $  &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\
+\emph{10 dimensions}& 500& ${[1\times 4]} + {[2\times 3]} $ &$\bm{{[1]} + {[2\times 3]} + {[4]}}$ \\ \hline
+
+
+ &100& ${[4]} + {[5]}$ &$ {[1\times 9]} + {[4]} $ \\
+$\bm{{[1]} + {[2\times 3]}  + {[4]} + {[5\times 6]} } $ & 300& ${[1]} + {[2]} + {[4]} + {[5\times 6\times 7]} $  & ${[1]} + {[1\times5\times6]}  + {[2\times3]} + {[4]}$  \\
+\emph{10 dimensions}& 500& ${[1]} + {[1\times 4]} + {[2\times 3]} + {[5\times 6]} $  &${[1]} + {[1\times4\times5\times6]} + {[2\times3]} + {[4]}$  \\ \hline
+
+
+&100& ${{[4\times7]}} $ & $\bm{{[3 \times 5 \times 7]}}$ \\
+$\bm{{[3\times5\times7]}} $ & 300& ${{[2 \times  3 \times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\
+\emph{10 dimensions}& 500& ${{[2 \times 3\times5\times7]}}$ &$\bm{{[3\times5\times7]}}$ \\ \hline
+
+
+ &100& ${[1\times3]} + {[10]}$  &${[1\times10]} $ \\
+$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300& ${[1]} + {[10]} $ &${[1]} + {[1\times10]} + {[3\times5\times7]}$  \\
+\emph{10 dimensions}& 500& ${[1]} + {[10]}$ &$\bm{{[1]} + {[3\times5\times7]} + {[10]}}$  \\ \hline
+
+
+&100& ${[3 \times 7]}$ &${[1]} + {[7\times9]}$ \\
+$\bm{{[3\times5\times7\times9]}} $ & 300& ${[7\times9]}$ &$\bm{{[3\times5\times7\times9]}}$ \\
+\emph{10 dimensions}& 500& $\bm{{[3\times5\times7\times9]}}$ &$\bm{{[3\times5\times7\times9]}}$ \\ \hline
+
+
+ &100& ${[9 + 10]}$ &${[10]} $ \\
+$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300& ${[1]} + {[10]}$  &${[1 \times 5] + [7] + [10]}$ \\
+\emph{10 dimensions} & 500& ${[1]} + {[3\times5\times9]} + {[10]}$  & $\bm{{[1]} + {[3\times5\times7\times9]} + {[10]}}$  \\
+ 
+\hline
+\end{tabular}
+}     
+
+ \end{center}
+
+\end{table}
+
+Kernel optimal rates give a bound on the performance of the structure search: on average, the search is (by design) unable to construct kernels that are better than the one used to generate the data. 
+The Bayes optimal rates give a theoretical limit on what any model could achieve, as they compare the actual function (y values before adding noise) to the data after the noise is added. Kernel rate should always be below the Bayes rate...
+
+\begin{table}[h]
+
+\label{tbl:synthetic2}
+\begin{center}
+
+\makebox[(\textwidth) ]{
+
+\small 
+\begin{tabular}{|c |  c | c | r c  | c | c c | }
+\hline
+\multicolumn{2}{|c|}{  } & \multicolumn{3}{c|}{ SNR = 1 }  &  \multicolumn{3}{c|}{ SNR = 100 }   \\ \hline
+{True Kernel} & { N } & Test Accuracy & Kernel &  Function & Test Accuracy & Kernel & Function \\ \hline
+
+&100& \textbf{81.0\%} &  80.0\% & & \textbf{98.0}\% & 97.0\% &  \\
+ $\bm{[1]} $ & 300& \textbf{82.7}\% & 82.0\% & 83.6\%  & \textbf{99.3\%} & 98.7\%  &  99.0\%   \\
+\emph{3 dimensions}& 500 &   83.6\% & 83.8\% &  &  \textbf{98.4\%} & 98.4\% & \\ \hline
+
+
+&100&   74.0\% & 	75.0\% & & 	\textbf{98.0\%} & 	98.0\% & \\ 
+$\bm{{[2]} + {[2]} + {[2]}} $ & 300 &   \textbf{77.3\%} & 	77.0\% & 78.2\%	  &	\textbf{98.7\%} &  {98.7\%} & 98.8 \% \\
+\emph{3 dimensions}& 500 &  \textbf{78.2\%} & 	78.2\% & &	\textbf{98.6\%} & 	98.6\% & \\   \hline
+
+
+ &100 & 67.0\% & 68.0\% & 	& \textbf{89.0\%}  & 89.0\% & \\ 
+$\bm{[2\times 3]} $& 300 & 69.7\% & 70.3\% & 74.8\%	& \textbf{94.7\%}  & 91.3\% & 98.0 \% \\ 
+\emph{3 dimensions}& 500 & 71.4\% & 72.6\% & 	& \textbf{95.8\%}  & 93.4\% & \\  \hline
+
+
+&100&  71.0\% & 80.0\% & & 82.0\% & 87.0\% & \\ 
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300 & 73.0\% & 76.3\% & 76.4\% & \textbf{94.7\%} & 91.7\% & 97.4\% \\ 
+\emph{3 dimensions}& 500 & 73.4\% & 74.8\% & & \textbf{94.2\%} & 91.8\% & \\  \hline
+
+&100&  71.0\% & 80.0\% & & 82.0\% & 87.0\% & \\ 
+$ \bm { {[1]} + {[2\times 3]} + {[4]} } $ & 300 & 73.0\% & 76.3\% & 76.4\% & \textbf{94.7\%} & 91.7\% & 97.4\% \\ 
+\emph{10 dimensions}& 500 & 73.4\% & 74.8\% & & \textbf{94.2\%} & 91.8\% & \\  \hline
+
+
+ &100 & \textbf{61.0\%} & 	60.0\% & 	 &  70.0\% & 	84.0\% & \\ 
+$\bm{{[1]} + {[2\times 3]} + {[4]} + {[5\times 6]}  } $ & 300 & 67.7\% & 	70.7\% &  76.6\% &  91.0\% & 	92.3\% & 97.2\% \\ 
+\emph{10 dimensions}& 500 & \textbf{73.4\%} & 	73.0\% & 	 &  \textbf{94.0\%} & 	92.0\% &  \\  \hline
+
+
+%&100 & 68.0\% & 67.0\% & 79.0\% & 84.0\% \\ 
+%$\bm{{[3\times5\times7]}} $ & 300 & 66.0\% & 	67.7\% & 89.0\% & 89.7\% \\ 
+%\emph{10 dimensions}& 500 & 71.8\% & 69.4\%  & 91.4\% & 91.0\% \\  \hline
+&100 &  53.0\% & 64.0\% & & \textbf{87.0\%} & 83.0\% &  \\ 
+$\bm{{[3\times5\times7]}} $ & 300 & 69.3\% & 71.0\% & 79.0\% & \textbf{92.7\%} & 89.0\% & 98.4\%  \\ 
+\emph{10 dimensions}& 500 & {73.2\%} & 73.6\% & & \textbf{93.6\%} & 91.6\% &  \\    \hline
+
+
+ &100 & \textbf{71.0\%}  & 70.0\% & 	& 87.0\% & 92.0\% & \\  
+$\bm{{[1]} + {[3\times5\times7]}  +  {[10]}} $ & 300 & \textbf{73.0\%}  & 71.3\% & 75.0\% & \textbf{94.3\%} & 94.3\% & 97.6\% \\ 
+\emph{10 dimensions}& 500 &  70.0\%  & 72.2\% & 	& \textbf{93.8\%} & 92.8\% & \\ \hline
+
+
+&100 & 57.0\% & 59.0\% &  &	65.0\% & 77.0\% & \\ 
+$\bm{{[3\times5\times7\times9]}} $ & 300 & 59.3\% & 70.3\% & 77.0\% &    \textbf{83.7\%} & 82.7\% & 97.0 \% \\ 
+\emph{10 dimensions}& 500 & \textbf{71.0\%} & 	69.0\% & & \textbf{85.6\%} & 82.6\% & \\   \hline
+
+
+ &100 & 68.0\% & 74.0\% &  & 77.0\% & 	81.0\% &  \\ 
+$\bm{ {[1]} + {[3\times 5\times 7\times 9]}  + {[10]} }$  & 300 & 70.7\% & 73.3\% & 78.2\% & 81.7\% & 89.0\% &  96.8\% \\ 
+\emph{10 dimensions} & 500 & 72.0\% & 72.4\% &  & \textbf{90.6\%} & 	89.8\% &  \\ 
+ 
+\hline
+\end{tabular}
+}     
+
+ \end{center}
+
+\end{table}
+
+
+\subsection{Adding Salt and Pepper Noise}
+
+We validated our method's ability to recover known structure on a set of synthetic datasets.
+For several composite kernel expressions, we constructed synthetic data by first sampling 100, 300 and 500 points uniformly at random, then sampling function values at those points from a \gp{} prior.
+We then added \iid Gaussian noise to the functions, at various signal-to-noise ratios (SNR), as well as different amounts of salt and pepper noise (random outliers in the data set). 
+
+Table \ref{tbl:synthetic1}  lists the true kernels we used to generate the data.  Subscripts indicate which dimension each kernel was applied to.  Subsequent columns show the dimensionality $D$ of the input space, and the kernels chosen by our search for different SNRs and different amounts of added salt and pepper noise. 
+We also show the kernel optimal rates (the accuracy the kernel used to generate the data achieves on the noisy test set) and the function optimal rates (the rate a classifier which knew the \emph{exact} funtion used to generate the data achieves on the noisy test data set). 
+
+
+
+\begin{table}[h]
+
+\caption{{ True kernel: $ \SE_1 + \SE_2 + \SE_3$, $D$ = 3.           }}
+
+\label{tbl:synthetic1}
+
+
+\begin{center}
+{\small
+\makebox[\textwidth]{
+
+
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+
+\hline
+100& 100& 0\% & ${1} + {1} \times {3} + {2}$ &87.0\% & 91.0\% & 97.4\%   \\ 
+300& 100& 0\% & ${1} + {2} + {3}$ &94.0\% & 95.7\% & 97.4\%    \\
+500& 100& 0\% & ${1} + {2} + {3}$ &95.8\% & 95.4\% & 97.4\%  \\  \hline
+100& 100& 5\% & ${1} + {2} + {3}$ &77.0\% & 80.0\% & 91.6\%    \\
+300& 100& 5\% & ${1} \times {3} + {2}$ &87.0\% & 85.7\% & 91.6\%  \\    
+500& 100& 5\% & ${1} \times {2} \times {3}$ &89.8\% & 89.8\% & 91.6\%   \\  \hline
+100& 100& 20\% & ${1} \times {3}$ &69.0\% & 69.0\% & 82.0\%    \\
+300& 100& 20\% & ${1} \times {3} + {2}$ &75.3\% & 73.0\% & 82.0\%    \\
+500& 100& 20\% & ${1} \times {3} + {2}$ &77.6\% & 74.0\% & 82.0\%   \\ \hline
+100& 1& 0\% & ${1} + {3}$ &64.0\% & 72.0\% & 77.4\%    \\
+300& 1& 0\% & ${1} + {3}$ &74.3\% & 75.0\% & 77.4\%    \\
+500& 1& 0\% & ${1} + {3}$ &75.6\% & 76.6\% & 77.4\%  \\  \hline
+100& 1& 5\% & ${1} + {3}$ &63.0\% & 63.0\% & 74.4\%    \\
+300& 1& 5\% & ${1} \times {3}$ &70.7\% & 68.3\% &  74.4\%    \\
+500& 1& 5\% & ${1} \times {3}$ &72.6\% & 72.6\% & 74.4\%  \\  \hline
+100& 1& 20\% & ${1} \times {3}$ &53.0\% & 60.0\% & 68.8\%    \\
+300& 1& 20\% & ${1} \times {3}$ &65.3\% & 65.3\% & 68.8\%    \\
+500& 1& 20\% & ${1} \times {3}$ &66.2\% & 67.8\% & 68.8\%   \\
+\hline
+
+\end{tabular}
+} }
+\end{center}
+
+
+\end{table}
+
+
+
+
+\begin{table*}[h]
+\caption{{ True kernel: $ \SE_1 + \SE_2 \times \SE_3 + \SE_4$,  $D$ = 4.           }}
+ 
+
+\label{tbl:synthetic2}
+\begin{center}
+{\small
+\makebox[\textwidth]{
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+
+\hline
+100& 100& 0\% & ${1} + {2} \times {3} + {4}$ &87.0\% & 92.0\% & 97.4\%    \\
+300& 100& 0\% & ${1} + {2} \times {3} + {4}$ &94.0\% & 94.7\% & 97.4\%    \\
+500& 100& 0\% & ${1} + {2} \times {3} + {4}$ &95.6\% & 96.2\% & 97.4\%    \\  \hline
+100& 100& 5\% & ${1} + {2}$ &81.0\% & 76.0\% & 92.0\%    \\
+300& 100& 5\% & ${1} + {2} + {3} \times {4}$ &85.7\% & 84.0\% & 92.0\%     \\
+500& 100& 5\% & ${1} \times {4} + {2} \times {3} + {3}$ &87.6\% & 88.6\% & 92.0\%  \\  \hline
+100& 100& 20\% & ${2} \times {4}$ &67.0\% & 67.0\% & 82.0\%    \\
+300& 100& 20\% & ${2} \times {3} + {4}$ &76.0\% & 73.7\% & 82.0\%    \\
+500& 100& 20\% & ${2} + {3} \times {4}$ &77.0\% & 79.8\% & 82.0\%   \\ \hline
+100& 1& 0\% & ${2}$ &68.0\% & 67.0\% & 76.0\%    \\
+300& 1& 0\% & ${1} + {2} \times {3}$ &72.3\% & 70.3\% & 76.0\%    \\
+500& 1& 0\% & ${1} + {2} \times {3}$ &72.2\% & 73.2\% & 76.0\%  \\  \hline
+100& 1& 5\% & ${2}$ &67.0\% & 58.0\% & 72.2\%    \\
+300& 1& 5\% & ${1} \times {2}$ &71.0\% & 64.3\% & 72.2\%    \\
+500& 1& 5\% & ${1} \times {2} \times {3}$ &70.6\% & 68.0\% & 72.2\%  \\  \hline
+100& 1& 20\% & ${2}$ &59.0\% & 61.0\% & 69.0\%    \\
+300& 1& 20\% & ${2} \times {3} \times {4}$ &65.3\% & 62.3\% & 69.0\%    \\
+500& 1& 20\% & ${2} \times {3} \times {4}$ &64.8\% & 64.8\% & 69.0\%    \\
+
+\hline
+\end{tabular}
+} }
+\end{center}
+\end{table*}
+
+
+\begin{table*}[h]
+\caption{{True kernel: $ \SE_1 + \SE_3 \times \SE_7 + \SE_{10}$,  $D$ = 10.  }} 
+
+\label{tbl:synthetic3}
+\begin{center}
+{\small
+
+\makebox[\textwidth]{
+
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+
+\hline
+100& 100& 0\% & ${1} \times {9} + {10}$ &61.0\% & 88.0\% & 96.0\%    \\
+300& 100& 0\% & ${1} + {1} \times {10} + {3} \times {7}$ &92.0\% & 92.7\% & 96.0\%    \\
+500& 100& 0\% & ${1} + {1} \times {3} \times {7} \times {10} + {10}$ &94.2\% & 94.6\% & 96.0\%   \\ \hline
+100& 100& 5\% & ${1} \times {9} + {10}$ &53.0\% & 71.0\% & 91.8\%    \\
+300& 100& 5\% & ${1} + {3} \times {7} + {6} \times {10}$ &82.0\% & 81.3\% & 91.8\%    \\
+500& 100& 5\% & ${1} \times {3} \times {7} \times {10} + {10}$ &85.0\% & 86.2\% & 91.8\%   \\ \hline
+100& 100& 20\% & ${1}$ &49.0\% & 64.0\% & 79.8\%    \\
+300& 100& 20\% & ${1} + {10}$ &60.0\% & 70.0\% & 79.8\%    \\
+500& 100& 20\% & ${1} \times {3} \times {7} \times {10}$ &74.2\% & 75.2\% & 79.8\%   \\ \hline
+100& 1& 0\% & ${10}$ &59.0\% & 70.0\% & 74.4\%    \\
+300& 1& 0\% & ${1} \times {3} \times {7} \times {10} + {10}$ &71.3\% & 72.7\% & 74.4\%    \\
+500& 1& 0\% & ${1} \times {10} + {3} \times {7} + {9}$ & 72.0\% & 71.4\% & 74.4\%   \\ \hline
+100& 1& 5\% & ${10}$ &55.0\% & 66.0\% & 71.4\%    \\
+300& 1& 5\% & ${1} \times {10}$ &58.7\% & 68.7\% & 71.4\%    \\
+500& 1& 5\% & ${1} + {10}$ &60.6\% & 69.4\% & 71.4\%  \\  \hline
+100& 1& 20\% & ${3}$ &55.0\% & 56.0\% & 65.4\%    \\
+300& 1& 20\% & ${10}$ &58.0\% & 61.7\% & 65.4\%    \\
+500& 1& 20\% & ${1} \times {10}$ &58.2\% & 62.0\% & 65.4\%    \\
+ 
+
+\hline
+\end{tabular}
+} }
+\end{center}
+\end{table*}
+
+
+
+
+ 
+ 
+ \begin{table*}[h]
+\caption{{ True kernel: $\SE_1 + \SE_3 \times \SE_5 \times \SE_7 + \SE_{9}$,  $D$ = 10. }} 
+
+\label{tbl:synthetic4}
+\begin{center}
+{\small
+
+\makebox[\textwidth]{%
+
+\begin{tabular}{|c c  c | c |  c | c c| }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate \\
+\hline
+
+
+100& 100& 0\% & ${3} \times {5} \times {7}$ &85.0\% & 86.0\% & 97.0\%    \\
+300& 100& 0\% & ${3} \times {5} \times {7} + {9}$ &93.7\% & 93.0\% & 97.0\%    \\
+500& 100& 0\% & ${3} \times {5} \times {7}$ &91.4\% & 92.2\% & 97.0\%   \\ \hline
+100& 100& 5\% & ${3} \times {5} \times {7}$ &78.0\% & 76.0\% & 91.6\%    \\
+300& 100& 5\% & ${3} \times {5} \times {7}$ &84.0\% & 83.7\% & 91.6\%    \\
+500& 100& 5\% & ${3} \times {5} \times {7}$ &86.2\% & 83.6\% & 91.6\%   \\ \hline
+100& 100& 20\% & ${8}$ &49.0\% & 59.0\% & 82.0\%    \\
+300& 100& 20\% & ${3} \times {5} \times {7}$ &68.3\% & 66.0\% & 82.0\%    \\
+500& 100& 20\% & ${3} \times {5} \times {7}$ &72.2\% & 66.0\% & 82.0\%  \\  \hline
+100& 1& 0\% & ${1} \times {3} \times {4} \times {5} + {7}$ &59.0\% & 66.0\% & 74.2\%    \\
+300& 1& 0\% & ${3} \times {5} \times {7} + {9}$ &71.7\% & 72.7\% & 74.2\%    \\
+500& 1& 0\% & ${1} + {3} \times {5} \times {7}$ &73.0\% & 70.6\% & 74.2\% \\   \hline
+100& 1& 5\% & ${1} \times {3} \times {4} \times {5} + {7}$ &55.0\% & 62.0\% & 70.8\%    \\
+300& 1& 5\% & ${3} \times {5} \times {7}$ &64.3\% & 68.7\% & 70.8\%    \\
+500& 1& 5\% & ${3} \times {5} \times {7}$ &70.4\% & 67.4\% & 70.8\%   \\ \hline
+100& 1& 20\% & ${3} \times {5} \times {9}$ &52.0\% & 64.0\% & 66.4\%    \\
+300& 1& 20\% & ${3} \times {7} \times {8}$ &55.7\% & 61.7\% & 66.4\%    \\
+500& 1& 20\% & ${3} \times {7}$ &56.4\% & 62.6\% & 66.4\%    \\
+
+
+\hline
+\end{tabular}
+} }
+\end{center}
+\end{table*}
+ 
+ 
+ \subsection{Saturating Likelihood Function Performance}
+ 
+ In the previous chapter, we discussed the use of a mixture of likelihoods that would be better equipped to handle outliers in the data, modelled in this case as the \emph{salt and pepper} noise. In this section, we analyse the performance of the mixture of the 
+ error function and the uniform likelihood function on synthetic data. 
+ 
+ The use of this likelihood function introduces one new hyperparameter, hyp.lik, which gives us the rates of the two likelihood functions in the mixture. As there are only two likelihood function, we've in fact introduced only one new effective hyperparameter. If the structure
+ search using this likelihood function has potential with helping us deal with outliers, it should be able to estimate the levels of the salt and pepper noise in the synthetic data sets.
+ 
+ TODO: insert tables which represent the performance of the likMix model.
+ 
+
+ 
+
+\begin{table}[h]
+
+\caption{{ True kernel: $ \SE_1 + \SE_2 + \SE_3$, $D$ = 3.           }}
+
+\label{tbl:synthetic1}
+
+
+\begin{center}
+{\small
+\makebox[\textwidth]{
+
+
+\begin{tabular}{|c c  c | c |  c | c c| c | }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate & Noise ratio \\
+
+\hline
+100& 	100& 	0\% & 	${1} \times {3}$ &	92.0\% & 	91.0\% & 	97.4\%    	 &  0.0\%  \\ 
+300& 	100& 	0\% & 	${1} + {2} + {3}$ &	94.0\% & 	95.7\% & 	97.4\%    	 &  0.0\%  \\ 
+500& 	100& 	0\% & 	${1} \times {3} + {2} + {3}$ &	94.8\% & 	95.4\% & 	97.4\%    	 &  0.0\%  \\  \hline
+100& 	100& 	5\% & 	${1} + {3}$ &	80.0\% & 	79.0\% & 	91.6\%    	 &  0.0\%  \\ 
+300& 	100& 	5\% & 	${1} + {1} \times {3} + {2}$ &	87.0\% & 	89.3\% & 	91.6\%    	 &  11.8\%  \\ 
+500& 	100& 	5\% & 	${1} \times {3} + {2} + {2} \times {2}$ &	89.2\% & 	90.6\% & 	91.6\%    	 &  13.9\%  \\  \hline
+100& 	100& 	20\% & 	${1} \times {3}$ &	69.0\% & 	64.0\% & 	82.0\%    	 &  0.0\%  \\ 
+300& 	100& 	20\% & 	${1} \times {3}$ &	75.0\% & 	74.7\% & 	82.0\%    	 &  32.2\%  \\ 
+500& 	100& 	20\% & 	${1} \times {3} + {2}$ &	77.2\% & 	75.0\% & 	82.0\%    	 &  33.3\%  \\   \hline
+100& 	1& 	0\% & 	${1} + {3}$ &	64.0\% & 	71.0\% & 	77.4\%    	 &  0.0\%  \\ 
+300& 	1& 	0\% & 	${1} + {3}$ &	74.0\% & 	73.7\% & 	77.4\%    	 &  5.3\%  \\ 
+500& 	1& 	0\% & 	${1} + {3}$ &	76.0\% & 	76.4\% & 	77.4\%    	 &  0.0\%  \\  \hline
+100& 	1& 	5\% & 	${1} + {3}$ &	63.0\% & 	63.0\% & 	74.4\%    	 &  0.0\%  \\ 
+300& 	1& 	5\% & 	${1} + {3}$ &	72.0\% & 	71.0\% & 	74.4\%    	 &  12.9\%  \\ 
+500& 	1& 	5\% & 	${1} \times {3}$ &	72.6\% & 	73.2\% & 	74.4\%    	 &  0.0\%  \\  \hline
+100& 	1& 	20\% & 	${1} \times {3}$ &	53.0\% & 	61.0\% & 	68.8\%    	 &  0.0\%  \\ 
+300& 	1& 	20\% & 	${1} \times {3}$ &	65.3\% & 	65.7\% & 	68.8\%    	 &  0.1\%  \\ 
+500& 	1& 	20\% & 	${1} \times {3}$ &	68.0\% & 	67.6\% & 	68.8\%    	 &  0.3\%  \\ 
+
+\hline
+
+\end{tabular}
+} }
+\end{center}
+
+
+\end{table}
+
+
+\begin{table}[h]
+
+\caption{{ True kernel: $ \SE_1 + \SE_2 \times \SE_3 + \SE_4$,  $D$ = 4.          }}
+
+\label{tbl:synthetic1}
+
+
+\begin{center}
+{\small
+\makebox[\textwidth]{
+
+
+\begin{tabular}{|c c  c | c |  c | c c| c | }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate & Noise ratio \\
+
+\hline
+100& 	100& 	0\% & 	${1} + {2} \times {3} + {4}$ &	87.0\% & 	92.0\% & 	97.4\%    	 &  0.0\%  \\ 
+300& 	100& 	0\% & 	${1} + {2} \times {3} + {4}$ &	94.0\% & 	94.7\% & 	97.4\%    	 &  0.0\%  \\ 
+500& 	100& 	0\% & 	${1} + {2} \times {3} + {4}$ &	95.4\% & 	96.2\% & 	97.4\%    	 &  0.0\%  \\ \hline
+100& 	100& 	5\% & 	${1} \times {2} + {2}$ &	81.0\% & 	78.0\% & 	92.0\%    	 &  0.0\%  \\ 
+300& 	100& 	5\% & 	${1} + {2} \times {3} + {4}$ &	87.3\% & 	88.3\% & 	92.0\%    	 &  9.9\%  \\ 
+500& 	100& 	5\% & 	${1} + {2} \times {3} + {3} + {4}$ &	90.2\% & 	89.6\% & 	92.0\%    	 &  12.8\%  \\ \hline
+100& 	100& 	20\% & 	${1} \times {4} + {2}$ &	64.0\% & 	65.0\% & 	82.0\%    	 &  18.8\%  \\ 
+300& 	100& 	20\% & 	${2} \times {3} + {4}$ &	75.7\% & 	74.3\% & 	82.0\%    	 &  9.4\%  \\ 
+500& 	100& 	20\% & 	${1} \times {3} + {2} + {4}$ &	77.0\% & 	78.8\% & 	82.0\%    	 &  30.5\%  \\ \hline
+100& 	1& 	0\% & 	${2}$ &	69.0\% & 	65.0\% & 	76.0\%    	 &  54.4\%  \\ 
+300& 	1& 	0\% & 	${1} + {2} \times {3}$ &	72.3\% & 	73.0\% & 	76.0\%    	 &  0.0\%  \\ 
+500& 	1& 	0\% & 	${1} + {2} \times {3} + {4}$ &	72.2\% & 	73.2\% & 	76.0\%    	 &  0.0\%  \\ \hline
+100& 	1& 	5\% & 	${2}$ &	67.0\% & 	58.0\% & 	72.2\%    	 &  43.1\%  \\ 
+300& 	1& 	5\% & 	${1} \times {2}$ &	71.0\% & 	65.0\% & 	72.2\%    	 &  2.6\%  \\ 
+500& 	1& 	5\% & 	${1} \times {2} + {3}$ &	70.2\% & 	68.8\% & 	72.2\%    	 &  29.0\%  \\ \hline
+100& 	1& 	20\% & 	${2}$ &	59.0\% & 	63.0\% & 	69.0\%    	 &  40.6\%  \\ 
+300& 	1& 	20\% & 	${2}$ &	63.3\% & 	60.7\% & 	69.0\%    	 &  51.3\%  \\ 
+500& 	1& 	20\% & 	${2} \times {3}$ &	63.4\% & 	64.2\% & 	69.0\%    	 &  57.6\%  \\ 
+
+\hline
+
+\end{tabular}
+} }
+\end{center}
+
+
+\end{table}
+
+
+\begin{table}[h]
+
+\caption{{ True kernel: $ \SE_1 + \SE_3 \times \SE_7 + \SE_{10}$,  $D$ = 10.         }}
+
+\label{tbl:synthetic1}
+
+
+\begin{center}
+{\small
+\makebox[\textwidth]{
+
+
+\begin{tabular}{|c c  c | c |  c | c c| c | }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate & Noise ratio \\
+
+\hline
+
+100& 	100& 	0\% & 	${10}$ &	62.0\% & 	88.0\% & 	96.0\%    	 &  20.4\%  \\ 
+300& 	100& 	0\% & 	${1} + {3} \times {7} + {10}$ &	92.0\% & 	93.0\% & 	96.0\%    	 &  0.0\%  \\ 
+500& 	100& 	0\% & 	${1} \times {7} \times {10}$ &	75.0\% & 	94.6\% & 	96.0\%    	 &  5.4\%  \\ \hline
+100& 	100& 	5\% & 	${1} \times {9} + {10}$ &	53.0\% & 	75.0\% & 	91.8\%    	 &  0.0\%  \\ 
+300& 	100& 	5\% & 	${1} + {3} \times {7} + {10}$ &	84.7\% & 	86.7\% & 	91.8\%    	 &  7.0\%  \\ 
+500& 	100& 	5\% & 	${1} \times {10} + {3} \times {7}$ &	87.8\% & 	89.2\% & 	91.8\%    	 &  11.3\%  \\ \hline
+100& 	100& 	20\% & 	${1}$ &	50.0\% & 	64.0\% & 	79.8\%    	 &  49.5\%  \\ 
+300& 	100& 	20\% & 	${1} + {10}$ &	58.3\% & 	72.7\% & 	79.8\%    	 &  55.1\%  \\ 
+500& 	100& 	20\% & 	${1} + {3} \times {7} + {10}$ &	77.2\% & 	77.4\% & 	79.8\%    	 &  28.2\%  \\ \hline
+100& 	1& 	0\% & 	${10}$ &	58.0\% & 	73.0\% & 	74.4\%    	 &  6.9\%  \\ 
+300& 	1& 	0\% & 	${1} \times {3} \times {7} \times {10} + {10}$ &	71.3\% & 	72.7\% & 	74.4\%    	 &  0.0\%  \\ 
+500& 	1& 	0\% & 	${6}$ &	48.2\% & 	72.4\% & 	74.4\%    	 &  90.3\%  \\ \hline
+100& 	1& 	5\% & 	${10}$ &	55.0\% & 	67.0\% & 	71.4\%    	 &  1.4\%  \\ 
+300& 	1& 	5\% & 	${1} \times {10}$ &	58.7\% & 	69.0\% & 	71.4\%    	 &  0.0\%  \\ 
+500& 	1& 	5\% & 	${10}$ &	57.2\% & 	70.4\% & 	71.4\%    	 &  74.2\%  \\ \hline
+100& 	1& 	20\% & 	${10}$ &	62.0\% & 	57.0\% & 	65.4\%    	 &  53.0\%  \\ 
+300& 	1& 	20\% & 	${10}$ &	58.0\% & 	62.7\% & 	65.4\%    	 &  0.2\%  \\ 
+500& 	1& 	20\% & 	${10}$ &	58.8\% & 	62.8\% & 	65.4\%    	 &  0.1\%  \\ 
+
+\hline
+
+\end{tabular}
+} }
+\end{center}
+
+\end{table}
+
+
+
+\begin{table}[h]
+
+\caption{{ True kernel: $\SE_1 + \SE_3 \times \SE_5 \times \SE_7 + \SE_{9}$,  $D$ = 10.     }}
+
+\label{tbl:synthetic1}
+
+
+\begin{center}
+{\small
+\makebox[\textwidth]{
+
+
+\begin{tabular}{|c c  c | c |  c | c c| c | }
+\hline Data size & SNR & sp\_noise &  Kernel chosen & Test accuracy & Kernel rate & Bayes rate & Noise ratio \\
+
+\hline
+
+100& 	100& 	0\% & 	${3} \times {5} \times {7}$ &	85.0\% & 	86.0\% & 	97.0\%    	 &  0.0\%  \\ 
+300& 	100& 	0\% & 	${3} \times {5} \times {7} + {9}$ &	93.3\% & 	93.0\% & 	97.0\%    	 &  0.0\%  \\ 
+500& 	100& 	0\% & 	${3} \times {5} \times {7} + {5}$ &	92.2\% & 	92.2\% & 	97.0\%    	 &  0.0\%  \\  \hline
+100& 	100& 	5\% & 	${3} \times {5} \times {7}$ &	78.0\% & 	77.0\% & 	91.6\%    	 &  0.0\%  \\ 
+300& 	100& 	5\% & 	${3} \times {5} \times {7}$ &	84.0\% & 	83.7\% & 	91.6\%    	 &  0.0\%  \\ 
+500& 	100& 	5\% & 	${3} \times {5} \times {7} + {5} + {10}$ &	85.6\% & 	84.0\% & 	91.6\%    	 &  6.2\%  \\  \hline
+100& 	100& 	20\% & 	${9}$ &	45.0\% & 	59.0\% & 	82.0\%    	 &  0.0\%  \\ 
+300& 	100& 	20\% & 	${6}$ &	46.3\% & 	65.3\% & 	82.0\%    	 &  77.2\%  \\ 
+500& 	100& 	20\% & 	${3} \times {5} \times {7}$ &	72.2\% & 	66.6\% & 	82.0\%    	 &  0.0\%  \\  \hline
+100& 	1& 	0\% & 	${1} \times {3} \times {4} \times {5} + {7}$ &	59.0\% & 	66.0\% & 	74.2\%    	 &  0.0\%  \\ 
+300& 	1& 	0\% & 	${1} + {10}$ &	50.3\% & 	72.7\% & 	74.2\%    	 &  93.8\%  \\ 
+500& 	1& 	0\% & 	${3} \times {5} \times {7}$ &	72.2\% & 	71.0\% & 	74.2\%    	 &  0.0\%  \\ \hline
+100& 	1& 	5\% & 	${1} \times {3} \times {4} \times {5} + {7}$ &	55.0\% & 	62.0\% & 	70.8\%    	 &  0.0\%  \\ 
+300& 	1& 	5\% & 	${4}$ &	47.0\% & 	68.7\% & 	70.8\%    	 &  98.4\%  \\ 
+500& 	1& 	5\% & 	${2}$ &	48.4\% & 	67.2\% & 	70.8\%    	 &  84.5\%  \\ \hline
+100& 	1& 	20\% & 	${2} \times {3} \times {5}$ &	60.0\% & 	64.0\% & 	66.4\%    	 &  0.0\%  \\ 
+300& 	1& 	20\% & 	${3} \times {7} \times {8}$ &	55.7\% & 	59.0\% & 	66.4\%    	 &  0.0\%  \\ 
+500& 	1& 	20\% & 	${7}$ &	55.6\% & 	60.8\% & 	66.4\%    	 &  0.0\%  \\ 
+
+
+\hline
+
+\end{tabular}
+} }
+\end{center}
+
+
+\end{table}
+
+
+
+
+
+
+ 
+ 
+ \clearpage
+
+
+
+\section{Experiments on Real World Data Sets}
+
+In this section, we compare the performance of models constructed using our algorithm with related methods and show that the performance of our structurally simpler models is on par with more complicated models such as additive \gp{}s \cite{duvenaud2011additive11} and Hierarchical Kernel Learning. 
+We also compare the performance of structure search using different information criteria (BIC, AIC, BIClight), as well as the search guided by cross-validated test accuracy. We also show the performance of the kernel using a likelihood mixture to account for outliers. 
+
+The table below contains the mean classication error across 10 train-test splits between different methods. The best performing model is shown in bold, together with all other models that were not significantly different from it, according to the paired t-test for statistical significance. In
+addition to the structure search, we show the performance of the random forest method, which constructs 1000 decision trees using the training data and then uses the mode of the classifications produced by these trees to label the test set data. This method was intended to be a \emph{ceiling}
+performance for our methods, as its focus is just predictive performance: it does not contribute to interpretability or our understanding of the data set considered. 
+
+
+\begin{table}[h!]
+\caption{{\small
+Classification Percent Error
+}}
+\label{tbl:Classification Percent Error}
+\begin{center}
+\begin{tabular}{| l | r r r r | }
+
+\hline Method & \rotatebox{0}{ breast }  & \rotatebox{0}{ pima }  & \rotatebox{0}{ liver }  & \rotatebox{0}{ heart }  \\ \hline
+Logistic Regression & $7.611$ & $24.392$  & $45.060$ & \emph{ \textbf{{16.082}}} \\
+GP GAM & \emph{\textbf{5.189}} & \emph{\textbf{22.419}}  & \emph{ \textbf{29.842}} & \emph{\textbf{16.839}} \\
+HKL & \emph{ \textbf{5.377}} & $24.261$  & \emph{ \textbf{27.270}} & \emph{ \textbf{18.975}} \\
+GP Squared-exp & \emph{ \textbf{4.734}} & \emph{ \textbf{23.722}}  & \emph{ \textbf{31.237}} & \emph{ \textbf{20.642}} \\
+GP Additive & \emph{ \textbf{5.566}} & \emph{ \textbf{23.076}}  & \emph{ \textbf{30.060}} & \emph{ \textbf{18.496}} \\ \hline \hline
+GPSS (AIC) & ${ 6.430 }$ & $\mathbf{22.529}$  & $ {28.924}$ & $ 19.860 $ \\
+GPSS (BIC) & $ { 5.980 }$ & ${23.440}$  & $ {37.010}$ & $ \mathbf{18.150} $ \\
+GPSS (BIC light) & $ { 6.430 }$ & $\mathbf{ 22.270 }$  & $ \mathbf{27.500} $ & $ \mathbf{17.820} $ \\
+GPSS (likMix) & $ \mathbf{ 11.240 }$ & $\mathbf{ 23.180 }$  & $ \mathbf{28.370} $ & $ \mathbf{16.460} $ \\
+GPSS (crossValGuide) & $ \mathbf{ 5.090 }$ & ${ 23.700  }$  &  -  & $ \mathbf{17.160} $ \\ \hline
+Random Forest & $ \mathbf{4.220} $ &  $ \mathbf{23.440} $ & $ \mathbf{24.030} $ &  $ \mathbf{17.130} $ \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+
+\clearpage
+
+\chapter{Summary and Conclusions} 
+
+%As you might imagine: summarizes the dissertation, and draws any conclusions. Depending on the length of your work, and how well you write, you may not need a summary here. 
+%You will generally want to draw some conclusions, and point to potential future work. 
+
+\section{Further Work}
+
+\clearpage
+
+
+\appendix
+\singlespacing
+
+\bibliographystyle{unsrt} 
+\bibliography{refs} 
+
+\end{document}

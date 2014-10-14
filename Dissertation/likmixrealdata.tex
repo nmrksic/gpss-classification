@@ -1,0 +1,29 @@
+
+\begin{table} [b!]
+\caption{{\small Comparison of the likMix models' performance to that of the previous models. 
+}}
+\label{tbl:Classification Percent Error}
+\begin{center}
+{\small
+
+\makebox[\textwidth]{%
+
+\begin{tabular}{ l | c c c c  }
+
+Method & \rotatebox{0}{ ~~Breast~ }  & \rotatebox{0}{ ~~~Pima~~ }  & \rotatebox{0}{ ~~~Liver~~~ }  & \rotatebox{0}{ ~~Heart~~ }  \\ \hline
+%Logistic Regression & $7.611$ & $24.392$  & $45.060$ & \emph{ \textbf{{16.082}}} \\
+%GP GAM & \emph{\textbf{5.189}} & \emph{\textbf{22.419}}  & \emph{ \textbf{29.842}} & \emph{\textbf{16.839}} \\
+%HKL & \emph{ \textbf{5.377}} & $24.261$  & \emph{ \textbf{27.270}} & \emph{ \textbf{18.975}} \\
+%GP Squared-exp & \emph{ \textbf{4.734}} & \emph{ \textbf{23.722}}  & \emph{ \textbf{31.237}} & \emph{ \textbf{20.642}} \\
+%GP Additive & \emph{ \textbf{5.566}} & \emph{ \textbf{23.076}}  & \emph{ \textbf{30.060}} & \emph{ \textbf{18.496}} \\ \hline \hline
+GPSS (AIC) & ${ 6.43 }$ & $\mathbf{22.53}$  & $ {28.92}$ & $ \mathbf{19.86} $ \\
+GPSS (BIC) & $ \mathbf{ 5.98 }$ & $\mathbf{23.44}$  & $ {37.01}$ & $ \mathbf{18.15} $ \\
+GPSS (BIC light) & $ { 6.43 }$ & $\mathbf{ 22.27 }$  & $ \mathbf{27.50} $ & $ \mathbf{17.82} $ \\
+GPSS (Cross Validation) & $ \mathbf{ 5.09 }$ & $\mathbf{ 23.70  }$  &  30.08  & $ \mathbf{17.16} $ \\ 
+\textbf{GPSS (Likelihood Mixture)} & $ { 11.24 }$ & $\mathbf{ 23.18 }$  & $ \mathbf{28.37} $ & $ \mathbf{16.46} $ \\ \hline 
+Random Forest & $ \mathbf{4.22} $ &  $ \mathbf{23.44} $ & $ \mathbf{24.03} $ &  $ \mathbf{17.13} $ \\ 
+\end{tabular}
+}}
+\end{center}
+\end{table}
+
