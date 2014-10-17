@@ -1,66 +1,50 @@
-Evaluating the base SE kernels, number of experiments is: 18.
-BIC values of base kernels: 330.2382      219.6282      240.6638      368.5997      335.6781      266.6984      298.3184      346.5359      481.9473
- Train accuracies:           0.8139      0.8933     0.88089     0.80149     0.84864     0.87593     0.86104     0.84615      0.6799
- Test accurracies:           0.63043     0.91304     0.93478     0.86957      0.8913     0.80435     0.86957     0.84783     0.69565
+Evaluating the base SE kernels, number of experiments is: 45.
+BIC values of base kernels: 345.8527       227.291       237.609      374.8511      341.9486      278.3074      304.9962      350.4196      485.7122
+ Train accuracies:           0.79506     0.89136     0.88395     0.79506     0.84938     0.86914     0.85432     0.84444     0.67901
+ Test accurracies:           0.79545     0.93182     0.90909     0.93182     0.88636     0.86364     0.93182     0.86364     0.70455
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE2.
 
 startingHyperparameters = 
 
-    mean: 0.1044
-     cov: [0.6626 1.5073]
-     lik: [-1.0301 2.1816]
+    mean: 1.1318
+     cov: [-0.6655 0.7106]
 
 Best kernel constructed at this stage of the search is: SE2xSE6.
-BIC value: 155.9599; Training accuracy: 0.94789; Test accurracy: 0.91304.
+BIC value: 163.9817; Training accuracy: 0.94074; Test accurracy: 0.95455.
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE2xSE6.
 
 startingHyperparameters = 
 
-    mean: 1.4336
-     cov: [0.4432 0.9558 0.2226 0.0148]
-     lik: [-6.1963 6.1286]
+    mean: 1.5158
+     cov: [-0.7976 -0.0871 0.5011 0.9535]
 
 Best kernel constructed at this stage of the search is: SE2xSE6xSE1.
-BIC value: 139.4463; Training accuracy: 0.95533; Test accurracy: 0.91304.
+BIC value: 146.8711; Training accuracy: 0.95062; Test accurracy: 0.93182.
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE2xSE6xSE1.
 
 startingHyperparameters = 
 
-    mean: 1.6758
-     cov: [0.8757 0.6822 0.0211 -0.2588 0.9147 0.5860]
-     lik: [-4.5802 4.5686]
+    mean: 0.3602
+     cov: [1.0743 -0.4468 1.1522 0.5937 1.4590 1.1176]
 
-Best kernel constructed at this stage of the search is: SE2xSE6xSE1 + SE8.
-BIC value: 137.735; Training accuracy: 0.96774; Test accurracy: 0.93478.
+Best kernel constructed at this stage of the search is: SE2xSE6xSE1 + SE7.
+BIC value: 146.3006; Training accuracy: 0.95309; Test accurracy: 0.93182.
 
  ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE2xSE6xSE1 + SE8.
+Kernel being expanded at this stage of the search is: SE2xSE6xSE1 + SE7.
 
 startingHyperparameters = 
 
-    mean: 0.0615
-     cov: [1.0563 0.6860 0.3292 -0.2550 0.9539 0.5897 -0.5845 1.3560]
-     lik: [-2.0150 2.3051]
+    mean: -0.0708
+     cov: [1.2412 -0.4335 1.2699 0.6070 1.5789 1.1309 1.3019 0.6880]
 
-Best kernel constructed at this stage of the search is: SE2xSE6xSE1xSE5 + SE8.
-BIC value: 137.4475; Training accuracy: 0.97767; Test accurracy: 0.91304.
-
- ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE2xSE6xSE1xSE5 + SE8.
-
-startingHyperparameters = 
-
-    mean: 2.1796
-     cov: [1.0255 0.3276 -0.2686 -0.6134 0.6415 0.2313 1.9300 0.9661 -0.9918 0.2150]
-     lik: [-3.5806 3.8939]
-
-Best kernel constructed at this stage of the search is: SE2xSE6xSE1xSE5 + SE8xSE6.
-BIC value: 142.974; Training accuracy: 0.97767; Test accurracy: 0.91304.
+Best kernel constructed at this stage of the search is: SE2xSE6xSE1xSE8 + SE7.
+BIC value: 150.3132; Training accuracy: 0.95802; Test accurracy: 0.93182.
 
  ---------------------------------------------------------------------------------------------------------------- 
 

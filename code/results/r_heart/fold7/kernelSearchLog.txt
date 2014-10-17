@@ -1,50 +1,50 @@
-Evaluating the base SE kernels, number of experiments is: 39.
-BIC values of base kernels: 361.7316      362.7137      301.5919      374.0745      373.9427      374.0745      371.4106      337.1736      331.1353      335.9008      344.8512      315.4761      308.5362
- Train accuracies:           0.63296     0.60674     0.77528     0.53933     0.53933     0.53933     0.57678     0.70412     0.71536     0.66667     0.68165     0.74906      0.7603
- Test accurracies:           0.7         0.7     0.56667     0.53333     0.53333     0.53333         0.6     0.76667     0.66667     0.73333     0.73333         0.7         0.8
+Evaluating the base SE kernels, number of experiments is: 65.
+BIC values of base kernels: 356.5636      355.2237      313.9872      373.1964      373.2878      373.2878      371.3027      337.9187      338.3168      325.0427      345.5304      320.2651      303.1446
+ Train accuracies:           0.66045      0.6194     0.75373      0.5597      0.5597      0.5597      0.5597      0.6903     0.70522     0.68657      0.6791     0.74254     0.76866
+ Test accurracies:           0.44828     0.58621     0.75862     0.34483     0.34483     0.34483     0.34483     0.75862     0.75862     0.58621     0.75862     0.75862     0.72414
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13.
 
 startingHyperparameters = 
 
-    mean: -0.0264
-     cov: [0.6498 -0.3814]
+    mean: -0.0269
+     cov: [-0.0256 -0.3121]
 
-Best kernel constructed at this stage of the search is: SE13xSE3.
-BIC value: 272.2724; Training accuracy: 0.76779; Test accurracy: 0.8.
+Best kernel constructed at this stage of the search is: SE13xSE12.
+BIC value: 264.5558; Training accuracy: 0.79851; Test accurracy: 0.72414.
 
  ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE13xSE3.
+Kernel being expanded at this stage of the search is: SE13xSE12.
 
 startingHyperparameters = 
 
-    mean: -0.0404
-     cov: [1.4864 -1.0472 0.1699 1.0850]
+    mean: 0.0403
+     cov: [0.7161 -0.2561 0.7707 0.5125]
 
-Best kernel constructed at this stage of the search is: SE13xSE3 + SE12.
-BIC value: 248.1377; Training accuracy: 0.85768; Test accurracy: 0.76667.
+Best kernel constructed at this stage of the search is: SE13xSE12xSE10.
+BIC value: 249.8223; Training accuracy: 0.83955; Test accurracy: 0.75862.
 
  ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE13xSE3 + SE12.
+Kernel being expanded at this stage of the search is: SE13xSE12xSE10.
 
 startingHyperparameters = 
 
-    mean: 0.2631
-     cov: [1.7479 -0.9512 0.3403 1.1810 0.2830 -0.1003]
+    mean: 0.8604
+     cov: [1.0680 -0.6183 1.1677 0.1503 1.0057 1.1200]
 
-Best kernel constructed at this stage of the search is: SE13xSE3 + SE12xSE10.
-BIC value: 247.2006; Training accuracy: 0.85768; Test accurracy: 0.73333.
+Best kernel constructed at this stage of the search is: SE13xSE12xSE10xSE3.
+BIC value: 244.5647; Training accuracy: 0.83955; Test accurracy: 0.7931.
 
  ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE13xSE3 + SE12xSE10.
+Kernel being expanded at this stage of the search is: SE13xSE12xSE10xSE3.
 
 startingHyperparameters = 
 
-    mean: 0.2294
-     cov: [1.6779 -1.0262 0.0577 1.1060 0.4597 -0.1436 1.4157 0.2600]
+    mean: 1.1579
+     cov: [1.1269 -1.1021 1.1174 -0.3335 0.9562 0.6361 1.0687 1.2957]
 
-Best kernel constructed at this stage of the search is: SE13xSE3xSE9 + SE12xSE10.
-BIC value: 249.5855; Training accuracy: 0.86891; Test accurracy: 0.73333.
+Best kernel constructed at this stage of the search is: SE13xSE12xSE10xSE3xSE9.
+BIC value: 247.0324; Training accuracy: 0.85075; Test accurracy: 0.7931.
 
  ---------------------------------------------------------------------------------------------------------------- 
 

@@ -1,50 +1,50 @@
-Evaluating the base SE kernels, number of experiments is: 39.
-BIC values of base kernels: 357.3727       358.814      323.3603      373.2801      371.4869      374.0745      370.4117      330.3123      334.5746      331.3297      339.7708      317.8896       301.796
- Train accuracies:           0.64045     0.61798     0.73783     0.58801     0.64045     0.53933     0.59176     0.70787     0.70787     0.68914     0.69288     0.74906     0.77154
- Test accurracies:           0.6         0.6         0.9     0.53333     0.43333     0.53333     0.53333     0.66667     0.73333     0.63333     0.63333         0.7         0.7
+Evaluating the base SE kernels, number of experiments is: 65.
+BIC values of base kernels: 362.29      361.0036      316.4538      376.3862      376.2964      376.3862      373.9521       333.905      332.2684      337.5598      344.0321      318.6974      299.5267
+ Train accuracies:           0.6306     0.62313     0.75373     0.52612     0.56716     0.52612     0.58209     0.71642     0.71269     0.67537      0.6903        0.75     0.77612
+ Test accurracies:           0.72414     0.55172     0.75862     0.65517     0.65517     0.65517     0.62069     0.68966     0.68966     0.75862     0.65517     0.68966     0.65517
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13.
 
 startingHyperparameters = 
 
-    mean: -6.2956e-04
-     cov: [0.6736 -0.3223]
+    mean: 0.0264
+     cov: [0.0356 -0.2791]
 
 Best kernel constructed at this stage of the search is: SE13xSE12.
-BIC value: 264.1789; Training accuracy: 0.79775; Test accurracy: 0.73333.
+BIC value: 257.6684; Training accuracy: 0.80224; Test accurracy: 0.68966.
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13xSE12.
 
 startingHyperparameters = 
 
-    mean: 0.1716
-     cov: [1.0635 -0.7771 0.3306 0.8732]
+    mean: 0.3102
+     cov: [0.2643 -0.5565 0.2300 0.7207]
 
-Best kernel constructed at this stage of the search is: SE13xSE12 + SE8.
-BIC value: 253.0322; Training accuracy: 0.82397; Test accurracy: 0.76667.
+Best kernel constructed at this stage of the search is: SE13xSE12xSE3.
+BIC value: 243.1894; Training accuracy: 0.85821; Test accurracy: 0.75862.
 
  ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE13xSE12 + SE8.
+Kernel being expanded at this stage of the search is: SE13xSE12xSE3.
 
 startingHyperparameters = 
 
-    mean: 0.3955
-     cov: [1.2329 -0.7206 0.4376 0.9297 4.4946 0.3403]
+    mean: 0.4967
+     cov: [0.9670 -1.0806 0.5655 0.1967 0.7598 1.2555]
 
-Best kernel constructed at this stage of the search is: SE13xSE12 + SE8 + SE10.
-BIC value: 248.2597; Training accuracy: 0.88015; Test accurracy: 0.73333.
+Best kernel constructed at this stage of the search is: SE13xSE12xSE3xSE10.
+BIC value: 240.7999; Training accuracy: 0.86194; Test accurracy: 0.7931.
 
  ---------------------------------------------------------------------------------------------------------------- 
-Kernel being expanded at this stage of the search is: SE13xSE12 + SE8 + SE10.
+Kernel being expanded at this stage of the search is: SE13xSE12xSE3xSE10.
 
 startingHyperparameters = 
 
-    mean: 0.7093
-     cov: [1.2103 -0.7011 0.3895 0.9493 4.5414 0.3041 -0.8422 -0.3129]
+    mean: 0.7785
+     cov: [1.0360 -1.3740 0.5716 -0.0967 0.7266 0.9621 1.2136 0.8793]
 
-Best kernel constructed at this stage of the search is: SE13xSE12xSE3 + SE8 + SE10.
-BIC value: 249.5722; Training accuracy: 0.86517; Test accurracy: 0.83333.
+Best kernel constructed at this stage of the search is: SE13xSE12xSE3xSE10xSE7.
+BIC value: 242.8335; Training accuracy: 0.8694; Test accurracy: 0.7931.
 
  ---------------------------------------------------------------------------------------------------------------- 
 
