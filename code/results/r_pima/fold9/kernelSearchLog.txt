@@ -1,0 +1,49 @@
+
+^Tgoogle^TEvaluating the base SE kernels, number of experiments is: 40.
+
+^Tgoogle^TBIC values of base kernels: 867.7568      734.0403      904.8137      884.0737       863.509      836.2529      893.5006       835.083
+ Train accuracies:           0.67775     0.74277      0.6474      0.6474     0.66763     0.66618     0.65896     0.68497
+ Test accurracies:           0.65789     0.72368     0.68421     0.68421     0.63158     0.71053     0.69737     0.64474
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 0.0015
+     cov: [0.7733 0.1279]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE6.
+BIC value: 700.5724; Training accuracy: 0.76879; Test accurracy: 0.73684.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2 + SE6.
+
+startingHyperparameters = 
+
+    mean: -0.2497
+     cov: [0.2989 0.0253 -0.0327 -0.2632]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE6 + SE8.
+BIC value: 676.7166; Training accuracy: 0.78613; Test accurracy: 0.76316.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2 + SE6 + SE8.
+
+startingHyperparameters = 
+
+    mean: -0.1772
+     cov: [0.3299 0.0312 0.0134 -0.2306 -0.4167 -0.6030]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE6 + SE8xSE7.
+BIC value: 678.5017; Training accuracy: 0.79769; Test accurracy: 0.75.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+

@@ -1,0 +1,62 @@
+
+^Tgoogle^TEvaluating the base SE kernels, number of experiments is: 40.
+
+^Tgoogle^TBIC values of base kernels: 867.3203      728.0242      895.9954       869.899      852.4689      820.9446      895.9954      822.0453
+ Train accuracies:           0.67775        0.75     0.65751     0.65751     0.67052     0.68353     0.65751     0.69075
+ Test accurracies:           0.61842     0.72368     0.59211     0.59211     0.57895     0.60526     0.59211     0.60526
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: -0.3875
+     cov: [0.0458 -0.0482]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE8.
+BIC value: 689.1358; Training accuracy: 0.7659; Test accurracy: 0.71053.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2 + SE8.
+
+startingHyperparameters = 
+
+    mean: -1.1186
+     cov: [0.8385 0.2865 0.7858 0.3732]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE8 + SE6.
+BIC value: 665.6211; Training accuracy: 0.79046; Test accurracy: 0.76316.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2 + SE8 + SE6.
+
+startingHyperparameters = 
+
+    mean: -1.0731
+     cov: [0.1923 0.1099 0.7054 0.0973 -0.0667 -0.3066]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE8 + SE6xSE7.
+BIC value: 663.8434; Training accuracy: 0.79624; Test accurracy: 0.71053.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2 + SE8 + SE6xSE7.
+
+startingHyperparameters = 
+
+    mean: -1.0212
+     cov: [0.1678 0.0839 0.6211 -0.0182 -0.1110 -1.0924 0.8839 0.6927]
+
+
+^Tgoogle^T
+^Tgoogle^TBest kernel constructed at this stage of the search is: SE2 + SE8 + SE6xSE7 + SE1.
+BIC value: 668.6125; Training accuracy: 0.79913; Test accurracy: 0.72368.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
