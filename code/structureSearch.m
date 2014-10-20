@@ -215,22 +215,22 @@ function [bestBicVals, trainAccuracies, testAccuracies, hyperParameters, encoder
   
     trainAccuracies(currentIter) = calculateAcc(lp1, X, y);
     testAccuracies(currentIter) = calculateAcc(lp2, Xtst, ytst);
-    bestBicVals(currentIter) =  gp(hyperParameters{currentIter}, inferenceMethod, meanfunc, covFunction, likelihoodFunction, X, y);
-    bestBicVals(currentIter) = BIC(bestBicVals(currentIter), encoderMatrices{currentIter}, dataSize);
+    nlml =  gp(hyperParameters{currentIter}, inferenceMethod, meanfunc, covFunction, likelihoodFunction, X, y);
+    bestBicVals(currentIter) = BIC(nlml, encoderMatrices{currentIter}, dataSize);
     
     
     % Print the new kernel's stats:
     msg1 = ['Best kernel constructed at this stage of the search is: ', decodeKernelName(  encoderMatrices{currentIter} ), '.'];
-    msg2 = ['BIC value: ', num2str(bestBicVals(currentIter)),  '; Training accuracy: ', num2str(trainAccuracies(currentIter)), '; Test accurracy: ',  num2str(testAccuracies(currentIter)),'.'];
+    msg2 = ['BIC value: ', num2str(bestBicVals(currentIter)),  '; Training accuracy: ', num2str(trainAccuracies(currentIter)), '; Test accurracy: ',  num2str(testAccuracies(currentIter)),'. Previous best BIC: ', num2str(bestScore), ' and new kernel score is: ', num2str(kernelScores(currentIter))];
     disp(msg1);     disp(msg2);   fprintf('\n ---------------------------------------------------------------------------------------------------------------- \n'); % improve log legibility.
     
     
     % Check whether we've improved on the best score we had so far; if not - stop the procedure.
     if kernelScores(currentIter) - bestScore > - 0.001 % needed for guiding cross-validation. 
+            fprintf('\n Search unable to construct a better kernel. About to check backtracking condition. \n');
 
         if backtrack == 0
-            fprintf('\n Search unable to construct a better kernel. Stopping the search procedure. \n');
-            
+           
             % Undo the value assignments performed: 
             trainAccuracies(currentIter) = 0;
             testAccuracies(currentIter) = 0;

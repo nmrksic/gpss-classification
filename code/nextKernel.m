@@ -276,7 +276,7 @@ function [bestKernelEncoder, bestScoreVal, bestKernelHyper, allCovFuns, allScore
 
                   nlml = gp(hypN, inferenceMethod, meanfunc, covFunction, likelihoodFunction, X, y);
 
-                  bicValues(idx) = BIC(nlml, encoderMatrices{idx}, dataSize ); % we only calculate BICs here, as the minimizer returns NLMLs (saved as bicValue)
+                  bicValues(idx) = BIC(nlml, encoderMatrices{i}, dataSize ); % we only calculate BICs here, as the minimizer returns NLMLs (saved as bicValue)
                   hyperParameters{idx} = hypN;
 
                   crossValidatedAccuracies(idx) = crossValidatedAccuracy(X, y, covFunction, hyperParameters{idx}, inferenceMethod, likelihoodFunction);
