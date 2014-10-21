@@ -1,0 +1,66 @@
+
+^[OAEvaluating the base SE kernels, number of experiments is: 45.
+
+^[OABIC values of base kernels: 346.8593      227.7114      231.4834      368.9396       334.899      281.7217      296.9152        339.68      479.8149
+ Train accuracies:           0.79753     0.88642     0.88642     0.80494     0.85185     0.86914     0.86173     0.84938     0.67901
+ Test accurracies:           0.77273     0.90909     0.88636     0.84091     0.86364     0.86364     0.86364     0.81818     0.70455
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 0.7403
+     cov: [0.1157 0.9487]
+     lik: [-0.9832 2.5781]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6.
+BIC value: 160.7037; Training accuracy: 0.94321; Test accurracy: 0.95455. Previous best BIC: 226.6803 and new kernel score is: 160.7035
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6.
+
+startingHyperparameters = 
+
+    mean: 0.1115
+     cov: [1.0507 0.4341 1.5580 1.2365]
+     lik: [-2.8890 0.8335]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6 + SE1.
+BIC value: 151.916; Training accuracy: 0.94815; Test accurracy: 0.97727. Previous best BIC: 160.7035 and new kernel score is: 149.013
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6 + SE1.
+
+startingHyperparameters = 
+
+    mean: 0.0202
+     cov: [1.2580 0.4591 1.1681 1.2615 1.0230 1.0993]
+     lik: [-1.5930 2.0949]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6 + SE1xSE8.
+BIC value: 142.7883; Training accuracy: 0.96049; Test accurracy: 0.95455. Previous best BIC: 149.013 and new kernel score is: 142.7883
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6 + SE1xSE8.
+
+startingHyperparameters = 
+
+    mean: 2.5675
+     cov: [0.6135 -0.0426 -0.1717 0.7598 0.9340 0.1959 -0.5564 0.5009]
+     lik: [-6.8001 6.0959]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6 + SE1xSE8 + SE9.
+BIC value: 145.6915; Training accuracy: 0.9679; Test accurracy: 0.95455. Previous best BIC: 142.7883 and new kernel score is: 145.6915
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. About to check backtracking condition. 
+
