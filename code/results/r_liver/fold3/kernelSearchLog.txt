@@ -1,5 +1,5 @@
-Evaluating the base SE kernels, number of experiments is: 60.
-BIC values of base kernels: 426.9672      427.6846      427.6821      428.3498      423.3958      417.2224
+Evaluating the base SE kernels, number of experiments is: 30.
+BIC values of base kernels: 426.9672      427.6896      427.6821      428.3568      422.0151      417.2224
  Train accuracies:           0.57878     0.57878     0.57878     0.57878     0.58199      0.6045
  Test accurracies:           0.58824     0.58824     0.58824     0.58824     0.73529     0.52941
  ---------------------------------------------------------------------------------------------------------------- 
@@ -9,9 +9,10 @@ startingHyperparameters =
 
     mean: 0.1724
      cov: [-1.7363 -0.9385]
+     lik: [-6.1085 8.3086]
 
 Best kernel constructed at this stage of the search is: SE6 + SE5.
-BIC value: 412.8843; Training accuracy: 0.70096; Test accurracy: 0.58824.
+BIC value: 412.8845; Training accuracy: 0.70096; Test accurracy: 0.58824. Previous best BIC: 417.2224 and new kernel score is: 412.8845
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE6 + SE5.
@@ -20,31 +21,34 @@ startingHyperparameters =
 
     mean: 0.2442
      cov: [-1.3879 -0.5755 -0.3101 -0.7755]
+     lik: [-5.3339 4.6313]
 
 Best kernel constructed at this stage of the search is: SE6 + SE5xSE3.
-BIC value: 396.6087; Training accuracy: 0.7492; Test accurracy: 0.73529.
+BIC value: 396.6089; Training accuracy: 0.7492; Test accurracy: 0.73529. Previous best BIC: 412.8845 and new kernel score is: 396.6089
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE6 + SE5xSE3.
 
 startingHyperparameters = 
 
-    mean: 0.2972
-     cov: [-1.4634 -0.6487 -0.7599 -1.3102 -0.4614 0.8750]
+    mean: 0.2971
+     cov: [-1.4634 -0.6486 -0.7600 -1.0600 -0.4615 0.6248]
+     lik: [-5.0405 5.7329]
 
 Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4.
-BIC value: 388.0405; Training accuracy: 0.81994; Test accurracy: 0.73529.
+BIC value: 388.0406; Training accuracy: 0.81994; Test accurracy: 0.73529. Previous best BIC: 396.6089 and new kernel score is: 388.0406
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4.
 
 startingHyperparameters = 
 
-    mean: 0.3400
-     cov: [-1.4752 -0.5057 -0.5588 -1.6078 -0.2860 0.5774 0.0527 0.9757]
+    mean: 0.3401
+     cov: [-1.4752 -0.5057 -0.5588 -1.4825 -0.2860 0.2024 0.0527 1.2254]
+     lik: [-5.7005 6.1544]
 
 Best kernel constructed at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
-BIC value: 384.4979; Training accuracy: 0.82315; Test accurracy: 0.76471.
+BIC value: 384.498; Training accuracy: 0.82315; Test accurracy: 0.76471. Previous best BIC: 388.0406 and new kernel score is: 384.498
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
@@ -52,12 +56,13 @@ Kernel being expanded at this stage of the search is: SE6 + SE5xSE3xSE4 + SE1.
 startingHyperparameters = 
 
     mean: 0.5999
-     cov: [1x10 double]
+     cov: [-1.4619 -0.5044 -0.5351 -1.4524 -0.3073 0.2325 0.1272 1.2555 -0.7347 -0.8760]
+     lik: [-6.5074 6.5518]
 
 Best kernel constructed at this stage of the search is: SE6xSE2 + SE5xSE3xSE4 + SE1.
-BIC value: 386.9662; Training accuracy: 0.8328; Test accurracy: 0.79412.
+BIC value: 386.9664; Training accuracy: 0.8328; Test accurracy: 0.79412. Previous best BIC: 384.498 and new kernel score is: 386.9664
 
  ---------------------------------------------------------------------------------------------------------------- 
 
- Search unable to construct a better kernel. Stopping the search procedure. 
+ Search unable to construct a better kernel. About to check backtracking condition. 
 
