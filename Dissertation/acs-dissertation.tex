@@ -12,6 +12,7 @@
 \usepackage{verbatim}
 \usepackage{amsmath}
 \usepackage{amssymb,amsfonts}
+
 \usepackage{hyperref}
 \usepackage{mathtools}
 \usepackage{amsthm}
@@ -340,7 +341,7 @@ The derivatives of the marginal likelihood with respect to the $\GP$ hyperparame
 
 \subsection{Expectation Propagation}
 
-Expectation Propagation goes further than Laplace's method: the approximate posterior distribution constructed tries to match the first two moments of the actual distribution. The fundamental problem with Laplace's approximation is that the posterior mode becomes less representative of the posterior mean as the number of dimensions increases \cite{gpcapprox, gpcinference}.
+Expectation Propagation \cite{minka} goes further than Laplace's method: the approximate posterior distribution constructed tries to match the first two moments of the actual distribution. The fundamental problem with Laplace's approximation is that the posterior mode becomes less representative of the posterior mean as the number of dimensions increases \cite{gpcapprox, gpcinference}.
 
 The probability mass is concentrated in a thin shell (far) away from the mode: the posterior mean moves towards this high density region, but the posterior mode stays closer to the origin. This means that Laplace's method produces overly cautious predictive distributions which are often inaccurate even near the training locations. As shown in previous work by Kuss and Rasmussen, EP tends to outperform Laplace's method on real-world data sets \cite{gpcapprox, gpcinference}.
 

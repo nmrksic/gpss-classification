@@ -55,6 +55,12 @@ Malte Kuss and Carl~Edward Rasmussen.
   classification.
 \newblock {\em Journal of Machine Learning Research}, 2005.
 
+\bibitem{minka}
+Thomas Minka.
+\newblock Expectation propagation for approximate bayesian inference.
+\newblock In {\em Proceedings of the Seventeenth Conference Annual Conference
+  on Uncertainty in Artificial Intelligence}, 2001.
+
 \bibitem{christoudias2009bayesian}
 M.~Christoudias, R.~Urtasun, and T.~Darrell.
 \newblock {Bayesian localized multiple kernel learning}.

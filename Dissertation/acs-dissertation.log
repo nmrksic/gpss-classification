@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.10.15)  15 OCT 2014 11:10
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.10.15)  21 OCT 2014 15:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -628,7 +628,7 @@ LaTeX Font Info:    Overwriting symbol font `wasy' in version `bold'
 (Font)                  U/wasy/m/n --> U/wasy/b/n on input line 90.
 )
 \c@theorem=\count147
-Package hyperref Info: Option `colorlinks' set `false' on input line 70.
+Package hyperref Info: Option `colorlinks' set `false' on input line 71.
 
 (./acs-dissertation.aux
 
@@ -637,33 +637,33 @@ LaTeX Warning: Label `tbl:syntheticlik7' multiply defined.
 )
 \openout1 = `acs-dissertation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 76.
-LaTeX Font Info:    ... okay on input line 76.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 76.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 76.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 77.
+LaTeX Font Info:    ... okay on input line 77.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 77.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 77.
  (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 76.
+LaTeX Font Info:    ... okay on input line 77.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: hyperref package is loaded.
 Package caption Info: rotating package is loaded.
 Package caption Info: End \AtBeginDocument code.
 \AtBeginShipoutBox=\box32
-Package hyperref Info: Link coloring OFF on input line 76.
+Package hyperref Info: Link coloring OFF on input line 77.
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
@@ -673,9 +673,9 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count148
 )
-LaTeX Info: Redefining \ref on input line 76.
-LaTeX Info: Redefining \pageref on input line 76.
-LaTeX Info: Redefining \nameref on input line 76.
+LaTeX Info: Redefining \ref on input line 77.
+LaTeX Info: Redefining \pageref on input line 77.
+LaTeX Info: Redefining \nameref on input line 77.
 
 (./acs-dissertation.out) (./acs-dissertation.out)
 \@outlinefile=\write4
@@ -775,7 +775,7 @@ pdfTeX warning (ext4): destination with the same identifier (name{page.1}) has
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.138 P
+l.139 P
        revious work by Duvenaud et al.~\cite{duvenaud13} has shown that it i...
 [1
 
@@ -784,14 +784,14 @@ l.138 P
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.168 \clearpage
+l.169 \clearpage
                  [2]
 Chapter 2.
 pdfTeX warning (ext4): destination with the same identifier (name{page.3}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.185 
+l.186 
        [3
 
 
@@ -799,34 +799,34 @@ l.185
  been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.200 T
+l.201 T
        he simplest way of thinking about the Gaussian process is as of an in...
 [4] <figures/plot1.png, id=283, 578.6418pt x 434.1018pt>
 File: figures/plot1.png Graphic file (type png)
 
 <use figures/plot1.png>
-Package pdftex.def Info: figures/plot1.png used on input line 221.
+Package pdftex.def Info: figures/plot1.png used on input line 222.
 (pdftex.def)             Requested size: 212.03017pt x 159.06517pt.
  <figures/plot2.png, id=284, 578.6418pt x 434.1018pt>
 File: figures/plot2.png Graphic file (type png)
 
 <use figures/plot2.png>
-Package pdftex.def Info: figures/plot2.png used on input line 221.
+Package pdftex.def Info: figures/plot2.png used on input line 222.
 (pdftex.def)             Requested size: 212.03017pt x 159.06517pt.
 pdfTeX warning (ext4): destination with the same identifier (name{page.5}) has 
 been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.227 
+l.228 
        [5] [6 <./figures/plot1.png (PNG copy)> <./figures/plot2.png (PNG copy)>
 ]
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <8> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 252.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 253.
 
 
 LaTeX Font Warning: Font shape `U/wasy/b/n' in size <6> not available
-(Font)              Font shape `U/wasy/m/n' tried instead on input line 252.
+(Font)              Font shape `U/wasy/m/n' tried instead on input line 253.
 
 [7] [8] [9] [10] [11] [12]
 Chapter 3.
@@ -834,7 +834,7 @@ Chapter 3.
 
 
 ]
-Overfull \hbox (5.53807pt too wide) detected at line 378
+Overfull \hbox (5.53807pt too wide) detected at line 379
 \OML/cmm/m/it/12 k[]\OT1/cmr/m/n/12 ([]) = \OML/cmm/m/it/12 ^^[[] [] [][]k[]\OT
 1/cmr/m/n/12 ([]) = \OML/cmm/m/it/12 ^^[[] [] []
  []
@@ -843,7 +843,7 @@ Overfull \hbox (5.53807pt too wide) detected at line 378
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 382.
+(amsmath)                 on input line 383.
 
 [15] [16] [17] [18
 
@@ -852,63 +852,63 @@ Chapter 4.
 [19
 
 
-] <figures/plot7.png, id=415, 578.6418pt x 434.1018pt>
+] <figures/plot7.png, id=417, 578.6418pt x 434.1018pt>
 File: figures/plot7.png Graphic file (type png)
 
 <use figures/plot7.png>
-Package pdftex.def Info: figures/plot7.png used on input line 464.
+Package pdftex.def Info: figures/plot7.png used on input line 465.
 (pdftex.def)             Requested size: 190.82585pt x 158.76709pt.
- <figures/plot3.png, id=416, 578.6418pt x 434.1018pt>
+ <figures/plot3.png, id=418, 578.6418pt x 434.1018pt>
 File: figures/plot3.png Graphic file (type png)
 
 <use figures/plot3.png>
-Package pdftex.def Info: figures/plot3.png used on input line 464.
+Package pdftex.def Info: figures/plot3.png used on input line 465.
 (pdftex.def)             Requested size: 190.82585pt x 158.76709pt.
- <figures/plot8.png, id=417, 578.6418pt x 434.1018pt>
+ <figures/plot8.png, id=419, 578.6418pt x 434.1018pt>
 File: figures/plot8.png Graphic file (type png)
 
 <use figures/plot8.png>
-Package pdftex.def Info: figures/plot8.png used on input line 471.
+Package pdftex.def Info: figures/plot8.png used on input line 472.
 (pdftex.def)             Requested size: 190.82585pt x 158.76709pt.
- <figures/plot4.png, id=418, 578.6418pt x 434.1018pt>
+ <figures/plot4.png, id=420, 578.6418pt x 434.1018pt>
 File: figures/plot4.png Graphic file (type png)
 
 <use figures/plot4.png>
-Package pdftex.def Info: figures/plot4.png used on input line 471.
+Package pdftex.def Info: figures/plot4.png used on input line 472.
 (pdftex.def)             Requested size: 190.82585pt x 158.76709pt.
  [20 <./figures/plot7.png (PNG copy)> <./figures/plot3.png (PNG copy)> <./figur
 es/plot8.png (PNG copy)> <./figures/plot4.png (PNG copy)>] <figures/plot9.png, 
-id=423, 578.6418pt x 434.1018pt>
+id=425, 578.6418pt x 434.1018pt>
 File: figures/plot9.png Graphic file (type png)
 
 <use figures/plot9.png>
-Package pdftex.def Info: figures/plot9.png used on input line 486.
+Package pdftex.def Info: figures/plot9.png used on input line 487.
 (pdftex.def)             Requested size: 212.03017pt x 176.41304pt.
- <figures/plot5.png, id=424, 578.6418pt x 434.1018pt>
+ <figures/plot5.png, id=426, 578.6418pt x 434.1018pt>
 File: figures/plot5.png Graphic file (type png)
 
 <use figures/plot5.png>
-Package pdftex.def Info: figures/plot5.png used on input line 486.
+Package pdftex.def Info: figures/plot5.png used on input line 487.
 (pdftex.def)             Requested size: 212.03017pt x 176.41304pt.
- <figures/plot10.png, id=425, 578.6418pt x 434.1018pt>
+ <figures/plot10.png, id=427, 578.6418pt x 434.1018pt>
 File: figures/plot10.png Graphic file (type png)
 
 <use figures/plot10.png>
-Package pdftex.def Info: figures/plot10.png used on input line 499.
+Package pdftex.def Info: figures/plot10.png used on input line 500.
 (pdftex.def)             Requested size: 212.03017pt x 176.41304pt.
- <figures/plot6.png, id=426, 578.6418pt x 434.1018pt>
+ <figures/plot6.png, id=428, 578.6418pt x 434.1018pt>
 File: figures/plot6.png Graphic file (type png)
 
 <use figures/plot6.png>
-Package pdftex.def Info: figures/plot6.png used on input line 499.
+Package pdftex.def Info: figures/plot6.png used on input line 500.
 (pdftex.def)             Requested size: 212.03017pt x 176.41304pt.
  [21 <./figures/plot9.png (PNG copy)> <./figures/plot5.png (PNG copy)> <./figur
 es/plot10.png (PNG copy)> <./figures/plot6.png (PNG copy)>] [22] [23] <figures/
-search.png, id=445, 2342.7525pt x 2234.3475pt>
+search.png, id=447, 2342.7525pt x 2234.3475pt>
 File: figures/search.png Graphic file (type png)
 
 <use figures/search.png>
-Package pdftex.def Info: figures/search.png used on input line 557.
+Package pdftex.def Info: figures/search.png used on input line 558.
 (pdftex.def)             Requested size: 424.06033pt x 404.41536pt.
 
 
@@ -917,14 +917,14 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 [24] [25 <./figures/search.png>] [26
 
 ]
-Overfull \hbox (0.91559pt too wide) in paragraph at lines 583--584
+Overfull \hbox (0.91559pt too wide) in paragraph at lines 584--585
 []\OT1/cmr/m/n/12 Variational Bayes ap-prox-i-ma-tions pro-vide a \OT1/cmr/m/it
 /12 lower bound \OT1/cmr/m/n/12 on the value of the marginal
  []
 
 [27] [28] (./cvtable.tex) [29] (./synthTable1.tex) (./synthTable2.tex) [30]
 [31] [32] (./datainfo.tex) (./realWorldData.tex
-Overfull \hbox (1.93591pt too wide) in paragraph at lines 5--19
+Overfull \hbox (1.93591pt too wide) in paragraph at lines 5--21
  [] 
  []
 
@@ -939,18 +939,18 @@ Package epstopdf Info: Source file: <figures/overfitting.eps>
 (epstopdf)                    size: 98468 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/overfitting-eps-co
 nverted-to.pdf figures/overfitting.eps>
-(epstopdf)             \includegraphics on input line 714.
+(epstopdf)             \includegraphics on input line 715.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/overfitting-eps-converted-to.pdf, id=510, 1205.50375pt x 539.01375pt>
+<figures/overfitting-eps-converted-to.pdf, id=512, 1205.50375pt x 539.01375pt>
 File: figures/overfitting-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/overfitting-eps-converted-to.pdf>
 Package pdftex.def Info: figures/overfitting-eps-converted-to.pdf used on input
- line 714.
+ line 715.
 (pdftex.def)             Requested size: 424.06033pt x 189.60347pt.
  [34]
-Underfull \hbox (badness 10000) in paragraph at lines 735--736
+Underfull \hbox (badness 10000) in paragraph at lines 736--737
 
  []
 
@@ -963,14 +963,14 @@ Package epstopdf Info: Source file: <figures/overfitsmall.eps>
 (epstopdf)                    size: 36744 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/overfitsmall-eps-c
 onverted-to.pdf figures/overfitsmall.eps>
-(epstopdf)             \includegraphics on input line 742.
+(epstopdf)             \includegraphics on input line 743.
 Package epstopdf Info: Output file is already uptodate.
-<figures/overfitsmall-eps-converted-to.pdf, id=517, 1204.5pt x 556.0775pt>
+<figures/overfitsmall-eps-converted-to.pdf, id=519, 1204.5pt x 556.0775pt>
 File: figures/overfitsmall-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/overfitsmall-eps-converted-to.pdf>
 Package pdftex.def Info: figures/overfitsmall-eps-converted-to.pdf used on inpu
-t line 742.
+t line 743.
 (pdftex.def)             Requested size: 424.06033pt x 195.77551pt.
  [35 <./figures/overfitting-eps-converted-to.pdf>]
 Package epstopdf Info: Source file: <figures/overfitwithlargelength.eps>
@@ -982,97 +982,97 @@ ed-to.pdf>
 (epstopdf)                    size: 5114 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/overfitwithlargele
 ngth-eps-converted-to.pdf figures/overfitwithlargelength.eps>
-(epstopdf)             \includegraphics on input line 761.
+(epstopdf)             \includegraphics on input line 762.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/overfitwithlargelength-eps-converted-to.pdf, id=529, 1205.50375pt x 53
+<figures/overfitwithlargelength-eps-converted-to.pdf, id=531, 1205.50375pt x 53
 9.01375pt>
 File: figures/overfitwithlargelength-eps-converted-to.pdf Graphic file (type pd
 f)
  <use figures/overfitwithlargelength-eps-converted-to.pdf>
 Package pdftex.def Info: figures/overfitwithlargelength-eps-converted-to.pdf us
-ed on input line 761.
+ed on input line 762.
 (pdftex.def)             Requested size: 424.06033pt x 189.60347pt.
  [36 <./figures/overfitsmall-eps-converted-to.pdf>] [37 <./figures/overfitwithl
-argelength-eps-converted-to.pdf>] <figures/pima/age.png, id=552, 1036.673pt x 5
+argelength-eps-converted-to.pdf>] <figures/pima/age.png, id=554, 1036.673pt x 5
 71.736pt>
 File: figures/pima/age.png Graphic file (type png)
 
 <use figures/pima/age.png>
-Package pdftex.def Info: figures/pima/age.png used on input line 791.
+Package pdftex.def Info: figures/pima/age.png used on input line 792.
 (pdftex.def)             Requested size: 381.6517pt x 210.4834pt.
 
-<figures/pima/bmi.png, id=553, 1036.673pt x 571.736pt>
+<figures/pima/bmi.png, id=555, 1036.673pt x 571.736pt>
 File: figures/pima/bmi.png Graphic file (type png)
 
 <use figures/pima/bmi.png>
-Package pdftex.def Info: figures/pima/bmi.png used on input line 792.
+Package pdftex.def Info: figures/pima/bmi.png used on input line 793.
 (pdftex.def)             Requested size: 381.6517pt x 210.4834pt.
 
-<figures/pima/pedigreeglucose.png, id=554, 1036.673pt x 571.736pt>
+<figures/pima/pedigreeglucose.png, id=556, 1036.673pt x 571.736pt>
 File: figures/pima/pedigreeglucose.png Graphic file (type png)
 
 <use figures/pima/pedigreeglucose.png>
 Package pdftex.def Info: figures/pima/pedigreeglucose.png used on input line 79
-3.
+4.
 (pdftex.def)             Requested size: 381.6517pt x 210.4834pt.
 File: figures/pima/age.png Graphic file (type png)
  <use figures/pima/age.png>
-Package pdftex.def Info: figures/pima/age.png used on input line 806.
+Package pdftex.def Info: figures/pima/age.png used on input line 807.
 (pdftex.def)             Requested size: 381.6517pt x 210.4834pt.
 
-<figures/pima/glucose.png, id=555, 1036.673pt x 571.736pt>
+<figures/pima/glucose.png, id=557, 1036.673pt x 571.736pt>
 File: figures/pima/glucose.png Graphic file (type png)
 
 <use figures/pima/glucose.png>
-Package pdftex.def Info: figures/pima/glucose.png used on input line 807.
+Package pdftex.def Info: figures/pima/glucose.png used on input line 808.
 (pdftex.def)             Requested size: 381.6517pt x 210.4834pt.
 
-<figures/pima/pedigreebmi.png, id=556, 1036.673pt x 571.736pt>
+<figures/pima/pedigreebmi.png, id=558, 1036.673pt x 571.736pt>
 File: figures/pima/pedigreebmi.png Graphic file (type png)
 
 <use figures/pima/pedigreebmi.png>
-Package pdftex.def Info: figures/pima/pedigreebmi.png used on input line 808.
+Package pdftex.def Info: figures/pima/pedigreebmi.png used on input line 809.
 (pdftex.def)             Requested size: 381.6517pt x 210.4834pt.
  [38] [39 <./figures/pima/age.png (PNG copy)> <./figures/pima/bmi.png (PNG copy
 )> <./figures/pima/pedigreeglucose.png (PNG copy)>] [40 <./figures/pima/glucose
 .png (PNG copy)> <./figures/pima/pedigreebmi.png (PNG copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 825--826
+Underfull \hbox (badness 10000) in paragraph at lines 826--827
 
  []
 
-<figures/breast/cellsize.png, id=572, 1028.643pt x 571.736pt>
+<figures/breast/cellsize.png, id=574, 1028.643pt x 571.736pt>
 File: figures/breast/cellsize.png Graphic file (type png)
 
 <use figures/breast/cellsize.png>
-Package pdftex.def Info: figures/breast/cellsize.png used on input line 835.
+Package pdftex.def Info: figures/breast/cellsize.png used on input line 836.
 (pdftex.def)             Requested size: 275.63663pt x 167.06416pt.
 
-<figures/breast/clump.png, id=573, 1028.643pt x 571.736pt>
+<figures/breast/clump.png, id=575, 1028.643pt x 571.736pt>
 File: figures/breast/clump.png Graphic file (type png)
 
 <use figures/breast/clump.png>
-Package pdftex.def Info: figures/breast/clump.png used on input line 836.
+Package pdftex.def Info: figures/breast/clump.png used on input line 837.
 (pdftex.def)             Requested size: 275.63663pt x 167.06416pt.
  [41 <./figures/breast/cellsize.png (PNG copy)> <./figures/breast/clump.png (PN
 G copy)>]
-Underfull \hbox (badness 10000) in paragraph at lines 849--850
+Underfull \hbox (badness 10000) in paragraph at lines 850--851
 
  []
 
-<figures/breast/nucleicellsize.png, id=579, 1036.673pt x 571.736pt>
+<figures/breast/nucleicellsize.png, id=581, 1036.673pt x 571.736pt>
 File: figures/breast/nucleicellsize.png Graphic file (type png)
 
 <use figures/breast/nucleicellsize.png>
 Package pdftex.def Info: figures/breast/nucleicellsize.png used on input line 8
-57.
+58.
 (pdftex.def)             Requested size: 402.85602pt x 222.18225pt.
 
-<figures/breast/clumpbland.png, id=580, 1036.673pt x 571.736pt>
+<figures/breast/clumpbland.png, id=582, 1036.673pt x 571.736pt>
 File: figures/breast/clumpbland.png Graphic file (type png)
 
 <use figures/breast/clumpbland.png>
-Package pdftex.def Info: figures/breast/clumpbland.png used on input line 858.
+Package pdftex.def Info: figures/breast/clumpbland.png used on input line 859.
 (pdftex.def)             Requested size: 402.85602pt x 222.18225pt.
  [42 <./figures/breast/nucleicellsize.png (PNG copy)> <./figures/breast/clumpbl
 and.png (PNG copy)>]
@@ -1089,26 +1089,26 @@ Package epstopdf Info: Source file: <figures/likMixPlot.eps>
 (epstopdf)                    size: 31312 bytes
 (epstopdf)             Command: <repstopdf --outfile=figures/likMixPlot-eps-con
 verted-to.pdf figures/likMixPlot.eps>
-(epstopdf)             \includegraphics on input line 897.
+(epstopdf)             \includegraphics on input line 898.
 Package epstopdf Info: Output file is already uptodate.
 
-<figures/likMixPlot-eps-converted-to.pdf, id=595, 1205.50375pt x 556.0775pt>
+<figures/likMixPlot-eps-converted-to.pdf, id=597, 1205.50375pt x 556.0775pt>
 File: figures/likMixPlot-eps-converted-to.pdf Graphic file (type pdf)
 
 <use figures/likMixPlot-eps-converted-to.pdf>
 Package pdftex.def Info: figures/likMixPlot-eps-converted-to.pdf used on input 
-line 897.
+line 898.
 (pdftex.def)             Requested size: 424.06033pt x 195.60582pt.
  [44] [45 <./figures/likMixPlot-eps-converted-to.pdf>] (./likMixTables.tex) (./
 likmixrealdata.tex) [46]
-<figures/bma2.png, id=623, 1313.6578pt x 1120.9378pt>
+<figures/bma2.png, id=625, 1313.6578pt x 1120.9378pt>
 File: figures/bma2.png Graphic file (type png)
  <use figures/bma2.png>
-Package pdftex.def Info: figures/bma2.png used on input line 953.
+Package pdftex.def Info: figures/bma2.png used on input line 954.
 (pdftex.def)             Requested size: 424.06033pt x 361.85458pt.
 
 [47] [48 <./figures/bma2.png>] (./bmatables.tex)
-Underfull \hbox (badness 10000) in paragraph at lines 973--974
+Underfull \hbox (badness 10000) in paragraph at lines 974--975
 
  []
 
@@ -1142,12 +1142,12 @@ Missing character: There is no ä in font cmr12!
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1043.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1044.
  [64]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1043.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 1044.
  (./acs-dissertation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1043.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1043.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 1044.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1044.
 
 Package rerunfilecheck Info: File `acs-dissertation.out' has not changed.
 (rerunfilecheck)             Checksum: B6E03F2FAA5BA5DA368CFCA1C828B7CA;2849.
@@ -1155,13 +1155,13 @@ Package rerunfilecheck Info: File `acs-dissertation.out' has not changed.
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1043.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 1044.
  ) 
 Here is how much of TeX's memory you used:
- 11535 strings out of 493304
- 169562 string characters out of 6139870
+ 11539 strings out of 493304
+ 169611 string characters out of 6139870
  291876 words of memory out of 5000000
- 14533 multiletter control sequences out of 15000+600000
+ 14536 multiletter control sequences out of 15000+600000
  19731 words of font info for 72 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  36i,16n,38p,999b,499s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1191,10 +1191,10 @@ cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 /share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/
 share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb></usr/s
 hare/texmf/fonts/type1/public/cm-super/sfrm1200.pfb>
-Output written on acs-dissertation.pdf (74 pages, 1643186 bytes).
+Output written on acs-dissertation.pdf (74 pages, 1643238 bytes).
 PDF statistics:
- 853 PDF objects out of 1000 (max. 8388607)
- 710 compressed objects within 8 object streams
- 178 named destinations out of 1000 (max. 500000)
+ 855 PDF objects out of 1000 (max. 8388607)
+ 712 compressed objects within 8 object streams
+ 179 named destinations out of 1000 (max. 500000)
  435 words of extra memory for PDF output out of 10000 (max. 10000000)
 
