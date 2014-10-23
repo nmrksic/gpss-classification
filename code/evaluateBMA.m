@@ -14,7 +14,8 @@ function [AlphaValues, testAccs1, testAccs2] = evaluateBMA(expName)
     InitialiseRand(seed); % random seed initialised here. 
 
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, 10); % numFolds-fold cross validation data sets
-    
+    useDaveFolds % Comment this if you don't want to use Dave's folds
+
     for alphaC = 1 : 100
 
         alpha = alphaC / 100;

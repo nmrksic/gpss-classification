@@ -15,6 +15,8 @@ function [] = BayesianModelAveraging(expName, runParallel)
 
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, 10); % numFolds-fold cross validation data sets
 
+    useDaveFolds % Comment this if you don't want to use Dave's folds
+    
     filepath = 'results/Archive/runs/BIClightruns/';
     
    

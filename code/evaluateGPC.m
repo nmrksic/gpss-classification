@@ -54,6 +54,8 @@ end
     
     [trnX, trnY, tstX, tstY] = crossValidate(X, y, numFolds); % numFolds-fold cross validation data sets
     
+    useDaveFolds % Comment this if you don't want to use Dave's folds
+    % check that this works!
     use_fixed_folds = 0;
     
     expNames = {'r_liver', 'r_breast', 'r_pima', 'r_heart'};
@@ -78,6 +80,7 @@ end
         end
     end
     
+    % end of stuff to replace with useDaveFolds script
     
     dim = size(X, 2); % dimensionality of the data - used to determine number of runs. For now, set to a low multiple (say 2, max 3)
     

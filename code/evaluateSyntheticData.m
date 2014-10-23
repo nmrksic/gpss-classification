@@ -155,7 +155,7 @@ function evaluateSyntheticData ( numRestarts, seed, runParallel, likelihoodMod)
                     
                     currentLine = currentLine + 1;
                     
-                    disp(['Evaluated ', num2str(currentLine - 1), ' out of 36 experiments.']);
+                    disp(['Evaluated ', num2str(currentLine - 1), ' out of 72 experiments.']);
                    
                     results{currentLine, 1} = [num2str(sample), '& ' ];
                     results{currentLine, 2} =  [num2str(SNR), '& ' ];
