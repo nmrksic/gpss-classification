@@ -1,52 +1,56 @@
 Evaluating the base SE kernels, number of experiments is: 65.
-BIC values of base kernels: 362.29      361.0036      316.4538      376.3862      376.2964      376.3862      373.9521       333.905      332.2684      337.5598      344.0321      318.6974      299.5267
- Train accuracies:           0.6306     0.62313     0.75373     0.52612     0.56716     0.52612     0.58209     0.71642     0.71269     0.67537      0.6903        0.75     0.77612
+BIC values of base kernels: 362.1907      360.5608      312.1668      373.5509      376.3185      376.3862      373.9296      333.4021      331.7402      337.0415       343.202      315.1662      296.9687
+ Train accuracies:           0.63433     0.62313     0.75373     0.52612     0.52612     0.52612     0.58209     0.70522     0.71269     0.67537      0.6903        0.75     0.77612
  Test accurracies:           0.72414     0.55172     0.75862     0.65517     0.65517     0.65517     0.62069     0.68966     0.68966     0.75862     0.65517     0.68966     0.65517
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13.
 
 startingHyperparameters = 
 
-    mean: 0.0264
-     cov: [0.0356 -0.2791]
+    mean: -0.8458
+     cov: [0.2483 1.3099]
+     lik: [0.2910 0.4941]
 
 Best kernel constructed at this stage of the search is: SE13xSE12.
-BIC value: 257.6684; Training accuracy: 0.80224; Test accurracy: 0.68966.
+BIC value: 257.6693; Training accuracy: 0.80224; Test accurracy: 0.68966. Previous best BIC: 296.968 and new kernel score is: 257.6693
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13xSE12.
 
 startingHyperparameters = 
 
-    mean: 0.3102
-     cov: [0.2643 -0.5565 0.2300 0.7207]
+    mean: 0.3104
+     cov: [0.2643 -0.0122 0.2299 0.1767]
+     lik: [-5.2215 3.5373]
 
 Best kernel constructed at this stage of the search is: SE13xSE12xSE3.
-BIC value: 243.1894; Training accuracy: 0.85821; Test accurracy: 0.75862.
+BIC value: 243.19; Training accuracy: 0.85821; Test accurracy: 0.75862. Previous best BIC: 257.6693 and new kernel score is: 243.19
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13xSE12xSE3.
 
 startingHyperparameters = 
 
-    mean: 0.4967
-     cov: [0.9670 -1.0806 0.5655 0.1967 0.7598 1.2555]
+    mean: 0.4970
+     cov: [0.9671 -0.5363 0.5655 -0.3474 0.7598 1.2554]
+     lik: [-6.0713 4.1175]
 
 Best kernel constructed at this stage of the search is: SE13xSE12xSE3xSE10.
-BIC value: 240.7999; Training accuracy: 0.86194; Test accurracy: 0.7931.
+BIC value: 240.8; Training accuracy: 0.86194; Test accurracy: 0.7931. Previous best BIC: 243.19 and new kernel score is: 240.8
 
  ---------------------------------------------------------------------------------------------------------------- 
 Kernel being expanded at this stage of the search is: SE13xSE12xSE3xSE10.
 
 startingHyperparameters = 
 
-    mean: 0.7785
-     cov: [1.0360 -1.3740 0.5716 -0.0967 0.7266 0.9621 1.2136 0.8793]
+    mean: 0.7779
+     cov: [1.0363 -0.7856 0.5718 -0.5967 0.7265 1.0061 1.2139 0.7471]
+     lik: [-5.9255 6.2612]
 
 Best kernel constructed at this stage of the search is: SE13xSE12xSE3xSE10xSE7.
-BIC value: 242.8335; Training accuracy: 0.8694; Test accurracy: 0.7931.
+BIC value: 242.8345; Training accuracy: 0.8694; Test accurracy: 0.7931. Previous best BIC: 240.8 and new kernel score is: 242.8345
 
  ---------------------------------------------------------------------------------------------------------------- 
 
- Search unable to construct a better kernel. Stopping the search procedure. 
+ Search unable to construct a better kernel. About to check backtracking condition. 
 
