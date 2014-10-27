@@ -1,0 +1,52 @@
+
+^[OAEvaluating the base SE kernels, number of experiments is: 45.
+
+^[OABIC values of base kernels: 343.0012      218.0279      242.4267      349.9961      339.4282      286.2605      300.2259      352.4005      470.3753
+ Train accuracies:           0.79798     0.89646     0.88384     0.81818     0.84091     0.85859     0.85354     0.83838     0.68939
+ Test accurracies:           0.77358     0.88679     0.90566     0.73585      0.9434      0.9434     0.92453     0.90566     0.62264
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 0.0956
+     cov: [0.6481 1.4760]
+     lik: [-1.3685 1.9076]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6.
+BIC value: 162.3475; Training accuracy: 0.94192; Test accurracy: 0.96226. Previous best BIC: 218.0279 and new kernel score is: 162.3395
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6.
+
+startingHyperparameters = 
+
+    mean: -0.0381
+     cov: [1.0097 0.6762 1.2489 0.8930]
+     lik: [-0.9267 2.9130]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6xSE1.
+BIC value: 151.8954; Training accuracy: 0.94949; Test accurracy: 0.96226. Previous best BIC: 162.3395 and new kernel score is: 151.3233
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6xSE1.
+
+startingHyperparameters = 
+
+    mean: 0.1127
+     cov: [1.3858 0.3224 1.4180 0.5392 1.8798 0.8189]
+     lik: [-2.1118 0.9167]
+
+
+^[OA
+^[OABest kernel constructed at this stage of the search is: SE2xSE6xSE1xSE4.
+BIC value: 153.8541; Training accuracy: 0.94949; Test accurracy: 0.98113. Previous best BIC: 151.3233 and new kernel score is: 153.8541
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. About to check backtracking condition. 
+

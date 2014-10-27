@@ -1,0 +1,52 @@
+Evaluating the base SE kernels, number of experiments is: 45.
+BIC values of base kernels: 346.8593         232.3      232.5619      368.9407      342.1409      282.0064      298.4631      339.6084      482.0412
+ Train accuracies:           0.79753     0.88642     0.88642     0.80494     0.85185     0.86914     0.86173     0.84938     0.67901
+ Test accurracies:           0.77273     0.90909     0.88636     0.84091     0.86364     0.86364     0.86364     0.81818     0.70455
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2.
+
+startingHyperparameters = 
+
+    mean: 0.7806
+     cov: [-0.0828 0.6779]
+
+Best kernel constructed at this stage of the search is: SE2xSE6.
+BIC value: 164.1407; Training accuracy: 0.94815; Test accurracy: 0.93182.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6.
+
+startingHyperparameters = 
+
+    mean: 1.7278
+     cov: [-1.1306 -0.1086 0.2595 0.8524]
+
+Best kernel constructed at this stage of the search is: SE2xSE6xSE1.
+BIC value: 154.7141; Training accuracy: 0.95062; Test accurracy: 0.97727.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6xSE1.
+
+startingHyperparameters = 
+
+    mean: 1.9295
+     cov: [-0.2813 -0.1848 0.1786 0.7763 0.7733 0.0646]
+
+Best kernel constructed at this stage of the search is: SE2xSE6xSE1 + SE8.
+BIC value: 145.3984; Training accuracy: 0.96296; Test accurracy: 0.97727.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+Kernel being expanded at this stage of the search is: SE2xSE6xSE1 + SE8.
+
+startingHyperparameters = 
+
+    mean: 1.9010
+     cov: [1.1837 -3.7595e-04 1.1557 0.9606 1.4422 0.2490 -1.1539 0.0559]
+
+Best kernel constructed at this stage of the search is: SE2xSE6xSE1xSE4 + SE8.
+BIC value: 146.5854; Training accuracy: 0.96543; Test accurracy: 0.97727.
+
+ ---------------------------------------------------------------------------------------------------------------- 
+
+ Search unable to construct a better kernel. Stopping the search procedure. 
+
