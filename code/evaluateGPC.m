@@ -96,8 +96,8 @@ end
         
         disp(['Currently evaluating ', num2str(i), '/', num2str(numFolds), ' cross validation data sets.']);
                  
-         kernelSearchLog = evalc('[BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); ');
-         %[BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); 
+         %kernelSearchLog = evalc('[BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); ');
+         [BicValsList, trainAccuraciesList, testAccuracciesList, hyperList, allEncoderMatrices, kernelNames{i}, bicValues(i), testAccuracies(i), finalHypers{i}, finalEncoders{i}] = structureSearch(trnX{i}, trnY{i} , tstX{i}, tstY{i}, searchDepth , numRestarts, runParallel, inferenceMethod, likelihoodFunction, searchCriterion, 0, 0); 
          %kernelSearchLog = 'printing to screen' ;
        
          averageAcc = averageAcc + testAccuracies(i);

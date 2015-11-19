@@ -15,7 +15,7 @@ function [] =  runExperiments(numRestarts, numDatasets)
    % addpath ( genpath ( './' )); 
 
     system('mkdir -p outputs');
-    system('mkdir -p data');
+    system('mkdir -p data');1
     system('mkdir -p scripts');
     system('mkdir -p images');
 
@@ -35,7 +35,7 @@ function [] =  runExperiments(numRestarts, numDatasets)
         name = ['../Data/classification/', expNames{i}, '.mat']
         load(name);
         
-        evaluateGPC(X, y, numRestarts, @infLaplace, @likErf, 10, 1, expNames{i}, 0);
+        evaluateGPC(X, y, numRestarts, @infLaplace, @likErf, 10, 0, expNames{i}, 0);
 
       %  if i == 4
       %       evaluateSyntheticData(5, 0, 1);  % after the four basic datasets, evaluate synthetic data as well. 
